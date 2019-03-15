@@ -1,0 +1,166 @@
+<?xml version="1.0" ?>
+<flight_control name="Generic Flight Control">
+    <channel name="Pilot_Inputs">
+        <summer name="pilotRoll_norm">
+            <input>fcs/aileron-cmd-norm</input>
+            <input>fcs/roll-trim-cmd-norm</input>
+            <clipto>
+                <min>-1.0</min>
+                <max>1.0</max>
+            </clipto>
+            <output>fcs/pilotRoll_norm</output>
+        </summer>
+        <summer name="pilotPitch_norm">
+            <input>fcs/elevator-cmd-norm</input>
+            <input>fcs/pitch-trim-cmd-norm</input>
+            <clipto>
+                <min>-1.0</min>
+                <max>1.0</max>
+            </clipto>
+            <output>fcs/pilotPitch_norm</output>
+        </summer>
+        <summer name="pilotYaw_norm">
+            <input>fcs/rudder-cmd-norm</input>
+            <input>fcs/yaw-trim-cmd-norm</input>
+            <clipto>
+                <min>-1.0</min>
+                <max>1.0</max>
+            </clipto>
+            <output>fcs/pilotYaw_norm</output>
+        </summer>
+        <summer name="pilotFlap_norm">
+            <input>fcs/flap-cmd-norm</input>
+            <clipto>
+                <min>-1.0</min>
+                <max>1.0</max>
+            </clipto>
+            <output>fcs/pilotFlap_norm</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps">
+            <input>fcs/pilotRoll_norm</input>
+            <gain>1.0471975511965976</gain>
+            <output>fcs/cmdRoll_rps</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps">
+            <input>fcs/pilotPitch_norm</input>
+            <gain>-0.5235987755982988</gain>
+            <output>fcs/cmdPitch_rps</output>
+        </pure_gain>
+        <pure_gain name="cmdYaw_rps">
+            <input>fcs/pilotYaw_norm</input>
+            <gain>-0.17453292519943295</gain>
+            <output>fcs/cmdYaw_rps</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad">
+            <input>fcs/pilotFlap_norm</input>
+            <gain>0.3490658503988659</gain>
+            <output>fcs/cmdFlap_rad</output>
+        </pure_gain>
+    </channel>
+    <channel name="Control Mixer">
+        <pure_gain name="cmdRoll_rps_2_AilL">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>0.5</gain>
+            <output>fcs/cmdRoll_rps_2_AilL</output>
+        </pure_gain>
+        <pure_gain name="cmdYaw_rps_2_AilL">
+            <input>fcs/cmdYaw_rps</input>
+            <gain>0.12499999999999994</gain>
+            <output>fcs/cmdYaw_rps_2_AilL</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_AilL">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.49999999999999956</gain>
+            <output>fcs/cmdFlap_rad_2_AilL</output>
+        </pure_gain>
+        <summer name="cmdAilL_rad">
+            <input>fcs/cmdRoll_rps_2_AilL</input>
+            <input>fcs/cmdYaw_rps_2_AilL</input>
+            <input>fcs/cmdFlap_rad_2_AilL</input>
+            <output>fcs/cmdAilL_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_AilR">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>-0.5000000000000002</gain>
+            <output>fcs/cmdRoll_rps_2_AilR</output>
+        </pure_gain>
+        <pure_gain name="cmdYaw_rps_2_AilR">
+            <input>fcs/cmdYaw_rps</input>
+            <gain>-0.12499999999999997</gain>
+            <output>fcs/cmdYaw_rps_2_AilR</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_AilR">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.5000000000000002</gain>
+            <output>fcs/cmdFlap_rad_2_AilR</output>
+        </pure_gain>
+        <summer name="cmdAilR_rad">
+            <input>fcs/cmdRoll_rps_2_AilR</input>
+            <input>fcs/cmdYaw_rps_2_AilR</input>
+            <input>fcs/cmdFlap_rad_2_AilR</input>
+            <output>fcs/cmdAilR_rad</output>
+        </summer>
+        <pure_gain name="cmdPitch_rps_2_RudevL">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.5000000000000001</gain>
+            <output>fcs/cmdPitch_rps_2_RudevL</output>
+        </pure_gain>
+        <pure_gain name="cmdYaw_rps_2_RudevL">
+            <input>fcs/cmdYaw_rps</input>
+            <gain>-0.4999999999999999</gain>
+            <output>fcs/cmdYaw_rps_2_RudevL</output>
+        </pure_gain>
+        <summer name="cmdRudevL_rad">
+            <input>fcs/cmdPitch_rps_2_RudevL</input>
+            <input>fcs/cmdYaw_rps_2_RudevL</input>
+            <output>fcs/cmdRudevL_rad</output>
+        </summer>
+        <pure_gain name="cmdPitch_rps_2_RudevR">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.5000000000000001</gain>
+            <output>fcs/cmdPitch_rps_2_RudevR</output>
+        </pure_gain>
+        <pure_gain name="cmdYaw_rps_2_RudevR">
+            <input>fcs/cmdYaw_rps</input>
+            <gain>0.5000000000000001</gain>
+            <output>fcs/cmdYaw_rps_2_RudevR</output>
+        </pure_gain>
+        <summer name="cmdRudevR_rad">
+            <input>fcs/cmdPitch_rps_2_RudevR</input>
+            <input>fcs/cmdYaw_rps_2_RudevR</input>
+            <output>fcs/cmdRudevR_rad</output>
+        </summer>
+    </channel>
+    <property>fcs/cmdAilL_ext_rad</property>
+    <property>fcs/cmdAilR_ext_rad</property>
+    <property>fcs/cmdRudevL_ext_rad</property>
+    <property>fcs/cmdRudevR_ext_rad</property>
+    <property>fcs/cmdMotor_ext_nd</property>
+    <channel name="External Input Summations">
+        <summer>
+            <input>fcs/cmdAilL_rad</input>
+            <input>fcs/cmdAilL_ext_rad</input>
+            <output>fcs/cmdAilL_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdAilR_rad</input>
+            <input>fcs/cmdAilR_ext_rad</input>
+            <output>fcs/cmdAilR_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdRudevL_rad</input>
+            <input>fcs/cmdRudevL_ext_rad</input>
+            <output>fcs/cmdRudevL_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdRudevR_rad</input>
+            <input>fcs/cmdRudevR_ext_rad</input>
+            <output>fcs/cmdRudevR_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/throttle-cmd-norm</input>
+            <input>fcs/cmdMotor_ext_nd</input>
+            <output>fcs/throttle-pos-norm</output>
+        </summer>
+    </channel>
+</flight_control>

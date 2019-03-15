@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<propulsion>
+    <engine file="Typhoon_HET_700-68_1200Kv">
+        <thruster file="Jetfan90v2">
+            <location unit="M">
+                <x>0.8382</x>
+                <y>-0.127</y>
+                <z>0.127</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>0</pitch>
+                <yaw>0</yaw>
+            </orient>
+            <sense>1.0</sense>
+            <p_factor>0.0</p_factor>
+        </thruster>
+    </engine>
+    <engine file="Typhoon_HET_700-68_1200Kv">
+        <thruster file="Jetfan90v2">
+            <location unit="M">
+                <x>0.8382</x>
+                <y>0.127</y>
+                <z>0.127</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>0</pitch>
+                <yaw>0</yaw>
+            </orient>
+            <sense>1.0</sense>
+            <p_factor>0.0</p_factor>
+        </thruster>
+    </engine>
+</propulsion>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<output name="BBB" type="SOCKET" port="59011" protocol="UDP" rate="50">
+    <!-- Time is included in message -->
+    <property> sensor/imu/time_us </property>
+    <property> sensor/imu/accelX_mps2 </property>
+    <property> sensor/imu/accelY_mps2 </property>
+    <property> sensor/imu/accelZ_mps2 </property>
+    <property> sensor/imu/gyroX_rps </property>
+    <property> sensor/imu/gyroY_rps </property>
+    <property> sensor/imu/gyroZ_rps </property>
+    <property> sensor/imu/magX_uT </property>
+    <property> sensor/imu/magY_uT </property>
+    <property> sensor/imu/magZ_uT </property>
+</output>

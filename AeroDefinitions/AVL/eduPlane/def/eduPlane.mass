@@ -1,0 +1,41 @@
+#-------------------------------------------------
+#
+#   eduPlane
+#
+#  Dimensional unit and parameter data.
+#  Mass & Inertia breakdown.
+#-------------------------------------------------
+#  Names and scalings for units to be used for trim and eigenmode calculations.
+#  The Lunit and Munit values scale the mass, xyz, and inertia table data below.
+#  Lunit value will also scale all lengths and areas in the AVL input file.
+#
+Lunit =     1.0000 m
+Munit =     0.0010 kg
+Tunit =     1.0 s
+
+#-------------------------
+#  Gravity and density to be used as default values in trim setup (saves runtime typing).
+#  Must be in the unit names given above (i.e. m,kg,s).
+g   = 9.81
+rho = 1.225
+
+#-------------------------
+#  Mass & Inertia breakdown.
+#  x y z  is location of item's own CG.
+#  Ixx... are item's inertias about item's own CG.
+#
+#  x,y,z system here must be exactly the same one used in the .avl input file
+#     (same orientation, same origin location, same length units)
+#
+# mass  x     y      z        Ixx        Iyy        Izz        Ixy    Ixz          Iyz 
+  300   11.7  0      0.154   5.76e+04   1.65e+03   5.92e+04    0      -3.31        0 ! Wing
+  100   33    0      0       2.7e+03    270        2.97e+03    0      0            0 ! HTail
+  50    33    0      3.5     204        339        135         0      -5.65e-15    0 ! VTail
+  250   1     0      0       0.000      0.000      0.000 ! Fuselage
+  100   -1    0      0       0.000      0.000      0.000 ! Motor
+  250   4     0      0       0.000      0.000      0.000 ! Battery
+  200   10    0      0       0.000      0.000      0.000 ! Computer
+  30    25    0      0       0.000      0.000      0.000 ! Elevator Servo
+  30    25    0      0       0.000      0.000      0.000 ! Rudder Servo
+  30    10    -15    0       0.000      0.000      0.000 ! Aileron Left Servo
+  30    10    15     0       0.000      0.000      0.000 ! Aileron Right Servo

@@ -1,0 +1,10 @@
+xflr5 v6.32
+
+Plane name :        UltraStick25e
+Polar name :        T1-25.0 m/s-VLM2-NoBodyPanels
+Freestream speed :  25.000 m/s
+
+
+   alpha      Beta       CL          CDi        CDv        CD         CY         Cl         Cm         Cn        Cni       QInf        XCP
+
+

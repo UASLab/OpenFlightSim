@@ -1,0 +1,286 @@
+<?xml version="1.0" ?>
+<aerodynamics>
+    <function name="aero/coefficient/CL__alpha">
+        <table>
+            <independentVar>aero/alpha-rad</independentVar>
+            <tableData>
+                -0.2000	-0.7500
+                0.0000	0.2500
+                0.2300	1.4000
+                0.6000	0.7100
+            </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dElev">
+        <product>
+            <property>fcs/posElev_rad</property>
+            <value>0.2000</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CL">
+        <sum>
+            <property>aero/coefficient/CL__alpha</property>
+            <property>aero/coefficient/CL__dElev</property>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CD__zero">
+        <table>
+            <independentVar>aero/alpha-rad</independentVar>
+            <tableData>
+                -1.5700	4.0000
+                -0.2600	0.170
+                0.0000	0.10
+                0.2600	0.170
+                1.5700	4.0000
+            </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__induced">
+        <product>
+            <property>aero/cl-squared</property>
+            <value>0.0400</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CD__beta">
+        <table>
+            <independentVar>aero/beta-rad</independentVar>
+            <tableData>
+                -1.5700	1.2300
+                -0.2600	0.0500
+                0.0000	0.0000
+                0.2600	0.0500
+                1.5700	1.2300
+            </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dElev">
+        <product>
+            <property>fcs/posElev_rad</property>
+            <value>0.00975</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CD">
+        <sum>
+            <property>aero/coefficient/CD__zero</property>
+            <property>aero/coefficient/CD__induced</property>
+            <property>aero/coefficient/CD__beta</property>
+            <property>aero/coefficient/CD__dElev</property>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CY__beta">
+        <product>
+            <property>aero/beta-rad</property>
+            <value>-1.0000</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CY">
+        <sum>
+            <property>aero/coefficient/CY__beta</property>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CMl__beta">
+        <product>
+            <property>aero/beta-rad</property>
+            <value>-0.1000</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMl__dpHat">
+        <product>
+            <property>aero/bi2vel</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <value>-0.4000</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMl__drHat">
+        <product>
+            <property>aero/bi2vel</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <value>0.1500</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMl__dAilL">
+        <product>
+            <property>fcs/posAilL_rad</property>
+            <table>
+                <independentVar>velocities/mach</independentVar>
+                <tableData>
+                    0.0000	0.0650
+                    2.0000	0.0265
+                </tableData>
+            </table>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMl__dAilR">
+        <product>
+            <property>fcs/posAilR_rad</property>
+            <table>
+                <independentVar>velocities/mach</independentVar>
+                <tableData>
+                    0.0000	-0.0650
+                    2.0000	-0.0265
+                </tableData>
+            </table>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMl__dRud">
+        <product>
+            <property>fcs/posRud_rad</property>
+            <value>0.0100</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMl">
+        <sum>
+            <property>aero/coefficient/CMl__beta</property>
+            <property>aero/coefficient/CMl__dpHat</property>
+            <property>aero/coefficient/CMl__drHat</property>
+            <property>aero/coefficient/CMl__dAilL</property>
+            <property>aero/coefficient/CMl__dAilR</property>
+            <property>aero/coefficient/CMl__dRud</property>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CMm__alpha">
+        <product>
+            <property>aero/alpha-rad</property>
+            <value>-0.5000</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMm__dElev">
+        <product>
+            <property>fcs/posElev_rad</property>
+            <table>
+                <independentVar>velocities/mach</independentVar>
+                <tableData>
+                    0.0000	-0.5000	<!-- was -1.1 -->
+                    2.0000	-0.2750
+                </tableData>
+            </table>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMm__dqHat">
+        <product>
+            <property>aero/ci2vel</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <value>-12.0000</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMm__alphaDot">
+        <product>
+            <property>aero/ci2vel</property>
+            <property>aero/alphadot-rad_sec</property>
+            <value>-7.0000</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMm">
+        <sum>
+            <property>aero/coefficient/CMm__alpha</property>
+            <property>aero/coefficient/CMm__dElev</property>
+            <property>aero/coefficient/CMm__dqHat</property>
+            <property>aero/coefficient/CMm__alphaDot</property>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CMn__beta">
+        <product>
+            <property>aero/beta-rad</property>
+            <value>0.1200</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn__dpHat">
+        <product>
+            <property>aero/bi2vel</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <value>0.0</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn__drHat">
+        <product>
+            <property>aero/bi2vel</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <value>-0.1500</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn__dRud">
+        <product>
+            <property>fcs/posRud_rad</property>
+            <value>-0.0500</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn__dAilL">
+        <product>
+            <property>fcs/posAilL_rad</property>
+            <value>-0.0150</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn__dAilR">
+        <product>
+            <property>fcs/posAilR_rad</property>
+            <value>0.0150</value>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn">
+        <sum>
+            <property>aero/coefficient/CMn__beta</property>
+            <property>aero/coefficient/CMn__dpHat</property>
+            <property>aero/coefficient/CMn__drHat</property>
+            <property>aero/coefficient/CMn__dAilL</property>
+            <property>aero/coefficient/CMn__dAilR</property>
+            <property>aero/coefficient/CMn__dRud</property>
+        </sum>
+    </function>
+
+    <axis name="LIFT">
+        <function name="aero/force/LIFT__CL">
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CL</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="DRAG">
+        <function name="aero/force/DRAG__CD">
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CD</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="SIDE">
+        <function name="aero/force/SIDE__CY">
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CY</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="ROLL">
+        <function name="aero/moment/ROLL__CMl">
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/coefficient/CMl</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="PITCH">
+        <function name="aero/moment/PITCH__CMm">
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/cbarw-ft</property>
+                <property>aero/coefficient/CMm</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="YAW">
+        <function name="aero/moment/YAW__CMn">
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/coefficient/CMn</property>
+            </product>
+        </function>
+    </axis>
+</aerodynamics>

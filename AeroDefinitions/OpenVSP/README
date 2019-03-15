@@ -1,0 +1,17 @@
+Run VSPAERO
+Analysis -> VSPAERO -> Overview Tab
+  Case setup:
+    *make sure VLM, Stability Calculation, and Batch Calculation are highlighted
+  Moment Reference Position
+    *make sure uses model
+    *specify the CG location, which will be used as the aero reference location
+  Flow Condition:
+    *choose range of alpha
+    *choose range of beta
+    *choose range of Mach
+Click Launch Solver.  You should see the "Kill Solver" button highlight itself.  Don't click it.
+Move to Solver Console to watch it run. It is not done until the "kill solver" button goes away.
+
+"<...>.stab" file contains controls derivatives.
+"<...>.history" file contains every run. It also contains the CDi and CDo values.
+"<...>.adb.cases" filed describes the condition of every run.

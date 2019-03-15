@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<initialize name="UMore Park In-flight">
+  <vt unit="M/S">         12.0      </vt>
+  <latitude type="geodetic" unit="DEG">   44.725801 </latitude>
+  <longitude unit="DEG"> -93.075866 </longitude>
+  <altitude unit="M">     400.0     </altitude>
+  <elevation unit="M">    400.0     </elevation>
+  <psi unit="DEG">        90.0      </psi>
+  <gamma unit="DEG">      0.0       </gamma>
+  <beta unit="DEG">       0.0       </beta>
+  <p unit="RAD/S">        0.0       </p>
+  <q unit="RAD/S">        0.0       </q>
+  <r unit="RAD/S">        0.0       </r>
+  <phi unit="DEG">        0.0       </phi>
+</initialize>

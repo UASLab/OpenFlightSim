@@ -1,0 +1,1 @@
+Preliminary mAEWing2 model based on 50% X-56A OML and control surface locations and masses. Needs to be updated for v1.1 release of mAEWing2.

@@ -1,0 +1,219 @@
+# 
+# Note : check consistency of area unit and length units in this file
+# Note : check consistency with inertia units of the .mass file
+# 
+# 
+UltraStick25e
+#
+# Mach
+0.0
+#
+# iYsym  iZsym  Zsym
+0     0     0.0
+#
+# Sref   Cref   Bref
+479.516      9.963     49.750
+#
+# Xref    Yref    Zref
+0.0    0.0   0.0
+#
+# CDp (optional)
+0.00
+
+
+
+#=================================================
+SURFACE
+WingR
+#Nchord      Cspace      [Nspan]       [Sspace]               
+ 11          1.0
+
+SCALE
+ 1.0  1.0  1.0
+
+TRANSLATE
+ 6.25  0.0  3.0
+
+ANGLE
+ 0.000                         | dAinc
+
+#______________ (define sections left to right)
+SECTION                                                     |  (keyword)
+ 0.0000    0.0000    0.0000   10.2500   0.000    4    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+NACA
+0014
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000    3.1250    0.0000   10.2500   0.000    13    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+NACA
+0014
+
+CONTROL                                                     |  (keyword)
+dflapR  1.0   0.817     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000   12.0000    0.0000   10.2500   0.000    13    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+NACA
+0014
+
+CONTROL                                                     |  (keyword)
+dflapR  1.0   0.817     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+CONTROL                                                     |  (keyword)
+dailR  1.0   0.817     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000   22.2500    0.0000    9.8750   0.000    3    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+NACA
+0014
+
+CONTROL                                                     |  (keyword)
+dailR  1.0   0.817     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+#______________
+SECTION                                                     |  (keyword)
+ 9.2500   24.8750    0.0000    0.5000   0.000    3    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+#=================================================
+SURFACE
+WingL
+#Nchord      Cspace      [Nspan]       [Sspace]               
+ 11          1.0
+
+SCALE
+ 1.0  1.0  1.0
+
+TRANSLATE
+ 6.25  0.0  3.0
+
+ANGLE
+ 0.000                         | dAinc
+
+
+#______________ (define sections left to right)
+SECTION                                                     |  (keyword)
+ 9.2500   -24.8750    0.0000    0.5000   0.000    3    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+ 
+ 
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000   -22.2500    0.0000    9.8750   0.000    13   0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+NACA
+0014
+
+CONTROL                                                     |  (keyword)
+dailL  1.0   0.817     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000   -12.0000    0.0000   10.2500   0.000    13    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+NACA
+0014
+
+CONTROL                                                     |  (keyword)
+dailL  1.0   0.817     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+CONTROL                                                     |  (keyword)
+dflapL  1.0   0.817     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000    -3.1250    0.0000   10.2500   0.000    4     0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+NACA
+0014
+
+CONTROL                                                     |  (keyword)
+dflapL  1.0   0.817     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000    0.0000    0.0000   10.2500   0.000    4    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+NACA
+0014
+
+
+#=================================================
+SURFACE                      | (keyword)
+HTail
+#Nchord      Cspace      [Nspan]       [Sspace]               
+ 11          1.0
+
+YDUPLICATE
+0.0
+
+SCALE
+1.0  1.0  1.0
+
+TRANSLATE
+30.25  0.0  0.0
+
+ANGLE
+ 0.000
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000    0.0000    0.0000    7.2500   0.000    2    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000    1.0000    0.0000    7.2500   0.000    16    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+CONTROL                                                     |  (keyword)
+delev  1.0   0.690      0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+#______________
+SECTION                                                     |  (keyword)
+ 0.0000    8.1250    0.0000    7.2500   0.000    3    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+CONTROL                                                     |  (keyword)
+delev  1.0   0.690      0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+#______________
+SECTION                                                     |  (keyword)
+ 5.0000    9.4375    0.0000    2.2500   0.000    3    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+CONTROL                                                     |  (keyword)
+delev  1.0   0.0000      0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+
+#=================================================
+SURFACE                      | (keyword)
+VTail
+#Nchord      Cspace      [Nspan]       [Sspace]  
+11           1.0
+
+SCALE
+1.0  1.0  1.0
+
+TRANSLATE
+27.5  0.0  0.0
+
+ANGLE
+ 0.000                         | dAinc
+
+#______________ (sections defined top to bottom)
+SECTION                                                     |  (keyword)
+ 6.1250   0.0000    5.5000    3.2500   0.000    7    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+CONTROL                                                     |  (keyword)
+drud  1.0   0.4200     0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup
+
+#______________
+
+SECTION                                                     |  (keyword)
+ 0.0000   0.0000    0.0000    12.0000   0.000    7    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+CONTROL                                                     |  (keyword)
+drud  1.0   0.6250      0.0000      0.0000      0.0000  1.0  | name, gain,  Xhinge,  XYZhvec,  SgnDup

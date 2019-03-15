@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<propulsion>
+    <engine file="Power25">
+        <thruster file="APC 12x6e">
+            <location unit="M">
+                <x>1.143</x>
+                <y>0.0</y>
+                <z>0.0254</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>0</pitch>
+                <yaw>0</yaw>
+            </orient>
+            <sense>1.0</sense>
+            <p_factor>0.0</p_factor>
+        </thruster>
+    </engine>
+</propulsion>

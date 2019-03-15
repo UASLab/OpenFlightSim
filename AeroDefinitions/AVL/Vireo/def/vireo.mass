@@ -1,0 +1,31 @@
+#-------------------------------------------------
+#  Vireo
+#
+#  Dimensional unit and parameter data.
+#  Mass & Inertia breakdown.
+#-------------------------------------------------
+
+#  Names and scalings for units to be used for trim and eigenmode calculations.
+#  The Lunit and Munit values will scale the mass, xyz, and inertia table data below.
+#  Lunit value will also scale all lengths and areas in the AVL input file.
+Lunit = 1.0 m
+Munit = 1.0 kg
+Tunit = 1.0 s
+
+#------------------------- 
+#  Gravity and density to be used as default values in trim setup (saves runtime typing).
+#  Must be in the units given above.
+g   = 9.81
+rho = 1.225
+
+#-------------------------
+#  Mass & Inertia breakdown.
+#  x y z  is location of item's own CG.
+#  Ixx... are item's inertias about item's own CG.
+#
+#  x,y,z system here must be exactly the same one used in the AVL input file
+#     (same orientation, same origin location, same length units)
+#
+#  mass        x          y     z          Ixx       Iyy       Izz      [ Ixy  Ixz       Iyz ]
+#
+   1.008528    0.107012   0.0   -0.039250  0.025503  0.021143  0.043334   0.0  0.002042  0.0

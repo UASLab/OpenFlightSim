@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE explane>
+<explane version="1.0">
+    <Units>
+        <length_unit_to_meter>0.0254</length_unit_to_meter>
+        <mass_unit_to_kg>0.001</mass_unit_to_kg>
+    </Units>
+    <Plane>
+        <Name>UltraStick25e</Name>
+        <Description>UltraStick 25e - Rough Aero Shape. Assumed NACA0014 based solely on measurement of t/c and appearance of a symmetric airfoil.HTail and VTail are flat 0.25&quot; thick on the real aircraft; using NACA0005 for analysis. Rudder should have a full moving tip section (2&quot; top span).</Description>
+        <Inertia>
+            <Point_Mass>
+                <Tag>Other</Tag>
+                <Mass>200.000</Mass>
+                <coordinates>       8.26,           0,           0</coordinates>
+            </Point_Mass>
+        </Inertia>
+        <has_body>true</has_body>
+        <body>
+            <Name>UltraStick25e_body</Name>
+            <Color>
+                <red>98</red>
+                <green>102</green>
+                <blue>156</blue>
+                <alpha>255</alpha>
+            </Color>
+            <Description></Description>
+            <Position>          0,           0,           0</Position>
+            <Type>FLATPANELS</Type>
+            <Panel_Stripes>
+                <stripe_0>1</stripe_0>
+                <stripe_1>1</stripe_1>
+                <stripe_2>1</stripe_2>
+                <stripe_3>1</stripe_3>
+                <stripe_4>1</stripe_4>
+            </Panel_Stripes>
+            <Inertia>
+                <Volume_Mass>  0.231</Volume_Mass>
+                <Point_Mass>
+                    <Tag>Motor and Prop</Tag>
+                    <Mass>230.000</Mass>
+                    <coordinates>     -1.375,           0,       1.375</coordinates>
+                </Point_Mass>
+                <Point_Mass>
+                    <Tag>Battery</Tag>
+                    <Mass>275.000</Mass>
+                    <coordinates>          3,           0,        2.25</coordinates>
+                </Point_Mass>
+                <Point_Mass>
+                    <Tag>Landing Gear</Tag>
+                    <Mass>167.000</Mass>
+                    <coordinates>       6.75,           0,          -4</coordinates>
+                </Point_Mass>
+                <Point_Mass>
+                    <Tag>Avionics</Tag>
+                    <Mass>200.000</Mass>
+                    <coordinates>          8,           0,           1</coordinates>
+                </Point_Mass>
+                <Point_Mass>
+                    <Tag>Servo Elevator</Tag>
+                    <Mass> 27.000</Mass>
+                    <coordinates>      12.75,       -0.75,           1</coordinates>
+                </Point_Mass>
+                <Point_Mass>
+                    <Tag>Servo Rudder</Tag>
+                    <Mass> 27.000</Mass>
+                    <coordinates>      12.75,        0.75,           1</coordinates>
+                </Point_Mass>
+            </Inertia>
+            <frame>
+                <x_panels>1</x_panels>
+                <Position>          0,           0,           0</Position>
+                <point>          0,           0,           0</point>
+                <point>          0,           0,           0</point>
+                <point>          0,           0,           0</point>
+                <point>          0,           0,           0</point>
+                <point>          0,           0,           0</point>
+            </frame>
+            <frame>
+                <x_panels>1</x_panels>
+                <Position>          0,           0,           0</Position>
+                <point>          0,           0,           0</point>
+                <point>          0,       1.594,           0</point>
+                <point>          0,       1.594,        2.75</point>
+                <point>          0,      -1.594,        2.75</point>
+                <point>          0,      -1.594,           0</point>
+            </frame>
+            <frame>
+                <x_panels>1</x_panels>
+                <Position>       6.25,           0,           0</Position>
+                <point>       6.25,           0,           0</point>
+                <point>       6.25,       1.594,           0</point>
+                <point>       6.25,       1.594,       3.563</point>
+                <point>       6.25,      -1.594,       3.563</point>
+                <point>       6.25,      -1.594,           0</point>
+            </frame>
+            <frame>
+                <x_panels>1</x_panels>
+                <Position>     14.625,           0,           0</Position>
+                <point>     14.625,           0,           0</point>
+                <point>     14.625,       1.594,           0</point>
+                <point>     14.625,       1.594,       3.188</point>
+                <point>     14.625,      -1.594,       3.188</point>
+                <point>     14.625,      -1.594,           0</point>
+            </frame>
+            <frame>
+                <x_panels>1</x_panels>
+                <Position>      35.25,           0,           0</Position>
+                <point>      35.25,           0,           0</point>
+                <point>      35.25,        0.25,           0</point>
+                <point>      35.25,        0.25,       0.625</point>
+                <point>      35.25,       -0.25,       0.625</point>
+                <point>      35.25,       -0.25,           0</point>
+            </frame>
+            <frame>
+                <x_panels>1</x_panels>
+                <Position>      35.25,           0,           0</Position>
+                <point>      35.25,           0,           0</point>
+                <point>      35.25,           0,           0</point>
+                <point>      35.25,           0,           0</point>
+                <point>      35.25,           0,           0</point>
+                <point>      35.25,           0,           0</point>
+            </frame>
+        </body>
+        <wing>
+            <Name>Main Wing</Name>
+            <Type>MAINWING</Type>
+            <Color>
+                <red>75</red>
+                <green>218</green>
+                <blue>116</blue>
+                <alpha>255</alpha>
+            </Color>
+            <Description></Description>
+            <Position>       6.25,           0,           3</Position>
+            <Tilt_angle>  0.000</Tilt_angle>
+            <Symetric>true</Symetric>
+            <isFin>false</isFin>
+            <isDoubleFin>false</isDoubleFin>
+            <isSymFin>false</isSymFin>
+            <Inertia>
+                <Volume_Mass>  0.234</Volume_Mass>
+                <Point_Mass>
+                    <Tag>Servo Flap Left</Tag>
+                    <Mass> 27.000</Mass>
+                    <coordinates>        3.5,        -6.5,           0</coordinates>
+                </Point_Mass>
+                <Point_Mass>
+                    <Tag>Servo Flap Right</Tag>
+                    <Mass> 27.000</Mass>
+                    <coordinates>        3.5,         6.5,           0</coordinates>
+                </Point_Mass>
+                <Point_Mass>
+                    <Tag>Servo Aileron Left</Tag>
+                    <Mass> 27.000</Mass>
+                    <coordinates>        3.5,     -17.625,           0</coordinates>
+                </Point_Mass>
+                <Point_Mass>
+                    <Tag>Servo Aileron Right</Tag>
+                    <Mass> 27.000</Mass>
+                    <coordinates>        3.5,      17.625,           0</coordinates>
+                </Point_Mass>
+            </Inertia>
+            <Sections>
+                <Section>
+                    <y_position>  0.000</y_position>
+                    <Chord> 10.250</Chord>
+                    <xOffset>  0.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>4</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>NACA0014</Left_Side_FoilName>
+                    <Right_Side_FoilName>NACA0014</Right_Side_FoilName>
+                </Section>
+                <Section>
+                    <y_position>  3.125</y_position>
+                    <Chord> 10.250</Chord>
+                    <xOffset>  0.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>13</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>NACA0014_Flap</Left_Side_FoilName>
+                    <Right_Side_FoilName>NACA0014_Flap</Right_Side_FoilName>
+                </Section>
+                <Section>
+                    <y_position> 12.000</y_position>
+                    <Chord> 10.250</Chord>
+                    <xOffset>  0.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>13</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>NACA0014_AilIn</Left_Side_FoilName>
+                    <Right_Side_FoilName>NACA0014_AilIn</Right_Side_FoilName>
+                </Section>
+                <Section>
+                    <y_position> 22.250</y_position>
+                    <Chord>  9.875</Chord>
+                    <xOffset>  0.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>3</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>NACA0014_AilOut</Left_Side_FoilName>
+                    <Right_Side_FoilName>NACA0014_AilOut</Right_Side_FoilName>
+                </Section>
+                <Section>
+                    <y_position> 24.875</y_position>
+                    <Chord>  0.500</Chord>
+                    <xOffset>  9.250</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>1</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>Flat</Left_Side_FoilName>
+                    <Right_Side_FoilName>Flat</Right_Side_FoilName>
+                </Section>
+            </Sections>
+        </wing>
+        <wing>
+            <Name>Elevator</Name>
+            <Type>ELEVATOR</Type>
+            <Color>
+                <red>243</red>
+                <green>99</green>
+                <blue>113</blue>
+                <alpha>255</alpha>
+            </Color>
+            <Description></Description>
+            <Position>      30.25,           0,           0</Position>
+            <Tilt_angle>  0.000</Tilt_angle>
+            <Symetric>true</Symetric>
+            <isFin>false</isFin>
+            <isDoubleFin>false</isDoubleFin>
+            <isSymFin>false</isSymFin>
+            <Inertia>
+                <Volume_Mass>  0.056</Volume_Mass>
+            </Inertia>
+            <Sections>
+                <Section>
+                    <y_position>  0.000</y_position>
+                    <Chord>  7.250</Chord>
+                    <xOffset>  0.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>2</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>Flat</Left_Side_FoilName>
+                    <Right_Side_FoilName>Flat</Right_Side_FoilName>
+                </Section>
+                <Section>
+                    <y_position>  1.000</y_position>
+                    <Chord>  7.250</Chord>
+                    <xOffset>  0.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>16</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>Flat_Elev</Left_Side_FoilName>
+                    <Right_Side_FoilName>Flat_Elev</Right_Side_FoilName>
+                </Section>
+                <Section>
+                    <y_position>  8.125</y_position>
+                    <Chord>  7.250</Chord>
+                    <xOffset>  0.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>3</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>Flat_Elev</Left_Side_FoilName>
+                    <Right_Side_FoilName>Flat_Elev</Right_Side_FoilName>
+                </Section>
+                <Section>
+                    <y_position>  9.438</y_position>
+                    <Chord>  2.250</Chord>
+                    <xOffset>  5.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>1</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>Flat</Left_Side_FoilName>
+                    <Right_Side_FoilName>Flat</Right_Side_FoilName>
+                </Section>
+            </Sections>
+        </wing>
+        <wing>
+            <Name>Fin</Name>
+            <Type>FIN</Type>
+            <Color>
+                <red>67</red>
+                <green>169</green>
+                <blue>159</blue>
+                <alpha>255</alpha>
+            </Color>
+            <Description></Description>
+            <Position>      27.75,           0,           0</Position>
+            <Tilt_angle>  0.000</Tilt_angle>
+            <Symetric>true</Symetric>
+            <isFin>true</isFin>
+            <isDoubleFin>false</isDoubleFin>
+            <isSymFin>false</isSymFin>
+            <Inertia>
+                <Volume_Mass>  0.038</Volume_Mass>
+            </Inertia>
+            <Sections>
+                <Section>
+                    <y_position>  0.000</y_position>
+                    <Chord> 12.000</Chord>
+                    <xOffset>  0.000</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>11</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>Flat_RudBot</Left_Side_FoilName>
+                    <Right_Side_FoilName>Flat_RudBot</Right_Side_FoilName>
+                </Section>
+                <Section>
+                    <y_position>  5.500</y_position>
+                    <Chord>  3.250</Chord>
+                    <xOffset>  6.125</xOffset>
+                    <Dihedral>  0.000</Dihedral>
+                    <Twist>  0.000</Twist>
+                    <x_number_of_panels>11</x_number_of_panels>
+                    <x_panel_distribution>UNIFORM</x_panel_distribution>
+                    <y_number_of_panels>1</y_number_of_panels>
+                    <y_panel_distribution>COSINE</y_panel_distribution>
+                    <Left_Side_FoilName>Flat_RudTop</Left_Side_FoilName>
+                    <Right_Side_FoilName>Flat_RudTop</Right_Side_FoilName>
+                </Section>
+            </Sections>
+        </wing>
+    </Plane>
+</explane>

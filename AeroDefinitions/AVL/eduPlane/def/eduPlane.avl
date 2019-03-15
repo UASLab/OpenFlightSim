@@ -1,0 +1,174 @@
+#***********************************************************************************
+# AVL dataset for eduPlan Prototype
+# Authors: Chris Regan
+# Date created: March 4, 2016
+# Date modified: March 4, 2016
+# This model explicitly defines the left wing.
+#***********************************************************************************
+eduPlane     
+#Mach (if below 0.2, use 0.0). Cruise speed is 13 m/s ==> M = 0.0382
+ 0.0
+#IYsym       IZsym       IZsym                 
+ 0           0           0.0000      
+#Sref        Cref        Bref        
+ 0.3096768   0.2540      1.2192
+
+#***********************************************************************************
+# AVL Axes:   
+#  +X   downstream
+#  +Y   out right wing
+#  +Z   up    
+#***********************************************************************************
+#Xref        Yref        Zref                  
+0.0000      0.0000      0.0000      
+#CDp                   
+0.04
+
+#=============================SURFACE:Wing=============================
+SURFACE
+Wing
+#Nchord      Cspace      Nspan       Sspace               
+ 9          1.0         15          1.0
+
+YDUPLICATE
+ 0.00000
+
+SCALE      
+#sX          sY          sZ                   
+ 1.0000      1.0000      1.0000      
+
+TRANSLATE  
+#dX          dY          dZ                   
+ 0.1905      0.0000      0.0000      
+
+ANGLE      
+#Ainc                 
+ 0.0000      
+
+#=============================SECTION:RWing, station 1=============================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.0000      0.0000      0.2540      0.0  
+
+NACA
+2412
+
+#=============================SECTION:RWing, station 2=============================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.0381      0.0000      0.2540      0.0
+
+NACA
+2412
+
+#=============================SECTION:RWing, station 3=============================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.3048      0.0000      0.2540      0.0
+
+NACA
+2412
+
+CONTROL    
+#label       gain        Xhinge      Xhvec       Yhvec       Zhvec       SgnDup      
+ Aileron     1.0000      0.7500      0.0000      0.0000      0.0000      1
+
+#=============================SECTION:RWing, station 4=============================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.60960     0.0000      0.2454       0.0
+
+NACA
+2412
+
+CONTROL    
+#label       gain        Xhinge      Xhvec       Yhvec       Zhvec       SgnDup      
+ Aileron     1.0000      0.7500      0.0000      0.0000      0.0000      1
+
+ #=====================================Horizontal======================================
+SURFACE
+Vertical
+#Nchord      Cspace      Nspan       Sspace               
+ 9           1.0         16          1.0
+
+YDUPLICATE
+ 0.00000
+ 
+SCALE      
+#sX          sY          sZ                   
+ 1.0000      1.0000      1.0000      
+
+TRANSLATE  
+#dX          dY          dZ                   
+ 0.5000      0.0000      0.0000      
+
+ANGLE      
+#Ainc                 
+ 0.0000      
+
+#================================Horizontal section 1=================================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.0000      0.0000      0.1778      0.0000
+
+NACA
+0009
+
+CONTROL    
+#label       gain        Xhinge      Xhvec       Yhvec       Zhvec       SgnDup      
+ Elevator    1.0000      0.7500      0.0000      0.0000      0.0000      1
+
+#================================Horizontal section 2=================================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.2286      0.0000     0.1778      0.0000      
+
+NACA
+0009
+
+CONTROL    
+#label       gain        Xhinge      Xhvec       Yhvec       Zhvec       SgnDup      
+ Elevator    1.0000      0.7500      0.0000      0.0000      0.0000      1
+
+ 
+#=====================================Vertical======================================
+SURFACE
+Vertical
+#Nchord      Cspace      Nspan       Sspace               
+ 9           1.0         8          1.0
+
+SCALE      
+#sX          sY          sZ                   
+ 1.0000      1.0000      1.0000      
+
+TRANSLATE  
+#dX          dY          dZ                   
+ 0.5000      0.0000      0.0000      
+
+ANGLE      
+#Ainc                 
+ 0.0000      
+
+#================================Vertical section 1=================================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.0000      0.0000      0.1778      0.0000
+
+NACA
+0009
+
+CONTROL    
+#label       gain        Xhinge      Xhvec       Yhvec       Zhvec       SgnDup      
+ Rudder      1.0000      0.6000      0.0000      0.0000      0.0000      1
+
+#================================Vertical section 2=================================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.0000      0.1778     0.1778      0.0000      
+
+NACA
+0009
+
+CONTROL    
+#label       gain        Xhinge      Xhvec       Yhvec       Zhvec       SgnDup      
+ Rudder      1.0000      0.6000      0.0000      0.0000      0.0000      1

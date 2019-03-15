@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<output name="BBB" type="SOCKET" port="59012" protocol="UDP" rate="10">
+    <!-- Time is included in message -->
+    <!-- <property> sensor/gps/time_us </property> -->
+    <property> sensor/gps/lat_rad </property>
+    <property> sensor/gps/long_rad </property>
+    <property> sensor/gps/alt_m </property>
+    <property> sensor/gps/vNorth_mps </property>
+    <property> sensor/gps/vEast_mps </property>
+    <property> sensor/gps/vDown_mps </property>
+</output>

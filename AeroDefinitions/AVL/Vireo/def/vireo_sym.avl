@@ -1,0 +1,134 @@
+#********************************************************************************************
+# AVL dataset for Sentera Vireo
+# Authors: Raghu Venkataraman and Todd Colten
+# Date created: February 17, 2016
+# Date modified: March 07, 2016
+# 1. This model has dimensions extracted from Vireo-left-wing-dim.DXF.
+# 2. This model uses YDUPLICATE to auto-generate the left wing.
+# 3. Vertical tail has been modeled more accurately. See Vireo-left-view-tail-dim.DXF.
+# 4. All dimensions are in meters.
+#********************************************************************************************
+Vireo     
+#Mach (if below 0.2, use 0.0). Vireo cruise speed is 13 m/s ==> M = 0.0382
+ 0.0
+#IYsym       IZsym       Zsym                 
+ 0           0           0.0000      
+#Sref        Cref        Bref        
+ 0.2121      0.2181      0.9723
+
+#***********************************************************************************
+# AVL Axes:   
+#  +X   downstream
+#  +Y   out right wing
+#  +Z   up    
+#***********************************************************************************
+#Xref        Yref        Zref                  
+0.0000       0.0000      0.0000      
+#CDp                   
+0.0449     
+
+#=============================SURFACE:RWing=============================
+SURFACE
+RWing
+#Nchord      Cspace      Nspan       Sspace               
+ 16          1.0         32          1.0
+
+COMPONENT
+#Lsurf                
+ 1           
+
+YDUPLICATE
+0.0
+
+SCALE      
+#sX          sY          sZ                   
+ 1.0000      1.0000      1.0000      
+
+TRANSLATE  
+#dX          dY          dZ                   
+ 0.0000      0.0000      0.0000      
+
+ANGLE      
+#Ainc                 
+ 0.0000      
+
+#=============================SECTION:RWing, station 1=============================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0000      0.0000      0.0000      0.2664       5.0
+
+AFILE      
+#Airfoil definition          
+VireoAero/airfoil/e330.dat
+
+#=============================SECTION:RWing, station 2=============================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.0710      0.1531     0.0000      0.2454       3.6
+
+AFILE      
+#Airfoil definition          
+VireoAero/airfoil/e330.dat
+
+CONTROL    
+#label       gain        Xhinge      Xhvec       Yhvec       Zhvec       SgnDup      
+ Relevon     1.0000      0.7846      0.0000      0.0000      0.0000      1
+
+#=============================SECTION:RWing, station 3=============================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.2027      0.4373      0.0000      0.2064      1      
+
+AFILE      
+#Airfoil definition          
+VireoAero/airfoil/e330.dat
+
+CONTROL    
+#label       gain        Xhinge      Xhvec       Yhvec       Zhvec       SgnDup      
+ Relevon     1.0000      0.8237      0.0000      0.0000      0.0000      1
+
+#=============================SECTION:RWing, station 4=============================
+SECTION    
+#Xle         Yle         Zle         Chord       Angle                
+ 0.2259      0.4703      0.0000      0.1832      1      
+
+NACA
+0010
+
+#=====================================Vertical======================================
+SURFACE
+Vertical
+#Nchord      Cspace      Nspan       Sspace               
+ 16          1.0         64          1.0
+
+SCALE      
+#sX          sY          sZ                   
+ 1.0000      1.0000      1.0000      
+
+TRANSLATE  
+#dX          dY          dZ
+ 0.0000      0.0000      0.0000
+
+ANGLE
+#Ainc
+ 0.0000
+
+#=============================SECTION:Vertical, station 1=============================
+SECTION    
+#Xle        Yle         Zle         Chord       Angle
+ 0.3788     0.0000      -0.1290     0.0391      0
+
+#=============================SECTION:Vertical, station 2=============================
+SECTION
+#Xle        Yle         Zle         Chord       Angle
+ 0.2555     0.0000      -0.0921     0.1624      0
+
+#=============================SECTION:Vertical, station 3=============================
+SECTION
+#Xle        Yle         Zle         Chord       Angle
+ 0.2555     0.0000      -0.0111     0.1624      0
+
+#=============================SECTION:Vertical, station 4=============================
+SECTION
+#Xle        Yle         Zle         Chord       Angle
+ 0.3815     0.0000      0.0631      0.0364      0

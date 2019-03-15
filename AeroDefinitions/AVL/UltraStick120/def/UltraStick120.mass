@@ -1,0 +1,43 @@
+#-------------------------------------------------
+#
+#   UltraStick120
+#
+#  Dimensional unit and parameter data.
+#  Mass & Inertia breakdown.
+#-------------------------------------------------
+#  Names and scalings for units to be used for trim and eigenmode calculations.
+#  The Lunit and Munit values scale the mass, xyz, and inertia table data below.
+#  Lunit value will also scale all lengths and areas in the AVL input file.
+#
+Lunit =     1.0000 m
+Munit =     0.0010 kg
+Tunit = 1.0 s
+#-------------------------
+#  Gravity and density to be used as default values in trim setup (saves runtime typing).
+#  Must be in the unit names given above (i.e. m,kg,s).
+g   = 9.81
+rho = 1.225
+#-------------------------
+#  Mass & Inertia breakdown.
+#  x y z  is location of item's own CG.
+#  Ixx... are item's inertias about item's own CG.
+#
+#  x,y,z system here must be exactly the same one used in the .avl input file
+#     (same orientation, same origin location, same length units)
+#
+#     mass          x          y          z        Ixx        Iyy        Izz        Ixy        Ixz        Iyz 
+   1.5e+03      0.537  -6.27e-18      0.127       0.39      0.015      0.405          0  -1.76e-20          0 ! Main Wing
+       150       1.42   7.29e-18          0    0.00549   0.000664    0.00615          0          0          0 ! Elevator
+        80       1.41  -1.15e-16     0.0712   0.000226   0.000818   0.000592          0  -8.05e-05          0 ! Fin
+   1.5e+03      0.646          0     0.0545   0.000155      0.219      0.219          0    0.00464          0 ! Body's inertia
+       200       0.21          0          0      0.000      0.000      0.000 ! Other
+        60      0.578     -0.406      0.127      0.000      0.000      0.000 ! Servo Flap Left
+        60      0.578      0.406      0.127      0.000      0.000      0.000 ! Servo Flap Right
+        60      0.578     -0.476      0.127      0.000      0.000      0.000 ! Servo Aileron Left
+        60      0.578      0.476      0.127      0.000      0.000      0.000 ! Servo Aileron Right
+       690    -0.0349          0     0.0349      0.000      0.000      0.000 ! Motor and Prop
+  1.15e+03      0.267          0     0.0571      0.000      0.000      0.000 ! Battery
+       539      0.381          0     -0.127      0.000      0.000      0.000 ! Landing Gear
+       200      0.457          0     0.0254      0.000      0.000      0.000 ! Avionics
+        60       1.05    -0.0444     0.0254      0.000      0.000      0.000 ! Servo Elevator
+        60       1.05     0.0444     0.0254      0.000      0.000      0.000 ! Servo Rudder

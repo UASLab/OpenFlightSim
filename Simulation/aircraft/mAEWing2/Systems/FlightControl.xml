@@ -1,0 +1,346 @@
+<?xml version="1.0" ?>
+<flight_control name="Generic Flight Control">
+    <channel name="Pilot_Inputs">
+        <summer name="pilotRoll_norm">
+            <input>fcs/aileron-cmd-norm</input>
+            <input>fcs/roll-trim-cmd-norm</input>
+            <clipto>
+                <min>-1.0</min>
+                <max>1.0</max>
+            </clipto>
+            <output>fcs/pilotRoll_norm</output>
+        </summer>
+        <summer name="pilotPitch_norm">
+            <input>fcs/elevator-cmd-norm</input>
+            <input>fcs/pitch-trim-cmd-norm</input>
+            <clipto>
+                <min>-1.0</min>
+                <max>1.0</max>
+            </clipto>
+            <output>fcs/pilotPitch_norm</output>
+        </summer>
+        <summer name="pilotYaw_norm">
+            <input>fcs/rudder-cmd-norm</input>
+            <input>fcs/yaw-trim-cmd-norm</input>
+            <clipto>
+                <min>-1.0</min>
+                <max>1.0</max>
+            </clipto>
+            <output>fcs/pilotYaw_norm</output>
+        </summer>
+        <summer name="pilotFlap_norm">
+            <input>fcs/flap-cmd-norm</input>
+            <clipto>
+                <min>-1.0</min>
+                <max>1.0</max>
+            </clipto>
+            <output>fcs/pilotFlap_norm</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps">
+            <input>fcs/pilotRoll_norm</input>
+            <gain>1.0471975511965976</gain>
+            <output>fcs/cmdRoll_rps</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps">
+            <input>fcs/pilotPitch_norm</input>
+            <gain>-0.3490658503988659</gain>
+            <output>fcs/cmdPitch_rps</output>
+        </pure_gain>
+        <pure_gain name="cmdYaw_rps">
+            <input>fcs/pilotYaw_norm</input>
+            <gain>-0.3490658503988659</gain>
+            <output>fcs/cmdYaw_rps</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad">
+            <input>fcs/pilotFlap_norm</input>
+            <gain>0.3490658503988659</gain>
+            <output>fcs/cmdFlap_rad</output>
+        </pure_gain>
+    </channel>
+    <channel name="Control Mixer">
+        <pure_gain name="cmdPitch_rps_2_TE1R">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.05641758651097038</gain>
+            <output>fcs/cmdPitch_rps_2_TE1R</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_TE1R">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.19112094678957814</gain>
+            <output>fcs/cmdFlap_rad_2_TE1R</output>
+        </pure_gain>
+        <summer name="cmdTE1R_rad">
+            <input>fcs/cmdPitch_rps_2_TE1R</input>
+            <input>fcs/cmdFlap_rad_2_TE1R</input>
+            <output>fcs/cmdTE1R_rad</output>
+        </summer>
+        <pure_gain name="cmdPitch_rps_2_TE1L">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.05641758651097038</gain>
+            <output>fcs/cmdPitch_rps_2_TE1L</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_TE1L">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.19112094678957814</gain>
+            <output>fcs/cmdFlap_rad_2_TE1L</output>
+        </pure_gain>
+        <summer name="cmdTE1L_rad">
+            <input>fcs/cmdPitch_rps_2_TE1L</input>
+            <input>fcs/cmdFlap_rad_2_TE1L</input>
+            <output>fcs/cmdTE1L_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_TE2R">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>-0.4602285765949299</gain>
+            <output>fcs/cmdRoll_rps_2_TE2R</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps_2_TE2R">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.04878253698250248</gain>
+            <output>fcs/cmdPitch_rps_2_TE2R</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_TE2R">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.16525635411717873</gain>
+            <output>fcs/cmdFlap_rad_2_TE2R</output>
+        </pure_gain>
+        <summer name="cmdTE2R_rad">
+            <input>fcs/cmdRoll_rps_2_TE2R</input>
+            <input>fcs/cmdPitch_rps_2_TE2R</input>
+            <input>fcs/cmdFlap_rad_2_TE2R</input>
+            <output>fcs/cmdTE2R_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_TE2L">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>0.4602285765949299</gain>
+            <output>fcs/cmdRoll_rps_2_TE2L</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps_2_TE2L">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.04878253698250252</gain>
+            <output>fcs/cmdPitch_rps_2_TE2L</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_TE2L">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.16525635411717882</gain>
+            <output>fcs/cmdFlap_rad_2_TE2L</output>
+        </pure_gain>
+        <summer name="cmdTE2L_rad">
+            <input>fcs/cmdRoll_rps_2_TE2L</input>
+            <input>fcs/cmdPitch_rps_2_TE2L</input>
+            <input>fcs/cmdFlap_rad_2_TE2L</input>
+            <output>fcs/cmdTE2L_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_TE3R">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>-0.6372635058800122</gain>
+            <output>fcs/cmdRoll_rps_2_TE3R</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps_2_TE3R">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.3333237894585806</gain>
+            <output>fcs/cmdPitch_rps_2_TE3R</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_TE3R">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.14094226139591834</gain>
+            <output>fcs/cmdFlap_rad_2_TE3R</output>
+        </pure_gain>
+        <summer name="cmdTE3R_rad">
+            <input>fcs/cmdRoll_rps_2_TE3R</input>
+            <input>fcs/cmdPitch_rps_2_TE3R</input>
+            <input>fcs/cmdFlap_rad_2_TE3R</input>
+            <output>fcs/cmdTE3R_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_TE3L">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>0.6372635058800122</gain>
+            <output>fcs/cmdRoll_rps_2_TE3L</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps_2_TE3L">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.3333237894585806</gain>
+            <output>fcs/cmdPitch_rps_2_TE3L</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_TE3L">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.14094226139591834</gain>
+            <output>fcs/cmdFlap_rad_2_TE3L</output>
+        </pure_gain>
+        <summer name="cmdTE3L_rad">
+            <input>fcs/cmdRoll_rps_2_TE3L</input>
+            <input>fcs/cmdPitch_rps_2_TE3L</input>
+            <input>fcs/cmdFlap_rad_2_TE3L</input>
+            <output>fcs/cmdTE3L_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_TE4R">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>-0.7718753730119643</gain>
+            <output>fcs/cmdRoll_rps_2_TE4R</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps_2_TE4R">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.46663640003097195</gain>
+            <output>fcs/cmdPitch_rps_2_TE4R</output>
+        </pure_gain>
+        <summer name="cmdTE4R_rad">
+            <input>fcs/cmdRoll_rps_2_TE4R</input>
+            <input>fcs/cmdPitch_rps_2_TE4R</input>
+            <output>fcs/cmdTE4R_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_TE4L">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>0.7718753730119643</gain>
+            <output>fcs/cmdRoll_rps_2_TE4L</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps_2_TE4L">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.46663640003097195</gain>
+            <output>fcs/cmdPitch_rps_2_TE4L</output>
+        </pure_gain>
+        <summer name="cmdTE4L_rad">
+            <input>fcs/cmdRoll_rps_2_TE4L</input>
+            <input>fcs/cmdPitch_rps_2_TE4L</input>
+            <output>fcs/cmdTE4L_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_TE5R">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>-0.7857652117275317</gain>
+            <output>fcs/cmdRoll_rps_2_TE5R</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps_2_TE5R">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.5290434994258186</gain>
+            <output>fcs/cmdPitch_rps_2_TE5R</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_TE5R">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>-0.09166452590045625</gain>
+            <output>fcs/cmdFlap_rad_2_TE5R</output>
+        </pure_gain>
+        <summer name="cmdTE5R_rad">
+            <input>fcs/cmdRoll_rps_2_TE5R</input>
+            <input>fcs/cmdPitch_rps_2_TE5R</input>
+            <input>fcs/cmdFlap_rad_2_TE5R</input>
+            <output>fcs/cmdTE5R_rad</output>
+        </summer>
+        <pure_gain name="cmdRoll_rps_2_TE5L">
+            <input>fcs/cmdRoll_rps</input>
+            <gain>0.7857652117275317</gain>
+            <output>fcs/cmdRoll_rps_2_TE5L</output>
+        </pure_gain>
+        <pure_gain name="cmdPitch_rps_2_TE5L">
+            <input>fcs/cmdPitch_rps</input>
+            <gain>-0.5290434994258187</gain>
+            <output>fcs/cmdPitch_rps_2_TE5L</output>
+        </pure_gain>
+        <pure_gain name="cmdFlap_rad_2_TE5L">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>-0.09166452590045622</gain>
+            <output>fcs/cmdFlap_rad_2_TE5L</output>
+        </pure_gain>
+        <summer name="cmdTE5L_rad">
+            <input>fcs/cmdRoll_rps_2_TE5L</input>
+            <input>fcs/cmdPitch_rps_2_TE5L</input>
+            <input>fcs/cmdFlap_rad_2_TE5L</input>
+            <output>fcs/cmdTE5L_rad</output>
+        </summer>
+        <pure_gain name="cmdFlap_rad_2_LER">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.05475146688080833</gain>
+            <output>fcs/cmdFlap_rad_2_LER</output>
+        </pure_gain>
+        <summer name="cmdLER_rad">
+            <input>fcs/cmdFlap_rad_2_LER</input>
+            <output>fcs/cmdLER_rad</output>
+        </summer>
+        <pure_gain name="cmdFlap_rad_2_LEL">
+            <input>fcs/cmdFlap_rad</input>
+            <gain>0.05475146688080833</gain>
+            <output>fcs/cmdFlap_rad_2_LEL</output>
+        </pure_gain>
+        <summer name="cmdLEL_rad">
+            <input>fcs/cmdFlap_rad_2_LEL</input>
+            <output>fcs/cmdLEL_rad</output>
+        </summer>
+    </channel>
+    <property>fcs/cmdTE1R_ext_rad</property>
+    <property>fcs/cmdTE1L_ext_rad</property>
+    <property>fcs/cmdTE2R_ext_rad</property>
+    <property>fcs/cmdTE2L_ext_rad</property>
+    <property>fcs/cmdTE3R_ext_rad</property>
+    <property>fcs/cmdTE3L_ext_rad</property>
+    <property>fcs/cmdTE4R_ext_rad</property>
+    <property>fcs/cmdTE4L_ext_rad</property>
+    <property>fcs/cmdTE5R_ext_rad</property>
+    <property>fcs/cmdTE5L_ext_rad</property>
+    <property>fcs/cmdLER_ext_rad</property>
+    <property>fcs/cmdLEL_ext_rad</property>
+    <property>fcs/cmdMotor_ext_nd</property>
+    <channel name="External Input Summations">
+        <summer>
+            <input>fcs/cmdTE1R_rad</input>
+            <input>fcs/cmdTE1R_ext_rad</input>
+            <output>fcs/cmdTE1R_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE1L_rad</input>
+            <input>fcs/cmdTE1L_ext_rad</input>
+            <output>fcs/cmdTE1L_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE2R_rad</input>
+            <input>fcs/cmdTE2R_ext_rad</input>
+            <output>fcs/cmdTE2R_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE2L_rad</input>
+            <input>fcs/cmdTE2L_ext_rad</input>
+            <output>fcs/cmdTE2L_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE3R_rad</input>
+            <input>fcs/cmdTE3R_ext_rad</input>
+            <output>fcs/cmdTE3R_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE3L_rad</input>
+            <input>fcs/cmdTE3L_ext_rad</input>
+            <output>fcs/cmdTE3L_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE4R_rad</input>
+            <input>fcs/cmdTE4R_ext_rad</input>
+            <output>fcs/cmdTE4R_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE4L_rad</input>
+            <input>fcs/cmdTE4L_ext_rad</input>
+            <output>fcs/cmdTE4L_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE5R_rad</input>
+            <input>fcs/cmdTE5R_ext_rad</input>
+            <output>fcs/cmdTE5R_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdTE5L_rad</input>
+            <input>fcs/cmdTE5L_ext_rad</input>
+            <output>fcs/cmdTE5L_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdLER_rad</input>
+            <input>fcs/cmdLER_ext_rad</input>
+            <output>fcs/cmdLER_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdLEL_rad</input>
+            <input>fcs/cmdLEL_ext_rad</input>
+            <output>fcs/cmdLEL_rad</output>
+        </summer>
+        <summer>
+            <input>fcs/throttle-cmd-norm</input>
+            <input>fcs/cmdMotor_ext_nd</input>
+            <output>fcs/throttle-pos-norm</output>
+        </summer>
+    </channel>
+</flight_control>

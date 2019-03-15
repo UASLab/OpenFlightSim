@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<output name="BBB" type="SOCKET" port="59013" protocol="UDP" rate="50">
+    <!-- Time is included in message -->
+    <!-- <property> sensor/pitot/time_us </property> -->
+    <property> sensor/pitot/presStatic_Pa </property>
+    <property> sensor/pitot/temp_C </property>
+    <property> sensor/pitot/presTip_Pa </property>
+    <property> sensor/pitot/temp_C </property>
+</output>

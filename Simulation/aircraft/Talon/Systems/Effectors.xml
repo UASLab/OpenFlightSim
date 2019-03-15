@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<system name="Effectors">
+    <channel name="Actuator Models">
+        <actuator name="actAilL">
+            <input>fcs/cmdAilL_rad</input>
+            <lag>50</lag>
+            <hysteresis_width>0.017453292519943295</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posAilL_rad</output>
+        </actuator>
+        <actuator name="actAilR">
+            <input>fcs/cmdAilR_rad</input>
+            <lag>50</lag>
+            <hysteresis_width>0.017453292519943295</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posAilR_rad</output>
+        </actuator>
+        <actuator name="actRudevL">
+            <input>fcs/cmdRudevL_rad</input>
+            <lag>50</lag>
+            <hysteresis_width>0.017453292519943295</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posRudevL_rad</output>
+        </actuator>
+        <actuator name="actRudevR">
+            <input>fcs/cmdRudevR_rad</input>
+            <lag>50</lag>
+            <hysteresis_width>0.017453292519943295</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posRudevR_rad</output>
+        </actuator>
+    </channel>
+</system>

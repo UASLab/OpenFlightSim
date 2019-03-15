@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<fdm_config release="Alpha" version="2.0">
+    <flight_control file="Systems/FlightControl.xml"/>
+    <system file="Systems/Effectors.xml"/>
+    <mass_balance file="Mass.xml"/>
+    <ground_reactions file="Gear.xml"/>
+    <propulsion file="Propulsion.xml"/>
+    <metrics file="Metrics.xml"/>
+    <aerodynamics file="Aero.xml"/>
+    <system file="Systems/SensorImu.xml"/>
+    <system file="Systems/SensorGps.xml"/>
+    <system file="Systems/SensorPitot.xml"/>
+    <system file="Systems/Sensor5Hole.xml"/>
+</fdm_config>

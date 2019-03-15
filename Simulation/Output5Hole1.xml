@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<output name="BBB" type="SOCKET" port="59014" protocol="UDP" rate="50">
+    <!-- Time is included in message -->
+    <!-- <property> sensor/fiveHole/time_us </property> -->
+    <property> sensor/fiveHole/presStatic_Pa </property>
+    <property> sensor/fiveHole/temp_C </property>
+    <property> sensor/fiveHole/presTip_Pa </property>
+    <property> sensor/fiveHole/temp_C </property>
+    <property> sensor/fiveHole/presAlphaTop_Pa </property>
+    <property> sensor/fiveHole/temp_C </property>
+    <property> sensor/fiveHole/presAlphaBot_Pa </property>
+    <property> sensor/fiveHole/temp_C </property>
+    <property> sensor/fiveHole/presBetaLeft_Pa </property>
+    <property> sensor/fiveHole/temp_C </property>
+    <property> sensor/fiveHole/presBetaRight_Pa </property>
+    <property> sensor/fiveHole/temp_C </property>
+</output>

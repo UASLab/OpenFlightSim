@@ -1,0 +1,35 @@
+...Comp Geom...
+7 Num Comps
+9 Total Num Meshes
+10400 Total Num Tris
+
+Theo_Area   Wet_Area   Theo_Vol    Wet_Vol  Name
+    0.466      0.394      0.012      0.011  FuselageGeom   
+    0.065      0.055      0.001      0.001  Nacelle        
+    0.838      0.793      0.016      0.016  Wing           
+    0.838      0.793      0.016      0.016  Wing           
+    0.397      0.388      0.002      0.002  H-Tail         
+    0.160      0.133      0.001      0.001  V-Tail         
+    0.017      0.000      0.000      0.000  Motor          
+-------------------------------------------------
+    2.781      2.557      0.048      0.046  Totals         
+
+Tag_Theo_Area   Tag_Wet_Area    Tag_Name
+        0.466          0.394    FuselageGeom_Surf0
+        0.065          0.055    Nacelle_Surf0  
+        0.730          0.685    Wing_Surf0     
+        0.730          0.685    Wing_Surf1     
+        0.142          0.137    H-Tail_Surf0   
+        0.142          0.137    H-Tail_Surf1   
+        0.091          0.066    V-Tail_Surf0   
+        0.000          0.000    PropellerDisk_Surf0
+        0.017          0.000    Motor_Surf0    
+        0.052          0.052    Wing_Surf0,Flap
+        0.056          0.056    Wing_Surf0,Aileron
+        0.052          0.052    Wing_Surf1,Flap
+        0.056          0.056    Wing_Surf1,Aileron
+        0.056          0.056    H-Tail_Surf0,Elevator
+        0.056          0.056    H-Tail_Surf1,Elevator
+        0.069          0.067    V-Tail_Surf0,Rudder
+WARNING: 1 open meshes removed
+WARNING: 1 open meshes merged

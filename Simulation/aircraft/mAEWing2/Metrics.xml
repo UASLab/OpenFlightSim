@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<metrics>
+    <wingarea unit="M2">1.712295</wingarea>
+    <wingspan unit="M">4.270840000000001</wingspan>
+    <chord unit="M">0.631525</chord>
+    <location name="AERORP" unit="M">
+        <x>0.7800000000000001</x>
+        <y>2.6000000000000002e-05</y>
+        <z>0.068</z>
+    </location>
+    <location name="EYEPOINT" unit="M">
+        <x>0.7800000000000001</x>
+        <y>2.6000000000000002e-05</y>
+        <z>0.068</z>
+    </location>
+    <location name="VRP" unit="M">
+        <x>0.0</x>
+        <y>0.0</y>
+        <z>0.0</z>
+    </location>
+</metrics>

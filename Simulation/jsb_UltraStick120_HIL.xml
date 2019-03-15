@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sf.net/JSBSimScript.xsl"?>
+<runscript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
+    name="JSBSim based HIL for Goldy3, using Flightgear for visuals">
+
+  <use aircraft="UltraStick120" initialize="initGrnd"/>
+  <run start="0.0" end="9999999.0" dt="0.005">
+    <property value="0"> simulation/notify-time-trigger </property>
+    <property> fcs/cmd/time_us </property>
+    <event name="Motor Start">
+        <condition> simulation/frame le 1 </condition>
+        <set name="fcs/throttle-cmd-norm" value="0.0"/>
+    </event>
+    <event name="Trim">
+      <condition> simulation/frame gt 1 </condition>
+      <set name="simulation/do_simple_trim" value="2"/>
+    </event>
+
+    <event name="Repeating Notify" persistent="true">
+        <notify>
+            <property> sensor/imu/time_us </property>
+            <property> fcs/cmd/time_us </property>
+        </notify>
+        <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
+        <set name="simulation/notify-time-trigger" value="1" type="FG_DELTA"/>
+    </event>
+
+  </run>
+
+  <!-- <input port="59000"/> --> <!-- JSBSim telnet interface -->
+  <!-- <input port="59000" action="BLOCKING_INPUT"/> -->
+  <input port="59051" type="QTJSBSIM" rate="50"> <!-- JSBSim UDP input interface -->
+      <!-- Time is included in message -->
+      <property> fcs/cmd/time_us </property>
+      <property> fcs/cmdAilL_ext_rad </property>
+      <property> fcs/cmdAilR_ext_rad </property>
+      <property> fcs/cmdElev_ext_rad </property>
+      <property> fcs/cmdRud_ext_rad </property>
+      <property> fcs/cmdFlapL_ext_rad </property>
+      <property> fcs/cmdFlapR_ext_rad </property>
+      <property> fcs/cmdMotor_ext_nd </property>
+  </input>
+
+  <output file="OutputImu.xml"></output>
+  <output file="OutputGps.xml"></output>
+  <output file="OutputPitot.xml"></output>
+  <output file="Output5Hole2.xml"></output>
+
+  <output file="OutputFgfs.xml"></output> <!-- Pipe to FG for display -->
+  <output file="OutputLog.xml"></output>
+
+</runscript>
