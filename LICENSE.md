@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2019 University of Minnesota UAS Laboratories
+Copyright (c) Copyright 2019 Regents of the University of Minnesota.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
