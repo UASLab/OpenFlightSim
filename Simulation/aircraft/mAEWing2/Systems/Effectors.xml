@@ -1,137 +1,137 @@
-<?xml version="1.0" ?>
-<system name="Effectors">
-    <channel name="Actuator Models">
-        <actuator name="actTE1R">
-            <input>fcs/cmdTE1R_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE1R_rad</output>
-        </actuator>
-        <actuator name="actTE1L">
-            <input>fcs/cmdTE1L_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE1L_rad</output>
-        </actuator>
-        <actuator name="actTE2R">
-            <input>fcs/cmdTE2R_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE2R_rad</output>
-        </actuator>
-        <actuator name="actTE2L">
-            <input>fcs/cmdTE2L_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE2L_rad</output>
-        </actuator>
-        <actuator name="actTE3R">
-            <input>fcs/cmdTE3R_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE3R_rad</output>
-        </actuator>
-        <actuator name="actTE3L">
-            <input>fcs/cmdTE3L_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE3L_rad</output>
-        </actuator>
-        <actuator name="actTE4R">
-            <input>fcs/cmdTE4R_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE4R_rad</output>
-        </actuator>
-        <actuator name="actTE4L">
-            <input>fcs/cmdTE4L_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE4L_rad</output>
-        </actuator>
-        <actuator name="actTE5R">
-            <input>fcs/cmdTE5R_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE5R_rad</output>
-        </actuator>
-        <actuator name="actTE5L">
-            <input>fcs/cmdTE5L_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posTE5L_rad</output>
-        </actuator>
-        <actuator name="actLER">
-            <input>fcs/cmdLER_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posLER_rad</output>
-        </actuator>
-        <actuator name="actLEL">
-            <input>fcs/cmdLEL_rad</input>
-            <lag>8</lag>
-            <hysteresis_width>0.004363323129985824</hysteresis_width>
-            <delay>0.007</delay>
-            <clipto>
-                <min>-0.3490658503988659</min>
-                <max>0.3490658503988659</max>
-            </clipto>
-            <output>fcs/posLEL_rad</output>
-        </actuator>
-    </channel>
-</system>
+<?xml version="1.0" ?>
+<system name="Effectors">
+    <channel name="Actuator Models">
+        <actuator name="actTE1R">
+            <input>fcs/cmdTE1R_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE1R_rad</output>
+        </actuator>
+        <actuator name="actTE1L">
+            <input>fcs/cmdTE1L_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE1L_rad</output>
+        </actuator>
+        <actuator name="actTE2R">
+            <input>fcs/cmdTE2R_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE2R_rad</output>
+        </actuator>
+        <actuator name="actTE2L">
+            <input>fcs/cmdTE2L_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE2L_rad</output>
+        </actuator>
+        <actuator name="actTE3R">
+            <input>fcs/cmdTE3R_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE3R_rad</output>
+        </actuator>
+        <actuator name="actTE3L">
+            <input>fcs/cmdTE3L_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE3L_rad</output>
+        </actuator>
+        <actuator name="actTE4R">
+            <input>fcs/cmdTE4R_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE4R_rad</output>
+        </actuator>
+        <actuator name="actTE4L">
+            <input>fcs/cmdTE4L_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE4L_rad</output>
+        </actuator>
+        <actuator name="actTE5R">
+            <input>fcs/cmdTE5R_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE5R_rad</output>
+        </actuator>
+        <actuator name="actTE5L">
+            <input>fcs/cmdTE5L_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posTE5L_rad</output>
+        </actuator>
+        <actuator name="actLER">
+            <input>fcs/cmdLER_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posLER_rad</output>
+        </actuator>
+        <actuator name="actLEL">
+            <input>fcs/cmdLEL_rad</input>
+            <lag>8</lag>
+            <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posLEL_rad</output>
+        </actuator>
+    </channel>
+</system>

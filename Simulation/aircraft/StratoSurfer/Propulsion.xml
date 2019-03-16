@@ -1,19 +1,19 @@
-<?xml version="1.0" ?>
-<propulsion>
-    <engine file="Cobra2217">
-        <thruster file="APC 6x4e">
-            <location unit="M">
-                <x>0.5334</x>
-                <y>0.0</y>
-                <z>0.1143</z>
-            </location>
-            <orient unit="DEG">
-                <roll>0</roll>
-                <pitch>-15</pitch>
-                <yaw>0</yaw>
-            </orient>
-            <sense>1.0</sense>
-            <p_factor>0.0</p_factor>
-        </thruster>
-    </engine>
-</propulsion>
+<?xml version="1.0" ?>
+<propulsion>
+    <engine file="Cobra2217">
+        <thruster file="APC 6x4e">
+            <location unit="M">
+                <x>0.5334</x>
+                <y>0.0</y>
+                <z>0.1143</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>-15</pitch>
+                <yaw>0</yaw>
+            </orient>
+            <sense>1.0</sense>
+            <p_factor>0.0</p_factor>
+        </thruster>
+    </engine>
+</propulsion>

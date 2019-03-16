@@ -1,9 +1,9 @@
-<?xml version="1.0" ?>
-<aerodynamics>
-    <function name="aero/coefficient/CL__zero">
-        <description>CL__zero</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+<?xml version="1.0" ?>
+<aerodynamics>
+    <function name="aero/coefficient/CL__zero">
+        <description>CL__zero</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.006061868107775981
@@ -12,13 +12,13 @@
                 6.0    -0.008950957361539003
                 10.0    0.06958937577467461
                 14.0    0.5484594641601963
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/dCL__alpha_rad">
-        <description>dCL__alpha_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCL__alpha_rad">
+        <description>dCL__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    4.44908
@@ -27,20 +27,20 @@
                 6.0    4.5296836
                 10.0    3.9949667
                 14.0    1.9620315
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__alpha_rad">
-        <description>CL__alpha_rad = dCL__alpha_rad * alpha_rad</description>
-        <product>
-            <property>aero/coefficient/dCL__alpha_rad</property>
-            <property>aero/alpha-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__beta_rad">
-        <description>dCL__beta_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__alpha_rad">
+        <description>CL__alpha_rad = dCL__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__beta_rad">
+        <description>dCL__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0165113
@@ -49,20 +49,20 @@
                 6.0    -0.0204048
                 10.0    -0.0210309
                 14.0    -0.0208568
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__beta_rad">
-        <description>CL__beta_rad = dCL__beta_rad * beta_rad</description>
-        <product>
-            <property>aero/coefficient/dCL__beta_rad</property>
-            <property>aero/beta-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dpHat_rps">
-        <description>dCL__dpHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__beta_rad">
+        <description>CL__beta_rad = dCL__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dpHat_rps">
+        <description>dCL__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0274851
@@ -71,21 +71,21 @@
                 6.0    -0.0290315
                 10.0    -0.0238021
                 14.0    -0.1023964
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__dpHat_rps">
-        <description>CL__dpHat_rps = dCL__dpHat_rps * dpHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCL__dpHat_rps</property>
-            <property>velocities/p-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dqHat_rps">
-        <description>dCL__dqHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dpHat_rps">
+        <description>CL__dpHat_rps = dCL__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCL__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dqHat_rps">
+        <description>dCL__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    8.3985378
@@ -94,21 +94,21 @@
                 6.0    8.3505471
                 10.0    7.7523309
                 14.0    5.315443
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__dqHat_rps">
-        <description>CL__dqHat_rps = dCL__dqHat_rps * dqHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCL__dqHat_rps</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__drHat_rps">
-        <description>dCL__drHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dqHat_rps">
+        <description>CL__dqHat_rps = dCL__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCL__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__drHat_rps">
+        <description>dCL__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0076691
@@ -117,21 +117,21 @@
                 6.0    -0.0044025
                 10.0    -0.0045163
                 14.0    -0.0202306
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__drHat_rps">
-        <description>CL__drHat_rps = dCL__drHat_rps * drHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCL__drHat_rps</property>
-            <property>velocities/r-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dAilR_rad">
-        <description>dCL__dAilR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__drHat_rps">
+        <description>CL__drHat_rps = dCL__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCL__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dAilR_rad">
+        <description>dCL__dAilR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.4436964
@@ -140,20 +140,20 @@
                 6.0    0.4241347
                 10.0    0.3814776
                 14.0    0.2953175
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__dAilR_rad">
-        <description>CL__dAilR_rad = dCL__dAilR_rad * dAilR_rad</description>
-        <product>
-            <property>aero/coefficient/dCL__dAilR_rad</property>
-            <property>fcs/posAilR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dAilL_rad">
-        <description>dCL__dAilL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dAilR_rad">
+        <description>CL__dAilR_rad = dCL__dAilR_rad * dAilR_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dAilR_rad</property>
+            <property>fcs/posAilR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dAilL_rad">
+        <description>dCL__dAilL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.446472
@@ -162,20 +162,20 @@
                 6.0    0.4195248
                 10.0    0.377471
                 14.0    0.2904981
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__dAilL_rad">
-        <description>CL__dAilL_rad = dCL__dAilL_rad * dAilL_rad</description>
-        <product>
-            <property>aero/coefficient/dCL__dAilL_rad</property>
-            <property>fcs/posAilL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dRud_rad">
-        <description>dCL__dRud_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dAilL_rad">
+        <description>CL__dAilL_rad = dCL__dAilL_rad * dAilL_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dAilL_rad</property>
+            <property>fcs/posAilL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dRud_rad">
+        <description>dCL__dRud_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0026014
@@ -184,20 +184,20 @@
                 6.0    -0.0029064
                 10.0    0.0039933
                 14.0    0.0220139
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__dRud_rad">
-        <description>CL__dRud_rad = dCL__dRud_rad * dRud_rad</description>
-        <product>
-            <property>aero/coefficient/dCL__dRud_rad</property>
-            <property>fcs/posRud_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dFlapR_rad">
-        <description>dCL__dFlapR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dRud_rad">
+        <description>CL__dRud_rad = dCL__dRud_rad * dRud_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dRud_rad</property>
+            <property>fcs/posRud_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dFlapR_rad">
+        <description>dCL__dFlapR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.3170114
@@ -206,20 +206,20 @@
                 6.0    0.3246963
                 10.0    0.3115336
                 14.0    0.065018
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__dFlapR_rad">
-        <description>CL__dFlapR_rad = dCL__dFlapR_rad * dFlapR_rad</description>
-        <product>
-            <property>aero/coefficient/dCL__dFlapR_rad</property>
-            <property>fcs/posFlapR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dFlapL_rad">
-        <description>dCL__dFlapL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dFlapR_rad">
+        <description>CL__dFlapR_rad = dCL__dFlapR_rad * dFlapR_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dFlapR_rad</property>
+            <property>fcs/posFlapR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dFlapL_rad">
+        <description>dCL__dFlapL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.3185387
@@ -228,20 +228,20 @@
                 6.0    0.3257598
                 10.0    0.3160192
                 14.0    0.070879
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__dFlapL_rad">
-        <description>CL__dFlapL_rad = dCL__dFlapL_rad * dFlapL_rad</description>
-        <product>
-            <property>aero/coefficient/dCL__dFlapL_rad</property>
-            <property>fcs/posFlapL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dElev_rad">
-        <description>dCL__dElev_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dFlapL_rad">
+        <description>CL__dFlapL_rad = dCL__dFlapL_rad * dFlapL_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dFlapL_rad</property>
+            <property>fcs/posFlapL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dElev_rad">
+        <description>dCL__dElev_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.5294719
@@ -250,52 +250,52 @@
                 6.0    0.526182
                 10.0    0.521274
                 14.0    0.491629
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CL__dElev_rad">
-        <description>CL__dElev_rad = dCL__dElev_rad * dElev_rad</description>
-        <product>
-            <property>aero/coefficient/dCL__dElev_rad</property>
-            <property>fcs/posElev_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CL">
-        <description>CL summation</description>
-        <sum>
-            <property>aero/coefficient/CL__zero</property>
-            <property>aero/coefficient/CL__alpha_rad</property>
-            <property>aero/coefficient/CL__beta_rad</property>
-            <property>aero/coefficient/CL__dpHat_rps</property>
-            <property>aero/coefficient/CL__dqHat_rps</property>
-            <property>aero/coefficient/CL__drHat_rps</property>
-            <property>aero/coefficient/CL__dAilR_rad</property>
-            <property>aero/coefficient/CL__dAilL_rad</property>
-            <property>aero/coefficient/CL__dRud_rad</property>
-            <property>aero/coefficient/CL__dFlapR_rad</property>
-            <property>aero/coefficient/CL__dFlapL_rad</property>
-            <property>aero/coefficient/CL__dElev_rad</property>
-        </sum>
-    </function>
-    <function name="aero/coefficient/CD__zero">
-        <description>CD__zero</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dElev_rad">
+        <description>CL__dElev_rad = dCL__dElev_rad * dElev_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dElev_rad</property>
+            <property>fcs/posElev_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CL">
+        <description>CL summation</description>
+        <sum>
+            <property>aero/coefficient/CL__zero</property>
+            <property>aero/coefficient/CL__alpha_rad</property>
+            <property>aero/coefficient/CL__beta_rad</property>
+            <property>aero/coefficient/CL__dpHat_rps</property>
+            <property>aero/coefficient/CL__dqHat_rps</property>
+            <property>aero/coefficient/CL__drHat_rps</property>
+            <property>aero/coefficient/CL__dAilR_rad</property>
+            <property>aero/coefficient/CL__dAilL_rad</property>
+            <property>aero/coefficient/CL__dRud_rad</property>
+            <property>aero/coefficient/CL__dFlapR_rad</property>
+            <property>aero/coefficient/CL__dFlapL_rad</property>
+            <property>aero/coefficient/CL__dElev_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CD__zero">
+        <description>CD__zero</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
-                -6.0    0.10660878924336734
-                -2.0    0.1077709056312063
-                2.0    0.10640630083177993
-                6.0    0.10520772586201364
-                10.0    0.10868872870577984
-                14.0    0.1431217561380101
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/dCD__alpha_rad">
-        <description>dCD__alpha_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                -6.0    0.08043257848673464
+                -2.0    0.10572201126241258
+                2.0    0.10297960166355985
+                6.0    0.07855485172402729
+                10.0    0.04333485741155965
+                14.0    0.05578271227602019
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCD__alpha_rad">
+        <description>dCD__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.2499644
@@ -304,20 +304,20 @@
                 6.0    0.2545162
                 10.0    0.3744501
                 14.0    0.3574399
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__alpha_rad">
-        <description>CD__alpha_rad = dCD__alpha_rad * alpha_rad</description>
-        <product>
-            <property>aero/coefficient/dCD__alpha_rad</property>
-            <property>aero/alpha-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__beta_rad">
-        <description>dCD__beta_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__alpha_rad">
+        <description>CD__alpha_rad = dCD__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__beta_rad">
+        <description>dCD__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0364233
@@ -326,20 +326,20 @@
                 6.0    0.0004884
                 10.0    0.0017991
                 14.0    -0.0012609
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__beta_rad">
-        <description>CD__beta_rad = dCD__beta_rad * beta_rad</description>
-        <product>
-            <property>aero/coefficient/dCD__beta_rad</property>
-            <property>aero/beta-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dpHat_rps">
-        <description>dCD__dpHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__beta_rad">
+        <description>CD__beta_rad = dCD__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dpHat_rps">
+        <description>dCD__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0099556
@@ -348,21 +348,21 @@
                 6.0    0.0100048
                 10.0    0.0080539
                 14.0    0.0006773
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__dpHat_rps">
-        <description>CD__dpHat_rps = dCD__dpHat_rps * dpHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCD__dpHat_rps</property>
-            <property>velocities/p-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dqHat_rps">
-        <description>dCD__dqHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dpHat_rps">
+        <description>CD__dpHat_rps = dCD__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCD__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dqHat_rps">
+        <description>dCD__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.4840352
@@ -371,21 +371,21 @@
                 6.0    0.5534224
                 10.0    0.8351818
                 14.0    0.9253593
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__dqHat_rps">
-        <description>CD__dqHat_rps = dCD__dqHat_rps * dqHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCD__dqHat_rps</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__drHat_rps">
-        <description>dCD__drHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dqHat_rps">
+        <description>CD__dqHat_rps = dCD__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCD__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__drHat_rps">
+        <description>dCD__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0027909
@@ -394,21 +394,21 @@
                 6.0    0.0023248
                 10.0    0.0023949
                 14.0    0.0019984
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__drHat_rps">
-        <description>CD__drHat_rps = dCD__drHat_rps * drHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCD__drHat_rps</property>
-            <property>velocities/r-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dAilR_rad">
-        <description>dCD__dAilR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__drHat_rps">
+        <description>CD__drHat_rps = dCD__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCD__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dAilR_rad">
+        <description>dCD__dAilR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0222461
@@ -417,20 +417,20 @@
                 6.0    0.0237853
                 10.0    0.035681
                 14.0    0.0419458
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__dAilR_rad">
-        <description>CD__dAilR_rad = dCD__dAilR_rad * dAilR_rad</description>
-        <product>
-            <property>aero/coefficient/dCD__dAilR_rad</property>
-            <property>fcs/posAilR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dAilL_rad">
-        <description>dCD__dAilL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dAilR_rad">
+        <description>CD__dAilR_rad = dCD__dAilR_rad * dAilR_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dAilR_rad</property>
+            <property>fcs/posAilR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dAilL_rad">
+        <description>dCD__dAilL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0222158
@@ -439,20 +439,20 @@
                 6.0    0.0234509
                 10.0    0.0355584
                 14.0    0.0412823
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__dAilL_rad">
-        <description>CD__dAilL_rad = dCD__dAilL_rad * dAilL_rad</description>
-        <product>
-            <property>aero/coefficient/dCD__dAilL_rad</property>
-            <property>fcs/posAilL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dRud_rad">
-        <description>dCD__dRud_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dAilL_rad">
+        <description>CD__dAilL_rad = dCD__dAilL_rad * dAilL_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dAilL_rad</property>
+            <property>fcs/posAilL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dRud_rad">
+        <description>dCD__dRud_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0003112
@@ -461,20 +461,20 @@
                 6.0    0.0001985
                 10.0    0.0007587
                 14.0    0.0027064
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__dRud_rad">
-        <description>CD__dRud_rad = dCD__dRud_rad * dRud_rad</description>
-        <product>
-            <property>aero/coefficient/dCD__dRud_rad</property>
-            <property>fcs/posRud_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dFlapR_rad">
-        <description>dCD__dFlapR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dRud_rad">
+        <description>CD__dRud_rad = dCD__dRud_rad * dRud_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dRud_rad</property>
+            <property>fcs/posRud_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dFlapR_rad">
+        <description>dCD__dFlapR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0159543
@@ -483,20 +483,20 @@
                 6.0    0.0181208
                 10.0    0.0295915
                 14.0    0.0241895
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__dFlapR_rad">
-        <description>CD__dFlapR_rad = dCD__dFlapR_rad * dFlapR_rad</description>
-        <product>
-            <property>aero/coefficient/dCD__dFlapR_rad</property>
-            <property>fcs/posFlapR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dFlapL_rad">
-        <description>dCD__dFlapL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dFlapR_rad">
+        <description>CD__dFlapR_rad = dCD__dFlapR_rad * dFlapR_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dFlapR_rad</property>
+            <property>fcs/posFlapR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dFlapL_rad">
+        <description>dCD__dFlapL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0160648
@@ -505,20 +505,20 @@
                 6.0    0.0181748
                 10.0    0.0301703
                 14.0    0.0252408
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__dFlapL_rad">
-        <description>CD__dFlapL_rad = dCD__dFlapL_rad * dFlapL_rad</description>
-        <product>
-            <property>aero/coefficient/dCD__dFlapL_rad</property>
-            <property>fcs/posFlapL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dElev_rad">
-        <description>dCD__dElev_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dFlapL_rad">
+        <description>CD__dFlapL_rad = dCD__dFlapL_rad * dFlapL_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dFlapL_rad</property>
+            <property>fcs/posFlapL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dElev_rad">
+        <description>dCD__dElev_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0411936
@@ -527,37 +527,37 @@
                 6.0    0.0363373
                 10.0    0.0569247
                 14.0    0.0727904
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CD__dElev_rad">
-        <description>CD__dElev_rad = dCD__dElev_rad * dElev_rad</description>
-        <product>
-            <property>aero/coefficient/dCD__dElev_rad</property>
-            <property>fcs/posElev_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CD">
-        <description>CD summation</description>
-        <sum>
-            <property>aero/coefficient/CD__zero</property>
-            <property>aero/coefficient/CD__alpha_rad</property>
-            <property>aero/coefficient/CD__beta_rad</property>
-            <property>aero/coefficient/CD__dpHat_rps</property>
-            <property>aero/coefficient/CD__dqHat_rps</property>
-            <property>aero/coefficient/CD__drHat_rps</property>
-            <property>aero/coefficient/CD__dAilR_rad</property>
-            <property>aero/coefficient/CD__dAilL_rad</property>
-            <property>aero/coefficient/CD__dRud_rad</property>
-            <property>aero/coefficient/CD__dFlapR_rad</property>
-            <property>aero/coefficient/CD__dFlapL_rad</property>
-            <property>aero/coefficient/CD__dElev_rad</property>
-        </sum>
-    </function>
-    <function name="aero/coefficient/CY__zero">
-        <description>CY__zero</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dElev_rad">
+        <description>CD__dElev_rad = dCD__dElev_rad * dElev_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dElev_rad</property>
+            <property>fcs/posElev_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CD">
+        <description>CD summation</description>
+        <sum>
+            <property>aero/coefficient/CD__zero</property>
+            <property>aero/coefficient/CD__alpha_rad</property>
+            <property>aero/coefficient/CD__beta_rad</property>
+            <property>aero/coefficient/CD__dpHat_rps</property>
+            <property>aero/coefficient/CD__dqHat_rps</property>
+            <property>aero/coefficient/CD__drHat_rps</property>
+            <property>aero/coefficient/CD__dAilR_rad</property>
+            <property>aero/coefficient/CD__dAilL_rad</property>
+            <property>aero/coefficient/CD__dRud_rad</property>
+            <property>aero/coefficient/CD__dFlapR_rad</property>
+            <property>aero/coefficient/CD__dFlapL_rad</property>
+            <property>aero/coefficient/CD__dElev_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CY__zero">
+        <description>CY__zero</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    5.088834341333335e-05
@@ -566,13 +566,13 @@
                 6.0    2.2930667857754115e-06
                 10.0    1.379724354387525e-05
                 14.0    3.876840178322871e-06
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/dCY__alpha_rad">
-        <description>dCY__alpha_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCY__alpha_rad">
+        <description>dCY__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0005251
@@ -581,20 +581,20 @@
                 6.0    -0.0001193
                 10.0    -0.00022
                 14.0    -0.0001677
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__alpha_rad">
-        <description>CY__alpha_rad = dCY__alpha_rad * alpha_rad</description>
-        <product>
-            <property>aero/coefficient/dCY__alpha_rad</property>
-            <property>aero/alpha-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__beta_rad">
-        <description>dCY__beta_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__alpha_rad">
+        <description>CY__alpha_rad = dCY__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__beta_rad">
+        <description>dCY__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0772938
@@ -603,20 +603,20 @@
                 6.0    -0.0898232
                 10.0    -0.1601271
                 14.0    -0.0576925
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__beta_rad">
-        <description>CY__beta_rad = dCY__beta_rad * beta_rad</description>
-        <product>
-            <property>aero/coefficient/dCY__beta_rad</property>
-            <property>aero/beta-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dpHat_rps">
-        <description>dCY__dpHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__beta_rad">
+        <description>CY__beta_rad = dCY__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dpHat_rps">
+        <description>dCY__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0726385
@@ -625,21 +625,21 @@
                 6.0    0.0219491
                 10.0    -0.0114844
                 14.0    -0.0261554
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__dpHat_rps">
-        <description>CY__dpHat_rps = dCY__dpHat_rps * dpHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCY__dpHat_rps</property>
-            <property>velocities/p-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dqHat_rps">
-        <description>dCY__dqHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dpHat_rps">
+        <description>CY__dpHat_rps = dCY__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCY__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dqHat_rps">
+        <description>dCY__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0010046
@@ -648,21 +648,21 @@
                 6.0    -0.0003255
                 10.0    -0.0006136
                 14.0    0.0082471
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__dqHat_rps">
-        <description>CY__dqHat_rps = dCY__dqHat_rps * dqHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCY__dqHat_rps</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__drHat_rps">
-        <description>dCY__drHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dqHat_rps">
+        <description>CY__dqHat_rps = dCY__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCY__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__drHat_rps">
+        <description>dCY__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.1558599
@@ -671,21 +671,21 @@
                 6.0    0.1728108
                 10.0    0.2157587
                 14.0    0.2046948
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__drHat_rps">
-        <description>CY__drHat_rps = dCY__drHat_rps * drHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCY__drHat_rps</property>
-            <property>velocities/r-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dAilR_rad">
-        <description>dCY__dAilR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__drHat_rps">
+        <description>CY__drHat_rps = dCY__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCY__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dAilR_rad">
+        <description>dCY__dAilR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0072421
@@ -694,20 +694,20 @@
                 6.0    -0.0156857
                 10.0    -0.0256923
                 14.0    -0.0340491
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__dAilR_rad">
-        <description>CY__dAilR_rad = dCY__dAilR_rad * dAilR_rad</description>
-        <product>
-            <property>aero/coefficient/dCY__dAilR_rad</property>
-            <property>fcs/posAilR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dAilL_rad">
-        <description>dCY__dAilL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dAilR_rad">
+        <description>CY__dAilR_rad = dCY__dAilR_rad * dAilR_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dAilR_rad</property>
+            <property>fcs/posAilR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dAilL_rad">
+        <description>dCY__dAilL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0063717
@@ -716,20 +716,20 @@
                 6.0    0.0159732
                 10.0    0.0299609
                 14.0    0.0394787
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__dAilL_rad">
-        <description>CY__dAilL_rad = dCY__dAilL_rad * dAilL_rad</description>
-        <product>
-            <property>aero/coefficient/dCY__dAilL_rad</property>
-            <property>fcs/posAilL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dRud_rad">
-        <description>dCY__dRud_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dAilL_rad">
+        <description>CY__dAilL_rad = dCY__dAilL_rad * dAilL_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dAilL_rad</property>
+            <property>fcs/posAilL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dRud_rad">
+        <description>dCY__dRud_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0926718
@@ -738,20 +738,20 @@
                 6.0    0.0772404
                 10.0    0.0808719
                 14.0    0.0684668
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__dRud_rad">
-        <description>CY__dRud_rad = dCY__dRud_rad * dRud_rad</description>
-        <product>
-            <property>aero/coefficient/dCY__dRud_rad</property>
-            <property>fcs/posRud_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dFlapR_rad">
-        <description>dCY__dFlapR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dRud_rad">
+        <description>CY__dRud_rad = dCY__dRud_rad * dRud_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dRud_rad</property>
+            <property>fcs/posRud_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dFlapR_rad">
+        <description>dCY__dFlapR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0016424
@@ -760,20 +760,20 @@
                 6.0    -0.0262603
                 10.0    -0.026688
                 14.0    -0.0258584
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__dFlapR_rad">
-        <description>CY__dFlapR_rad = dCY__dFlapR_rad * dFlapR_rad</description>
-        <product>
-            <property>aero/coefficient/dCY__dFlapR_rad</property>
-            <property>fcs/posFlapR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dFlapL_rad">
-        <description>dCY__dFlapL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dFlapR_rad">
+        <description>CY__dFlapR_rad = dCY__dFlapR_rad * dFlapR_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dFlapR_rad</property>
+            <property>fcs/posFlapR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dFlapL_rad">
+        <description>dCY__dFlapL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0011164
@@ -782,20 +782,20 @@
                 6.0    0.0281817
                 10.0    0.0283793
                 14.0    0.0275693
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__dFlapL_rad">
-        <description>CY__dFlapL_rad = dCY__dFlapL_rad * dFlapL_rad</description>
-        <product>
-            <property>aero/coefficient/dCY__dFlapL_rad</property>
-            <property>fcs/posFlapL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dElev_rad">
-        <description>dCY__dElev_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dFlapL_rad">
+        <description>CY__dFlapL_rad = dCY__dFlapL_rad * dFlapL_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dFlapL_rad</property>
+            <property>fcs/posFlapL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dElev_rad">
+        <description>dCY__dElev_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0005141
@@ -804,37 +804,37 @@
                 6.0    -2.68e-05
                 10.0    -5.58e-05
                 14.0    1.1e-05
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CY__dElev_rad">
-        <description>CY__dElev_rad = dCY__dElev_rad * dElev_rad</description>
-        <product>
-            <property>aero/coefficient/dCY__dElev_rad</property>
-            <property>fcs/posElev_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CY">
-        <description>CY summation</description>
-        <sum>
-            <property>aero/coefficient/CY__zero</property>
-            <property>aero/coefficient/CY__alpha_rad</property>
-            <property>aero/coefficient/CY__beta_rad</property>
-            <property>aero/coefficient/CY__dpHat_rps</property>
-            <property>aero/coefficient/CY__dqHat_rps</property>
-            <property>aero/coefficient/CY__drHat_rps</property>
-            <property>aero/coefficient/CY__dAilR_rad</property>
-            <property>aero/coefficient/CY__dAilL_rad</property>
-            <property>aero/coefficient/CY__dRud_rad</property>
-            <property>aero/coefficient/CY__dFlapR_rad</property>
-            <property>aero/coefficient/CY__dFlapL_rad</property>
-            <property>aero/coefficient/CY__dElev_rad</property>
-        </sum>
-    </function>
-    <function name="aero/coefficient/CMl__zero">
-        <description>CMl__zero</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dElev_rad">
+        <description>CY__dElev_rad = dCY__dElev_rad * dElev_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dElev_rad</property>
+            <property>fcs/posElev_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CY">
+        <description>CY summation</description>
+        <sum>
+            <property>aero/coefficient/CY__zero</property>
+            <property>aero/coefficient/CY__alpha_rad</property>
+            <property>aero/coefficient/CY__beta_rad</property>
+            <property>aero/coefficient/CY__dpHat_rps</property>
+            <property>aero/coefficient/CY__dqHat_rps</property>
+            <property>aero/coefficient/CY__drHat_rps</property>
+            <property>aero/coefficient/CY__dAilR_rad</property>
+            <property>aero/coefficient/CY__dAilL_rad</property>
+            <property>aero/coefficient/CY__dRud_rad</property>
+            <property>aero/coefficient/CY__dFlapR_rad</property>
+            <property>aero/coefficient/CY__dFlapL_rad</property>
+            <property>aero/coefficient/CY__dElev_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CMl__zero">
+        <description>CMl__zero</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    1.525294856581477e-05
@@ -843,13 +843,13 @@
                 6.0    -3.392330774734969e-07
                 10.0    1.2373154697137058e-06
                 14.0    -2.986135440500731e-05
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/dCMl__alpha_rad">
-        <description>dCMl__alpha_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCMl__alpha_rad">
+        <description>dCMl__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0001447
@@ -858,20 +858,20 @@
                 6.0    -4.4e-06
                 10.0    -1.11e-05
                 14.0    0.0001218
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__alpha_rad">
-        <description>CMl__alpha_rad = dCMl__alpha_rad * alpha_rad</description>
-        <product>
-            <property>aero/coefficient/dCMl__alpha_rad</property>
-            <property>aero/alpha-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__beta_rad">
-        <description>dCMl__beta_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__alpha_rad">
+        <description>CMl__alpha_rad = dCMl__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__beta_rad">
+        <description>dCMl__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0305363
@@ -880,20 +880,20 @@
                 6.0    -0.0457141
                 10.0    -0.0362475
                 14.0    -0.0235393
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__beta_rad">
-        <description>CMl__beta_rad = dCMl__beta_rad * beta_rad</description>
-        <product>
-            <property>aero/coefficient/dCMl__beta_rad</property>
-            <property>aero/beta-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__dpHat_rps">
-        <description>dCMl__dpHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__beta_rad">
+        <description>CMl__beta_rad = dCMl__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dpHat_rps">
+        <description>dCMl__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.4535759
@@ -902,21 +902,21 @@
                 6.0    -0.4557712
                 10.0    -0.3747822
                 14.0    -0.307548
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__dpHat_rps">
-        <description>CMl__dpHat_rps = dCMl__dpHat_rps * dpHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMl__dpHat_rps</property>
-            <property>velocities/p-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__dqHat_rps">
-        <description>dCMl__dqHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dpHat_rps">
+        <description>CMl__dpHat_rps = dCMl__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMl__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dqHat_rps">
+        <description>dCMl__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0003072
@@ -925,21 +925,21 @@
                 6.0    2.55e-05
                 10.0    5.9e-05
                 14.0    -0.003117
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__dqHat_rps">
-        <description>CMl__dqHat_rps = dCMl__dqHat_rps * dqHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMl__dqHat_rps</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__drHat_rps">
-        <description>dCMl__drHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dqHat_rps">
+        <description>CMl__dqHat_rps = dCMl__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMl__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__drHat_rps">
+        <description>dCMl__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0613932
@@ -948,21 +948,21 @@
                 6.0    0.0622789
                 10.0    0.0937467
                 14.0    0.1104566
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__drHat_rps">
-        <description>CMl__drHat_rps = dCMl__drHat_rps * drHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMl__drHat_rps</property>
-            <property>velocities/r-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__dAilR_rad">
-        <description>dCMl__dAilR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__drHat_rps">
+        <description>CMl__drHat_rps = dCMl__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMl__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dAilR_rad">
+        <description>dCMl__dAilR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.1125245
@@ -971,20 +971,20 @@
                 6.0    -0.1115345
                 10.0    -0.1031134
                 14.0    -0.0943416
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__dAilR_rad">
-        <description>CMl__dAilR_rad = dCMl__dAilR_rad * dAilR_rad</description>
-        <product>
-            <property>aero/coefficient/dCMl__dAilR_rad</property>
-            <property>fcs/posAilR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__dAilL_rad">
-        <description>dCMl__dAilL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dAilR_rad">
+        <description>CMl__dAilR_rad = dCMl__dAilR_rad * dAilR_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dAilR_rad</property>
+            <property>fcs/posAilR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dAilL_rad">
+        <description>dCMl__dAilL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.1125451
@@ -993,20 +993,20 @@
                 6.0    0.1115538
                 10.0    0.1031223
                 14.0    0.094325
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__dAilL_rad">
-        <description>CMl__dAilL_rad = dCMl__dAilL_rad * dAilL_rad</description>
-        <product>
-            <property>aero/coefficient/dCMl__dAilL_rad</property>
-            <property>fcs/posAilL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__dRud_rad">
-        <description>dCMl__dRud_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dAilL_rad">
+        <description>CMl__dAilL_rad = dCMl__dAilL_rad * dAilL_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dAilL_rad</property>
+            <property>fcs/posAilL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dRud_rad">
+        <description>dCMl__dRud_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0003458
@@ -1015,20 +1015,20 @@
                 6.0    -0.0012395
                 10.0    -0.0010689
                 14.0    -0.0020729
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__dRud_rad">
-        <description>CMl__dRud_rad = dCMl__dRud_rad * dRud_rad</description>
-        <product>
-            <property>aero/coefficient/dCMl__dRud_rad</property>
-            <property>fcs/posRud_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__dFlapR_rad">
-        <description>dCMl__dFlapR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dRud_rad">
+        <description>CMl__dRud_rad = dCMl__dRud_rad * dRud_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dRud_rad</property>
+            <property>fcs/posRud_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dFlapR_rad">
+        <description>dCMl__dFlapR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.03595
@@ -1037,20 +1037,20 @@
                 6.0    -0.0392964
                 10.0    -0.0387736
                 14.0    -0.0178792
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__dFlapR_rad">
-        <description>CMl__dFlapR_rad = dCMl__dFlapR_rad * dFlapR_rad</description>
-        <product>
-            <property>aero/coefficient/dCMl__dFlapR_rad</property>
-            <property>fcs/posFlapR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__dFlapL_rad">
-        <description>dCMl__dFlapL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dFlapR_rad">
+        <description>CMl__dFlapR_rad = dCMl__dFlapR_rad * dFlapR_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dFlapR_rad</property>
+            <property>fcs/posFlapR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dFlapL_rad">
+        <description>dCMl__dFlapL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0359872
@@ -1059,20 +1059,20 @@
                 6.0    0.039347
                 10.0    0.0383096
                 14.0    0.0175577
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__dFlapL_rad">
-        <description>CMl__dFlapL_rad = dCMl__dFlapL_rad * dFlapL_rad</description>
-        <product>
-            <property>aero/coefficient/dCMl__dFlapL_rad</property>
-            <property>fcs/posFlapL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMl__dElev_rad">
-        <description>dCMl__dElev_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dFlapL_rad">
+        <description>CMl__dFlapL_rad = dCMl__dFlapL_rad * dFlapL_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dFlapL_rad</property>
+            <property>fcs/posFlapL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dElev_rad">
+        <description>dCMl__dElev_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0003579
@@ -1081,37 +1081,37 @@
                 6.0    3.7e-06
                 10.0    1.19e-05
                 14.0    1.06e-05
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMl__dElev_rad">
-        <description>CMl__dElev_rad = dCMl__dElev_rad * dElev_rad</description>
-        <product>
-            <property>aero/coefficient/dCMl__dElev_rad</property>
-            <property>fcs/posElev_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CMl">
-        <description>CMl summation</description>
-        <sum>
-            <property>aero/coefficient/CMl__zero</property>
-            <property>aero/coefficient/CMl__alpha_rad</property>
-            <property>aero/coefficient/CMl__beta_rad</property>
-            <property>aero/coefficient/CMl__dpHat_rps</property>
-            <property>aero/coefficient/CMl__dqHat_rps</property>
-            <property>aero/coefficient/CMl__drHat_rps</property>
-            <property>aero/coefficient/CMl__dAilR_rad</property>
-            <property>aero/coefficient/CMl__dAilL_rad</property>
-            <property>aero/coefficient/CMl__dRud_rad</property>
-            <property>aero/coefficient/CMl__dFlapR_rad</property>
-            <property>aero/coefficient/CMl__dFlapL_rad</property>
-            <property>aero/coefficient/CMl__dElev_rad</property>
-        </sum>
-    </function>
-    <function name="aero/coefficient/CMm__zero">
-        <description>CMm__zero</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dElev_rad">
+        <description>CMl__dElev_rad = dCMl__dElev_rad * dElev_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dElev_rad</property>
+            <property>fcs/posElev_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMl">
+        <description>CMl summation</description>
+        <sum>
+            <property>aero/coefficient/CMl__zero</property>
+            <property>aero/coefficient/CMl__alpha_rad</property>
+            <property>aero/coefficient/CMl__beta_rad</property>
+            <property>aero/coefficient/CMl__dpHat_rps</property>
+            <property>aero/coefficient/CMl__dqHat_rps</property>
+            <property>aero/coefficient/CMl__drHat_rps</property>
+            <property>aero/coefficient/CMl__dAilR_rad</property>
+            <property>aero/coefficient/CMl__dAilL_rad</property>
+            <property>aero/coefficient/CMl__dRud_rad</property>
+            <property>aero/coefficient/CMl__dFlapR_rad</property>
+            <property>aero/coefficient/CMl__dFlapL_rad</property>
+            <property>aero/coefficient/CMl__dElev_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CMm__zero">
+        <description>CMm__zero</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.001667063952108569
@@ -1120,13 +1120,13 @@
                 6.0    0.020702751426497454
                 10.0    0.04101650337237503
                 14.0    0.20948418924052498
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/dCMm__alpha_rad">
-        <description>dCMm__alpha_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCMm__alpha_rad">
+        <description>dCMm__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.8060431
@@ -1135,20 +1135,20 @@
                 6.0    -1.1499392
                 10.0    -1.3216601
                 14.0    -2.0184963
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__alpha_rad">
-        <description>CMm__alpha_rad = dCMm__alpha_rad * alpha_rad</description>
-        <product>
-            <property>aero/coefficient/dCMm__alpha_rad</property>
-            <property>aero/alpha-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__beta_rad">
-        <description>dCMm__beta_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__alpha_rad">
+        <description>CMm__alpha_rad = dCMm__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__beta_rad">
+        <description>dCMm__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.003305
@@ -1157,20 +1157,20 @@
                 6.0    0.0186226
                 10.0    0.0264671
                 14.0    0.0655315
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__beta_rad">
-        <description>CMm__beta_rad = dCMm__beta_rad * beta_rad</description>
-        <product>
-            <property>aero/coefficient/dCMm__beta_rad</property>
-            <property>aero/beta-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dpHat_rps">
-        <description>dCMm__dpHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__beta_rad">
+        <description>CMm__beta_rad = dCMm__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dpHat_rps">
+        <description>dCMm__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0112633
@@ -1179,21 +1179,21 @@
                 6.0    -0.0040469
                 10.0    0.023003
                 14.0    -0.0130873
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__dpHat_rps">
-        <description>CMm__dpHat_rps = dCMm__dpHat_rps * dpHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMm__dpHat_rps</property>
-            <property>velocities/p-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dqHat_rps">
-        <description>dCMm__dqHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dpHat_rps">
+        <description>CMm__dpHat_rps = dCMm__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMm__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dqHat_rps">
+        <description>dCMm__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -9.4292211
@@ -1202,21 +1202,21 @@
                 6.0    -10.2506592
                 10.0    -9.7611418
                 14.0    -9.0666184
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__dqHat_rps">
-        <description>CMm__dqHat_rps = dCMm__dqHat_rps * dqHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMm__dqHat_rps</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__drHat_rps">
-        <description>dCMm__drHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dqHat_rps">
+        <description>CMm__dqHat_rps = dCMm__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMm__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__drHat_rps">
+        <description>dCMm__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0242628
@@ -1225,21 +1225,21 @@
                 6.0    0.0141857
                 10.0    0.0088464
                 14.0    0.0180024
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__drHat_rps">
-        <description>CMm__drHat_rps = dCMm__drHat_rps * drHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMm__drHat_rps</property>
-            <property>velocities/r-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dAilR_rad">
-        <description>dCMm__dAilR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__drHat_rps">
+        <description>CMm__drHat_rps = dCMm__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMm__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dAilR_rad">
+        <description>dCMm__dAilR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.1840562
@@ -1248,20 +1248,20 @@
                 6.0    -0.143678
                 10.0    -0.1259773
                 14.0    -0.1142836
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__dAilR_rad">
-        <description>CMm__dAilR_rad = dCMm__dAilR_rad * dAilR_rad</description>
-        <product>
-            <property>aero/coefficient/dCMm__dAilR_rad</property>
-            <property>fcs/posAilR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dAilL_rad">
-        <description>dCMm__dAilL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dAilR_rad">
+        <description>CMm__dAilR_rad = dCMm__dAilR_rad * dAilR_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dAilR_rad</property>
+            <property>fcs/posAilR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dAilL_rad">
+        <description>dCMm__dAilL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.1729909
@@ -1270,20 +1270,20 @@
                 6.0    -0.1405615
                 10.0    -0.1207231
                 14.0    -0.1080616
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__dAilL_rad">
-        <description>CMm__dAilL_rad = dCMm__dAilL_rad * dAilL_rad</description>
-        <product>
-            <property>aero/coefficient/dCMm__dAilL_rad</property>
-            <property>fcs/posAilL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dRud_rad">
-        <description>dCMm__dRud_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dAilL_rad">
+        <description>CMm__dAilL_rad = dCMm__dAilL_rad * dAilL_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dAilL_rad</property>
+            <property>fcs/posAilL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dRud_rad">
+        <description>dCMm__dRud_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0009026
@@ -1292,20 +1292,20 @@
                 6.0    0.0043301
                 10.0    -0.003514
                 14.0    -0.0348054
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__dRud_rad">
-        <description>CMm__dRud_rad = dCMm__dRud_rad * dRud_rad</description>
-        <product>
-            <property>aero/coefficient/dCMm__dRud_rad</property>
-            <property>fcs/posRud_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dFlapR_rad">
-        <description>dCMm__dFlapR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dRud_rad">
+        <description>CMm__dRud_rad = dCMm__dRud_rad * dRud_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dRud_rad</property>
+            <property>fcs/posRud_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dFlapR_rad">
+        <description>dCMm__dFlapR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0703059
@@ -1314,20 +1314,20 @@
                 6.0    0.0357814
                 10.0    0.0137132
                 14.0    0.0027342
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__dFlapR_rad">
-        <description>CMm__dFlapR_rad = dCMm__dFlapR_rad * dFlapR_rad</description>
-        <product>
-            <property>aero/coefficient/dCMm__dFlapR_rad</property>
-            <property>fcs/posFlapR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dFlapL_rad">
-        <description>dCMm__dFlapL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dFlapR_rad">
+        <description>CMm__dFlapR_rad = dCMm__dFlapR_rad * dFlapR_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dFlapR_rad</property>
+            <property>fcs/posFlapR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dFlapL_rad">
+        <description>dCMm__dFlapL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0702084
@@ -1336,20 +1336,20 @@
                 6.0    0.0323194
                 10.0    0.0043283
                 14.0    -0.0082317
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__dFlapL_rad">
-        <description>CMm__dFlapL_rad = dCMm__dFlapL_rad * dFlapL_rad</description>
-        <product>
-            <property>aero/coefficient/dCMm__dFlapL_rad</property>
-            <property>fcs/posFlapL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dElev_rad">
-        <description>dCMm__dElev_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dFlapL_rad">
+        <description>CMm__dFlapL_rad = dCMm__dFlapL_rad * dFlapL_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dFlapL_rad</property>
+            <property>fcs/posFlapL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dElev_rad">
+        <description>dCMm__dElev_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -1.2204328
@@ -1358,37 +1358,37 @@
                 6.0    -1.2263382
                 10.0    -1.220494
                 14.0    -1.201109
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMm__dElev_rad">
-        <description>CMm__dElev_rad = dCMm__dElev_rad * dElev_rad</description>
-        <product>
-            <property>aero/coefficient/dCMm__dElev_rad</property>
-            <property>fcs/posElev_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CMm">
-        <description>CMm summation</description>
-        <sum>
-            <property>aero/coefficient/CMm__zero</property>
-            <property>aero/coefficient/CMm__alpha_rad</property>
-            <property>aero/coefficient/CMm__beta_rad</property>
-            <property>aero/coefficient/CMm__dpHat_rps</property>
-            <property>aero/coefficient/CMm__dqHat_rps</property>
-            <property>aero/coefficient/CMm__drHat_rps</property>
-            <property>aero/coefficient/CMm__dAilR_rad</property>
-            <property>aero/coefficient/CMm__dAilL_rad</property>
-            <property>aero/coefficient/CMm__dRud_rad</property>
-            <property>aero/coefficient/CMm__dFlapR_rad</property>
-            <property>aero/coefficient/CMm__dFlapL_rad</property>
-            <property>aero/coefficient/CMm__dElev_rad</property>
-        </sum>
-    </function>
-    <function name="aero/coefficient/CMn__zero">
-        <description>CMn__zero</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dElev_rad">
+        <description>CMm__dElev_rad = dCMm__dElev_rad * dElev_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dElev_rad</property>
+            <property>fcs/posElev_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMm">
+        <description>CMm summation</description>
+        <sum>
+            <property>aero/coefficient/CMm__zero</property>
+            <property>aero/coefficient/CMm__alpha_rad</property>
+            <property>aero/coefficient/CMm__beta_rad</property>
+            <property>aero/coefficient/CMm__dpHat_rps</property>
+            <property>aero/coefficient/CMm__dqHat_rps</property>
+            <property>aero/coefficient/CMm__drHat_rps</property>
+            <property>aero/coefficient/CMm__dAilR_rad</property>
+            <property>aero/coefficient/CMm__dAilL_rad</property>
+            <property>aero/coefficient/CMm__dRud_rad</property>
+            <property>aero/coefficient/CMm__dFlapR_rad</property>
+            <property>aero/coefficient/CMm__dFlapL_rad</property>
+            <property>aero/coefficient/CMm__dElev_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CMn__zero">
+        <description>CMn__zero</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -2.576179697625088e-05
@@ -1397,13 +1397,13 @@
                 6.0    -2.3994095030838593e-06
                 10.0    -6.712683023068627e-06
                 14.0    5.867369347394741e-05
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/dCMn__alpha_rad">
-        <description>dCMn__alpha_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCMn__alpha_rad">
+        <description>dCMn__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0002737
@@ -1412,20 +1412,20 @@
                 6.0    5.92e-05
                 10.0    9.06e-05
                 14.0    -0.0001771
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__alpha_rad">
-        <description>CMn__alpha_rad = dCMn__alpha_rad * alpha_rad</description>
-        <product>
-            <property>aero/coefficient/dCMn__alpha_rad</property>
-            <property>aero/alpha-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__beta_rad">
-        <description>dCMn__beta_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__alpha_rad">
+        <description>CMn__alpha_rad = dCMn__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__beta_rad">
+        <description>dCMn__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0693281
@@ -1434,20 +1434,20 @@
                 6.0    0.075328
                 10.0    0.0412435
                 14.0    0.0253357
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__beta_rad">
-        <description>CMn__beta_rad = dCMn__beta_rad * beta_rad</description>
-        <product>
-            <property>aero/coefficient/dCMn__beta_rad</property>
-            <property>aero/beta-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__dpHat_rps">
-        <description>dCMn__dpHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__beta_rad">
+        <description>CMn__beta_rad = dCMn__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dpHat_rps">
+        <description>dCMn__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0662934
@@ -1456,21 +1456,21 @@
                 6.0    0.0725678
                 10.0    -0.0128218
                 14.0    -0.0326012
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__dpHat_rps">
-        <description>CMn__dpHat_rps = dCMn__dpHat_rps * dpHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMn__dpHat_rps</property>
-            <property>velocities/p-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__dqHat_rps">
-        <description>dCMn__dqHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dpHat_rps">
+        <description>CMn__dpHat_rps = dCMn__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMn__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dqHat_rps">
+        <description>dCMn__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0006244
@@ -1479,21 +1479,21 @@
                 6.0    0.0001469
                 10.0    0.0002607
                 14.0    -0.0033367
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__dqHat_rps">
-        <description>CMn__dqHat_rps = dCMn__dqHat_rps * dqHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMn__dqHat_rps</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__drHat_rps">
-        <description>dCMn__drHat_rps</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dqHat_rps">
+        <description>CMn__dqHat_rps = dCMn__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMn__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__drHat_rps">
+        <description>dCMn__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0747269
@@ -1502,21 +1502,21 @@
                 6.0    -0.0773543
                 10.0    -0.077196
                 14.0    -0.0780879
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__drHat_rps">
-        <description>CMn__drHat_rps = dCMn__drHat_rps * drHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMn__drHat_rps</property>
-            <property>velocities/r-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__dAilR_rad">
-        <description>dCMn__dAilR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__drHat_rps">
+        <description>CMn__drHat_rps = dCMn__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMn__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dAilR_rad">
+        <description>dCMn__dAilR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0025582
@@ -1525,20 +1525,20 @@
                 6.0    0.0028185
                 10.0    -0.0042171
                 14.0    -0.0051848
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__dAilR_rad">
-        <description>CMn__dAilR_rad = dCMn__dAilR_rad * dAilR_rad</description>
-        <product>
-            <property>aero/coefficient/dCMn__dAilR_rad</property>
-            <property>fcs/posAilR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__dAilL_rad">
-        <description>dCMn__dAilL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dAilR_rad">
+        <description>CMn__dAilR_rad = dCMn__dAilR_rad * dAilR_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dAilR_rad</property>
+            <property>fcs/posAilR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dAilL_rad">
+        <description>dCMn__dAilL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0019465
@@ -1547,20 +1547,20 @@
                 6.0    -0.0027746
                 10.0    0.0029301
                 14.0    0.003276
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__dAilL_rad">
-        <description>CMn__dAilL_rad = dCMn__dAilL_rad * dAilL_rad</description>
-        <product>
-            <property>aero/coefficient/dCMn__dAilL_rad</property>
-            <property>fcs/posAilL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__dRud_rad">
-        <description>dCMn__dRud_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dAilL_rad">
+        <description>CMn__dAilL_rad = dCMn__dAilL_rad * dAilL_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dAilL_rad</property>
+            <property>fcs/posAilL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dRud_rad">
+        <description>dCMn__dRud_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0452456
@@ -1569,20 +1569,20 @@
                 6.0    -0.0361787
                 10.0    -0.0344639
                 14.0    -0.0310662
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__dRud_rad">
-        <description>CMn__dRud_rad = dCMn__dRud_rad * dRud_rad</description>
-        <product>
-            <property>aero/coefficient/dCMn__dRud_rad</property>
-            <property>fcs/posRud_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__dFlapR_rad">
-        <description>dCMn__dFlapR_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dRud_rad">
+        <description>CMn__dRud_rad = dCMn__dRud_rad * dRud_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dRud_rad</property>
+            <property>fcs/posRud_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dFlapR_rad">
+        <description>dCMn__dFlapR_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    0.0034405
@@ -1591,20 +1591,20 @@
                 6.0    0.0077504
                 10.0    0.0081191
                 14.0    0.0116235
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__dFlapR_rad">
-        <description>CMn__dFlapR_rad = dCMn__dFlapR_rad * dFlapR_rad</description>
-        <product>
-            <property>aero/coefficient/dCMn__dFlapR_rad</property>
-            <property>fcs/posFlapR_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__dFlapL_rad">
-        <description>dCMn__dFlapL_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dFlapR_rad">
+        <description>CMn__dFlapR_rad = dCMn__dFlapR_rad * dFlapR_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dFlapR_rad</property>
+            <property>fcs/posFlapR_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dFlapL_rad">
+        <description>dCMn__dFlapL_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    -0.0037134
@@ -1613,20 +1613,20 @@
                 6.0    -0.0081421
                 10.0    -0.0084825
                 14.0    -0.0120408
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__dFlapL_rad">
-        <description>CMn__dFlapL_rad = dCMn__dFlapL_rad * dFlapL_rad</description>
-        <product>
-            <property>aero/coefficient/dCMn__dFlapL_rad</property>
-            <property>fcs/posFlapL_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__dElev_rad">
-        <description>dCMn__dElev_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dFlapL_rad">
+        <description>CMn__dFlapL_rad = dCMn__dFlapL_rad * dFlapL_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dFlapL_rad</property>
+            <property>fcs/posFlapL_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dElev_rad">
+        <description>dCMn__dElev_rad</description>
+        <table>
+            <independentVar lookup="row">aero/alpha-deg</independentVar>
             <tableData>
 
                 -6.0    2.51e-05
@@ -1635,88 +1635,88 @@
                 6.0    -4e-07
                 10.0    2.04e-05
                 14.0    -9e-06
-                </tableData>
-        </table>
-    </function>
-    <function name="aero/coefficient/CMn__dElev_rad">
-        <description>CMn__dElev_rad = dCMn__dElev_rad * dElev_rad</description>
-        <product>
-            <property>aero/coefficient/dCMn__dElev_rad</property>
-            <property>fcs/posElev_rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CMn">
-        <description>CMn summation</description>
-        <sum>
-            <property>aero/coefficient/CMn__zero</property>
-            <property>aero/coefficient/CMn__alpha_rad</property>
-            <property>aero/coefficient/CMn__beta_rad</property>
-            <property>aero/coefficient/CMn__dpHat_rps</property>
-            <property>aero/coefficient/CMn__dqHat_rps</property>
-            <property>aero/coefficient/CMn__drHat_rps</property>
-            <property>aero/coefficient/CMn__dAilR_rad</property>
-            <property>aero/coefficient/CMn__dAilL_rad</property>
-            <property>aero/coefficient/CMn__dRud_rad</property>
-            <property>aero/coefficient/CMn__dFlapR_rad</property>
-            <property>aero/coefficient/CMn__dFlapL_rad</property>
-            <property>aero/coefficient/CMn__dElev_rad</property>
-        </sum>
-    </function>
-    <axis name="LIFT">
-        <function name="aero/force/LIFT__CL">
-            <description>LIFT from CL</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>aero/coefficient/CL</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="DRAG">
-        <function name="aero/force/DRAG__CD">
-            <description>DRAG from CD</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>aero/coefficient/CD</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="SIDE">
-        <function name="aero/force/SIDE__CY">
-            <description>SIDE from CY</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>aero/coefficient/CY</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="ROLL">
-        <function name="aero/moment/ROLL__CMl">
-            <description>ROLL from CMl</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>metrics/bw-ft</property>
-                <property>aero/coefficient/CMl</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="PITCH">
-        <function name="aero/moment/PITCH__CMm">
-            <description>PITCH from CMm</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>metrics/cbarw-ft</property>
-                <property>aero/coefficient/CMm</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="YAW">
-        <function name="aero/moment/YAW__CMn">
-            <description>YAW from CMn</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>metrics/bw-ft</property>
-                <property>aero/coefficient/CMn</property>
-            </product>
-        </function>
-    </axis>
-</aerodynamics>
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dElev_rad">
+        <description>CMn__dElev_rad = dCMn__dElev_rad * dElev_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dElev_rad</property>
+            <property>fcs/posElev_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn">
+        <description>CMn summation</description>
+        <sum>
+            <property>aero/coefficient/CMn__zero</property>
+            <property>aero/coefficient/CMn__alpha_rad</property>
+            <property>aero/coefficient/CMn__beta_rad</property>
+            <property>aero/coefficient/CMn__dpHat_rps</property>
+            <property>aero/coefficient/CMn__dqHat_rps</property>
+            <property>aero/coefficient/CMn__drHat_rps</property>
+            <property>aero/coefficient/CMn__dAilR_rad</property>
+            <property>aero/coefficient/CMn__dAilL_rad</property>
+            <property>aero/coefficient/CMn__dRud_rad</property>
+            <property>aero/coefficient/CMn__dFlapR_rad</property>
+            <property>aero/coefficient/CMn__dFlapL_rad</property>
+            <property>aero/coefficient/CMn__dElev_rad</property>
+        </sum>
+    </function>
+    <axis name="LIFT">
+        <function name="aero/force/LIFT__CL">
+            <description>LIFT from CL</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CL</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="DRAG">
+        <function name="aero/force/DRAG__CD">
+            <description>DRAG from CD</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CD</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="SIDE">
+        <function name="aero/force/SIDE__CY">
+            <description>SIDE from CY</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CY</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="ROLL">
+        <function name="aero/moment/ROLL__CMl">
+            <description>ROLL from CMl</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/coefficient/CMl</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="PITCH">
+        <function name="aero/moment/PITCH__CMm">
+            <description>PITCH from CMm</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/cbarw-ft</property>
+                <property>aero/coefficient/CMm</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="YAW">
+        <function name="aero/moment/YAW__CMn">
+            <description>YAW from CMn</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/coefficient/CMn</property>
+            </product>
+        </function>
+    </axis>
+</aerodynamics>

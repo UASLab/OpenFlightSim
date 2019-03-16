@@ -1,7 +1,10 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
+University of Minnesota
+Aerospace Engineering and Mechanics - UAV Lab
+Copyright 2019 Regents of the University of Minnesota.
+See: LICENSE.md for complete license details.
 
+Author: Louis Mueller, Chris Regan
 """
 
 import os.path
@@ -267,19 +270,19 @@ def GroundReactions(oFdm):
     ground_reactions = ET.Element('ground_reactions')
 
     # Loop Each Gear
-    for gear in oFdm['gear'].keys():
+    for gear in oFdm['Gear'].keys():
         contact = ET.SubElement(ground_reactions, 'contact', type = 'BOGEY', name = gear)
 
         location = ET.SubElement(contact, 'location', unit = 'M')
-        ET.SubElement(location, 'x').text = str(oFdm['gear'][gear]['rGear_S_m'][0])
-        ET.SubElement(location, 'y').text = str(oFdm['gear'][gear]['rGear_S_m'][1])
-        ET.SubElement(location, 'z').text = str(oFdm['gear'][gear]['rGear_S_m'][2])
+        ET.SubElement(location, 'x').text = str(oFdm['Gear'][gear]['rGear_S_m'][0])
+        ET.SubElement(location, 'y').text = str(oFdm['Gear'][gear]['rGear_S_m'][1])
+        ET.SubElement(location, 'z').text = str(oFdm['Gear'][gear]['rGear_S_m'][2])
 
-        ET.SubElement(contact, 'static_friction').text = str(oFdm['gear'][gear]['FricStatic'])
-        ET.SubElement(contact, 'dynamic_friction').text = str(oFdm['gear'][gear]['FricDynamic'])
-        ET.SubElement(contact, 'rolling_friction').text = str(oFdm['gear'][gear]['FricRoll'])
-        ET.SubElement(contact, 'spring_coeff', unit = 'N/M').text = str(oFdm['gear'][gear]['kSpring_Npm'])
-        ET.SubElement(contact, 'damping_coeff', unit = 'N/M/SEC').text = str(oFdm['gear'][gear]['dampSpring_Nspm'])
+        ET.SubElement(contact, 'static_friction').text = str(oFdm['Gear'][gear]['FricStatic'])
+        ET.SubElement(contact, 'dynamic_friction').text = str(oFdm['Gear'][gear]['FricDynamic'])
+        ET.SubElement(contact, 'rolling_friction').text = str(oFdm['Gear'][gear]['FricRoll'])
+        ET.SubElement(contact, 'spring_coeff', unit = 'N/M').text = str(oFdm['Gear'][gear]['kSpring_Npm'])
+        ET.SubElement(contact, 'damping_coeff', unit = 'N/M/SEC').text = str(oFdm['Gear'][gear]['dampSpring_Nspm'])
 
         ET.SubElement(contact, 'max_steer', unit = 'DEG').text = '0.0'
 
@@ -291,19 +294,19 @@ def Metrics(oFdm):
     metrics = ET.Element('metrics')
 
     # Dimensions
-    ET.SubElement(metrics, 'wingarea', unit = 'M2').text = str(oFdm['aero']['ref']['S_m2'])
-    ET.SubElement(metrics, 'wingspan', unit = 'M').text = str(oFdm['aero']['ref']['b_m'])
-    ET.SubElement(metrics, 'chord', unit = 'M').text = str(oFdm['aero']['ref']['cBar_m'])
+    ET.SubElement(metrics, 'wingarea', unit = 'M2').text = str(oFdm['Aero']['Ref']['S_m2'])
+    ET.SubElement(metrics, 'wingspan', unit = 'M').text = str(oFdm['Aero']['Ref']['b_m'])
+    ET.SubElement(metrics, 'chord', unit = 'M').text = str(oFdm['Aero']['Ref']['cBar_m'])
 
     location = ET.SubElement(metrics, 'location', name = 'AERORP', unit = 'M')
-    ET.SubElement(location, 'x').text = str(oFdm['aero']['ref']['rAero_S_m'][0])
-    ET.SubElement(location, 'y').text = str(oFdm['aero']['ref']['rAero_S_m'][1])
-    ET.SubElement(location, 'z').text = str(oFdm['aero']['ref']['rAero_S_m'][2])
+    ET.SubElement(location, 'x').text = str(oFdm['Aero']['Ref']['rAero_S_m'][0])
+    ET.SubElement(location, 'y').text = str(oFdm['Aero']['Ref']['rAero_S_m'][1])
+    ET.SubElement(location, 'z').text = str(oFdm['Aero']['Ref']['rAero_S_m'][2])
 
     location = ET.SubElement(metrics, 'location', name = 'EYEPOINT', unit = 'M')
-    ET.SubElement(location, 'x').text = str(oFdm['aero']['ref']['rAero_S_m'][0])
-    ET.SubElement(location, 'y').text = str(oFdm['aero']['ref']['rAero_S_m'][1])
-    ET.SubElement(location, 'z').text = str(oFdm['aero']['ref']['rAero_S_m'][2])
+    ET.SubElement(location, 'x').text = str(oFdm['Aero']['Ref']['rAero_S_m'][0])
+    ET.SubElement(location, 'y').text = str(oFdm['Aero']['Ref']['rAero_S_m'][1])
+    ET.SubElement(location, 'z').text = str(oFdm['Aero']['Ref']['rAero_S_m'][2])
 
     location = ET.SubElement(metrics, 'location', name = 'VRP', unit = 'M')
     ET.SubElement(location, 'x').text = '0.0'
@@ -319,21 +322,21 @@ def Aerodynamics(oFdm, convertFdm2Jsb):
     import copy
 
     # Aero Coef definitions
-    coefNamesFdm = convertFdm2Jsb['coef']['fdm']
+    coefNamesFdm = convertFdm2Jsb['Coef']['oFdm']
 
     # Aero Deriv dependencies definitions
-    depNamesFdm = convertFdm2Jsb['dep']['fdm']
-    depNamesJsb = convertFdm2Jsb['dep']['jsb']
-    depScale = convertFdm2Jsb['dep']['scale']
+    depNamesFdm = convertFdm2Jsb['Dep']['oFdm']
+    depNamesJsb = convertFdm2Jsb['Dep']['jsb']
+    depScale = convertFdm2Jsb['Dep']['scale']
 
-    coefNamesFdm = convertFdm2Jsb['coef']['fdm']
+    coefNamesFdm = convertFdm2Jsb['Coef']['oFdm']
 
     # Aero Breakpoint Table defintions
-    indVarTable = convertFdm2Jsb['tableDef']['jsb']
-    breakPtsTable = convertFdm2Jsb['tableDef']['brkPts']
+    indVarTable = convertFdm2Jsb['TableDef']['jsb']
+    breakPtsTable = convertFdm2Jsb['TableDef']['brkPts']
 
     # Aero Table data to use
-    aeroTable = oFdm['aero']['coef']
+    aeroTable = oFdm['Aero']['Coef']
 
     # Define the conversion from oFdm to JSB-ML # FIXIT - switch to a CDo+CDi drag computation
     coefTable = {'CL': {'axis': 'LIFT', 'scale': None, 'type': 'force', 'deriv': 'dCL'}, \
@@ -443,9 +446,9 @@ def Aerodynamics(oFdm, convertFdm2Jsb):
 def Propulsion(oFdm):
     propulsion = ET.Element('propulsion')
 
-    for key in oFdm['prop'].keys():
+    for key in oFdm['Prop'].keys():
 
-        prop = oFdm['prop'][key]
+        prop = oFdm['Prop'][key]
 
         # Motor/Engine
         engine = ET.SubElement(propulsion, 'engine', file = prop['nameMotor'])
@@ -492,7 +495,7 @@ def FlightControl(oFdm):
 
     fcsPilotDef['gain']['cmdRoll_rps'] = {}
     fcsPilotDef['gain']['cmdRoll_rps']['input'] = 'fcs/pilotRoll_norm'
-    fcsPilotDef['gain']['cmdRoll_rps']['gain'] = oFdm['fcs']['Pilot']['kRoll']
+    fcsPilotDef['gain']['cmdRoll_rps']['gain'] = oFdm['FCS']['Pilot']['kRoll']
 
     fcsPilotDef['summer']['pilotPitch_norm'] = {}
     fcsPilotDef['summer']['pilotPitch_norm']['inputList'] = ['fcs/elevator-cmd-norm', 'fcs/pitch-trim-cmd-norm']
@@ -501,7 +504,7 @@ def FlightControl(oFdm):
 
     fcsPilotDef['gain']['cmdPitch_rps'] = {}
     fcsPilotDef['gain']['cmdPitch_rps']['input'] = 'fcs/pilotPitch_norm'
-    fcsPilotDef['gain']['cmdPitch_rps']['gain'] = oFdm['fcs']['Pilot']['kPitch']
+    fcsPilotDef['gain']['cmdPitch_rps']['gain'] = oFdm['FCS']['Pilot']['kPitch']
 
     fcsPilotDef['summer']['pilotYaw_norm'] = {}
     fcsPilotDef['summer']['pilotYaw_norm']['inputList'] = ['fcs/rudder-cmd-norm', 'fcs/yaw-trim-cmd-norm']
@@ -510,7 +513,7 @@ def FlightControl(oFdm):
 
     fcsPilotDef['gain']['cmdYaw_rps'] = {}
     fcsPilotDef['gain']['cmdYaw_rps']['input'] = 'fcs/pilotYaw_norm'
-    fcsPilotDef['gain']['cmdYaw_rps']['gain'] = oFdm['fcs']['Pilot']['kYaw']
+    fcsPilotDef['gain']['cmdYaw_rps']['gain'] = oFdm['FCS']['Pilot']['kYaw']
 
     fcsPilotDef['summer']['pilotFlap_norm'] = {}
     fcsPilotDef['summer']['pilotFlap_norm']['inputList'] = ['fcs/flap-cmd-norm']
@@ -519,7 +522,7 @@ def FlightControl(oFdm):
 
     fcsPilotDef['gain']['cmdFlap_rad'] = {}
     fcsPilotDef['gain']['cmdFlap_rad']['input'] = 'fcs/pilotFlap_norm'
-    fcsPilotDef['gain']['cmdFlap_rad']['gain'] = oFdm['fcs']['Pilot']['kFlap']
+    fcsPilotDef['gain']['cmdFlap_rad']['gain'] = oFdm['FCS']['Pilot']['kFlap']
 
 
     # Create the JSB-ML
@@ -563,7 +566,7 @@ def FlightControl(oFdm):
     # Control System Surface Mixer
     mixer = ET.SubElement(elemFCS, 'channel', name = 'Control Mixer')
 
-    fcsMixerDef = oFdm['fcs']['Mixer']
+    fcsMixerDef = oFdm['FCS']['Mixer']
 
     for iSurf, surf in enumerate(fcsMixerDef['surfNames']):
         cmdSurf = 'cmd' + surf + '_rad'
@@ -625,7 +628,7 @@ def FlightControl(oFdm):
 #%% Effectors, for each surface define the 2nd order TF, and an 'actuator'
 def Effectors(oFdm):
 
-    sysEffDef = oFdm['act']
+    sysEffDef = oFdm['Act']
 
     effectors = ET.Element('system', name = 'Effectors')
     channel = ET.SubElement(effectors, 'channel', name = 'Actuator Models')

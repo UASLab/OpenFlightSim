@@ -1,9 +1,10 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Louis Mueller
-University of Minnesota UAV Lab
+University of Minnesota
+Aerospace Engineering and Mechanics - UAV Lab
+Copyright 2019 Regents of the University of Minnesota.
+See: LICENSE.md for complete license details.
 
+Author: Louis Mueller, Chris Regan
 """
 
 import os.path
@@ -19,17 +20,17 @@ def ParseAll(loadPathVsp, aircraftName, aeroName):
 
     # Parse VSP data
     vspData = {}
-    vspData['stab'] = VspStab(loadVspAero)
-    vspData['stabTab'] = Stab2Tables(vspData['stab'])
+    vspData['Stab'] = VspStab(loadVspAero)
+    vspData['StabTab'] = Stab2Tables(vspData['Stab'])
 
-    vspData['history'] = VspHistory(loadVspAero)
-    vspData['histTab'] = Hist2Tables(vspData['history'])
+    vspData['History'] = VspHistory(loadVspAero)
+    vspData['HistTab'] = Hist2Tables(vspData['History'])
 
-    vspData['drag'] = VspParasiteDrag(loadVspParasiteDrag)
+    vspData['Drag'] = VspParasiteDrag(loadVspParasiteDrag)
 
     # Add the Parasite Drag to Stab data
-    vspData['stab']['coef']['CD']['Base_Aero'] += vspData['drag']['Total']
-    vspData['stabTab']['coef']['CD']['Base_Aero'] += vspData['drag']['Total']
+    vspData['Stab']['Coef']['CD']['Base_Aero'] += vspData['Drag']['Total']
+    vspData['StabTab']['Coef']['CD']['Base_Aero'] += vspData['Drag']['Total']
 
     return(vspData)
 
@@ -187,19 +188,10 @@ def VspStab(fileLoad):
     #%% Return
     vspStab = {}
 
-#    vspStab['condKeys'] = condParamList
-#    vspStab['resultKeys'] = resultParamList
-#
-#    vspStab['coefKeys'] = coefNameList
-#    vspStab['coefDepKeys'] = coefDepNameList
-#
-#    vspStab['derivKeys'] = derivNameList
-#    vspStab['derivDepKeys'] = derivDepNameList
-
-    vspStab['cond'] = caseParam
-    vspStab['results'] = resultParam
-    vspStab['coef'] = coefTable
-    vspStab['deriv'] = derivTable
+    vspStab['Cond'] = caseParam
+    vspStab['Results'] = resultParam
+    vspStab['Coef'] = coefTable
+    vspStab['Deriv'] = derivTable
     vspStab['surfNames'] = coefDepNameList[7:]
 
     return(vspStab)
@@ -209,41 +201,41 @@ def Stab2Tables(vspStab):
     vspTable = {}
 
     # Leverage the fact that VSP cases are run varying alpha, then mach, then beta
-    vspTable['tableDef'] = {}
-    vspTable['tableDef']['brkPtVars'] = ['Beta_', 'Mach_', 'AoA_']
+    vspTable['TableDef'] = {}
+    vspTable['TableDef']['brkPtVars'] = ['Beta_', 'Mach_', 'AoA_']
     vspBrkNames = ['BetaBrkPts_', 'MachBrkPts_', 'AoABrkPts_']
 
     # Breakpoints
-    for iBreak, vspBrk in enumerate(vspTable['tableDef']['brkPtVars']):
-        vspTable['tableDef'][vspBrkNames[iBreak]] = np.unique(vspStab['cond'][vspBrk])
+    for iBreak, vspBrk in enumerate(vspTable['TableDef']['brkPtVars']):
+        vspTable['TableDef'][vspBrkNames[iBreak]] = np.unique(vspStab['Cond'][vspBrk])
 
     # Define the shape of the Aero Tables
-    shapeTable = (len(vspTable['tableDef']['BetaBrkPts_']), len(vspTable['tableDef']['MachBrkPts_']), len(vspTable['tableDef']['AoABrkPts_']))
+    shapeTable = (len(vspTable['TableDef']['BetaBrkPts_']), len(vspTable['TableDef']['MachBrkPts_']), len(vspTable['TableDef']['AoABrkPts_']))
 
 
     # Create the Condition Tables
-    vspTable['cond'] = {}
-    for cond in vspStab['cond'].keys():
-        vspTable['cond'][cond] = vspStab['cond'][cond].reshape(shapeTable)
+    vspTable['Cond'] = {}
+    for cond in vspStab['Cond'].keys():
+        vspTable['Cond'][cond] = vspStab['Cond'][cond].reshape(shapeTable)
 
     # Create the Coefficient Tables
-    vspTable['coef'] = {}
-    for coef in vspStab['coef'].keys():
-        vspTable['coef'][coef] = {}
-        for dep in vspStab['coef'][coef].keys():
-            vspTable['coef'][coef][dep] = vspStab['coef'][coef][dep].reshape(shapeTable)
+    vspTable['Coef'] = {}
+    for coef in vspStab['Coef'].keys():
+        vspTable['Coef'][coef] = {}
+        for dep in vspStab['Coef'][coef].keys():
+            vspTable['Coef'][coef][dep] = vspStab['Coef'][coef][dep].reshape(shapeTable)
 
     # Create the Derivative Tables
-    vspTable['deriv'] = {}
-    for deriv in vspStab['deriv'].keys():
-        vspTable['deriv'][deriv] = {}
-        for dep in vspStab['deriv'][deriv].keys():
-            vspTable['deriv'][deriv][dep] = vspStab['deriv'][deriv][dep].reshape(shapeTable)
+    vspTable['Deriv'] = {}
+    for deriv in vspStab['Deriv'].keys():
+        vspTable['Deriv'][deriv] = {}
+        for dep in vspStab['Deriv'][deriv].keys():
+            vspTable['Deriv'][deriv][dep] = vspStab['Deriv'][deriv][dep].reshape(shapeTable)
 
     # Create the Results Tables
-    vspTable['results'] = {}
-    for results in vspStab['results'].keys():
-        vspTable['results'][results] = vspStab['results'][results].reshape(shapeTable)
+    vspTable['Results'] = {}
+    for results in vspStab['Results'].keys():
+        vspTable['Results'][results] = vspStab['Results'][results].reshape(shapeTable)
 
     return (vspTable)
 
@@ -355,14 +347,14 @@ def VspHistory(fileLoad):
     vspHist = {}
 
     # Pre-Allocate Conditions
-    vspHist['cond'] = {}
+    vspHist['Cond'] = {}
     for cond in condParamList:
-        vspHist['cond'][cond] = np.full(numCase, np.nan)
+        vspHist['Cond'][cond] = np.full(numCase, np.nan)
 
     # Pre-Allocate Results
-    vspHist['results'] = {}
+    vspHist['Results'] = {}
     for result in resultNameList:
-        vspHist['results'][result] = np.full((numCase, numIter), np.nan)
+        vspHist['Results'][result] = np.full((numCase, numIter), np.nan)
 
 
     # Store Data only for the last iteration
@@ -371,13 +363,13 @@ def VspHistory(fileLoad):
         for currentLine in fileList[(iNameList[iCase]+1) : (iCaseList[iCase]-1)]:
             if (not currentLine == ''):
                 lineSplit = currentLine.split()
-                vspHist['cond'][lineSplit[0]][iCase] = lineSplit[1]
+                vspHist['Cond'][lineSplit[0]][iCase] = lineSplit[1]
 
         # Store the Results
         for iIter, resultLine in enumerate(fileList[(iCaseList[iCase]+3) : (iCaseList[iCase]+3+numIter)]):
             for iRes, res in enumerate(resultNameList):
                 resultSplit = resultLine.split()
-                vspHist['results'][res][iCase][iIter] = resultSplit[iRes]
+                vspHist['Results'][res][iCase][iIter] = resultSplit[iRes]
 
 
     # Add the Control Group Deflections to the Conditions
@@ -387,8 +379,8 @@ def VspHistory(fileLoad):
       indx = [i for i, e in enumerate(vspCases['desc']) if e == 'Deflecting Control Group: %d' %(iCtrlGroup+1)]
       ControlGroup.append(indx)
 
-      vspHist['cond']['ConGrp_%d' %(iCtrlGroup+1)] = np.full(numCase, 0.0)
-      vspHist['cond']['ConGrp_%d' %(iCtrlGroup+1)][indx] = 1.0
+      vspHist['Cond']['ConGrp_%d' %(iCtrlGroup+1)] = np.full(numCase, 0.0)
+      vspHist['Cond']['ConGrp_%d' %(iCtrlGroup+1)][indx] = 1.0
 
     #%% Return
     vspHist['desc'] = vspCases['desc']
@@ -399,19 +391,19 @@ def Hist2Tables(vspHist, indxAvg=1):
     vspTable = {}
 
     # Leverage the fact that VSP cases are run varying alpha, then mach, then beta
-    vspTable['tableDef'] = {}
-    vspTable['tableDef']['brkPtVars'] = ['Beta_', 'Mach_', 'AoA_']
+    vspTable['TableDef'] = {}
+    vspTable['TableDef']['brkPtVars'] = ['Beta_', 'Mach_', 'AoA_']
     vspBrkNames = ['BetaBrkPts_', 'MachBrkPts_', 'AoABrkPts_']
 
     # Breakpoints in the Base Aer
     iBase = [i for i, e in enumerate(vspHist['desc']) if e == 'Base Aero']
 
-    for iBreak, vspBrk in enumerate(vspTable['tableDef']['brkPtVars']):
-        vspTable['tableDef'][vspBrkNames[iBreak]] = np.unique(vspHist['cond'][vspBrk][iBase])
+    for iBreak, vspBrk in enumerate(vspTable['TableDef']['brkPtVars']):
+        vspTable['TableDef'][vspBrkNames[iBreak]] = np.unique(vspHist['Cond'][vspBrk][iBase])
 
 
     # Define the shape of the Aero Tables
-    shapeTable = (len(vspTable['tableDef']['BetaBrkPts_']), len(vspTable['tableDef']['MachBrkPts_']), len(vspTable['tableDef']['AoABrkPts_']))
+    shapeTable = (len(vspTable['TableDef']['BetaBrkPts_']), len(vspTable['TableDef']['MachBrkPts_']), len(vspTable['TableDef']['AoABrkPts_']))
 
 
     # Find the idices of each type of run
@@ -421,22 +413,22 @@ def Hist2Tables(vspHist, indxAvg=1):
         indxTypes[runType] = [i for i, e in enumerate(vspHist['desc']) if e == runType]
 
     # Create the Condition Tables
-    vspTable['cond'] = {}
-    for cond in vspHist['cond'].keys():
-        vspTable['cond'][cond] = {}
+    vspTable['Cond'] = {}
+    for cond in vspHist['Cond'].keys():
+        vspTable['Cond'][cond] = {}
         for runType in runTypes:
-            vspTable['cond'][cond][runType] = vspHist['cond'][cond][indxTypes[runType]].reshape(shapeTable)
+            vspTable['Cond'][cond][runType] = vspHist['Cond'][cond][indxTypes[runType]].reshape(shapeTable)
 
     # Create the Coefficient Tables
-    vspTable['results'] = {}
-    for results in vspHist['results'].keys():
-        vspTable['results'][results] = {}
+    vspTable['Results'] = {}
+    for results in vspHist['Results'].keys():
+        vspTable['Results'][results] = {}
         for runType in runTypes:
-            valRaw = vspHist['results'][results][indxTypes[runType]]
+            valRaw = vspHist['Results'][results][indxTypes[runType]]
             valMean = valRaw[:,indxAvg:].mean(axis=1)
             valStd = valRaw[:,indxAvg:].std(axis=1)
 
-            vspTable['results'][results][runType] = valMean.reshape(shapeTable)
+            vspTable['Results'][results][runType] = valMean.reshape(shapeTable)
 
     # Compute the Derivatives
 

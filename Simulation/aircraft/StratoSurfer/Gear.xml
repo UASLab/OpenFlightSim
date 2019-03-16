@@ -1,55 +1,55 @@
-<?xml version="1.0" ?>
-<ground_reactions>
-    <contact name="Main" type="BOGEY">
-        <location unit="M">
-            <x>0.2032</x>
-            <y>0.0</y>
-            <z>-0.07619999999999999</z>
-        </location>
-        <static_friction>0.8</static_friction>
-        <dynamic_friction>0.5</dynamic_friction>
-        <rolling_friction>0.25</rolling_friction>
-        <spring_coeff unit="N/M">1020.3652550049305</spring_coeff>
-        <damping_coeff unit="N/M/SEC">64.9584696373028</damping_coeff>
-        <max_steer unit="DEG">0.0</max_steer>
-    </contact>
-    <contact name="Tail" type="BOGEY">
-        <location unit="M">
-            <x>0.8635999999999999</x>
-            <y>0.0</y>
-            <z>-0.038099999999999995</z>
-        </location>
-        <static_friction>0.8</static_friction>
-        <dynamic_friction>0.5</dynamic_friction>
-        <rolling_friction>0.25</rolling_friction>
-        <spring_coeff unit="N/M">397.9424494519231</spring_coeff>
-        <damping_coeff unit="N/M/SEC">25.333803158548104</damping_coeff>
-        <max_steer unit="DEG">0.0</max_steer>
-    </contact>
-    <contact name="WingL" type="BOGEY">
-        <location unit="M">
-            <x>0.381</x>
-            <y>-0.6604</y>
-            <z>0.0635</z>
-        </location>
-        <static_friction>0.8</static_friction>
-        <dynamic_friction>0.5</dynamic_friction>
-        <rolling_friction>0.25</rolling_friction>
-        <spring_coeff unit="N/M">397.9424494519231</spring_coeff>
-        <damping_coeff unit="N/M/SEC">25.333803158548104</damping_coeff>
-        <max_steer unit="DEG">0.0</max_steer>
-    </contact>
-    <contact name="WingR" type="BOGEY">
-        <location unit="M">
-            <x>0.381</x>
-            <y>0.6604</y>
-            <z>0.0635</z>
-        </location>
-        <static_friction>0.8</static_friction>
-        <dynamic_friction>0.5</dynamic_friction>
-        <rolling_friction>0.25</rolling_friction>
-        <spring_coeff unit="N/M">397.9424494519231</spring_coeff>
-        <damping_coeff unit="N/M/SEC">25.333803158548104</damping_coeff>
-        <max_steer unit="DEG">0.0</max_steer>
-    </contact>
-</ground_reactions>
+<?xml version="1.0" ?>
+<ground_reactions>
+    <contact name="Main" type="BOGEY">
+        <location unit="M">
+            <x>0.2032</x>
+            <y>0.0</y>
+            <z>-0.07619999999999999</z>
+        </location>
+        <static_friction>0.8</static_friction>
+        <dynamic_friction>0.5</dynamic_friction>
+        <rolling_friction>0.25</rolling_friction>
+        <spring_coeff unit="N/M">1020.3652550049305</spring_coeff>
+        <damping_coeff unit="N/M/SEC">64.9584696373028</damping_coeff>
+        <max_steer unit="DEG">0.0</max_steer>
+    </contact>
+    <contact name="Tail" type="BOGEY">
+        <location unit="M">
+            <x>0.8635999999999999</x>
+            <y>0.0</y>
+            <z>-0.038099999999999995</z>
+        </location>
+        <static_friction>0.8</static_friction>
+        <dynamic_friction>0.5</dynamic_friction>
+        <rolling_friction>0.25</rolling_friction>
+        <spring_coeff unit="N/M">397.9424494519231</spring_coeff>
+        <damping_coeff unit="N/M/SEC">25.333803158548104</damping_coeff>
+        <max_steer unit="DEG">0.0</max_steer>
+    </contact>
+    <contact name="WingL" type="BOGEY">
+        <location unit="M">
+            <x>0.381</x>
+            <y>-0.6604</y>
+            <z>0.0635</z>
+        </location>
+        <static_friction>0.8</static_friction>
+        <dynamic_friction>0.5</dynamic_friction>
+        <rolling_friction>0.25</rolling_friction>
+        <spring_coeff unit="N/M">397.9424494519231</spring_coeff>
+        <damping_coeff unit="N/M/SEC">25.333803158548104</damping_coeff>
+        <max_steer unit="DEG">0.0</max_steer>
+    </contact>
+    <contact name="WingR" type="BOGEY">
+        <location unit="M">
+            <x>0.381</x>
+            <y>0.6604</y>
+            <z>0.0635</z>
+        </location>
+        <static_friction>0.8</static_friction>
+        <dynamic_friction>0.5</dynamic_friction>
+        <rolling_friction>0.25</rolling_friction>
+        <spring_coeff unit="N/M">397.9424494519231</spring_coeff>
+        <damping_coeff unit="N/M/SEC">25.333803158548104</damping_coeff>
+        <max_steer unit="DEG">0.0</max_steer>
+    </contact>
+</ground_reactions>
