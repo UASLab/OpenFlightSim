@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<propulsion>
+    <engine file="DJI_E305">
+        <location unit="M">
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </location>
+        <orient unit="DEG">
+            <roll>0</roll>
+            <pitch>90</pitch>
+            <yaw>0</yaw>
+        </orient>
+        <thruster file="APC 9x4_5e">
+            <location unit="M">
+                <x>0.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>90</pitch>
+                <yaw>0</yaw>
+            </orient>
+            <sense>1.0</sense>
+            <p_factor>0.0</p_factor>
+        </thruster>
+    </engine>
+</propulsion>
