@@ -1,4 +1,4 @@
-<?xml versison="1.0" ?>
+<?xml version="1.0" ?>
 <ground_reactions>
 	<contact type="STRUCTURE" name="Front_Right">
             <location unit="M">
@@ -11,7 +11,7 @@
             <spring_coeff unit="N/M"> 500 </spring_coeff>
             <damping_coeff unit="N/M/SEC"> 100 </damping_coeff>
         </contact>
-	
+
 	<contact type="STRUCTURE" name="Front_Left">
             <location unit="M">
                 <x> -0.1016 </x>
@@ -23,7 +23,7 @@
             <spring_coeff unit="N/M"> 500 </spring_coeff>
             <damping_coeff unit="N/M/SEC"> 100 </damping_coeff>
         </contact>
-	
+
 	<contact type="STRUCTURE" name="Back_Left">
             <location unit="M">
                 <x> -0.1016 </x>
@@ -35,7 +35,7 @@
             <spring_coeff unit="N/M"> 500 </spring_coeff>
             <damping_coeff unit="N/M/SEC"> 100 </damping_coeff>
         </contact>
-	
+
 	<contact type="STRUCTURE" name="Back_Right">
             <location unit="M">
                 <x> 0.1016 </x>
