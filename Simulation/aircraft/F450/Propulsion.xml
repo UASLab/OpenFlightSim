@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <propulsion>
-    <engine file="DJI_E305">
+    <engine file="DJI_E305" name="front left">
         <location unit="M">
-            <x>0.1651</x>
+            <x>-0.1651</x>
             <y>0.1651</y>
             <z>0.0</z>
         </location>
@@ -13,9 +13,9 @@
         </orient>
         <thruster file="APC 9x4_5e">
             <location unit="M">
-                <x>0.1651</x>
+                <x>-0.1651</x>
                 <y>0.1651</y>
-                <z>0.0</z>
+                <z>0.025</z>
             </location>
             <orient unit="DEG">
                 <roll>0</roll>
@@ -28,10 +28,10 @@
     </engine>
 
     <engine file="DJI_E305">
-        <location unit="M">
-            <x>-0.1651</x>
+        <location unit="M" name="front right">
+            <x>0.1651</x>
             <y>0.1651</y>
-            <z>0.0</z>
+            <z>0</z>
         </location>
         <orient unit="DEG">
             <roll>0</roll>
@@ -40,9 +40,9 @@
         </orient>
         <thruster file="APC 9x4_5e">
             <location unit="M">
-                <x>-0.1651</x>
+                <x>0.1651</x>
                 <y>0.1651</y>
-                <z>0.0</z>
+                <z>0.025</z>
             </location>
             <orient unit="DEG">
                 <roll>0</roll>
@@ -54,7 +54,7 @@
         </thruster>
     </engine>
     
-        <engine file="DJI_E305">
+        <engine file="DJI_E305" name="rear left">
         <location unit="M">
             <x>-0.1651</x>
             <y>-0.1651</y>
@@ -69,7 +69,7 @@
             <location unit="M">
                 <x>-0.1651</x>
                 <y>-0.1651</y>
-                <z>0.0</z>
+                <z>0.025</z>
             </location>
             <orient unit="DEG">
                 <roll>0</roll>
@@ -81,7 +81,7 @@
         </thruster>
     </engine>
     
-        <engine file="DJI_E305">
+        <engine file="DJI_E305" name="rear right">
         <location unit="M">
             <x>0.1651</x>
             <y>-0.1651</y>
@@ -96,7 +96,7 @@
             <location unit="M">
                 <x>0.1651</x>
                 <y>-0.1651</y>
-                <z>0.0</z>
+                <z>0.025</z>
             </location>
             <orient unit="DEG">
                 <roll>0</roll>
