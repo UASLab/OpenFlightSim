@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 <propulsion>
-<engine name="Direct">
+    <engine name="Direct">
         <electric_engine>
-          <power unit="WATTS">  25 </power>
+            <power unit="WATTS">  10 </power>
         </electric_engine>
         <location unit="M">
             <x>0.8382</x>
-            <y>0.000</y>
+            <y>-0.127</y>
             <z>0.127</z>
         </location>
         <orient unit="DEG">
@@ -15,20 +15,51 @@
             <yaw>0</yaw>
         </orient>
         <thruster>
-            <direct name="Direct">
-            </direct>
-            <location unit="M">
-                <x>0.8382</x>
-                <y>0.000</y>
-                <z>0.127</z>
-            </location>
-            <orient unit="DEG">
-                <roll>0</roll>
-                <pitch>0</pitch>
-                <yaw>0</yaw>
-            </orient>
-            <sense>1</sense>
-            <p_factor>0.0</p_factor>
+          <direct name="Direct">
+          </direct>
+          <location unit="M">
+              <x>0.8382</x>
+              <y>-0.127</y>
+              <z>0.127</z>
+          </location>
+          <orient unit="DEG">
+              <roll>0</roll>
+              <pitch>0</pitch>
+              <yaw>0</yaw>
+          </orient>
+          <sense>1</sense>
+          <p_factor>0.0</p_factor>
+        </thruster>
+    </engine>
+    <engine name="Direct">
+        <electric_engine>
+            <power unit="WATTS">  10 </power>
+        </electric_engine>
+        <location unit="M">
+            <x>0.8382</x>
+            <y>0.127</y>
+            <z>0.127</z>
+        </location>
+        <orient unit="DEG">
+            <roll>0</roll>
+            <pitch>0</pitch>
+            <yaw>0</yaw>
+        </orient>
+        <thruster>
+          <direct name="Direct">
+          </direct>
+          <location unit="M">
+              <x>0.8382</x>
+              <y>0.127</y>
+              <z>0.127</z>
+          </location>
+          <orient unit="DEG">
+              <roll>0</roll>
+              <pitch>0</pitch>
+              <yaw>0</yaw>
+          </orient>
+          <sense>1</sense>
+          <p_factor>0.0</p_factor>
         </thruster>
     </engine>
 </propulsion>
