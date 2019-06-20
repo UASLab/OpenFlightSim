@@ -19,6 +19,8 @@
     <event name="Repeating Notify" persistent="true">
         <notify>
             <property> sensor/imu/time_us </property>
+            <property>propulsion/engine[0]/thrust-lbs</property>
+            <property>propulsion/engine[1]/thrust-lbs</property>
         </notify>
         <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
         <set name="simulation/notify-time-trigger" value="1" type="FG_DELTA"/>

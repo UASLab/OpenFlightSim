@@ -342,5 +342,11 @@
             <input>fcs/cmdMotor_ext_nd</input>
             <output>fcs/throttle-pos-norm</output>
         </summer>
+        <summer>
+            <input>fcs/throttle-cmd-norm</input>
+            <input>fcs/cmdMotor_ext_nd</input>
+            <output>fcs/throttle-pos-norm[1]</output>
+        </summer>
+
     </channel>
 </flight_control>

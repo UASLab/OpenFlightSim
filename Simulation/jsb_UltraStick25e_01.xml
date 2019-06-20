@@ -11,7 +11,9 @@
 
     <event name="Motor Start">
         <condition> simulation/frame le 1 </condition>
+        <set name="propulsion/engine[0]/set-running" value="1"/>
         <set name="fcs/throttle-cmd-norm" value="0.5"/>
+        <set name="fcs/pitch-trim-cmd-norm" value="0.1"/>
     </event>
 
     <event name="Trim">
