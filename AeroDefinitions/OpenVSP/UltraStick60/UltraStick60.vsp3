@@ -11,12 +11,12 @@
         <CORZ Value="0.000000000000000000e+00" ID="LPOFVFKQFPL"/>
         <PanX Value="0.000000000000000000e+00" ID="YEKXJAEKJVN"/>
         <PanY Value="0.000000000000000000e+00" ID="AWAYVXZXYOR"/>
-        <RotationX Value="4.199974845175718485e+01" ID="RWWIWGAHBFF"/>
-        <RotationY Value="-5.420480130985514933e+01" ID="ZVLZYYFVTPR"/>
-        <RotationZ Value="-6.350741309148038027e+01" ID="BSKNKBLXASI"/>
+        <RotationX Value="5.168002188315993095e+01" ID="RWWIWGAHBFF"/>
+        <RotationY Value="-5.023087089224208057e+01" ID="ZVLZYYFVTPR"/>
+        <RotationZ Value="-6.122712711631493931e+01" ID="BSKNKBLXASI"/>
         <ViewportX Value="0.000000000000000000e+00" ID="RPYUKDSYAOA"/>
         <ViewportY Value="0.000000000000000000e+00" ID="IOUOMAAYFXV"/>
-        <Zoom Value="3.522039856761693954e-03" ID="TWOKXSFCOVQ"/>
+        <Zoom Value="4.596090409904718399e-03" ID="TWOKXSFCOVQ"/>
       </AdjustView>
       <AirfoilExport>
         <AFAppendGeomIDFlag Value="1.000000000000000000e+00" ID="MLTJSRLNJCH"/>
@@ -385,7 +385,7 @@
         <Num_of_Tex>0</Num_of_Tex>
       </Textures>
       <Geom>
-        <Set_List>1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, </Set_List>
+        <Set_List>1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, </Set_List>
         <SubSurfaces/>
         <FeaStructures/>
       </Geom>
@@ -1511,7 +1511,7 @@
         <Num_of_Tex>0</Num_of_Tex>
       </Textures>
       <Geom>
-        <Set_List>1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, </Set_List>
+        <Set_List>1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, </Set_List>
         <SubSurfaces>
           <SubSurface>
             <ParmContainer>
@@ -1711,7 +1711,6 @@
                     <Chord Value="3.124200000000000310e-01" ID="VPDNIEDERSB"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="XVYXBOQSAPN"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="RFPEXPHGCNK"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="WPICYGDGHXO"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="DBLBKERCPLD"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="NODEMWFFEHG"/>
                     <Invert Value="0.000000000000000000e+00" ID="YCXQEFOYZJC"/>
@@ -1821,7 +1820,6 @@
                     <Chord Value="3.124200000000000310e-01" ID="PAAZMJVUNWL"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="FNMHFTIHPNI"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="TTDXGYPBPFC"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="ZTTVXJTUMAU"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="WDZSUBGXBTS"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="QXBNGYPPRHQ"/>
                     <Invert Value="0.000000000000000000e+00" ID="MMLHMDGGVYQ"/>
@@ -1931,7 +1929,6 @@
                     <Chord Value="3.124199999999999755e-01" ID="WBQWIDYZGKW"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="DWUUBKXHGFA"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="ADPBUZDHHCY"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="XDGRLODUKNK"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="YMHPIMHOZVS"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="RDEQIOLZUVM"/>
                     <Invert Value="0.000000000000000000e+00" ID="IAJPSFMMPLZ"/>
@@ -2041,7 +2038,6 @@
                     <Chord Value="3.009899999999999798e-01" ID="NWCUOLVKGOW"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="BLQJQQIYGNF"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="YQVANTRPCIF"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="RIMIYYQRJWI"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="YUPMXDFWWII"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="FBETNWBBLEA"/>
                     <Invert Value="0.000000000000000000e+00" ID="YZBMEWCEOSV"/>
@@ -2151,7 +2147,6 @@
                     <Chord Value="3.048000000000000015e-02" ID="EOMRMMWAQVE"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="YTRRBOFNYXW"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="XCHAOOQVUVY"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="ZZDFBKTRICE"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="TVYIIKDJONZ"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="URSXGLVKISL"/>
                     <Invert Value="0.000000000000000000e+00" ID="BLBKYOTEPDZ"/>
@@ -2296,7 +2291,7 @@
         <Num_of_Tex>0</Num_of_Tex>
       </Textures>
       <Geom>
-        <Set_List>1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, </Set_List>
+        <Set_List>1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, </Set_List>
         <SubSurfaces>
           <SubSurface>
             <ParmContainer>
@@ -2448,7 +2443,6 @@
                     <Chord Value="2.247899999999999898e-01" ID="GVVPLQBKSAK"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="LBLKLOXJENU"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="BULTZGIEXYY"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="XTJRBUSHRZO"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="WMBAVORVPXM"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="RIBXUPPIBMK"/>
                     <Invert Value="0.000000000000000000e+00" ID="TCETZSWOARL"/>
@@ -2558,7 +2552,6 @@
                     <Chord Value="2.247899999999999898e-01" ID="LQWKXWOLMMI"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="HNAVHJBUZEV"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="TEMCIYTXZUG"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="CCNSGDIRRSK"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="PEBEHBVNRRX"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="DQHTKIDDGBF"/>
                     <Invert Value="0.000000000000000000e+00" ID="VJDEJPQRAYA"/>
@@ -2668,7 +2661,6 @@
                     <Chord Value="3.047999999999999321e-02" ID="HZWFEDWDAHL"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="VDRHKIITSKT"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="BKLTCWCIUEG"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="RCQBJQEKGRQ"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="CAPFHSHSGVH"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="IHEJTDKHQWU"/>
                     <Invert Value="0.000000000000000000e+00" ID="PWBWJDODAGW"/>
@@ -2813,7 +2805,7 @@
         <Num_of_Tex>0</Num_of_Tex>
       </Textures>
       <Geom>
-        <Set_List>1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, </Set_List>
+        <Set_List>1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, </Set_List>
         <SubSurfaces>
           <SubSurface>
             <ParmContainer>
@@ -2965,7 +2957,6 @@
                     <Chord Value="3.962399999999999811e-01" ID="SRXWWDANZKY"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="PMEAQPCGGEE"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="PABEHTOKMMC"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="CUKYJWTHLNO"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="TDUGHCKGXHF"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="JBOKHNXCASM"/>
                     <Invert Value="0.000000000000000000e+00" ID="IHVMONKTUFD"/>
@@ -3075,7 +3066,6 @@
                     <Chord Value="9.906000000000000916e-02" ID="SFOVSRARZPX"/>
                     <DeltaX Value="0.000000000000000000e+00" ID="DVPXMGQMDKJ"/>
                     <DeltaY Value="0.000000000000000000e+00" ID="UEUUMYUMTPD"/>
-                    <EqArcLenFlag Value="1.000000000000000000e+00" ID="PYRLUPMXHJC"/>
                     <FitDegree Value="7.000000000000000000e+00" ID="QWSYXEPZWAG"/>
                     <IdealCl Value="0.000000000000000000e+00" ID="AWSSYQYWFNV"/>
                     <Invert Value="0.000000000000000000e+00" ID="VIPGUKZOUQM"/>
@@ -3279,7 +3269,7 @@ void Scale(double curr_scale )
         <Num_of_Tex>0</Num_of_Tex>
       </Textures>
       <Geom>
-        <Set_List>1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, </Set_List>
+        <Set_List>1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, </Set_List>
         <SubSurfaces/>
         <FeaStructures/>
       </Geom>
@@ -3399,7 +3389,7 @@ void Scale(double curr_scale )
         <Num_of_Tex>0</Num_of_Tex>
       </Textures>
       <Geom>
-        <Set_List>1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, </Set_List>
+        <Set_List>1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, </Set_List>
         <SubSurfaces/>
         <FeaStructures/>
       </Geom>
@@ -4075,13 +4065,13 @@ void Scale(double curr_scale )
       <Name>Default</Name>
       <VSPAERO>
         <AlphaEnd Value="1.400000000000000000e+01" ID="OXGSBRDEBSU"/>
-        <AlphaNpts Value="1.000000000000000000e+00" ID="WMXLIKQJYDT"/>
-        <AlphaStart Value="4.000000000000000000e+00" ID="RDLLKNHOHUZ"/>
+        <AlphaNpts Value="1.100000000000000000e+01" ID="WMXLIKQJYDT"/>
+        <AlphaStart Value="-6.000000000000000000e+00" ID="RDLLKNHOHUZ"/>
         <AnalysisMethod Value="0.000000000000000000e+00" ID="KNIVKGIYWAQ"/>
         <BatchModeFlag Value="1.000000000000000000e+00" ID="GQCDWRWJTNY"/>
-        <BetaEnd Value="1.000000000000000000e+01" ID="EKMQHYFOWTG"/>
-        <BetaNpts Value="1.000000000000000000e+00" ID="ITCNAWEBTNW"/>
-        <BetaStart Value="0.000000000000000000e+00" ID="QVNDIKKFQHI"/>
+        <BetaEnd Value="5.000000000000000000e+00" ID="EKMQHYFOWTG"/>
+        <BetaNpts Value="3.000000000000000000e+00" ID="ITCNAWEBTNW"/>
+        <BetaStart Value="-5.000000000000000000e+00" ID="QVNDIKKFQHI"/>
         <Clmax Value="1.000000000000000000e+00" ID="ERKRRWZWBCB"/>
         <ClmaxToggle Value="1.000000000000000000e+00" ID="OERPIUADWBS"/>
         <CpSliceFlag Value="1.000000000000000000e+00" ID="UFRFUTZFOXQ"/>
@@ -4092,8 +4082,8 @@ void Scale(double curr_scale )
         <GeomSet Value="6.000000000000000000e+00" ID="QDBLKAPJDSN"/>
         <KTCorrection Value="0.000000000000000000e+00" ID="UWCJCHROAPP"/>
         <LeadingEdgeSuction Value="0.000000000000000000e+00" ID="HKJDCFFBGDI"/>
-        <MachEnd Value="6.500000000000000222e-02" ID="MFOLEIKKVVE"/>
-        <MachNpts Value="1.000000000000000000e+00" ID="CAXPIZZYBVF"/>
+        <MachEnd Value="1.000000000000000056e-01" ID="MFOLEIKKVVE"/>
+        <MachNpts Value="2.000000000000000000e+00" ID="CAXPIZZYBVF"/>
         <MachStart Value="5.000000000000000278e-02" ID="XVJXYBFFGJM"/>
         <MassSet Value="0.000000000000000000e+00" ID="TOWBCANTKZE"/>
         <MaxTurnAngle Value="-1.000000000000000000e+00" ID="VVMITPAFOWW"/>
@@ -4108,7 +4098,7 @@ void Scale(double curr_scale )
         <StabilityCalcFlag Value="1.000000000000000000e+00" ID="FJZXKCLQSGE"/>
         <Symmetry Value="0.000000000000000000e+00" ID="QHNKBFUCOZO"/>
         <UnsteadyType Value="0.000000000000000000e+00" ID="VGOJCIZFAEP"/>
-        <Vinf Value="1.700000000000000000e+01" ID="CRWIDXUCIBQ"/>
+        <Vinf Value="2.000000000000000000e+01" ID="CRWIDXUCIBQ"/>
         <VortexLift Value="1.000000000000000000e+00" ID="QMYAHPPMAYR"/>
         <WakeAvgStartIter Value="0.000000000000000000e+00" ID="CXPDALKRJSN"/>
         <WakeNumIter Value="5.000000000000000000e+00" ID="EINDVMEAXQX"/>
@@ -4505,7 +4495,7 @@ void Scale(double curr_scale )
         <Density Value="1.224978126206651252e+00" ID="CZXESREWQOU"/>
         <DynaVisc Value="1.789380278077583138e-05" ID="PAAKFXEOGCH"/>
         <ExcresType Value="1.000000000000000000e+00" ID="QSJJVHOFKYY"/>
-        <ExcresVal Value="3.660000000000000059e-02" ID="KDXDOYSGCJG"/>
+        <ExcresVal Value="2.879999999999999921e-02" ID="KDXDOYSGCJG"/>
         <ExportSubCompFlag Value="1.000000000000000000e+00" ID="VZNPZWAWCHN"/>
         <FreestreamType Value="0.000000000000000000e+00" ID="BFPPLFXGTVS"/>
         <LamCfEqnType Value="0.000000000000000000e+00" ID="ZYNNVTNCOYO"/>
@@ -4553,5 +4543,15 @@ void Scale(double curr_scale )
     <Set>Set_7</Set>
     <Set>Set_8</Set>
     <Set>Set_9</Set>
+    <Set>Set_10</Set>
+    <Set>Set_11</Set>
+    <Set>Set_12</Set>
+    <Set>Set_13</Set>
+    <Set>Set_14</Set>
+    <Set>Set_15</Set>
+    <Set>Set_16</Set>
+    <Set>Set_17</Set>
+    <Set>Set_18</Set>
+    <Set>Set_19</Set>
   </SetNames>
 </Vsp_Geometry>

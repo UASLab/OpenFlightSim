@@ -1,0 +1,17 @@
+# VSP Tag Key File
+C:/Users/rega0051/Documents/Github/Sim/AeroDefinitions/OpenVSP/UltraStick60/UltraStick60_Panel.tri
+13
+
+1,FuselageGeom_Surf0
+2,Wing_Surf0
+3,Wing_Surf1
+4,H-Tail_Surf0
+5,H-Tail_Surf1
+6,V-Tail_Surf0
+7,Wing_Surf0,Flap
+8,Wing_Surf0,Aileron
+9,Wing_Surf1,Flap
+10,Wing_Surf1,Aileron
+11,H-Tail_Surf0,Elevator
+12,H-Tail_Surf1,Elevator
+13,V-Tail_Surf0,Rudder
