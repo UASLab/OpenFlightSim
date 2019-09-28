@@ -1,22 +1,25 @@
 ...Comp Geom...
-4 Num Comps
-6 Total Num Meshes
-6992 Total Num Tris
+6 Num Comps
+8 Total Num Meshes
+7392 Total Num Tris
 
 Theo_Area   Wet_Area   Theo_Vol    Wet_Vol  Name
-    0.327      0.285      0.007      0.007  FuselageGeom   
-    0.931      0.901      0.013      0.013  Wing           
-    0.250      0.244      0.001      0.001  H-Tail         
-    0.093      0.077      0.000      0.000  V-Tail         
+    0.304      0.262      0.006      0.006  FuselageGeom   
+    0.015      0.015      0.000      0.000  Motor          
+    1.074      1.045      0.017      0.017  Wing           
+    0.250      0.243      0.001      0.001  H-Tail         
+    0.093      0.078      0.000      0.000  V-Tail         
 -------------------------------------------------
-    1.601      1.507      0.022      0.021  Totals         
+    1.736      1.642      0.025      0.024  Totals         
 
 Tag_Theo_Area   Tag_Wet_Area    Tag_Name
-        0.327          0.285    FuselageGeom_Surf0
-        0.401          0.386    Wing_Surf0     
-        0.401          0.386    Wing_Surf1     
-        0.096          0.093    H-Tail_Surf0   
-        0.096          0.093    H-Tail_Surf1   
+        0.304          0.262    FuselageGeom_Surf0
+        0.000          0.000    Propeller_Surf0
+        0.015          0.015    Motor_Surf0    
+        0.472          0.457    Wing_Surf0     
+        0.472          0.457    Wing_Surf1     
+        0.096          0.092    H-Tail_Surf0   
+        0.096          0.092    H-Tail_Surf1   
         0.058          0.043    V-Tail_Surf0   
         0.033          0.033    Wing_Surf0,Flap
         0.032          0.032    Wing_Surf0,Aileron
@@ -24,5 +27,6 @@ Tag_Theo_Area   Tag_Wet_Area    Tag_Name
         0.032          0.032    Wing_Surf1,Aileron
         0.029          0.029    H-Tail_Surf0,Elevator
         0.029          0.029    H-Tail_Surf1,Elevator
-        0.036          0.035    V-Tail_Surf0,Rudder
+        0.036          0.034    V-Tail_Surf0,Rudder
+WARNING: 1 open meshes removed
 WARNING: 2 open meshes merged
