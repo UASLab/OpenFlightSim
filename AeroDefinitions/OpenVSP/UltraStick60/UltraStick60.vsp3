@@ -4438,13 +4438,13 @@
       <Name>Default</Name>
       <VSPAERO>
         <AlphaEnd Value="1.400000000000000000e+01" ID="OXGSBRDEBSU"/>
-        <AlphaNpts Value="1.100000000000000000e+01" ID="WMXLIKQJYDT"/>
-        <AlphaStart Value="-6.000000000000000000e+00" ID="RDLLKNHOHUZ"/>
+        <AlphaNpts Value="1.000000000000000000e+00" ID="WMXLIKQJYDT"/>
+        <AlphaStart Value="3.000000000000000000e+00" ID="RDLLKNHOHUZ"/>
         <AnalysisMethod Value="0.000000000000000000e+00" ID="KNIVKGIYWAQ"/>
         <BatchModeFlag Value="1.000000000000000000e+00" ID="GQCDWRWJTNY"/>
         <BetaEnd Value="5.000000000000000000e+00" ID="EKMQHYFOWTG"/>
-        <BetaNpts Value="3.000000000000000000e+00" ID="ITCNAWEBTNW"/>
-        <BetaStart Value="-5.000000000000000000e+00" ID="QVNDIKKFQHI"/>
+        <BetaNpts Value="1.000000000000000000e+00" ID="ITCNAWEBTNW"/>
+        <BetaStart Value="0.000000000000000000e+00" ID="QVNDIKKFQHI"/>
         <Clmax Value="1.000000000000000000e+00" ID="ERKRRWZWBCB"/>
         <ClmaxToggle Value="1.000000000000000000e+00" ID="OERPIUADWBS"/>
         <CpSliceFlag Value="1.000000000000000000e+00" ID="UFRFUTZFOXQ"/>
@@ -4456,7 +4456,7 @@
         <KTCorrection Value="0.000000000000000000e+00" ID="UWCJCHROAPP"/>
         <LeadingEdgeSuction Value="0.000000000000000000e+00" ID="HKJDCFFBGDI"/>
         <MachEnd Value="1.000000000000000056e-01" ID="MFOLEIKKVVE"/>
-        <MachNpts Value="2.000000000000000000e+00" ID="CAXPIZZYBVF"/>
+        <MachNpts Value="1.000000000000000000e+00" ID="CAXPIZZYBVF"/>
         <MachStart Value="5.000000000000000278e-02" ID="XVJXYBFFGJM"/>
         <MassSet Value="0.000000000000000000e+00" ID="TOWBCANTKZE"/>
         <MaxTurnAngle Value="-1.000000000000000000e+00" ID="VVMITPAFOWW"/>
@@ -4488,7 +4488,7 @@
         <m_ConvergenceXMinIsManual Value="0.000000000000000000e+00" ID="ZFOXJZRBJGU"/>
         <m_ConvergenceYMax Value="2.000000000000000000e+01" ID="IULMEJHVZGG"/>
         <m_ConvergenceYMaxIsManual Value="0.000000000000000000e+00" ID="NBVLZRQYRYW"/>
-        <m_ConvergenceYMin Value="-2.000000000000000000e+00" ID="FHJKCEVKBPS"/>
+        <m_ConvergenceYMin Value="-3.000000000000000000e+00" ID="FHJKCEVKBPS"/>
         <m_ConvergenceYMinIsManual Value="0.000000000000000000e+00" ID="VHCACSBKVSE"/>
         <m_CpSliceXMax Value="1.000000000000000000e+00" ID="MTZPYLQHLBM"/>
         <m_CpSliceXMaxIsManual Value="0.000000000000000000e+00" ID="BASKYISIIPZ"/>
@@ -4502,17 +4502,17 @@
         <m_LoadDistXMaxIsManual Value="0.000000000000000000e+00" ID="EJNWXQXQWUV"/>
         <m_LoadDistXMin Value="-1.000000000000000000e+00" ID="KFSPDAMNBML"/>
         <m_LoadDistXMinIsManual Value="0.000000000000000000e+00" ID="KNDTVVHTQGJ"/>
-        <m_LoadDistYMax Value="1.000000000000000000e+00" ID="DQPGJOIVNXT"/>
+        <m_LoadDistYMax Value="1.000000000000000021e-02" ID="DQPGJOIVNXT"/>
         <m_LoadDistYMaxIsManual Value="0.000000000000000000e+00" ID="TYURUTOXBUG"/>
-        <m_LoadDistYMin Value="-1.000000000000000000e+00" ID="VHRYRBNUQMW"/>
+        <m_LoadDistYMin Value="-1.000000000000000021e-02" ID="VHRYRBNUQMW"/>
         <m_LoadDistYMinIsManual Value="0.000000000000000000e+00" ID="BWFBSSOAOFR"/>
-        <m_SweepXMax Value="2.999999999999999889e-02" ID="AZAKMYAPGPF"/>
+        <m_SweepXMax Value="2.000000000000000042e-02" ID="AZAKMYAPGPF"/>
         <m_SweepXMaxIsManual Value="0.000000000000000000e+00" ID="FRKJBALWHUS"/>
         <m_SweepXMin Value="1.000000000000000021e-02" ID="BRMGYHSHAOW"/>
         <m_SweepXMinIsManual Value="0.000000000000000000e+00" ID="KTXAUHBBDCC"/>
-        <m_SweepYMax Value="5.000000000000000000e-01" ID="OSHTGRYXFMY"/>
+        <m_SweepYMax Value="4.000000000000000222e-01" ID="OSHTGRYXFMY"/>
         <m_SweepYMaxIsManual Value="0.000000000000000000e+00" ID="GDPZSNDDMPE"/>
-        <m_SweepYMin Value="3.000000000000000444e-01" ID="MJKWYQEDPZP"/>
+        <m_SweepYMin Value="2.000000000000000111e-01" ID="MJKWYQEDPZP"/>
         <m_SweepYMinIsManual Value="0.000000000000000000e+00" ID="TQKIBMSUAAU"/>
         <m_UnsteadyXMax Value="1.000000000000000000e+00" ID="UXSOJRLUWAB"/>
         <m_UnsteadyXMaxIsManual Value="0.000000000000000000e+00" ID="UFWENTWTLSJ"/>
