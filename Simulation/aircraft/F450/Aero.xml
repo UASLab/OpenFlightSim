@@ -2,33 +2,11 @@
 <aerodynamics>
     <function name="aero/coefficient/CL__zero">
         <description>CL__zero</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
-            <tableData>
-
-                -6.0    0.006061868107775981
-                -2.0    0.005186306351824516
-                2.0    0.005030078635953089
-                6.0    -0.008950957361539003
-                10.0    0.06958937577467461
-                14.0    0.5484594641601963
-                </tableData>
-        </table>
+        <value> 0 </value>
     </function>
     <function name="aero/coefficient/dCL__alpha_rad">
         <description>dCL__alpha_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
-            <tableData>
-
-                -6.0    4.44908
-                -2.0    4.5913058
-                2.0    4.3201339
-                6.0    4.5296836
-                10.0    3.9949667
-                14.0    1.9620315
-                </tableData>
-        </table>
+        <value> 0 </value>
     </function>
     <function name="aero/coefficient/CL__alpha_rad">
         <description>CL__alpha_rad = dCL__alpha_rad * alpha_rad</description>
@@ -46,33 +24,11 @@
     </function>
     <function name="aero/coefficient/CD__zero">
         <description>CD__zero</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
-            <tableData>
-
-                -6.0    0.08043257848673464
-                -2.0    0.10572201126241258
-                2.0    0.10297960166355985
-                6.0    0.07855485172402729
-                10.0    0.04333485741155965
-                14.0    0.05578271227602019
-                </tableData>
-        </table>
+        <value> 1.0 </value>
     </function>
     <function name="aero/coefficient/dCD__alpha_rad">
         <description>dCD__alpha_rad</description>
-        <table>
-            <independentVar lookup="row">aero/alpha-deg</independentVar>
-            <tableData>
-
-                -6.0    -0.2499644
-                -2.0    -0.0586965
-                2.0    0.0981677
-                6.0    0.2545162
-                10.0    0.3744501
-                14.0    0.3574399
-                </tableData>
-        </table>
+        <value> 0 </value>
     </function>
     <function name="aero/coefficient/CD__alpha_rad">
         <description>CD__alpha_rad = dCD__alpha_rad * alpha_rad</description>

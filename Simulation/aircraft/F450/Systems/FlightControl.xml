@@ -1,140 +1,168 @@
 <?xml version="1.0" ?>
 
 <flight_control name="FCS: quad-copter">
- <channel name="Control Input">
-  <summer name="Pitch Command Sum">
-	<input>fcs/elevator-cmd-norm</input>
-   <input>fcs/pitch-trim-cmd-norm</input>
-   <clipto>
-    <min>-1</min>
-    <max>1</max>
-   </clipto>
-  </summer>
-  <summer name="Roll Command Sum">
-   <input>fcs/aileron-cmd-norm</input>
-   <input>fcs/roll-trim-cmd-norm</input>
-   <clipto>
-    <min>-1</min>
-    <max>1</max>
-   </clipto>
-  </summer>
-  <summer name="Yaw Command Sum">
-   <input>fcs/rudder-cmd-norm</input>
-   <input>fcs/yaw-trim-cmd-norm</input>
-   <clipto>
-    <min> -1 </min>
-    <max>  1 </max>
-   </clipto>
-  </summer>
- </channel>
- <channel name="Power">
-  <fcs_function name="Power FWD">
-   <function>
-    <sum>
-     <product>
-      <property>fcs/throttle-cmd-norm[0]</property>
-      <value>0.58</value>
-     </product>
-     <product>
-      <property>fcs/roll-command-sum</property>
-      <value>0.0</value>
-     </product>
-     <product>
-      <property>fcs/pitch-command-sum</property>
-      <value>-0.28</value>
-     </product>
-     <product>
-      <property>fcs/yaw-command-sum</property>
-      <value>-0.14</value>
-     </product>
-    </sum>
-    <clipto>
-     <min>0</min>
-     <max>1</max>
-    </clipto>
-   </function>
-   <output>fcs/throttle-pos-norm[0]</output>
-  </fcs_function>
-  <fcs_function name="Power Aft">
-   <function>
-    <sum>
-     <product>
-      <property>fcs/throttle-cmd-norm[1]</property>
-      <value>0.58</value>
-     </product>
-     <product>
-      <property>fcs/roll-command-sum</property>
-      <value>0.0</value>
-     </product>
-     <product>
-      <property>fcs/pitch-command-sum</property>
-      <value>0.28</value>
-     </product>
-     <product>
-      <property>fcs/yaw-command-sum</property>
-      <value>-0.14</value>
-     </product>
-    </sum>
-    <clipto>
-     <min>0</min>
-     <max>1</max>
-    </clipto>
-   </function>
-   <output>fcs/throttle-pos-norm[1]</output>
-  </fcs_function>
-  <fcs_function name="Power Left">
-   <function>
-    <sum>
-     <product>
-      <property>fcs/throttle-cmd-norm[2]</property>
-      <value>0.58</value>
-     </product>
-     <product>
-      <property>fcs/roll-command-sum</property>
-      <value>-0.28</value>
-     </product>
-     <product>
-      <property>fcs/pitch-command-sum</property>
-      <value>0.0</value>
-     </product>
-     <product>
-      <property>fcs/yaw-command-sum</property>
-      <value>0.14</value>
-     </product>
-    </sum>
-    <clipto>
-     <min>0</min>
-     <max>1</max>
-    </clipto>
-   </function>
-   <output>fcs/throttle-pos-norm[2]</output>
-  </fcs_function>
-  <fcs_function name="Power Right">
-   <function>
-    <sum>
-     <product>
-      <property>fcs/throttle-cmd-norm[3]</property>
-      <value>0.58</value>
-     </product>
-     <product>
-      <property>fcs/roll-command-sum</property>
-      <value>0.28</value>
-     </product>
-     <product>
-      <property>fcs/pitch-command-sum</property>
-      <value>0.0</value>
-     </product>
-     <product>
-      <property>fcs/yaw-command-sum</property>
-      <value>0.14</value>
-     </product>
-    </sum>
-    <clipto>
-     <min>0</min>
-     <max>1</max>
-    </clipto>
-   </function>
-   <output>fcs/throttle-pos-norm[3]</output>
-  </fcs_function>
- </channel>
+  <channel name="Pilot_Inputs">
+      <summer name="pilotRoll_norm">
+          <input>fcs/aileron-cmd-norm</input>
+          <input>fcs/roll-trim-cmd-norm</input>
+          <clipto>
+              <min>-1.0</min>
+              <max>1.0</max>
+          </clipto>
+          <output>fcs/pilotRoll_norm</output>
+      </summer>
+      <summer name="pilotPitch_norm">
+          <input>fcs/elevator-cmd-norm</input>
+          <input>fcs/pitch-trim-cmd-norm</input>
+          <clipto>
+              <min>-1.0</min>
+              <max>1.0</max>
+          </clipto>
+          <output>fcs/pilotPitch_norm</output>
+      </summer>
+      <summer name="pilotYaw_norm">
+          <input>fcs/rudder-cmd-norm</input>
+          <input>fcs/yaw-trim-cmd-norm</input>
+          <clipto>
+              <min>-1.0</min>
+              <max>1.0</max>
+          </clipto>
+          <output>fcs/pilotYaw_norm</output>
+      </summer>
+
+      <pure_gain name="cmdRoll_rps">
+          <input>fcs/pilotRoll_norm</input>
+          <gain>1.0471975511965976</gain>
+          <output>fcs/cmdRoll_rps</output>
+      </pure_gain>
+      <pure_gain name="cmdPitch_rps">
+          <input>fcs/pilotPitch_norm</input>
+          <gain>-0.3490658503988659</gain>
+          <output>fcs/cmdPitch_rps</output>
+      </pure_gain>
+      <pure_gain name="cmdYaw_rps">
+          <input>fcs/pilotYaw_norm</input>
+          <gain>-0.3490658503988659</gain>
+          <output>fcs/cmdYaw_rps</output>
+      </pure_gain>
+  </channel>
+
+ <channel name="Control Mixer">
+    <pure_gain name="cmdRoll_rps_2_FL">
+        <input>fcs/cmdRoll_rps</input>
+        <gain>0.28</gain>
+        <output>fcs/cmdRoll_rps_2_FL</output>
+    </pure_gain>
+    <pure_gain name="cmdPitch_rps_2_FL">
+        <input>fcs/cmdPitch_rps</input>
+        <gain>-0.28</gain>
+        <output>fcs/cmdPitch_rps_2_FL</output>
+    </pure_gain>
+    <pure_gain name="cmdYaw_rps_2_FL">
+        <input>fcs/cmdYaw_rps</input>
+        <gain>-0.14</gain>
+        <output>fcs/cmdYaw_rps_2_FL</output>
+    </pure_gain>
+    <summer name="throtFL_nd">
+        <input>fcs/throttle-cmd-norm[0]</input>
+        <input>fcs/cmdRoll_rps_2_FL</input>
+        <input>fcs/cmdPitch_rps_2_FL</input>
+        <input>fcs/cmdYaw_rps_2_FL</input>
+        <output>fcs/throttle-cmd-norm[0]</output>
+    </summer>
+
+    <pure_gain name="cmdRoll_rps_2_FR">
+        <input>fcs/cmdRoll_rps</input>
+        <gain>-0.28</gain>
+        <output>fcs/cmdRoll_rps_2_FR</output>
+    </pure_gain>
+    <pure_gain name="cmdPitch_rps_2_FR">
+        <input>fcs/cmdPitch_rps</input>
+        <gain>-0.28</gain>
+        <output>fcs/cmdPitch_rps_2_FR</output>
+    </pure_gain>
+    <pure_gain name="cmdYaw_rps_2_FR">
+        <input>fcs/cmdYaw_rps</input>
+        <gain>0.14</gain>
+        <output>fcs/cmdYaw_rps_2_FR</output>
+    </pure_gain>
+    <summer name="throtFR_nd">
+        <input>fcs/throttle-cmd-norm[1]</input>
+        <input>fcs/cmdRoll_rps_2_FR</input>
+        <input>fcs/cmdPitch_rps_2_FR</input>
+        <input>fcs/cmdYaw_rps_2_FR</input>
+        <output>fcs/throttle-cmd-norm[1]</output>
+    </summer>
+
+    <pure_gain name="cmdRoll_rps_2_AL">
+        <input>fcs/cmdRoll_rps</input>
+        <gain>0.28</gain>
+        <output>fcs/cmdRoll_rps_2_AL</output>
+    </pure_gain>
+    <pure_gain name="cmdPitch_rps_2_AL">
+        <input>fcs/cmdPitch_rps</input>
+        <gain>0.28</gain>
+        <output>fcs/cmdPitch_rps_2_AL</output>
+    </pure_gain>
+    <pure_gain name="cmdYaw_rps_2_AL">
+        <input>fcs/cmdYaw_rps</input>
+        <gain>0.14</gain>
+        <output>fcs/cmdYaw_rps_2_AL</output>
+    </pure_gain>
+    <summer name="throtAL_nd">
+        <input>fcs/throttle-cmd-norm[2]</input>
+        <input>fcs/cmdRoll_rps_2_AL</input>
+        <input>fcs/cmdPitch_rps_2_AL</input>
+        <input>fcs/cmdYaw_rps_2_AL</input>
+        <output>fcs/throttle-cmd-norm[2]</output>
+    </summer>
+
+    <pure_gain name="cmdRoll_rps_2_AR">
+        <input>fcs/cmdRoll_rps</input>
+        <gain>-0.28</gain>
+        <output>fcs/cmdRoll_rps_2_AR</output>
+    </pure_gain>
+    <pure_gain name="cmdPitch_rps_2_AR">
+        <input>fcs/cmdPitch_rps</input>
+        <gain>0.28</gain>
+        <output>fcs/cmdPitch_rps_2_AR</output>
+    </pure_gain>
+    <pure_gain name="cmdYaw_rps_2_AR">
+        <input>fcs/cmdYaw_rps</input>
+        <gain>-0.14</gain>
+        <output>fcs/cmdYaw_rps_2_AR</output>
+    </pure_gain>
+    <summer name="throtAR_nd">
+        <input>fcs/throttle-cmd-norm[3]</input>
+        <input>fcs/cmdRoll_rps_2_AR</input>
+        <input>fcs/cmdPitch_rps_2_AR</input>
+        <input>fcs/cmdYaw_rps_2_AR</input>
+        <output>fcs/throttle-cmd-norm[3]</output>
+    </summer>
+  </channel>
+    <property>fcs/cmdMotorFR_ext_nd</property>
+    <property>fcs/cmdMotorAL_ext_nd</property>
+    <property>fcs/cmdMotorFL_ext_nd</property>
+    <property>fcs/cmdMotorAR_ext_nd</property>
+
+    <channel name="External Input Summations">
+        <summer>
+            <input>fcs/cmdMotorFR_ext_nd</input>
+            <output>fcs/throttle-cmd-norm[0]</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdMotorAL_ext_nd</input>
+            <output>fcs/throttle-cmd-norm[1]</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdMotorFL_ext_nd</input>
+            <output>fcs/throttle-cmd-norm[2]</output>
+        </summer>
+        <summer>
+            <input>fcs/cmdMotorAR_ext_nd</input>
+            <output>fcs/throttle-cmd-norm[3]</output>
+        </summer>
+    </channel>
+
+
 </flight_control>

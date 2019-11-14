@@ -12,13 +12,13 @@
     <event name="Motor Start">
         <condition> simulation/frame le 1 </condition>
         <set name="propulsion/engine[0]/set-running" value="1"/>
-        <set name="fcs/throttle-cmd-norm" value="0.5"/>
+        <set name="fcs/throttle-cmd-norm" value="0.75"/>
         <set name="fcs/pitch-trim-cmd-norm" value="0.1"/>
     </event>
 
     <event name="Trim">
       <condition> simulation/frame gt 1 </condition>
-      <set name="simulation/do_simple_trim" value="1"/>
+      <set name="simulation/do_simple_trim" value="0"/>
       <notify>
         <property>velocities/vtrue-kts</property>
         <property>position/h-agl-ft</property>

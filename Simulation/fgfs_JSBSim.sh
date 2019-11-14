@@ -27,7 +27,7 @@ nice fgfs \
     --disable-ai-models \
     --fog-disable \
     --disable-specular-highlight \
-    --disable-terrasync \
+    --enable-terrasync \
 
 #    --geometry=650x550 \
 #    --bpp=32 \

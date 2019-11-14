@@ -7,12 +7,9 @@ var update_aura = func( dt ) {
   }
 
   if ( ap_enable.getBoolValue() ) {
-  	setprop( "/fdm/jsbsim/fcs/cmdAilL_ext_rad", getprop("/aura-uas/act/cmdAct1_rad") );
-  	setprop( "/fdm/jsbsim/fcs/cmdAilR_ext_rad", getprop("/aura-uas/act/cmdAct2_rad") );
-  	setprop( "/fdm/jsbsim/fcs/cmdElev_ext_rad", getprop("/aura-uas/act/cmdAct3_rad") );
-  	setprop( "/fdm/jsbsim/fcs/cmdRud_ext_rad" , getprop("/aura-uas/act/cmdAct4_rad") );
-  	setprop( "/fdm/jsbsim/fcs/cmdFlapL_ext_rad", getprop("/aura-uas/act/cmdAct5_rad") );
-  	setprop( "/fdm/jsbsim/fcs/cmdFlapR_ext_rad", getprop("/aura-uas/act/cmdAct6_rad") );
-  	setprop( "/fdm/jsbsim/fcs/cmdMotor_ext_nd", getprop("/aura-uas/act/cmdAct7_rad") );
+  	setprop( "/fdm/jsbsim/fcs/cmdMotorFR_ext_nd", getprop("/aura-uas/act/cmdAct1_rad") );
+  	setprop( "/fdm/jsbsim/fcs/cmdMotorAL_ext_nd", getprop("/aura-uas/act/cmdAct2_rad") );
+  	setprop( "/fdm/jsbsim/fcs/cmdMotorFL_ext_nd", getprop("/aura-uas/act/cmdAct3_rad") );
+  	setprop( "/fdm/jsbsim/fcs/cmdMotorAR_ext_nd" , getprop("/aura-uas/act/cmdAct4_rad") );
   }
 }

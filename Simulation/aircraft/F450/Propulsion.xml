@@ -53,8 +53,8 @@
             <p_factor>0.0</p_factor>
         </thruster>
     </engine>
-    
-        <engine file="DJI_E305" name="rear left">
+
+    <engine file="DJI_E305" name="rear left">
         <location unit="M">
             <x>-0.1651</x>
             <y>-0.1651</y>
@@ -76,11 +76,11 @@
                 <pitch>90</pitch>
                 <yaw>0</yaw>
             </orient>
-            <sense>-1.0</sense>
+            <sense>1.0</sense>
             <p_factor>0.0</p_factor>
         </thruster>
     </engine>
-    
+
         <engine file="DJI_E305" name="rear right">
         <location unit="M">
             <x>0.1651</x>
@@ -103,9 +103,8 @@
                 <pitch>90</pitch>
                 <yaw>0</yaw>
             </orient>
-            <sense>1.0</sense>
+            <sense>-1.0</sense>
             <p_factor>0.0</p_factor>
         </thruster>
     </engine>
 </propulsion>
-

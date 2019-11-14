@@ -18,15 +18,7 @@
       <condition> simulation/frame gt 1 </condition>
       <set name="simulation/do_simple_trim" value="2"/>
       <notify>
-        <property>velocities/vtrue-kts</property>
         <property>position/h-agl-ft</property>
-        <property>aero/alpha-deg </property>
-        <property>aero/beta-deg </property>
-        <property>propulsion/engine[0]/thrust-lbs</property>
-        <property>propulsion/engine[0]/power-hp</property>
-        <property>attitude/phi-rad</property>
-        <property>attitude/theta-rad</property>
-        <property>attitude/psi-rad</property>
       </notify>
     </event>
 

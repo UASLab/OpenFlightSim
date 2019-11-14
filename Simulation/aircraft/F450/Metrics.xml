@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <metrics>
-    <wingarea unit="M2">0.0</wingarea>
-    <wingspan unit="M">1.0</wingspan>
-    <chord unit="M">0.0</chord>
+    <wingarea unit="M2">0.016129</wingarea>
+    <wingspan unit="M">0.127</wingspan>
+    <chord unit="M">0.127</chord>
     <location name="AERORP" unit="M">
         <x>0.0</x>
         <y>0.0</y>
