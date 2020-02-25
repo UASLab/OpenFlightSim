@@ -105,3 +105,6 @@ venv.bak/
 
 # temp
 *temp*
+
+#
+jsbsim_log.csv

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <propeller name="APC 18x8" version="1.1"> <!-- derived from APC website -->
-  <ixx unit="KG*M2"> 0.0025 </ixx> <!-- 0.0025 -->
+  <ixx unit="KG*M2"> 0.0023 </ixx> <!-- (1/12) * 132.1e-3 * (18*0.0254)^2 -->
   <diameter unit="IN"> 18.0 </diameter>
   <numblades> 2 </numblades>
   <minrpm> 0 </minrpm>

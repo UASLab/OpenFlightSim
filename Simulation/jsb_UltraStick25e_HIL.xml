@@ -15,6 +15,16 @@
       <condition> simulation/frame gt 1 </condition>
       <set name="simulation/do_simple_trim" value="2"/>
     </event>
+    <event name="Wind and Turbulence">
+      <condition>simulation/frame gt 2 </condition>
+      <!-- <set name="atmosphere/wind-north-fps" value="0.0"/>
+      <set name="atmosphere/wind-east-fps" value="0.0"/>
+      <set name="atmosphere/wind-down-fps" value="0.0"/> -->
+      <set name="atmosphere/turb-type" value="4"/>
+      <set name="atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps" value="10"/>
+      <set name="atmosphere/psiw-rad" value="0"/>
+      <set name="atmosphere/turbulence/milspec/severity" value="3"/>
+    </event>
 
     <event name="Repeating Notify" persistent="true">
         <notify>

@@ -11,7 +11,7 @@
             <pitch>90</pitch>
             <yaw>0</yaw>
         </orient>
-        <thruster file="APC 9x4_5e">
+        <thruster file="DJI_9450">
             <location unit="M">
                 <x>-0.1651</x>
                 <y>0.1651</y>
@@ -38,7 +38,7 @@
             <pitch>90</pitch>
             <yaw>0</yaw>
         </orient>
-        <thruster file="APC 9x4_5e">
+        <thruster file="DJI_9450">
             <location unit="M">
                 <x>0.1651</x>
                 <y>-0.1651</y>
@@ -65,7 +65,7 @@
             <pitch>90</pitch>
             <yaw>0</yaw>
         </orient>
-        <thruster file="APC 9x4_5e">
+        <thruster file="DJI_9450">
             <location unit="M">
                 <x>-0.1651</x>
                 <y>-0.1651</y>
@@ -92,7 +92,7 @@
             <pitch>90</pitch>
             <yaw>0</yaw>
         </orient>
-        <thruster file="APC 9x4_5e">
+        <thruster file="DJI_9450">
             <location unit="M">
                 <x>0.1651</x>
                 <y>0.1651</y>

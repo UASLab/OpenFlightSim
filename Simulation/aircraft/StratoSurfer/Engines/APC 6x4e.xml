@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <propeller name="APC 6x4e" version="1.1"> <!-- derived from APC website -->
-  <ixx unit="KG*M2"> 9.843658312643996e-06 </ixx> <!-- derived from APC mass -->
+  <ixx unit="KG*M2"> 9.84e-06 </ixx> <!-- derived from APC mass -->
   <diameter unit="IN"> 6.0 </diameter>
   <numblades> 2 </numblades>
   <minrpm> 0 </minrpm>

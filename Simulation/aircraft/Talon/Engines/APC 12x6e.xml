@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <propeller name="APC 12x6e" version="1.1"> <!-- derived from APC website -->
-  <ixx unit="KG*M2"> 0.00012991 </ixx> <!-- derived from APC mass 0.00031579 --> <!-- OpenFlight 0.00012991 -->
+  <ixx unit="KG*M2"> 0.00012991 </ixx> <!-- derived from APC mass 0.000209 --> <!-- OpenFlight 0.00012991 -->
   <diameter unit="IN"> 12.0 </diameter>
   <numblades> 2 </numblades>
   <minrpm> 0 </minrpm>

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<propeller name="APC 16x8e" version="1.1"> <!-- derived from APC website -->
-  <ixx unit="KG*M2"> 0.0007157 </ixx> <!-- 0.0007157 = (1/12) * 52e-3 * (16*0.0254)^2 -->
-  <diameter unit="IN"> 16.0 </diameter>
+<propeller name="DJI 9450" version="1.1">
+  <ixx unit="KG*M2"> 6.05e-05 </ixx> <!-- (1/12) * 12.6e-3 * (9.45*0.0254)^2 -->
+  <diameter unit="IN"> 9.45 </diameter>
   <numblades> 2 </numblades>
   <minrpm> 0 </minrpm>
   <maxrpm> 12000 </maxrpm>
 
-  <table name="C_THRUST" type="internal">
+  <table name="C_THRUST" type="internal"> <!-- derived from APC website for the 9X4.5e -->
     <tableData>
       0.      0.1016
       0.0215  0.1009
@@ -41,7 +41,7 @@
     </tableData>
   </table>
 
-  <table name="C_POWER" type = "internal">
+  <table name="C_POWER" type = "internal"> <!-- derived from APC website for the 9X4.5e -->
     <tableData>
       0.     0.0491
       0.0215 0.048
