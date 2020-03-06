@@ -2,7 +2,7 @@
 <ground_reactions>
 	<contact type="STRUCTURE" name="Front_Right">
             <location unit="M">
-                <x> 0.1016 </x>
+                <x> -0.1016 </x>
                 <y> 0.1016 </y>
                 <z> -0.1524 </z>
             </location>
@@ -15,18 +15,6 @@
 	<contact type="STRUCTURE" name="Front_Left">
             <location unit="M">
                 <x> -0.1016 </x>
-                <y> 0.1016 </y>
-                <z> -0.1524 </z>
-            </location>
-            <static_friction>  0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <spring_coeff unit="N/M"> 500 </spring_coeff>
-            <damping_coeff unit="N/M/SEC"> 100 </damping_coeff>
-        </contact>
-
-	<contact type="STRUCTURE" name="Back_Left">
-            <location unit="M">
-                <x> -0.1016 </x>
                 <y> -0.1016 </y>
                 <z> -0.1524 </z>
             </location>
@@ -36,10 +24,22 @@
             <damping_coeff unit="N/M/SEC"> 100 </damping_coeff>
         </contact>
 
-	<contact type="STRUCTURE" name="Back_Right">
+	<contact type="STRUCTURE" name="Aft_Left">
             <location unit="M">
                 <x> 0.1016 </x>
                 <y> -0.1016 </y>
+                <z> -0.1524 </z>
+            </location>
+            <static_friction>  0.8 </static_friction>
+            <dynamic_friction> 0.5 </dynamic_friction>
+            <spring_coeff unit="N/M"> 500 </spring_coeff>
+            <damping_coeff unit="N/M/SEC"> 100 </damping_coeff>
+        </contact>
+
+	<contact type="STRUCTURE" name="Aft_Right">
+            <location unit="M">
+                <x> 0.1016 </x>
+                <y> 0.1016 </y>
                 <z> -0.1524 </z>
             </location>
             <static_friction>  0.8 </static_friction>

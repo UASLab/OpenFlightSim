@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<output type="CSV" name="jsbsim_log.csv" rate="50">
+<output type="CSV" name="jsbsim_log.csv" rate="100">
     <simulation> ON </simulation>
     <atmosphere> ON </atmosphere>
     <massprops> ON </massprops>
@@ -7,8 +7,8 @@
     <velocities> ON </velocities>
     <forces> OFF </forces>
     <moments> OFF </moments>
-    <position> ON </position>
-    <propulsion> OFF </propulsion>
+    <position> OFF </position>
+    <propulsion> ON </propulsion>
     <aerosurfaces> OFF </aerosurfaces>
     <fcs> OFF </fcs>
     <ground_reactions> OFF </ground_reactions>
@@ -32,6 +32,7 @@
     <property> sensor/pitot/presTip_true_Pa </property>
     <property> sensor/pitot/temp_true_C </property>
 
+    <property> sensor/fiveHole/time_us </property>
     <property> sensor/fiveHole/presStatic_true_Pa </property>
     <property> sensor/fiveHole/presTip_true_Pa </property>
     <property> sensor/fiveHole/presAlpha_true_Pa </property>

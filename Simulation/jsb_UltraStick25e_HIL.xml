@@ -21,7 +21,7 @@
       <set name="atmosphere/wind-east-fps" value="0.0"/>
       <set name="atmosphere/wind-down-fps" value="0.0"/> -->
       <set name="atmosphere/turb-type" value="4"/>
-      <set name="atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps" value="10"/>
+      <set name="atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps" value="2"/>
       <set name="atmosphere/psiw-rad" value="0"/>
       <set name="atmosphere/turbulence/milspec/severity" value="3"/>
     </event>
