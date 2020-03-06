@@ -1,0 +1,32 @@
+Sref = 0.937496 
+Cref = 0.250063 
+Bref = 3.749040 
+X_cg = 0.466268 
+Y_cg = -0.000421 
+Z_cg = 0.019114 
+Mach = 0.050000 
+AoA = -6.000000, -4.000000, -2.000000, 0.000000, 2.000000, 4.000000, 6.000000, 8.000000, 10.000000, 12.000000 
+Beta = 0.000000 
+Vinf = 100.000000 
+Rho = 0.002377 
+ReCref = 10000000.000000 
+ClMax = 1.000000 
+MaxTurningAngle = -1.000000 
+Symmetry = NO 
+FarDist = -1.000000 
+NumWakeNodes = -1 
+WakeIters = 5 
+NumberOfRotors = 0 
+NumberOfControlGroups = 2 
+AilLeft
+WingGeom_Surf1_Aileron
+-1
+0
+AilRight
+WingGeom_Surf0_Aileron
+1
+0
+Preconditioner = Matrix 
+Vortex Lift = Y 
+LE Suction = N 
+Karman-Tsien Correction = Y 

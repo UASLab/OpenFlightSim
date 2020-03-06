@@ -1,0 +1,16 @@
+# VSP Tag Key File
+D:/chris/Goldy3/Sim/AeroDefinitions/OpenVSP/ASW28/ASW28.tri
+12
+
+1,Wing_Surf0
+2,Wing_Surf1
+3,H-Tail_Surf0
+4,H-Tail_Surf1
+5,V-Tail_Surf0
+6,Wing_Surf0,Flap
+7,Wing_Surf0,Aileron
+8,Wing_Surf1,Flap
+9,Wing_Surf1,Aileron
+10,H-Tail_Surf0,Elevator
+11,H-Tail_Surf1,Elevator
+12,V-Tail_Surf0,Rudder

@@ -1,0 +1,23 @@
+***************************************************************************************************************************************************************************************** 
+
+# Name                   Value      Units             
+Sref_                   0.4454410 Lunit^2             
+Cref_                   0.2743200 Lunit               
+Bref_                   1.5087600 Lunit               
+Xcg_                    0.2159000 Lunit               
+Ycg_                    0.0000000 Lunit               
+Zcg_                    0.0000000 Lunit               
+Mach_                   0.0750000 no_unit             
+AoA_                   -6.0000000 deg                 
+Beta_                  -5.0000000 deg                 
+Rho_                    1.2250000 Munit/Lunit^3       
+Vinf_                  20.0000000 Lunit/Tunit         
+Roll__Rate              0.0000000 rad/Tunit           
+Pitch_Rate              0.0000000 rad/Tunit           
+Yaw___Rate              0.0000000 rad/Tunit           
+
+
+
+Solver Case: 1 
+
+  Iter      Mach       AoA      Beta       CL         CDo       CDi      CDtot      CS        L/D        E        CFx       CFy       CFz       CMx       CMy       CMz       T/QS 
