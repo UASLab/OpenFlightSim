@@ -5,7 +5,6 @@
             <input>fcs/cmdAilL_rad</input>
             <lag>50</lag>
             <hysteresis_width>0.017453292519943295</hysteresis_width>
-            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>
@@ -16,7 +15,6 @@
             <input>fcs/cmdAilR_rad</input>
             <lag>50</lag>
             <hysteresis_width>0.017453292519943295</hysteresis_width>
-            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>
@@ -27,7 +25,6 @@
             <input>fcs/cmdRudevL_rad</input>
             <lag>50</lag>
             <hysteresis_width>0.017453292519943295</hysteresis_width>
-            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>
@@ -38,7 +35,6 @@
             <input>fcs/cmdRudevR_rad</input>
             <lag>50</lag>
             <hysteresis_width>0.017453292519943295</hysteresis_width>
-            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>

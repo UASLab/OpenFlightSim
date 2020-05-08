@@ -15,8 +15,7 @@
             <yaw>0</yaw>
         </orient>
         <thruster>
-          <direct name="Direct">
-          </direct>
+          <direct name="Direct"> </direct>
           <location unit="M">
               <x>0.8382</x>
               <y>-0.127</y>
@@ -46,8 +45,7 @@
             <yaw>0</yaw>
         </orient>
         <thruster>
-          <direct name="Direct">
-          </direct>
+          <direct name="Direct"> </direct>
           <location unit="M">
               <x>0.8382</x>
               <y>0.127</y>

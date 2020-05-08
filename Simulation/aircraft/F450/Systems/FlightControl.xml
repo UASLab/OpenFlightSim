@@ -147,18 +147,22 @@
 
     <channel name="External Input Summations">
         <summer>
+            <input>fcs/throttle-cmd-norm[0]</input>
             <input>fcs/cmdMotorFR_ext_nd</input>
             <output>fcs/throttle-pos-norm[0]</output>
         </summer>
         <summer>
+            <input>fcs/throttle-cmd-norm[1]</input>
             <input>fcs/cmdMotorAL_ext_nd</input>
             <output>fcs/throttle-pos-norm[1]</output>
         </summer>
         <summer>
+            <input>fcs/throttle-cmd-norm[2]</input>
             <input>fcs/cmdMotorFL_ext_nd</input>
             <output>fcs/throttle-pos-norm[2]</output>
         </summer>
         <summer>
+            <input>fcs/throttle-cmd-norm[3]</input>
             <input>fcs/cmdMotorAR_ext_nd</input>
             <output>fcs/throttle-pos-norm[3]</output>
         </summer>

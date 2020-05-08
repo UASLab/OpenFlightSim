@@ -6,7 +6,7 @@
     </function>
     <function name="aero/coefficient/dCL__alpha_rad">
         <description>dCL__alpha_rad</description>
-        <value><value> 7.05 </value></value>
+        <value> 7.05 </value>
     </function>
     <function name="aero/coefficient/CL__alpha_rad">
         <description>CL__alpha_rad = dCL__alpha_rad * alpha_rad</description>

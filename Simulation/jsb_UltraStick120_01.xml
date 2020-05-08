@@ -11,7 +11,8 @@
 
     <event name="Motor Start">
         <condition> simulation/frame le 1 </condition>
-        <set name="fcs/throttle-cmd-norm" value="0.5"/>
+        <!-- <set name="simulation/jsbsim-debug" value="1"/> -->
+        <set name="fcs/throttle-cmd-norm" value="0.75"/>
     </event>
 
     <event name="Trim">

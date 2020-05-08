@@ -1,171 +1,66 @@
 <?xml version="1.0" ?>
-<system name="Effectors">
-    <channel name="transFuncAilR">
-        <second_order_filter name="transFuncAilR">
-            <input>fcs/cmdAilR_rad</input>
-            <c1>0.0</c1>
-            <c2>0.0</c2>
-            <c3>483.61061565337855</c3>
-            <c4>1.0</c4>
-            <c5>35.18583772020568</c5>
-            <c6>483.61061565337855</c6>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/filtAilR_rad</output>
-        </second_order_filter>
-    </channel>
-    <channel name="actAilR">
-        <actuator name="actAilR">
-            <input>fcs/filtAilR_rad</input>
-            <lag>4.0</lag>
-            <hysteresis_width>0.03490658503988659</hysteresis_width>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/posAilR_rad</output>
-        </actuator>
-    </channel>
-    <channel name="transFuncAilL">
-        <second_order_filter name="transFuncAilL">
-            <input>fcs/cmdAilL_rad</input>
-            <c1>0.0</c1>
-            <c2>0.0</c2>
-            <c3>483.61061565337855</c3>
-            <c4>1.0</c4>
-            <c5>35.18583772020568</c5>
-            <c6>483.61061565337855</c6>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/filtAilL_rad</output>
-        </second_order_filter>
-    </channel>
-    <channel name="actAilL">
-        <actuator name="actAilL">
-            <input>fcs/filtAilL_rad</input>
-            <lag>4.0</lag>
-            <hysteresis_width>0.03490658503988659</hysteresis_width>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/posAilL_rad</output>
-        </actuator>
-    </channel>
-    <channel name="transFuncRud">
-        <second_order_filter name="transFuncRud">
-            <input>fcs/cmdRud_rad</input>
-            <c1>0.0</c1>
-            <c2>0.0</c2>
-            <c3>483.61061565337855</c3>
-            <c4>1.0</c4>
-            <c5>35.18583772020568</c5>
-            <c6>483.61061565337855</c6>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/filtRud_rad</output>
-        </second_order_filter>
-    </channel>
-    <channel name="actRud">
-        <actuator name="actRud">
-            <input>fcs/filtRud_rad</input>
-            <lag>4.0</lag>
-            <hysteresis_width>0.03490658503988659</hysteresis_width>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/posRud_rad</output>
-        </actuator>
-    </channel>
-    <channel name="transFuncFlapR">
-        <second_order_filter name="transFuncFlapR">
-            <input>fcs/cmdFlapR_rad</input>
-            <c1>0.0</c1>
-            <c2>0.0</c2>
-            <c3>483.61061565337855</c3>
-            <c4>1.0</c4>
-            <c5>35.18583772020568</c5>
-            <c6>483.61061565337855</c6>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/filtFlapR_rad</output>
-        </second_order_filter>
-    </channel>
-    <channel name="actFlapR">
-        <actuator name="actFlapR">
-            <input>fcs/filtFlapR_rad</input>
-            <lag>4.0</lag>
-            <hysteresis_width>0.03490658503988659</hysteresis_width>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/posFlapR_rad</output>
-        </actuator>
-    </channel>
-    <channel name="transFuncFlapL">
-        <second_order_filter name="transFuncFlapL">
-            <input>fcs/cmdFlapL_rad</input>
-            <c1>0.0</c1>
-            <c2>0.0</c2>
-            <c3>483.61061565337855</c3>
-            <c4>1.0</c4>
-            <c5>35.18583772020568</c5>
-            <c6>483.61061565337855</c6>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/filtFlapL_rad</output>
-        </second_order_filter>
-    </channel>
-    <channel name="actFlapL">
-        <actuator name="actFlapL">
-            <input>fcs/filtFlapL_rad</input>
-            <lag>4.0</lag>
-            <hysteresis_width>0.03490658503988659</hysteresis_width>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/posFlapL_rad</output>
-        </actuator>
-    </channel>
-    <channel name="transFuncElev">
-        <second_order_filter name="transFuncElev">
-            <input>fcs/cmdElev_rad</input>
-            <c1>0.0</c1>
-            <c2>0.0</c2>
-            <c3>483.61061565337855</c3>
-            <c4>1.0</c4>
-            <c5>35.18583772020568</c5>
-            <c6>483.61061565337855</c6>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/filtElev_rad</output>
-        </second_order_filter>
-    </channel>
-    <channel name="actElev">
-        <actuator name="actElev">
-            <input>fcs/filtElev_rad</input>
-            <lag>4.0</lag>
-            <hysteresis_width>0.03490658503988659</hysteresis_width>
-            <clipto>
-                <min>-0.5235987755982988</min>
-                <max>0.5235987755982988</max>
-            </clipto>
-            <output>fcs/posElev_rad</output>
-        </actuator>
-    </channel>
-</system>
+
+<system name="Effectors">
+    <channel name="Actuator Models">
+        <actuator name="actAilR">
+            <input>fcs/cmdAilR_rad</input>
+            <lag>57</lag>
+            <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posAilR_rad</output>
+        </actuator>
+        <actuator name="actAilL">
+            <input>fcs/cmdAilL_rad</input>
+            <lag>57</lag>
+            <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posAilL_rad</output>
+        </actuator>
+        <actuator name="actRud">
+            <input>fcs/cmdRud_rad</input>
+            <lag>57</lag>
+            <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posRud_rad</output>
+        </actuator>
+        <actuator name="actFlapR">
+            <input>fcs/cmdFlapR_rad</input>
+            <lag>57</lag>
+            <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posFlapR_rad</output>
+        </actuator>
+        <actuator name="actFlapL">
+            <input>fcs/cmdFlapL_rad</input>
+            <lag>57</lag>
+            <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posFlapL_rad</output>
+        </actuator>
+        <actuator name="actElev">
+            <input>fcs/cmdElev_rad</input>
+            <lag>57</lag>
+            <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <clipto>
+                <min>-0.5235987755982988</min>
+                <max>0.5235987755982988</max>
+            </clipto>
+            <output>fcs/posElev_rad</output>
+        </actuator>
+    </channel>
+</system>

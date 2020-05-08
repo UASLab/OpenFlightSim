@@ -22,10 +22,9 @@
     <event name="Repeating Notify" persistent="true">
         <notify>
             <property> sensor/imu/time_us </property>
+            
             <property>fcs/throttle-cmd-norm[0]</property>
-
             <property>fcs/cmdMotorFR_ext_nd</property>
-
             <property>fcs/throttle-pos-norm[0]</property>
 
             <property>propulsion/engine[0]/thrust-lbs</property>

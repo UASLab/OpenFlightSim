@@ -645,7 +645,7 @@ def Effectors(oFdm):
 
         ET.SubElement(actuator, 'lag').text = str(entry['lag_nd'])
         ET.SubElement(actuator, 'hysteresis_width').text = str(entry['freeplay_rad'])
-        ET.SubElement(actuator, 'delay').text = str(entry['delay_s'])
+        # ET.SubElement(actuator, 'delay').text = str(entry['delay_s']) FIXIT - Delay breaks the JSB trim
 
         if ('min' in entry.keys()) or ('max' in entry.keys()):
             clipto = ET.SubElement(actuator, 'clipto')

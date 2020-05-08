@@ -16,7 +16,7 @@
 
     <event name="Trim">
       <condition> simulation/frame gt 1 </condition>
-      <set name="simulation/do_simple_trim" value="0"/>
+      <set name="simulation/do_simple_trim" value="1"/>
       <notify>
         <property>velocities/vtrue-kts</property>
         <property>position/h-agl-ft</property>
