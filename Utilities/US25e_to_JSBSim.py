@@ -34,10 +34,10 @@ load['Aero']['aircraftName'] = aircraftName
 load['Aero']['aeroName'] = aeroName
 
 # VSP Dataset
-#load['Aero']['vspPath'] = os.path.abspath(os.path.join('..', 'AeroDefinitions', 'OpenVSP'))
+load['Aero']['vspPath'] = os.path.abspath(os.path.join('..', 'AeroDefinitions', 'OpenVSP'))
 
 # AVL DataSet
-load['Aero']['avlPath'] = os.path.abspath(os.path.join('..', 'AeroDefinitions', 'AVL', aircraftName))
+#load['Aero']['avlPath'] = os.path.abspath(os.path.join('..', 'AeroDefinitions', 'AVL', aircraftName))
 
 
 # Load Aircraft oFdm data
