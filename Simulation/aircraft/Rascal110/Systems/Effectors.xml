@@ -6,6 +6,7 @@
             <input>fcs/cmdAilR_rad</input>
             <lag>57</lag>
             <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>
@@ -16,6 +17,7 @@
             <input>fcs/cmdAilL_rad</input>
             <lag>57</lag>
             <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>
@@ -26,6 +28,7 @@
             <input>fcs/cmdRud_rad</input>
             <lag>57</lag>
             <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>
@@ -36,6 +39,7 @@
             <input>fcs/cmdFlapR_rad</input>
             <lag>57</lag>
             <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>
@@ -46,6 +50,7 @@
             <input>fcs/cmdFlapL_rad</input>
             <lag>57</lag>
             <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>
@@ -56,6 +61,7 @@
             <input>fcs/cmdElev_rad</input>
             <lag>57</lag>
             <hysteresis_width>0.03490658503988659</hysteresis_width>
+            <delay>0.02</delay>
             <clipto>
                 <min>-0.5235987755982988</min>
                 <max>0.5235987755982988</max>

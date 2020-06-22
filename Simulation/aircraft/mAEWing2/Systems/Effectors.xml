@@ -5,6 +5,7 @@
             <input>fcs/cmdTE1R_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -15,6 +16,7 @@
             <input>fcs/cmdTE1L_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -25,6 +27,7 @@
             <input>fcs/cmdTE2R_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -35,6 +38,7 @@
             <input>fcs/cmdTE2L_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -45,6 +49,7 @@
             <input>fcs/cmdTE3R_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -55,6 +60,7 @@
             <input>fcs/cmdTE3L_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -65,6 +71,7 @@
             <input>fcs/cmdTE4R_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -75,6 +82,7 @@
             <input>fcs/cmdTE4L_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -85,6 +93,7 @@
             <input>fcs/cmdTE5R_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -95,6 +104,7 @@
             <input>fcs/cmdTE5L_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -105,6 +115,7 @@
             <input>fcs/cmdLER_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>
@@ -115,6 +126,7 @@
             <input>fcs/cmdLEL_rad</input>
             <lag>8</lag>
             <hysteresis_width>0.004363323129985824</hysteresis_width>
+            <delay>0.007</delay>
             <clipto>
                 <min>-0.3490658503988659</min>
                 <max>0.3490658503988659</max>

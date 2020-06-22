@@ -4,30 +4,50 @@
     xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
     name="At-altitude autopilot test setup.">
 
-  <use aircraft="F450" initialize="initCruise"/>
+  <use aircraft="F450" initialize="initGrnd"/>
   <run start="0.0" end="10.0" dt="0.005">
 
     <property value="0"> simulation/notify-time-trigger </property>
 
-    <event name="Motor Start">
+    <event name="Motor Idle">
         <condition> simulation/frame le 1 </condition>
-        <set name="fcs/throttle-cmd-norm" value="0.35"/>
-        <set name="fcs/throttle-cmd-norm[1]" value="0.35"/>
-        <set name="fcs/throttle-cmd-norm[2]" value="0.35"/>
-        <set name="fcs/throttle-cmd-norm[3]" value="0.35"/>
+        <set name="fcs/throttle-cmd-norm" value="0.0"/>
+        <set name="fcs/throttle-cmd-norm[1]" value="0.0"/>
+        <set name="fcs/throttle-cmd-norm[2]" value="0.0"/>
+        <set name="fcs/throttle-cmd-norm[3]" value="0.0"/>
     </event>
 
     <event name="Trim">
       <condition> simulation/frame gt 1 </condition>
-      <set name="simulation/do_simple_trim" value="4"/>
+      <set name="simulation/do_simple_trim" value="2"/>
       <notify>
         <property>position/h-agl-ft</property>
       </notify>
     </event>
 
+    <event name="Motor Launch">
+        <condition> simulation/sim-time-sec ge 1 </condition>
+        <set name="fcs/throttle-cmd-norm" value="0.5"/>
+        <set name="fcs/throttle-cmd-norm[1]" value="0.5"/>
+        <set name="fcs/throttle-cmd-norm[2]" value="0.5"/>
+        <set name="fcs/throttle-cmd-norm[3]" value="0.5"/>
+    </event>
+
+    <event name="Motor Hover">
+        <condition> simulation/sim-time-sec ge 4 </condition>
+        <set name="fcs/throttle-cmd-norm" value="0.11"/>
+        <set name="fcs/throttle-cmd-norm[1]" value="0.11"/>
+        <set name="fcs/throttle-cmd-norm[2]" value="0.11"/>
+        <set name="fcs/throttle-cmd-norm[3]" value="0.11"/>
+    </event>
+
     <event name="Repeating Notify" persistent="true">
         <description>Output message at 1 second intervals</description>
         <notify>
+            <property>fcs/throttle-cmd-norm</property>
+            <property>fcs/throttle-cmd-norm[1]</property>
+            <property>fcs/throttle-cmd-norm[2]</property>
+            <property>fcs/throttle-cmd-norm[3]</property>
             <property>propulsion/engine[0]/thrust-lbs</property>
             <property>propulsion/engine[1]/thrust-lbs</property>
             <property>propulsion/engine[2]/thrust-lbs</property>

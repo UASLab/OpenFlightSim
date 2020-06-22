@@ -56,10 +56,22 @@
       </notify>
     </event>
 
+    <event name="Wind and Turbulence">
+      <condition>simulation/frame gt 2 </condition>
+      <!-- <set name="atmosphere/wind-north-fps" value="0.0"/>
+      <set name="atmosphere/wind-east-fps" value="0.0"/>
+      <set name="atmosphere/wind-down-fps" value="0.0"/> -->
+      <!-- <set name="atmosphere/turb-type" value="4"/>
+      <set name="atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps" value="2"/>
+      <set name="atmosphere/psiw-rad" value="0"/>
+      <set name="atmosphere/turbulence/milspec/severity" value="3"/> -->
+    </event>
+
     <event name="Repeating Notify" persistent="true">
         <description>Output message at 5 second intervals</description>
         <notify>
             <property>propulsion/engine[0]/thrust-lbs</property>
+            <property>propulsion/engine[1]/thrust-lbs</property>
             <property>position/h-agl-ft</property>
             <property>velocities/vc-kts</property>
             <property>velocities/vc-fps</property>

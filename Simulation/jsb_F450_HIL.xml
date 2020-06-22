@@ -6,7 +6,9 @@
 
   <use aircraft="F450" initialize="initGrnd"/>
   <run start="0.0" end="9999999.0" dt="0.005">
+    
     <property value="0"> simulation/notify-time-trigger </property>
+
     <event name="Motor Start">
         <condition> simulation/frame le 1 </condition>
         <set name="fcs/throttle-cmd-norm" value="0.0"/>
@@ -14,6 +16,7 @@
         <set name="fcs/throttle-cmd-norm[2]" value="0.0"/>
         <set name="fcs/throttle-cmd-norm[3]" value="0.0"/>
     </event>
+
     <event name="Trim">
       <condition> simulation/frame gt 1 </condition>
       <set name="simulation/do_simple_trim" value="2"/>
@@ -22,7 +25,7 @@
     <event name="Repeating Notify" persistent="true">
         <notify>
             <property> sensor/imu/time_us </property>
-            
+
             <property>fcs/throttle-cmd-norm[0]</property>
             <property>fcs/cmdMotorFR_ext_nd</property>
             <property>fcs/throttle-pos-norm[0]</property>

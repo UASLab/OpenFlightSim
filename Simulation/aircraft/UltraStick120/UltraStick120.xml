@@ -5,7 +5,7 @@
 
     <mass_balance file="Mass.xml"/>
     <ground_reactions file="Gear.xml"/>
-    <propulsion file="Propulsion.xml"/>
+    <propulsion file="PropulsionDirect.xml"/>
     <metrics file="Metrics.xml"/>
     <aerodynamics file="Aero.xml"/>
 

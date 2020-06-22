@@ -2,12 +2,12 @@
 <propulsion>
     <engine>
         <electric_engine>
-          <power unit="WATTS"> 25 </power>
+          <power unit="WATTS"> 12 </power>
         </electric_engine>
         <thruster>
             <direct name="Direct"> </direct>
             <location unit="M">
-                <x>-0.15239999999999998</x>
+                <x>-0.17779999999999999</x>
                 <y>0.0</y>
                 <z>0.0</z>
             </location>
