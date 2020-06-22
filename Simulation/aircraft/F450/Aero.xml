@@ -52,6 +52,7 @@
         <description>CY summation</description>
         <sum>
             <property>aero/coefficient/CY__zero</property>
+            <value> 0 </value>
         </sum>
     </function>
     <function name="aero/coefficient/CMl__zero">
@@ -62,6 +63,7 @@
         <description>CMl summation</description>
         <sum>
             <property>aero/coefficient/CMl__zero</property>
+            <value> 0 </value>
         </sum>
     </function>
     <function name="aero/coefficient/CMm__zero">
@@ -72,6 +74,7 @@
         <description>CM summation</description>
         <sum>
             <property>aero/coefficient/CMm__zero</property>
+            <value> 0 </value>
         </sum>
     </function>
     <function name="aero/coefficient/CMn__zero">
@@ -82,6 +85,7 @@
         <description>CMn summation</description>
         <sum>
             <property>aero/coefficient/CMn__zero</property>
+            <value> 0 </value>
         </sum>
     </function>
 
