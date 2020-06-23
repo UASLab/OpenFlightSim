@@ -8,18 +8,12 @@
     <variant-of>UltraStick25e</variant-of>
 
     <startup>
-      <splash-texture>Visuals/UMN_UAVLab.png</splash-texture>
+      <splash-texture>UMN_UAVLab.png</splash-texture>
     </startup>
 
     <flight-model>jsb</flight-model>
     <aero>UltraStick25e</aero>
     <fuel-fraction>1.0</fuel-fraction>
-
-    <systems>
-      <autopilot>
-        <path>Systems/autopilot.xml</path>
-      </autopilot>
-    </systems>
 
     <sound>
       <path>Aircraft/Generic/generic-sound.xml</path>
@@ -30,7 +24,7 @@
     </panel>
 
     <model>
-      <path archive="y">Visuals/UltraStick25e.ac</path>
+      <path archive="y">UltraStick25e.ac</path>
     </model>
 
     <hud>
@@ -83,17 +77,6 @@
     </view>
   </sim>
 
-  <nasal>
-    <rascal>
-      <file>Systems/main.nas</file>
-      <file>Systems/aura.nas</file>
-    </rascal>
-  </nasal>
-
-  <input>
-    <keyboard include="Dialogs/keyboard.xml"/>
-  </input>
-
   <controls>
     <flight>
       <aileron-trim>0.00</aileron-trim>
@@ -104,9 +87,4 @@
     <trajectory-markers alias="/sim/multiplay/generic/int[1]"/>
   </controls>
 
-  <aura-uas>
-    <settings>
-      <ap-enable type="bool">false</ap-enable>
-    </settings>
-  </aura-uas>
 </PropertyList>
