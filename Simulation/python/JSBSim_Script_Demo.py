@@ -54,7 +54,7 @@ fdm.run_ic()
 
 fdm['fcs/throttle-cmd-norm'] = 0.65
 fdm.run()
-fdm.do_trim(0)
+fdm.do_trim(1)
 fdm.get_trim_status()
 
 print('Alpha: ', fdm['aero/alpha-deg'])

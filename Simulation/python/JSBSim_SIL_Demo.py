@@ -11,15 +11,21 @@ import os
 import pygame
 import numpy as np
 
-pathRaptrsRoot = '~/Goldy3/RAPTRS_UMN/'
+pathRaptrsRoot = '/home/rega0051/Goldy3/RAPTRS_UMN'
+pathRaptrsCommon = os.path.join(pathRaptrsRoot, 'software', 'src', 'common')
 
 # Hack to allow loading the RAPTRS package
+from sys import path
+path.insert(0, pathRaptrsCommon)
+del path
+
+# Hack to load FMU
 if __name__ == "__main__" and __package__ is None:
     from sys import path, argv
     from os.path import dirname, abspath, join
 
-    path.insert(0, abspath(join(dirname(argv[0]), "..")))
-    path.insert(0, abspath(join(dirname(argv[0]), "..", 'Core')))
+    path.insert(0, abspath(join(dirname(argv[0]), ".")))
+    path.insert(0, abspath(join(dirname(argv[0]), ".", 'python')))
 
     del path, argv, dirname, abspath, join
 
@@ -35,7 +41,20 @@ from FMU import AircraftSocComms
 
 # Start a Virtual link for a psuedo-tty through BBB USB, HIL
 #On BBB: socat -d -d tcp-listen:8000,reuseaddr,fork PTY,link=ptySimSoc,rawer; stty sane;
-#On Host: socat -d -d PTY,link=ptySimFmu,rawer tcp:192.168.7.2:8000; stty sane;
+#On Linux Host: socat -d -d PTY,link=ptySimFmu,rawer tcp:192.168.7.2:8000; stty sane;
+
+if os.path.exists('ptySimFmu') == False:
+    raise SystemExit('Error: "ptySimFmu" not found.')
+
+
+# Visualization is defined for JSBSim in the OutputFgfs.xml, Flightgear should be running prior
+# Linux: ./fgfs_JSBSim.sh UltraStick25e
+# Windows: ./fgfs_JSBSim.bat UltraStick25e
+
+
+
+# Once this script is running, and waiting...
+# Linux: flight_amd64 thor.json
 
 
 # SOC will request the FMU to Config Mode, then Run Mode
@@ -64,34 +83,40 @@ for i in range(0, pygame.joystick.get_count()):
     
 print(joyList)
 
+if joyList == []:
+    print('Warning: joystick not found, SBUS will be zeros')
 
 # By default, load the first available joystick.
+joy = []
 if (len(joyList) > 0):
     joy = pygame.joystick.Joystick(0)
     joy.init()
     
 
 # Joystick Map, FIXIT - this is hacky
-# OpenTX Mixer: 1-Ail, 2-Elev, 3-Thrt, 4-Rud, 5-SA, 6-SB, 7-SC, 8-<blank>, 9-SF, 10-SH, 11-SD
+# OpenTX Mixer: 1-Roll, 2-Pitch, 3-Thrt, 4-Yaw, 5-SA, 6-SB, 7-SC, 8-<blank>
+# SBUS def from thor.json:
 def JoyMap(joy):
-    joyAxes = [joy.get_axis(i) for i in range(joy.get_numaxes())]
-    joyButtons = [joy.get_button(i) for i in range(joy.get_numbuttons())]
-    #joyHats = [joy.get_hat(i) for i in range(joy.get_numhats())]
-    
     msg = [0.0] * 16
     
-    msg[0] = 2*joyButtons[0]-1 # Autopilot mode (-1=FMU, 1=SOC)
-    msg[1] = 2*joyButtons[2]-1 # Throttle Cut
-    msg[2] = 0 # RSSI
-    msg[3] = joyAxes[0] # Roll
-    msg[4] = joyAxes[1] # Pitch
-    msg[5] = joyAxes[3] # Yaw
-    msg[6] = 0 # Flap
-    msg[7] = joyAxes[2] # Throttle
-    msg[8] = joyAxes[4] # Control Mode
-    msg[9] = joyAxes[5] # Test Select
-    msg[10] = 2*joyButtons[1]-1 # Trigger (-1=Nothing, 1=Trigger)
-    msg[11] = joyAxes[6] # Baseline Select
+    if joy != []:
+        joyAxes = [joy.get_axis(i) for i in range(joy.get_numaxes())]
+        joyButtons = [joy.get_button(i) for i in range(joy.get_numbuttons())]
+        #joyHats = [joy.get_hat(i) for i in range(joy.get_numhats())]
+        
+        
+        msg[0] = 2*joyButtons[0]-1 # Autopilot mode (-1=FMU, 1=SOC)
+        msg[1] = 2*joyButtons[2]-1 # Throttle Cut
+        msg[2] = 0 # RSSI
+        msg[3] = joyAxes[0] # Roll
+        msg[4] = joyAxes[1] # Pitch
+        msg[5] = joyAxes[3] # Yaw
+        msg[6] = 0 # Flap
+        msg[7] = joyAxes[2] # Throttle
+        msg[8] = joyAxes[4] # Control Mode
+        msg[9] = joyAxes[5] # Test Select
+        msg[10] = 2*joyButtons[1]-1 # Trigger (-1=Nothing, 1=Trigger)
+        msg[11] = joyAxes[6] # Baseline Select
     
     return msg
     
@@ -101,7 +126,7 @@ def JoyMap(joy):
 import jsbsim as jsb
 from os import path
 
-pathJSB = '/home/rega0051/Goldy3/OpenFlightSim/Simulation'
+pathJSB = '.'
 fdm = jsb.FGFDMExec(pathJSB, None)
 
 model = 'UltraStick25e'
@@ -110,33 +135,36 @@ fdm.load_model(model)
 fdm.set_dt(1/200)
 
 # Load IC file
-fileIC = path.join(fdm.get_full_aircraft_path(), 'initGrnd.xml')
-fdm.load_ic(fileIC, True)
+fdm.load_ic('initGrnd.xml', True)
 
 # Setup JSBSim to FlightGear
-fileOutFgfs = path.join(pathJSB, 'OutputFgfs.xml')
-fdm.set_output_directive(fileOutFgfs)
-print('FGFS: ', str(fdm.get_output_filename(0), 'utf-8'))
+fdm.set_output_directive(path.join('scripts', 'OutputFgfs.xml'))
 
 # Setup JSBSim Logging
-fileOutLog = path.join(pathJSB, 'OutputLog.xml')
-fdm.set_output_directive(fileOutLog)
-fileLog = str(fdm.get_output_filename(1),'utf-8')
-print('File Log: ', fileLog)
+fdm.set_output_directive(path.join('scripts', 'OutputLog.xml'))
 
-# Disable Output until run
-fdm.disable_output()
+
+# Display the Output
+i = 0
+while (str(fdm.get_output_filename(i),'utf-8') != ''):
+    outStr = str(fdm.get_output_filename(i),'utf-8')
+    if '/TCP' in outStr:
+        print('Output FGFS: ', outStr)
+    elif '.csv' in outStr:
+        fileLog = outStr
+        print('Output Log: ', outStr)
+    i += 1
 
 # FDM Initialize
+fdm.disable_output() # Disable Output
 fdm.run_ic()
-#fdm.enable_increment_then_hold(1)
 
 fdm['fcs/throttle-cmd-norm'] = 0.0
 fdm.run()
 fdm.do_trim(2)
 fdm.get_trim_status()
 
-print(fdm['attitude/theta-deg'])
+print('Theta :', fdm['attitude/theta-deg'])
 
 fdm.enable_output()
 
@@ -177,7 +205,6 @@ def add_msg(msgID, msgIndx, msgPayload):
     msgData += msgPayload
     return msgData
 
-
 #
 tFrameRate_s = 1/50 # Desired Run rate
 SocComms.Begin()
@@ -203,9 +230,6 @@ while (True):
     #
     if (fmuMode is 'Run'):
         # Read all data from Sim, populate into the message
-        # FIXIT
-        
-        
         # Send Data Messages to SOC
         # Loop through all items that have been configured
         dataMsg = b''
@@ -358,6 +382,8 @@ while (True):
             if msgID == dataMsgCommand.id:
                 dataMsgCommand.unpack(msg = msgPayload)
 
+                #FIXIT - Map from effList to FlighControl.xml, use: fdm.query_property_catalog('_ext_')
+
                 fdm['fcs/cmdMotor_ext_nd'] = dataMsgCommand.command[0]
                 fdm['fcs/cmdElev_ext_rad'] = dataMsgCommand.command[1]
                 fdm['fcs/cmdRud_ext_rad'] = dataMsgCommand.command[2]
@@ -485,14 +511,10 @@ while (True):
         while (fdm.get_sim_time() <= (tFdm_s - fdm.get_delta_t())): # Run the FDM
             fdm.run()
         
-        print(fdm.get_sim_time(), fdm['fcs/throttle-cmd-norm'], fdm['fcs/throttle-pos-norm'], fdm['sensor/imu/accelZ_mps2'])
-    
     # Timer, do not expect realtime
     tHold_s = tFrameRate_s - (time.time() - tFrameStart_s)
     if tHold_s > 0:
         time.sleep(tHold_s)
-        
-#    print(time.time() - tFrameStart_s)
     
 # end while(True)
         
