@@ -8,10 +8,11 @@
 #      <output name="localhost" type="FLIGHTGEAR" port="59500" rate="50"/>
 
 DIR=$(dirname $0)
+MODEL=$1
 
 nice fgfs \
     --fg-aircraft="$DIR/aircraft" \
-    --aircraft=$1 \
+    --aircraft="$MODEL" \
     --fdm=null \
     --native-fdm=socket,in,50,,59500,tcp \
     --lat=44.725801 \
