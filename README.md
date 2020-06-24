@@ -11,7 +11,7 @@ https://github.com/UASLab/OpenFlightAnalysis
 https://github.com/bolderflight/RAPTRS
 
 
-oFS is intended as a tool to generate and simulate flight vehicles. Currently, the tools use OpenVSP and/or AVL as sources for Aerodynamic data. The aerodynamic data is parsed and augmented with sub-system specification (propulsion, actuation, etc.) into an intermediate format known as oFDM (Open Flight Dynamics Model). The oFDM can be used to generate a complete simulation definition for JSBSim (or Flightgear) to make a flyable aircraft model. JSBSim models are augmented with addition I/O capability to allow for both software-in-the-loop (SIL) and hardware-in-the-loop (HIL) testing with RAPTRS flight systems.
+oFS is intended as a tool to generate and simulate flight vehicles. Currently, the tools use OpenVSP and/or AVL as sources for Aerodynamic data. The aerodynamic data is parsed and augmented with sub-system specification (propulsion, actuation, etc.) into an intermediate format known as oFDM (Open Flight Dynamics Model). The oFDM can be used to generate a complete simulation definition for JSBSim to make a flyable aircraft model. JSBSim models are augmented with addition I/O capability to allow for algorithm-in-the-loop, software-in-the-loop (SIL), and hardware-in-the-loop (HIL) testing. SIL and HIL testing relies on RAPTRS for flight control.
 
 http://web.mit.edu/drela/Public/web/avl/
 
@@ -20,6 +20,29 @@ http://openvsp.org/
 https://github.com/JSBSim-Team/jsbsim
 
 http://home.flightgear.org/download/
+
+# Modes of Operation
+Common:
+JSBSim executes with Python bindings. (Works on Linux and WSL, does not work in native Windows)
+Pipe to Flightgear for visuals, if desired, in all modes. (Works accross TCP, seemless on Linux and Windows)
+
+## Algorithm in the Loop (AIL)
+(Not tested on Linux, not tested on Windows)
+Use Python to provide control. No messaging, no FMU-like behavior. Just read the desired JSBSim properties, execute your algorithm, write to JSBSim properties.
+
+## Software in the Loop (SIL) 
+(Works on Linux and Windows)
+RAPTRS interfaces with JSBSim through fmu_message definitions, with FMU like behavior emulated in Python. RAPTRS built for executing in native Linux (works with Windows Linux Subsystem as well). RAPTRS does require a valid config .json file to run.
+
+## Processor in the Loop (PIL) 
+(Works on Linux, not tested on Windows)
+Similar to SIL. But RAPTRS runs on an SOC (BeagleBoneBlack) and interfaces with the Host machine via USB. RAPTRS is built for the SOC, check realtime execution of RAPTRS. Data logging tests and Telemtry can be sent.
+
+## Hardware in the Loop (HIL) or Aircraft in the Loop (AIL) 
+(Not tested on Linux, not tested on Windows)
+Similar to PIL. SOC is connected to a hardware FMU. individual FMU<->SOC messages are controlled such that the FMU/SOC interface can be checked while still allowing simulated sensor data to be received by the SOC.
+
+Final execution testing is still required on the Aircraft; HIL/PIL testing will alter some of the execution timing slightly.
 
 # Install
 ## Linux (Debian 10.4):
