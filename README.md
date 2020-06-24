@@ -24,6 +24,7 @@ http://home.flightgear.org/download/
 # Install
 ## Linux (Debian 10.4):
 ### JSBSim
+```
 mkdir Sim; cd Sim; mkdir JSBSim; cd JSBSim
 sudo apt-get install git
 git clone https://github.com/JSBSim-Team/jsbsim.git jsbsim-repo
@@ -35,11 +36,10 @@ make JSBSim
 make PythonJSBSim
 make install
 make test
-
-### Flightgear
-sudo apt-get install flightgear
+```
 
 ### RAPTRS (minimal for compiling SOC code for AMD64)
+```
 cd Goldy3;
 git clone https://github.com/UASLab/RAPTRS.git
 cd RAPTRS
@@ -50,6 +50,12 @@ sudo apt-get install g++ libEigen3-dev
 cd software;
 make flight_amd64
 make datalog_amd64
+```
+
+### Flightgear
+```
+sudo apt-get install flightgear
+```
 
 ### OpenFlightSim
 ```
@@ -62,10 +68,13 @@ sudo apt-get install python3-numpy python3-pandas
 ```
 
 Tests:
-(start FGFS on windows, then in WSL2)
-JSBSim scripts/jsb_UltraStick25e_Cruise.xml (should run for 100 seconds)
-- or -
-python3 python/JSBSim_Script_Demo.py  (run without error for 10 seconds, displays a 10)
+(start FGFS on windows, then in WSL2...)
+```JSBSim scripts/jsb_UltraStick25e_Cruise.xml```
+(should run for 100 seconds)
+
+(start FGFS on windows, then in WSL2...)
+```python3 python/JSBSim_Script_Demo.py```
+(run without error for 10 seconds, displays a 10)
 
 ### Configs
 ```
@@ -79,30 +88,48 @@ sudo apt-get install socat netcat
 sudo apt-get install python3-pygame python3-serial
 ```
 
-Simple Joystick Test:
-python3 python/Joystick_Demo.py  (FAILS!!)
-
 SIL TEST
-(start FGFS on windows, then in multiple WSL2 terminals)
-./start_SIL_Comm.sh
-python3 python/JSBSim_SIL_Demo.py 
-~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json
-(FAILS!! - joystick issue)
+(multiple terminals, all at: ~/Goldy/OpenFligtSim/Simulation)
+```./fgfs_JSBSim.sh UltraStick25e```
+```./start_SIL_Comm.sh```
+```python3 python/JSBSim_SIL_Demo.py ```
+```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
 
 ##  Windows 10 with Windows Linux Subsystem - (Debian 10.4)
 First, install WLS2 and Debian (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
-## JSBSim with WLS2-Debian
+### JSBSim with WLS2-Debian
 (same as Linux install)
 
-## JSBSim in Windows with mingw (Cython fails to build python bindings)
+### JSBSim in Windows with mingw (Cython fails to build python bindings)
 ```
 cmake -DCYTHON_EXECUTABLE:FILEPATH="C:/ProgramData/Anaconda3/pkgs/cython-0.29.20-py37ha925a31_0/Scripts/cython.exe" -DPYTHON_EXECUTABLE:FILEPATH="C:/Program Files/WindowsApps/PythonSoftwareFoundation.Python.3.8_3.8.1008.0_x64__qbz5n2kfra8p0/python3.8.exe" -DINSTALL_PYTHON_MODULE:BOOL="1" 
 
 mingw32-make.exe JSBSim
 mingw32-make.exe PythonJSBSim (fails here)
 ```
+### RAPTRS (minimal for compiling SOC code for AMD64)
+(Same and Linux)
+
+### Configs
+(Same as Linux)
 
 ### Flightgear
 Install FlightGear in Windows10 (not WSL2). (https://www.flightgear.org/download/) Tested with version 2018.3.5.
 
+### Tests
+```
+sudo apt-get install socat netcat
+sudo apt-get install python3-pygame python3-serial
+```
+
+Simple Joystick Test: (FAILS!!)
+```python3 python/Joystick_Demo.py ```
+
+SIL TEST
+(start FGFS on windows, then in multiple WSL2 terminals)
+
+```./start_SIL_Comm.sh```
+```python3 python/JSBSim_SIL_Demo.py```
+```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
+(FAILS!! - joystick issue)
