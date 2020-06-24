@@ -110,3 +110,4 @@ venv.bak/
 */jsbsim_log.csv
 */ptySimSoc
 */ptySimFmu
+*/data*.bin
