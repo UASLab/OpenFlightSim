@@ -120,39 +120,65 @@ SIL TEST
 
 ##  Windows 10 with Windows Linux Subsystem - (Debian 10.4)
 First, install WLS2 and Debian (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+In the WLS2-Debian:
+ln -s /mnt/c/Users/rega0051/Documents/Goldy3/ Goldy3
+
+### Flightgear
+Install FlightGear in Windows10 (not WSL2). (https://www.flightgear.org/download/) Tested with version 2018.3.5.
+Need to add FlightGear###/bin to the Windows Environment Path... 
+
+### JSBSim in Windows with MSCV (Use JSBSim release https://github.com/JSBSim-Team/jsbsim/releases)
+On Windows I use Anaconda as the Python Package manager, however pygame and JSBSim aren't in conda
+pip install pygame
+
+https://github.com/JSBSim-Team/jsbsim/releases
+pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases/download/Rolling-release-v2019/JSBSim-1.1.0.dev1-735-cp37-cp37m-win_amd64.whl" 
+
+(No clue how to actually build with MSCV)
+
+then, with a "conda" command window (These work)
+```python python\Joystick_Demo.py```
+```python python\JSBSim_Script_Demo.py```
+
+### RAPTRS in WSL2-Debian (minimal for compiling SOC code for AMD64)
+use GitHub Desktop to clone to: Goldy3/RAPTRS
+(then same and Linux)
+
+### Configs
+use GitHub Desktop to clone to: Goldy3/Config
+(then same as Linux)
+
+## OpenFlightSim
+use GitHub Desktop to clone to: Goldy3/OpenFlightSim
+
+
+### Tests
+
+SIL TEST
+(start FGFS on Windows)
+
+In WSL2:
+```./start_SIL_Comm.sh```
+
+conda command window:
+```python python\JSBSim_SIL_Demo.py```
+
+In another WSL2:
+```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
+
+
+# Not Working:
 
 ### JSBSim with WLS2-Debian
 (same as Linux install)
+(Joystick won't work with WSL2!!)
 
 ### JSBSim in Windows with mingw (Cython fails to build python bindings)
 ```
 cmake -DCYTHON_EXECUTABLE:FILEPATH="C:/ProgramData/Anaconda3/pkgs/cython-0.29.20-py37ha925a31_0/Scripts/cython.exe" -DPYTHON_EXECUTABLE:FILEPATH="C:/Program Files/WindowsApps/PythonSoftwareFoundation.Python.3.8_3.8.1008.0_x64__qbz5n2kfra8p0/python3.8.exe" -DINSTALL_PYTHON_MODULE:BOOL="1" 
 
+cmake ../jsbsim-repo/ -DCYTHON_EXECUTABLE="C:/ProgramData/Anaconda3/pkgs/cython-0.29.20-py37ha925a31_0/Scripts/cython.exe"
+
 mingw32-make.exe JSBSim
-mingw32-make.exe PythonJSBSim (fails here)
+mingw32-make.exe PythonJSBSim (fails here, python/setup.py doesn't have support for MinGW)
 ```
-### RAPTRS (minimal for compiling SOC code for AMD64)
-(Same and Linux)
-
-### Configs
-(Same as Linux)
-
-### Flightgear
-Install FlightGear in Windows10 (not WSL2). (https://www.flightgear.org/download/) Tested with version 2018.3.5.
-
-### Tests
-```
-sudo apt-get install socat netcat
-sudo apt-get install python3-pygame python3-serial
-```
-
-Simple Joystick Test: (FAILS!!)
-```python3 python/Joystick_Demo.py ```
-
-SIL TEST
-(start FGFS on windows, then in multiple WSL2 terminals)
-
-```./start_SIL_Comm.sh```
-```python3 python/JSBSim_SIL_Demo.py```
-```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
-(FAILS!! - joystick issue)
