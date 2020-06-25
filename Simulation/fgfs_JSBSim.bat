@@ -9,7 +9,7 @@
 SET DIR=%~dp0
 if "%1"=="" SET MODEL=UltraStick25e else SET MODEL=%1
 
-C:\"Program Files"\"FlightGear 2018.3.5"\bin\fgfs.exe --fg-aircraft=%DIR%aircraft\ --aircraft=%MODEL% --fdm=null --native-fdm=socket,in,50,,59500,tcp --lat=44.725801 --lon=-93.075866 --heading=90 --altitude=285.3 --disable-real-weather-fetch --wind=0@0 --turbulence=0.0 --disable-horizon-effect --timeofday=noon --disable-random-objects --disable-ai-models --fog-disable --disable-specular-highlight --enable-terrasync
+fgfs.exe --fg-aircraft=%DIR%aircraft\ --aircraft=%MODEL% --fdm=null --native-fdm=socket,in,50,,59500,tcp --lat=44.725801 --lon=-93.075866 --heading=90 --altitude=285.3 --disable-real-weather-fetch --wind=0@0 --turbulence=0.0 --disable-horizon-effect --timeofday=noon --disable-random-objects --disable-ai-models --fog-disable --disable-specular-highlight --enable-terrasync
 
 :: --geometry=650x550 --bpp=32 \
 
