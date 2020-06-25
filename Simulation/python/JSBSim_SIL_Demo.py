@@ -11,8 +11,9 @@ import os
 import pygame
 import numpy as np
 
-pathRaptrsRoot = '/home/rega0051/Goldy3/RAPTRS_UMN'
-pathRaptrsCommon = os.path.join(pathRaptrsRoot, 'software', 'src', 'common')
+pathGoldy3 = os.path.abspath('../..')
+pathRaptrs = os.path.join(pathGoldy3, 'RAPTRS')
+pathRaptrsCommon = os.path.join(pathRaptrs, 'software', 'src', 'common')
 
 # Hack to allow loading the RAPTRS package
 from sys import path
