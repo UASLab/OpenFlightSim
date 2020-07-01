@@ -130,36 +130,56 @@ Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
 ##  Windows 10 with Windows Linux Subsystem - (Debian 10.4)
 Install github desktop (https://desktop.github.com/)
+
 Clone: https://github.com/UASLab/OpenFlightSim.git to {path to ...}/Goldy3/OpenFlightSim
+
 Clone: https://github.com/UASLab/RAPTRS.git to {path to ...}/Goldy3/RAPTRS
+
 Clone: https://github.umn.edu/UAV-Lab/Config.git to {path to ...}/Goldy3/Config
 
 Install WLS2 and Debian (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-In the WLS2-Debian:
-Make a link to the Windows folder that 
-ln -s /mnt/{path to ...}/Goldy3/ Goldy3
 
-### Flightgear
-Install FlightGear in Windows10. (https://www.flightgear.org/download/) Tested with version 2018.3.5.
-Add FlightGear{version}/bin to the Windows Environment Path...
 
-### JSBSim in Windows (Use JSBSim release https://github.com/JSBSim-Team/jsbsim/releases)
-We'll be using the JSBSim Python bindings. First, get Python3 installed. On Windows I use conda as the Python Package manager.
+In a WLS2-Debian Console, make a link to the Windows folder:
+
+```ln -s /mnt/{path to ...}/Goldy3/ Goldy3```
+
+
+OpenFlightSim uses the JSBSim Python bindings. First, get Python3 installed using conda as the Python Package Manager.
+
 Install Miniconda: 
 https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Windows-x86_64.exe
 
 Then open a "Anaconda Prompt" in Windows.
-```conda install numpy scipy matplotlib ipython jupyter pandas sympy nose h5py spyder pyserial
+
+```
+conda install numpy scipy matplotlib ipython jupyter pandas sympy nose h5py spyder pyserial
 conda install -c conda-forge slycot control
 pip install pygame
+```
 
+### Flightgear
+Install FlightGear in Windows10. (https://www.flightgear.org/download/) Tested with version 2018.3.5.
+
+Add FlightGear{version}/bin to the Windows Environment Path...
+
+### JSBSim in Windows
+Use JSBSim release: https://github.com/JSBSim-Team/jsbsim/releases
+
+Open a "Anaconda Prompt" in Windows:
+
+```
 pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases/download/Windows-MSVC/JSBSim-1.1.0.dev1-50-cp38-cp38-win_amd64.whl"
 ```
 
 ### RAPTRS in WSL2-Debian (minimal for compiling SOC code for AMD64)
-In WLS-Debian make a sym link to the Windows Goldy3 folder:
-ln -s /mnt/{path to ...}/Goldy3/ Goldy3
-(... then same and Linux)
+```
+sudo apt-get install g++ libEigen3-dev
+
+cd Goldy3/RAPTRS/software;
+make flight_amd64
+make datalog_amd64
+```
 
 ## OpenFlightSim
 Test 1:
@@ -191,6 +211,7 @@ Anaconda Prompt (at folder: {path to ...}/Goldy3/OpenFlightSim/Simulation):
 ```python python\JSBSim_SIL_Demo.py```
 
 In another WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
+
 ```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
 
 (This should start a SIL, use a connected joystick to fly)
