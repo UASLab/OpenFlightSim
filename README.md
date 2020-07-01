@@ -45,15 +45,20 @@ Similar to PIL. SOC is connected to a hardware FMU. individual FMU<->SOC message
 Final execution testing is still required on the Aircraft; HIL/PIL testing will alter some of the execution timing slightly.
 
 # Install
-## Linux (Debian 10.4):
-### JSBSim
+## Linux (Debian 10.4): 
+### Flightgear
 ```
+sudo apt-get install flightgear
+```
+
+### JSBSim (Build from source)
+```
+sudo apt-get install cmake make g++ python3 cython3 python3-setuptools
+
 mkdir Sim; cd Sim; mkdir JSBSim; cd JSBSim
 sudo apt-get install git
 git clone https://github.com/JSBSim-Team/jsbsim.git jsbsim-repo
-mkdir build; cd build;
-sudo apt-get install cmake make g++
-sudo apt-get install python3 cython3 python3-setuptools
+mkdir build; cd build
 cmake ../jsbsim-repo/ -DCYTHON_EXECUTABLE=/usr/bin/cython3 -DINSTALL_PYTHON_MODULE=ON
 make JSBSim
 make PythonJSBSim
@@ -61,43 +66,47 @@ make install
 make test
 ```
 
-### RAPTRS (minimal for compiling SOC code for AMD64)
+### RAPTRS (Minimal for compiling SOC code for AMD64)
+
 ```
-cd Goldy3;
+sudo apt-get install g++ libEigen3-dev
+
+cd Goldy3
 git clone https://github.com/UASLab/RAPTRS.git
 cd RAPTRS
 git checkout SimOverhaul
-
-sudo apt-get install g++ libEigen3-dev
 
 cd software;
 make flight_amd64
 make datalog_amd64
 ```
 
-### Flightgear
-```
-sudo apt-get install flightgear
-```
-
 ### OpenFlightSim
 ```
+sudo apt-get install socat netcat python3-pygame python3-serial python3-numpy python3-pandas
+
 mkdir Goldy3; cd Goldy3
 git clone https://github.com/UASLab/OpenFlightSim.git
 cd OpenFlightSim
 git checkout SimOverhaul
 cd Simulation
-sudo apt-get install python3-numpy python3-pandas
 ```
 
-Tests:
-(start FGFS on windows, then in WSL2...)
+Tests 1:
+Start FlightGear from a Terminal (Goldy3/OpenFlightSim/Simulation):
+
+```./fgfs_JSBSim UltraStick25e```
+
+then from another Terminal (Goldy3/OpenFlightSim/Simulation):
+
 ```JSBSim scripts/jsb_UltraStick25e_Cruise.xml```
 (should run for 100 seconds)
 
-(start FGFS on windows, then in WSL2...)
+Test 2:
+Start FlightGear again, then from another Terminal (Goldy3/OpenFlightSim/Simulation):
+
 ```python3 python/JSBSim_Script_Demo.py```
-(run without error for 10 seconds, displays a 10)
+(run for 10 seconds)
 
 ### Configs
 ```
@@ -106,79 +115,82 @@ git clone https://github.umn.edu/UAV-Lab/Config.git
 ```
 
 ### Tests
-```
-sudo apt-get install socat netcat
-sudo apt-get install python3-pygame python3-serial
-```
+Software in the Loop Test:
+Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
-SIL TEST
-(multiple terminals, all at: ~/Goldy/OpenFligtSim/Simulation)
-```./fgfs_JSBSim.sh UltraStick25e```
-```./start_SIL_Comm.sh```
-```python3 python/JSBSim_SIL_Demo.py ```
+```./start_SIL_Comm.sh``` (this can stay running)
+
+```./fgfs_JSBSim.sh UltraStick25e``` (needs to restart each session)
+
+```python3 python/JSBSim_SIL_Demo.py```
+
 ```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
+
+(This should start a SIL, use a connected joystick to fly)
 
 ##  Windows 10 with Windows Linux Subsystem - (Debian 10.4)
-First, install WLS2 and Debian (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+Install github desktop (https://desktop.github.com/)
+Clone: https://github.com/UASLab/OpenFlightSim.git to {path to ...}/Goldy3/OpenFlightSim
+Clone: https://github.com/UASLab/RAPTRS.git to {path to ...}/Goldy3/RAPTRS
+Clone: https://github.umn.edu/UAV-Lab/Config.git to {path to ...}/Goldy3/Config
+
+Install WLS2 and Debian (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 In the WLS2-Debian:
-ln -s /mnt/c/Users/rega0051/Documents/Goldy3/ Goldy3
+Make a link to the Windows folder that 
+ln -s /mnt/{path to ...}/Goldy3/ Goldy3
 
 ### Flightgear
-Install FlightGear in Windows10 (not WSL2). (https://www.flightgear.org/download/) Tested with version 2018.3.5.
-Need to add FlightGear###/bin to the Windows Environment Path... 
+Install FlightGear in Windows10. (https://www.flightgear.org/download/) Tested with version 2018.3.5.
+Add FlightGear{version}/bin to the Windows Environment Path...
 
-### JSBSim in Windows with MSCV (Use JSBSim release https://github.com/JSBSim-Team/jsbsim/releases)
-On Windows I use Anaconda as the Python Package manager, however pygame and JSBSim aren't in conda
+### JSBSim in Windows (Use JSBSim release https://github.com/JSBSim-Team/jsbsim/releases)
+We'll be using the JSBSim Python bindings. First, get Python3 installed. On Windows I use conda as the Python Package manager.
+Install Miniconda: 
+https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Windows-x86_64.exe
+
+Then open a "Anaconda Prompt" in Windows.
+```conda install numpy scipy matplotlib ipython jupyter pandas sympy nose h5py spyder pyserial
+conda install -c conda-forge slycot control
 pip install pygame
 
-https://github.com/JSBSim-Team/jsbsim/releases
-pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases/download/Rolling-release-v2019/JSBSim-1.1.0.dev1-735-cp37-cp37m-win_amd64.whl" 
-
-(No clue how to actually build with MSCV)
-
-then, with a "conda" command window (These work)
-```python python\Joystick_Demo.py```
-```python python\JSBSim_Script_Demo.py```
+pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases/download/Windows-MSVC/JSBSim-1.1.0.dev1-50-cp38-cp38-win_amd64.whl"
+```
 
 ### RAPTRS in WSL2-Debian (minimal for compiling SOC code for AMD64)
-use GitHub Desktop to clone to: Goldy3/RAPTRS
-(then same and Linux)
-
-### Configs
-use GitHub Desktop to clone to: Goldy3/Config
-(then same as Linux)
+In WLS-Debian make a sym link to the Windows Goldy3 folder:
+ln -s /mnt/{path to ...}/Goldy3/ Goldy3
+(... then same and Linux)
 
 ## OpenFlightSim
-use GitHub Desktop to clone to: Goldy3/OpenFlightSim
+Test 1:
+Start FGFS in Windows with: fgfs_JSBSim.bat
+then in a "Anaconda Prompt":
 
+```JSBSim scripts/jsb_UltraStick25e_Cruise.xml```
 
-### Tests
+(should run for 100 seconds)
 
-SIL TEST
-(start FGFS on Windows)
+Test 2:
+Start FGFS in Windows with: fgfs_JSBSim.bat
+then in a "Anaconda Prompt":
 
-In WSL2:
-```./start_SIL_Comm.sh```
+```python3 python/JSBSim_Script_Demo.py```
 
-conda command window:
+(should run for 10 seconds)
+
+### Integrated Tests
+Software in the Loop Test:
+Start FGFS in Windows with: fgfs_JSBSim.bat
+
+In a WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
+
+```./start_SIL_Comm.sh``` (this can stay running)
+
+Anaconda Prompt (at folder: {path to ...}/Goldy3/OpenFlightSim/Simulation):
+
 ```python python\JSBSim_SIL_Demo.py```
 
-In another WSL2:
+In another WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
 ```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
 
-
-# Not Working:
-
-### JSBSim with WLS2-Debian
-(same as Linux install)
-(Joystick won't work with WSL2!!)
-
-### JSBSim in Windows with mingw (Cython fails to build python bindings)
-```
-cmake -DCYTHON_EXECUTABLE:FILEPATH="C:/ProgramData/Anaconda3/pkgs/cython-0.29.20-py37ha925a31_0/Scripts/cython.exe" -DPYTHON_EXECUTABLE:FILEPATH="C:/Program Files/WindowsApps/PythonSoftwareFoundation.Python.3.8_3.8.1008.0_x64__qbz5n2kfra8p0/python3.8.exe" -DINSTALL_PYTHON_MODULE:BOOL="1" 
-
-cmake ../jsbsim-repo/ -DCYTHON_EXECUTABLE="C:/ProgramData/Anaconda3/pkgs/cython-0.29.20-py37ha925a31_0/Scripts/cython.exe"
-
-mingw32-make.exe JSBSim
-mingw32-make.exe PythonJSBSim (fails here, python/setup.py doesn't have support for MinGW)
-```
+(This should start a SIL, use a connected joystick to fly)
