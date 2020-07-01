@@ -69,7 +69,7 @@ make test
 ### RAPTRS (Minimal for compiling SOC code for AMD64)
 
 ```
-sudo apt-get install g++ libEigen3-dev
+sudo apt-get install g++ libeigen3-dev
 
 cd Goldy3
 git clone https://github.com/UASLab/RAPTRS.git
