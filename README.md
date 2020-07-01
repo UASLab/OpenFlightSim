@@ -169,7 +169,7 @@ Use JSBSim release: https://github.com/JSBSim-Team/jsbsim/releases
 Open a "Anaconda Prompt" in Windows:
 
 ```
-pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases/download/Windows-MSVC/JSBSim-1.1.0.dev1-50-cp38-cp38-win_amd64.whl"
+pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases/download/Rolling-release-v2019/JSBSim-1.1.0.dev1-735-cp38-cp38-win_amd64.whl"
 ```
 
 ### RAPTRS in WSL2-Debian (minimal for compiling SOC code for AMD64)
