@@ -174,7 +174,7 @@ pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases
 
 ### RAPTRS in WSL2-Debian (minimal for compiling SOC code for AMD64)
 ```
-sudo apt-get install g++ libEigen3-dev
+sudo apt-get install g++ libeigen3-dev
 
 cd Goldy3/RAPTRS/software;
 make flight_amd64
