@@ -30,19 +30,27 @@ Pipe to Flightgear for visuals, if desired, in all modes. (Works accross TCP, se
 (Not tested on Linux, not tested on Windows)
 Use Python to provide control. No messaging, no FMU-like behavior. Just read the desired JSBSim properties, execute your algorithm, write to JSBSim properties.
 
+![Algorithm in the loop diagram](AIL.png)
+
 ## Software in the Loop (SIL) 
 (Works on Linux and Windows)
 RAPTRS interfaces with JSBSim through fmu_message definitions, with FMU like behavior emulated in Python. RAPTRS built for executing in native Linux (works with Windows Linux Subsystem as well). RAPTRS does require a valid config .json file to run.
 
+![Software in the loop diagram](SIL.png)
+
 ## Processor in the Loop (PIL) 
 (Works on Linux, not tested on Windows)
 Similar to SIL. But RAPTRS runs on an SOC (BeagleBoneBlack) and interfaces with the Host machine via USB. RAPTRS is built for the SOC, check realtime execution of RAPTRS. Data logging tests and Telemtry can be sent.
+
+![Processor in the loop diagram](PIL.png)
 
 ## Hardware in the Loop (HIL) or Aircraft in the Loop (AIL) 
 (Not tested on Linux, not tested on Windows)
 Similar to PIL. SOC is connected to a hardware FMU. individual FMU<->SOC messages are controlled such that the FMU/SOC interface can be checked while still allowing simulated sensor data to be received by the SOC.
 
 Final execution testing is still required on the Aircraft; HIL/PIL testing will alter some of the execution timing slightly.
+
+![Hardware in the loop diagram](HIL.png)
 
 # Install
 ## Linux (Debian 10.4): 
