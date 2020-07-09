@@ -6,9 +6,7 @@ Created on Tue Jun 23 11:22:02 2020
 @author: rega0051
 """
 
-import time
 import os
-import pygame
 import numpy as np
 
 pathGoldy3 = os.path.abspath('../..')
@@ -36,58 +34,6 @@ import control
 # Visualization is defined for JSBSim in the OutputFgfs.xml, Flightgear should be running prior
 # Linux: ./fgfs_JSBSim.sh UltraStick25e
 # Windows: ./fgfs_JSBSim.bat UltraStick25e
-
-
-#%% Joystick as SBUS source
-pygame.init()
-
-# Set up the joystick
-pygame.joystick.init()
-
-# Enumerate joysticks
-joyList = []
-for i in range(0, pygame.joystick.get_count()):
-    joyList.append(pygame.joystick.Joystick(i).get_name())
-
-print(joyList)
-
-if joyList == []:
-    print('Warning: joystick not found, SBUS will be zeros')
-
-# By default, load the first available joystick.
-joy = []
-if (len(joyList) > 0):
-    joy = pygame.joystick.Joystick(0)
-    joy.init()
-
-
-# Joystick Map, FIXIT - this is hacky
-# OpenTX Mixer: 1-Roll, 2-Pitch, 3-Thrt, 4-Yaw, 5-SA, 6-SB, 7-SC, 8-<blank>
-# SBUS def from thor.json:
-def JoyMap(joy):
-    msg = [0.0] * 16
-
-    if joy != []:
-        joyAxes = [joy.get_axis(i) for i in range(joy.get_numaxes())]
-        joyButtons = [joy.get_button(i) for i in range(joy.get_numbuttons())]
-        #joyHats = [joy.get_hat(i) for i in range(joy.get_numhats())]
-
-
-        msg[0] = 2*joyButtons[0]-1 # Autopilot mode (-1=FMU, 1=SOC)
-        msg[1] = 2*joyButtons[2]-1 # Throttle Cut
-        msg[2] = 0 # RSSI
-        msg[3] = joyAxes[0] # Roll
-        msg[4] = joyAxes[1] # Pitch
-        msg[5] = joyAxes[3] # Yaw
-        msg[6] = 0 # Flap
-        msg[7] = joyAxes[2] # Throttle
-        msg[8] = joyAxes[4] # Control Mode
-        msg[9] = joyAxes[5] # Test Select
-        msg[10] = 2*joyButtons[1]-1 # Trigger (-1=Nothing, 1=Trigger)
-        msg[11] = joyAxes[6] # Baseline Select
-
-    return msg
-
 
 
 #%% JSBSim
@@ -136,10 +82,10 @@ print('Alpha :', fdm['aero/alpha-deg'])
 
 fdm.enable_output()
 
-#%% Define Controllers
+#% Define Controllers
 tFrameRate_s = 1/50 # Desired Run rate
 
-def PID2(Kp = 1, Ki = 0.5, Kd = 0, b = 1, c = 1, Tf = 0):
+def PID2(Kp = 1, Ki = 0.0, Kd = 0, b = 1, c = 1, Tf = 0):
     # Inputs: ['ref', 'sens']
     # Outputs: ['cmd']
 
@@ -155,20 +101,6 @@ def PID2(Kp = 1, Ki = 0.5, Kd = 0, b = 1, c = 1, Tf = 0):
 
     return sys
 
-# Guidance Controller Models
-sysV = PID2(0.20, Ki = 0.075, Kd = 0.0, b = 1, c = 0, Tf = tFrameRate_s)
-sysV.InputName = ['refV', 'sensV']
-sysV.OutputName = ['cmdV']
-
-sysH = PID2(0.11, Ki = 0.1, Kd = 0.01, b = 1, c = 0, Tf = tFrameRate_s)
-sysH.InputName = ['refH', 'sensH']
-sysH.OutputName = ['refTheta']
-
-# Append systems
-sysGuid = control.append(sysV, sysH)
-sysGuid.InputName = sysV.InputName + sysH.InputName
-sysGuid.OutputName = sysV.OutputName + sysH.OutputName
-
 
 # SCAS Controller Models
 sysPhi = PID2(0.64, Ki = 0.20, Kd = 0.07, b = 1, c = 0, Tf = tFrameRate_s)
@@ -180,7 +112,7 @@ sysTheta.InputName = ['refTheta', 'sensTheta']
 sysTheta.OutputName = ['cmdQ']
 
 tauYaw = 5.72
-sysYaw = control.tf2ss(control.tf([0.03, 0.0],[1.0, tauYaw]))
+sysYaw = control.tf2ss(control.tf([0.03, 0.0], [1.0, tauYaw]))
 sysYaw.InputName = ['sensR']
 sysYaw.OutputName = ['cmdR']
 
@@ -188,6 +120,8 @@ sysYaw.OutputName = ['cmdR']
 sysScas = control.append(sysPhi, sysTheta, sysYaw)
 sysScas.InputName = sysPhi.InputName + sysTheta.InputName + sysYaw.InputName
 sysScas.OutputName = sysPhi.OutputName + sysTheta.OutputName + sysYaw.OutputName
+
+#sysScas = control.c2d(sysScas, tFrameRate_s)
 
 # Mixer
 ctrlEff = np.array([
@@ -198,65 +132,82 @@ ctrlEff = np.array([
 mixSurf = np.linalg.pinv(ctrlEff)
 mixSurf [abs(mixSurf) / np.max(abs(mixSurf)) < 0.05] = 0.0
 
-sysMixerSurf = control.ss([], [], [], mixSurf)
-sysMixerSurf.InputName = ['cmdP', 'cmdQ', 'cmdR']
-sysMixerSurf.OutputName = ['cmdElev_rad', 'cmdRud_rad', 'cmdAilL_rad', 'cmdFlapL_rad', 'cmdFlapR_rad', 'cmdAilR_rad']
-
-
-# Motor Mix
-sysMixerMotor = control.ss([], [], [], 1)
-sysMixerMotor.InputName = ['cmdV']
-sysMixerMotor.OutputName = ['cmdMotor']
-
-sysMixer = control.append(sysMixerMotor, sysMixerSurf)
-sysMixer.InputName = sysMixerMotor.InputName + sysMixerSurf.InputName
-sysMixer.OutputName = sysMixerMotor.OutputName + sysMixerSurf.OutputName
-
-#%% Combine Controller and Mixer
-connectName = sysMixer.InputName[1:]
-inKeep = [sysMixer.InputName[0]] + sysScas.InputName
-outKeep = sysMixer.OutputName
-
-sysCtrl = ConnectName([sysScas, sysMixer], connectName, inKeep, outKeep)
-
 
 #%%
-#
-kts2mps = 0.514444
+refPhi = fdm['attitude/phi-rad']
+sensPhi0 = fdm['attitude/phi-rad']
+refTheta = fdm['attitude/theta-rad']
+sensTheta0 = fdm['attitude/theta-rad']
+sensR0 = fdm['velocities/r-rad_sec']
 
-refV = fdm['velocities/vtrue-kts'] * kts2mps
-refH = fdm['position/geod-alt-km'] * 1000
+# Mixer Init
+yMixer0 = np.array([fdm['fcs/cmdElev_rad'], fdm['fcs/cmdRud_rad'], fdm['fcs/cmdAilR_rad'], fdm['fcs/cmdFlapR_rad'], fdm['fcs/cmdFlapL_rad'], fdm['fcs/cmdAilL_rad']])
+uMixer0 = ctrlEff @ yMixer0
 
+cmdMotor0 = np.array([fdm['fcs/throttle-pos-norm']])
 
+# SCAS Init
+xScas = np.matrix(np.zeros(sysScas.states)).T
 
-tStart_s = time.time()
+# Simulate
+# Time
+tStep = np.array([[0, tFrameRate_s]])
+tSamp_s = np.arange(0, 20, tFrameRate_s)
 tFdm_s = 0.0
 
-while (True):
-    tFrameStart_s = time.time()
+refPhiList = []
+refThetaList = []
 
-    # Read Sim Outputs (Controller inputs)
-    # Read the perfect sensed values
-    accelX_mps2 = fdm['sensor/imu/accelX_mps2']
-    accelY_mps2 = fdm['sensor/imu/accelY_mps2']
-    accelZ_mps2 = fdm['sensor/imu/accelZ_mps2']
-    gyroY_rps = fdm['sensor/imu/gyroX_rps']
-    gyroY_rps = fdm['sensor/imu/gyroY_rps']
-    gyroY_rps = fdm['sensor/imu/gyroY_rps']
+sensPhiList = []
+sensThetaList = []
+sensVList = []
 
+for t_s in tSamp_s:
+    # Read Sensors
+    refPhi = 0
+    refTheta = sensTheta0
+    
+    sensPhi = fdm['attitude/phi-rad']
+    sensTheta = fdm['attitude/theta-rad']
+    sensR = fdm['velocities/r-rad_sec']
+    
+    # Roll Doublet
+#    if t_s < 2:
+#        refPhi = 0
+#    elif t_s < 4:
+#        refPhi = 0 + 20 *np.pi/180.0
+#    elif t_s < 6:
+#        refPhi = 0 - 20 *np.pi/180.0
+#    else:
+#        refPhi = 0
+    
+    # Pitch Doublet
+    if t_s < 2:
+        refTheta = sensTheta0
+    elif t_s < 4:
+        refTheta = sensTheta0 + 5 *np.pi/180.0
+    elif t_s < 6:
+        refTheta = sensTheta0 - 5 *np.pi/180.0
+    else:
+        refTheta = sensTheta0
 
-    #%%
-    sensV = fdm['velocities/vtrue-kts'] * kts2mps
-    excV = 0
-    inGuid =
-    sysGuid.InputName = sysV.InputName + sysH.InputName
-    sysGuid.OutputName = sysV.OutputName + sysH.OutputName
+    ## Run Scas    
+    inScas = np.array([refPhi, sensPhi, refTheta, sensTheta, sensR])
+    tScas, yScas, xScas = control.forced_response(sysScas, T = tStep, U = np.array([inScas, inScas]).T, X0 = xScas[:,-1])
 
-
-
-    #%%
+    # Surface Mixer
+    cmdP, cmdQ, cmdR = yScas[:,-1]
+    
+    uMixer = np.array([cmdP, cmdQ, cmdR])
+    yMixer = mixSurf @ uMixer
+    cmdElev_rad, cmdRud_rad, cmdAilR_rad, cmdFlapR_rad, cmdFlapL_rad, cmdAilL_rad = yMixer
+    
+    # Thurst Mixer
+    cmdMotor_nd = cmdMotor0
+    
+    ##
     # Write the Effectors
-    fdm['fcs/cmdMotor_ext_nd'] = cmdMotor_nd
+    fdm['fcs/throttle-cmd-norm'] = cmdMotor_nd
     fdm['fcs/cmdElev_ext_rad'] = cmdElev_rad
     fdm['fcs/cmdRud_ext_rad'] = cmdRud_rad
     fdm['fcs/cmdAilR_ext_rad'] = cmdAilR_rad
@@ -265,20 +216,27 @@ while (True):
     fdm['fcs/cmdAilL_ext_rad'] = cmdAilL_rad
 
 
+    refPhiList.append(refPhi)
+    sensPhiList.append(sensPhi)
+
+    refThetaList.append(refTheta)
+    sensThetaList.append(sensTheta)
+    
+    sensVList.append(fdm['velocities/vt-fps'] * 0.3048)
 
     # Step the FDM
     tFdm_s += tFrameRate_s
-    if (fmuMode is 'Run'):
-        while (fdm.get_sim_time() <= (tFdm_s - fdm.get_delta_t())): # Run the FDM
-            fdm.run()
+    while (fdm.get_sim_time() <= (tFdm_s - fdm.get_delta_t())): # Run the FDM
+        fdm.run()
 
-    # Timer, do not expect realtime
-    tHold_s = tFrameRate_s - (time.time() - tFrameStart_s)
-    if tHold_s > 0:
-        time.sleep(tHold_s)
-
-# end while(True)
-
-#SocComms.Close()
-
-
+#
+import matplotlib.pyplot as plt
+#plt.figure()
+plt.subplot(3,1,1)
+plt.plot(tSamp_s, np.array(refPhiList) * 180/np.pi)
+plt.plot(tSamp_s, np.array(sensPhiList) * 180/np.pi)
+plt.subplot(3,1,2)
+plt.plot(tSamp_s, np.array(refThetaList) * 180/np.pi)
+plt.plot(tSamp_s, np.array(sensThetaList) * 180/np.pi)
+plt.subplot(3,1,3)
+plt.plot(tSamp_s, np.array(sensVList))
