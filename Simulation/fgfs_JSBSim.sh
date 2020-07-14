@@ -14,7 +14,7 @@ nice fgfs \
     --fg-aircraft="$DIR/aircraft" \
     --aircraft="$MODEL" \
     --fdm=null \
-    --native-fdm=socket,in,50,,59500,tcp \
+    --native-fdm=socket,in,50,,59500,udp \
     --lat=44.725801 \
     --lon=-93.075866 \
     --heading=90 \
