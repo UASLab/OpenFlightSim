@@ -23,32 +23,41 @@ http://home.flightgear.org/download/
 
 # Modes of Operation
 Common:
-JSBSim executes with Python bindings. (Works on Linux and WSL, does not work in native Windows)
-Pipe to Flightgear for visuals, if desired, in all modes. (Works accross TCP, seemless on Linux and Windows)
+JSBSim executes with Python bindings.
+JSBSim sends UDP packets (on 'localhost') to Flightgear for visuals, if desired, in all modes.
+
+RAPTRS has several components relevant to modes of operation. The RAPTRS code-base contains code for the FMU and Node microcontrollers and the various sensor and effector drivers. The FMU and Node code is designed to only execute on the Teensy processors. RAPTRS also contains code for the SOC, in the nominal case a BeagleBoneBlack (BBB). This code can be compiled for either execution on the SOC or on a AMD64 Linux machine. Communication between the SOC and FMU is accomplished via UART messages defined in 'fmu_messages'; the particular messages and sequencing of communication is refered to as the FMU Protocol. 
+
+RAPTRS requires a valid configuration file (.json) to run, that .json config must have a "JSBSim" definition block for RAPTRS-SOC to redirect communication to an appropriate port ("SimFmuPort" defines the tty-like port that RAPTRS will use to connect).
+
+```
+  "JSBSim": {
+    "SimFmuPort": "ptySimSoc",
+    "SimFmuBaud": 1500000
+  }
+  ```
 
 ## Algorithm in the Loop (AIL)
-(Not tested on Linux, not tested on Windows)
-Use Python to provide control. No messaging, no FMU-like behavior. Just read the desired JSBSim properties, execute your algorithm, write to JSBSim properties.
+Uses control system defined in Python to provide control, JSBSim properties are read/write directly via Python bindings. This is useful in early stage development for defining algorithms when full end-to-end flight code is not required.
 
 ![Algorithm in the loop diagram](AIL.png)
 
 ## Software in the Loop (SIL) 
-(Works on Linux and Windows)
-RAPTRS interfaces with JSBSim through fmu_message definitions, with FMU like behavior emulated in Python. RAPTRS built for executing in native Linux (works with Windows Linux Subsystem as well). RAPTRS does require a valid config .json file to run.
+RAPTRS-SOC is built for executing in native Linux (AMD64). The FMU Protocol is transported over UDP between the RAPTRS-SOC executable and Python (which is running the JSBSim simulation). Everything is run on a single Host machine (if the host is native Windows the RAPTRS-SOC code is executed in a WSL shell). SIL testing is good for checking the end-to-end validation of the flight code; since the RAPTRS-SOC code is not running in a flight-like system the particulars of system timming are not valid.
+
+A joystick can be connected to allow for testing with pilot commands.
 
 ![Software in the loop diagram](SIL.png)
 
 ## Processor in the Loop (PIL) 
-(Works on Linux, not tested on Windows)
-Similar to SIL. But RAPTRS runs on an SOC (BeagleBoneBlack) and interfaces with the Host machine via USB. RAPTRS is built for the SOC, check realtime execution of RAPTRS. Data logging tests and Telemtry can be sent.
+Advances on SIL; now RAPTRS-SOC code runs on a flight-configured SOC (BeagleBoneBlack) and interfaces with the Host machine via a USB connection. PIL testing allows for an inital check on realtime execution of RAPTRS. Data logging tests and Telemtry with hardware are also tested.
+
+A joystick can be connected to allow for testing with pilot commands.
 
 ![Processor in the loop diagram](PIL.png)
 
-## Hardware in the Loop (HIL) or Aircraft in the Loop (AIL) 
-(Not tested on Linux, not tested on Windows)
-Similar to PIL. SOC is connected to a hardware FMU. individual FMU<->SOC messages are controlled such that the FMU/SOC interface can be checked while still allowing simulated sensor data to be received by the SOC.
-
-Final execution testing is still required on the Aircraft; HIL/PIL testing will alter some of the execution timing slightly.
+## Hardware in the Loop (HIL) or Aircraft in the Loop 
+Advances on PIL; now the SOC is connected to a hardware FMU. Individual FMU<->SOC messages are controlled such that the FMU/SOC interface can be checked while still allowing simulated sensor data to be received by the SOC. Final execution testing is still required on the Aircraft without Simulation connections; HIL testing will alter some of the execution timing slightly.
 
 ![Hardware in the loop diagram](HIL.png)
 
@@ -137,6 +146,8 @@ Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 (This should start a SIL, use a connected joystick to fly)
 
 ##  Windows 10 with Windows Linux Subsystem - (Debian 10.4)
+FlightGear and JSBSim (Python bindings) will run on the Windows system directly. A Windows Linux Subsystem (WSL) will be used to compile and execute the RAPTRS-SOC code.
+
 Install github desktop (https://desktop.github.com/)
 
 Clone: https://github.com/UASLab/OpenFlightSim.git to {path to ...}/Goldy3/OpenFlightSim
@@ -145,15 +156,15 @@ Clone: https://github.com/UASLab/RAPTRS.git to {path to ...}/Goldy3/RAPTRS
 
 Clone: https://github.umn.edu/UAV-Lab/Config.git to {path to ...}/Goldy3/Config
 
-Install WLS2 and Debian (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+Install WLS and Debian (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
 
-In a WLS2-Debian Console, make a link to the Windows folder:
+In a WLS-Debian Console, make a link to the Windows folder:
 
 ```ln -s /mnt/{path to ...}/Goldy3/ Goldy3```
 
 
-OpenFlightSim uses the JSBSim Python bindings. First, get Python3 installed using conda as the Python Package Manager.
+OpenFlightSim uses the JSBSim Python bindings. First, get Python3 installed. Examples using conda as the Python Package Manager on Windows.
 
 Install Miniconda: 
 https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Windows-x86_64.exe
@@ -169,7 +180,7 @@ pip install pygame
 ### Flightgear
 Install FlightGear in Windows10. (https://www.flightgear.org/download/) Tested with version 2018.3.5.
 
-Add FlightGear{version}/bin to the Windows Environment Path...
+Add FlightGear{version}/bin to the Windows Environment Path.
 
 ### JSBSim in Windows
 Use JSBSim release: https://github.com/JSBSim-Team/jsbsim/releases
@@ -180,7 +191,7 @@ Open a "Anaconda Prompt" in Windows:
 pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases/download/Rolling-release-v2019/JSBSim-1.1.0.dev1-735-cp38-cp38-win_amd64.whl"
 ```
 
-### RAPTRS in WSL2-Debian (minimal for compiling SOC code for AMD64)
+### RAPTRS in WSL-Debian (minimal for compiling SOC code for AMD64)
 ```
 sudo apt-get install g++ libeigen3-dev
 
@@ -199,7 +210,7 @@ then in a "Anaconda Prompt":
 (should run for 100 seconds)
 
 Test 2:
-Start FGFS in Windows with: fgfs_JSBSim.bat
+with FGFS running...
 then in a "Anaconda Prompt":
 
 ```python3 python/JSBSim_Script_Demo.py```
