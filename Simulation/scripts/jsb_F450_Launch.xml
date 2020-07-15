@@ -78,11 +78,6 @@
     <event name="Repeating Notify" persistent="true">
         <description>Output message at 1 second intervals</description>
         <notify>
-            <property>fcs/aileron-cmd-norm</property>>
-            <property>fcs/pilotRoll_norm</property>
-            <property>fcs/refRoll_rps</property>
-            <property>fcs/cmdRoll_rps</property>
-
             <property> fcs/ScasEngage </property>
 
             <property>fcs/throttle-cmd-norm</property>

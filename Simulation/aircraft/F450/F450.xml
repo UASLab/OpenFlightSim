@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <fdm_config release="Alpha" version="2.0">
-    <flight_control file="FlightControl.xml"/>
+    <flight_control file="FlightControlScas.xml"/>
     <system file="Effectors.xml"/>
 
     <mass_balance file="Mass.xml"/>
