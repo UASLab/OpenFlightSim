@@ -43,7 +43,7 @@ Uses control system defined in Python to provide control, JSBSim properties are 
 ![Algorithm in the loop diagram](AIL.png)
 
 ## Software in the Loop (SIL) 
-RAPTRS-SOC is built for executing in native Linux (AMD64). The FMU Protocol is transported over UDP between the RAPTRS-SOC executable and Python (which is running the JSBSim simulation). Everything is run on a single Host machine (if the host is native Windows the RAPTRS-SOC code is executed in a WSL shell). SIL testing is good for checking the end-to-end validation of the flight code; since the RAPTRS-SOC code is not running in a flight-like system the particulars of system timming are not valid.
+RAPTRS-SOC is built for executing in native Linux (AMD64). The FMU Protocol is transported over TCP between the RAPTRS-SOC executable and Python (which is running the JSBSim simulation). Everything is run on a single Host machine (if the host is native Windows the RAPTRS-SOC code is executed in a WSL shell). SIL testing is good for checking the end-to-end validation of the flight code; since the RAPTRS-SOC code is not running in a flight-like system the particulars of system timming are not valid.
 
 A joystick can be connected to allow for testing with pilot commands.
 
@@ -135,11 +135,11 @@ git clone https://github.umn.edu/UAV-Lab/Config.git
 Software in the Loop Test:
 Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
-```./start_SIL_Comm.sh``` (this can stay running)
+```./start_CommSoc.sh``` (this should be able to just stay running)
 
-```./fgfs_JSBSim.sh UltraStick25e``` (needs to restart each session)
+```./fgfs_JSBSim.sh UltraStick25e``` (this should be able to just stay running)
 
-```python3 python/JSBSim_SIL_Demo.py```
+```python3 python/JSBSim_SIL_Demo.py``` (runs through setup, then holds for the SOC to communicate)
 
 ```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
 
@@ -219,11 +219,11 @@ then in a "Anaconda Prompt":
 
 ### Integrated Tests
 Software in the Loop Test:
-Start FGFS in Windows with: fgfs_JSBSim.bat
+Start FGFS in Windows with: fgfs_JSBSim.bat (this should be able to just stay running)
 
 In a WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
 
-```./start_SIL_Comm.sh``` (this can stay running)
+```./start_CommSoc.sh``` (this should be able to just stay running)
 
 Anaconda Prompt (at folder: {path to ...}/Goldy3/OpenFlightSim/Simulation):
 
