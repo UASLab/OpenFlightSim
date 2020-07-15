@@ -11,6 +11,7 @@
     <aerodynamics file="AeroOpenFlight.xml"/>
 
     <system file="SensorImu.xml"/>
+    <system file="SensorBaro.xml"/>
     <system file="SensorGps.xml"/>
     <system file="SensorPitot.xml"/>
 </fdm_config>

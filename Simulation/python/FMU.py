@@ -243,7 +243,7 @@ class AircraftSocComms():
             msg.MagX_uT = np.clip(fdm['sensor/imu/magX_uT'], -mag_lim, mag_lim)
             msg.MagY_uT = np.clip(fdm['sensor/imu/magY_uT'], -mag_lim, mag_lim)
             msg.MagZ_uT = np.clip(fdm['sensor/imu/magZ_uT'], -mag_lim, mag_lim)
-            msg.Temperature_C = 0.0 # FIXIT
+            msg.Temperature_C = fdm['sensor/imu/temp_C']
 
             self.SendMessage(msg.id, 0, msg.pack(), ackReq = False)
             
@@ -251,8 +251,8 @@ class AircraftSocComms():
             msg = next((s for s in self.dataMsgList if s.id is fmu_messages.data_bme280().id), None)
             
             msg.ReadStatus = 1
-            msg.Pressure_Pa = fdm['sensor/pitot/presStatic_Pa']
-            msg.Temperature_C = fdm['sensor/pitot/temp_C']
+            msg.Pressure_Pa = fdm['sensor/baro/presStatic_Pa']
+            msg.Temperature_C = fdm['sensor/baro/temp_C']
             msg.Humidity_RH = 0.0
             
             self.SendMessage(msg.id, 0, msg.pack(), ackReq = False)

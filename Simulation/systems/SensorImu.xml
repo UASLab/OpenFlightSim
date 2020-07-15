@@ -68,6 +68,29 @@
             <value>0.3048</value>
         </product>
     </function>
+    <function name="sensor/imu/temp_true_C">
+        <product>
+            <sum>
+                <property>atmosphere/T-R</property>
+                <value>-491.67</value>
+            </sum>
+            <value>0.5555555555555556</value>
+        </product>
+    </function>
+
+    <channel name="Temperature Error Model">
+        <sensor name="temp_C">
+            <input>sensor/imu/temp_true_C</input>
+            <lag>0</lag>
+            <noise distribution="GAUSSIAN" variation="ABSOLUTE">0.0</noise>
+            <drift_rate>0</drift_rate>
+            <gain>1</gain>
+            <bias>0</bias>
+            <delay>0</delay>
+            <output>sensor/imu/temp_C</output>
+        </sensor>
+    </channel>
+
     <channel name="Accelerometer Error Model">
         <sensor name="AccelX">
             <input>sensor/imu/accelX_true_mps2</input>
