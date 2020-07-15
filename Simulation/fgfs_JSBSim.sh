@@ -5,7 +5,7 @@
 #   JSBSim --realtime jsb_UltraStick25e_HIL.xml
 #
 #   the JSBSim script should contain:
-#      <output name="localhost" type="FLIGHTGEAR" port="59500" rate="50"/>
+#      <output name="localhost" type="FLIGHTGEAR" protocol="UDP" port="59500" rate="50"/>
 
 DIR=$(dirname $0)
 MODEL=$1
