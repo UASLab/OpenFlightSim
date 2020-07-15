@@ -6,17 +6,39 @@ Copyright (c) 2016 - 2020 Regents of the University of Minnesota.
 MIT License; See LICENSE.md for complete details
 Author: Chris Regan
 '''
+import numpy as np
 
 import serial
 import fmu_messages
 
 
 #%% 
+
+def add_msg(msgID, msgIndx, msgPayload):
+    msgLen = len(msgPayload)
+    
+    msgData = b''
+    msgData += msgID.to_bytes(1, byteorder = 'little')
+    msgData += msgIndx.to_bytes(1, byteorder = 'little')
+    msgData += msgLen.to_bytes(1, byteorder = 'little')
+    msgData += msgPayload
+    return msgData
+
+
 class AircraftSocComms():
-    def __init__ (self, port):
+    def __init__ (self, host = 'localhost', port = 59600):
         
-        self.serialLink = SerialLink(port)
+        self.serialLink = SerialLink(host, port)
         
+        self.AcquireTimeData = False
+        self.AcquireInternalMpu9250Data = False
+        self.AcquireInternalBme280Data = False
+        
+        self.effList = []
+        self.effListFdm = []
+        self.cfgMsgList = [] # List of IDs and indices
+        self.dataMsgList = [] # List of message objects
+
     def Begin(self):
         print("Initializing communication with SOC...")
         self.serialLink.begin()
@@ -31,7 +53,7 @@ class AircraftSocComms():
         else:
             msgType = 2
             
-        # print('Message Send: ' + '\tID: ' + str(msgID) + '\tAddress: ' + str(msgAddress) + '\tPayload: ' + str(msgPayload))
+#        print('Message Send: ' + '\tID: ' + str(msgID) + '\tAddress: ' + str(msgAddress) + '\tPayload: ' + str(msgPayload))
         
         # Join msgData as: ID + Address + Payload
         msgData = b''
@@ -63,7 +85,7 @@ class AircraftSocComms():
             # Send an SerialLink Ack - FIXIT - move to SerialLink
 #            self.serialLink.sendStatus(True)
 
-        # print('Message Recv: ' + '\tID: ' + str(msgID) + '\tAddress: ' + str(msgAddress) + '\tPayload: ' + str(msgPayload))
+#        print('Message Recv: ' + '\tID: ' + str(msgID) + '\tAddress: ' + str(msgAddress) + '\tPayload: ' + str(msgPayload))
         
         return msgID, msgAddress, msgPayload
         
@@ -75,6 +97,249 @@ class AircraftSocComms():
         
         self.SendMessage(configMsgAck.id, 0, configMsgAck.pack(), ackReq = False)
 
+        return True
+    
+    def Config(self, msgID, msgPayload):
+        # Config Messages
+        cfgMsgBasic = fmu_messages.config_basic()
+        cfgMsgMpu9250 = fmu_messages.config_mpu9250()
+        cfgMsgBme280 = fmu_messages.config_bme280()
+        cfgMsgUblox = fmu_messages.config_ublox()
+        cfgMsgAms5915 = fmu_messages.config_ams5915()
+        cfgMsgSwift = fmu_messages.config_swift()
+        cfgMsgAnalog = fmu_messages.config_analog()
+        cfgMsgEffector = fmu_messages.config_effector()
+        cfgMsgMission = fmu_messages.config_mission()
+        cfgMsgControlGain = fmu_messages.config_control_gain()
+
+    
+        if msgID == cfgMsgBasic.id:
+            cfgMsgBasic.unpack(msgPayload)
+            
+            sensorType = cfgMsgBasic.sensor
+            self.cfgMsgList.append((msgID, sensorType))
+            
+            if sensorType == fmu_messages.sensor_type_time:
+                self.dataMsgList.append(fmu_messages.data_time())
+                self.AcquireTimeData = True
+                
+            elif sensorType in [fmu_messages.sensor_type_input_voltage, fmu_messages.sensor_type_regulated_voltage, fmu_messages.sensor_type_pwm_voltage, fmu_messages.sensor_type_sbus_voltage]:
+                self.dataMsgList.append(fmu_messages.data_analog())
+                
+            elif sensorType == fmu_messages.sensor_type_internal_bme280:
+                self.dataMsgList.append(fmu_messages.data_bme280())
+                self.AcquireInternalBme280Data = True
+                
+            elif sensorType == fmu_messages.sensor_type_sbus:
+                self.dataMsgList.append(fmu_messages.data_sbus())
+                
+            self.SendAck(msgID)
+                
+        elif msgID == cfgMsgMpu9250.id:
+            self.cfgMsgList.append((msgID, 0))
+            
+            cfgMsgMpu9250.unpack(msgPayload)
+            
+            if cfgMsgMpu9250.internal == True:
+                self.AcquireInternalMpu9250Data = True
+                self.dataMsgList.append(fmu_messages.data_mpu9250())
+            else:
+                self.dataMsgList.append(fmu_messages.data_mpu9250_short())
+            
+            self.SendAck(msgID)
+            
+        elif msgID == cfgMsgBme280.id:
+            self.cfgMsgList.append((msgID, 0))
+            self.dataMsgList.append(fmu_messages.data_bme280())
+            
+            cfgMsgBme280.unpack(msgPayload)
+            
+            self.SendAck(msgID)
+            
+        elif msgID == cfgMsgUblox.id:
+            self.cfgMsgList.append((msgID, 0))
+            self.dataMsgList.append(fmu_messages.data_ublox())
+            
+            cfgMsgUblox.unpack(msgPayload)
+            
+            self.SendAck(msgID)
+            
+        elif msgID == cfgMsgAms5915.id:
+            self.cfgMsgList.append((msgID, 0))
+            self.dataMsgList.append(fmu_messages.data_ams5915())
+            
+            cfgMsgAms5915.unpack(msgPayload)
+            cfgMsgAms5915.output
+            
+            self.SendAck(msgID)
+            
+        elif msgID == cfgMsgSwift.id:
+            self.cfgMsgList.append((msgID, 0))
+            self.dataMsgList.append(fmu_messages.data_swift())
+            
+            cfgMsgSwift.unpack(msgPayload)
+            cfgMsgSwift.output
+            
+            self.SendAck(msgID)
+            
+        elif msgID == cfgMsgAnalog.id:
+            self.cfgMsgList.append((msgID, 0))
+            self.dataMsgList.append(fmu_messages.data_analog())
+            
+            cfgMsgAnalog.unpack(msgPayload)
+            
+            self.SendAck(msgID)
+            
+        elif msgID == cfgMsgEffector.id:
+            self.cfgMsgList.append((msgID, 0))
+            
+            cfgMsgEffector.unpack(msgPayload)
+            self.effList.append(cfgMsgEffector.input)
+            
+            self.SendAck(msgID)
+            
+        elif msgID == cfgMsgMission.id:
+            self.cfgMsgList.append((msgID, 0))
+            
+            cfgMsgMission.unpack(msgPayload)
+            
+            self.SendAck(msgID)
+            
+        elif msgID == cfgMsgControlGain.id:
+            self.cfgMsgList.append((msgID, 0))
+            
+            cfgMsgControlGain.unpack(msgPayload)
+            
+            self.SendAck(msgID)
+                
+        else:
+            print("Unhandled message while in Configuration mode, id: " + str(msgID))
+            
+    
+    def SendSensorMessages(self, time_s, fdm, joyVals = []):
+        # Read all data from Sim, populate into the message
+        # Send Data Messages to SOC
+        # Loop through all items that have been configured
+            
+        if self.AcquireInternalMpu9250Data:
+            msg = next((s for s in self.dataMsgList if s.id is fmu_messages.data_mpu9250().id), None)
+            
+            # FIXIT - Clipping in fmu_messages??
+            accel_scale = 208.82724  # 1 / (9.807(g) * 16 / 32767.5) (+/-16g)
+            gyro_scale = 938.71973  # 1 / (2000.0f/32767.5f * d2r (+/-2000deg/sec)
+            mag_scale = 300  # fits range
+            
+            accel_lim = (2**15 - 1) / accel_scale
+            gyro_lim = (2**15 -1) / gyro_scale
+            mag_lim = (2**15 -1) / mag_scale
+
+            msg.ReadStatus = 1
+            msg.AccelX_mss = np.clip(fdm['sensor/imu/accelX_mps2'], -accel_lim, accel_lim)
+            msg.AccelY_mss = np.clip(fdm['sensor/imu/accelY_mps2'], -accel_lim, accel_lim)
+            msg.AccelZ_mss = np.clip(fdm['sensor/imu/accelZ_mps2'], -accel_lim, accel_lim)
+            msg.GyroX_rads = np.clip(fdm['sensor/imu/gyroX_rps'], -gyro_lim, gyro_lim)
+            msg.GyroY_rads = np.clip(fdm['sensor/imu/gyroY_rps'], -gyro_lim, gyro_lim)
+            msg.GyroZ_rads = np.clip(fdm['sensor/imu/gyroZ_rps'], -gyro_lim, gyro_lim)
+            msg.MagX_uT = np.clip(fdm['sensor/imu/magX_uT'], -mag_lim, mag_lim)
+            msg.MagY_uT = np.clip(fdm['sensor/imu/magY_uT'], -mag_lim, mag_lim)
+            msg.MagZ_uT = np.clip(fdm['sensor/imu/magZ_uT'], -mag_lim, mag_lim)
+            msg.Temperature_C = 0.0 # FIXIT
+
+            self.SendMessage(msg.id, 0, msg.pack(), ackReq = False)
+            
+        if self.AcquireInternalBme280Data:
+            msg = next((s for s in self.dataMsgList if s.id is fmu_messages.data_bme280().id), None)
+            
+            msg.ReadStatus = 1
+            msg.Pressure_Pa = fdm['sensor/pitot/presStatic_Pa']
+            msg.Temperature_C = fdm['sensor/pitot/temp_C']
+            msg.Humidity_RH = 0.0
+            
+            self.SendMessage(msg.id, 0, msg.pack(), ackReq = False)
+            
+        for indx, msg in enumerate([s for s in self.dataMsgList if s.id is fmu_messages.data_mpu9250_short().id]):
+            self.SendMessage(msg.id, indx, msg.pack(), ackReq = False)
+            
+        for indx, msg in  enumerate([s for s in self.dataMsgList if s.id is fmu_messages.data_bme280().id]):
+            if not (self.AcquireInternalBme280Data and indx == 1):
+                self.SendMessage(msg.id, indx, msg.pack(), ackReq = False)
+            
+        for indx, msg in enumerate([s for s in self.dataMsgList if s.id is fmu_messages.data_ublox().id]):
+            
+            import datetime
+                
+            def utctoweekseconds(utc = datetime.datetime.utcnow(), leapseconds = 37):
+                """ Returns the GPS week, the GPS day, and the seconds 
+                and microseconds since the beginning of the GPS week """
+                datetimeformat = "%Y-%m-%d %H:%M:%S"
+                epoch = datetime.datetime.strptime("1980-01-06 00:00:00", datetimeformat)
+
+                tdiff = utc - epoch + datetime.timedelta(seconds = leapseconds)
+                weeks = tdiff.days // 7
+                gpsWeeks = weeks  % 1024 # Rollover at 1024 weeks since epoch
+                gpsSec = tdiff.total_seconds() - 60*60*24*7 * weeks
+
+                return gpsWeeks, gpsSec
+
+            today = datetime.datetime.utcnow()
+            gpsWeeks, gpsSec = utctoweekseconds(today)
+            
+            v_scale = 100
+            v_lim = (2**15 - 1) / v_scale
+            
+            msg.Fix = 1
+            msg.NumberSatellites = 0
+            msg.TOW = int(round(gpsSec * 1000)) # UBLOX driver has TOW as miliseconds
+            msg.Year = today.year # UTC
+            msg.Month = today.month # UTC
+            msg.Day = today.day # UTC
+            msg.Hour = today.hour # UTC
+            msg.Min = today.minute # UTC
+            msg.Sec = today.second # UTC
+            msg.Latitude_rad = fdm['sensor/gps/lat_rad']
+            msg.Longitude_rad = fdm['sensor/gps/long_rad']
+            msg.Altitude_m = fdm['sensor/gps/alt_m']
+            msg.NorthVelocity_ms = np.clip(fdm['sensor/gps/vNorth_mps'], -v_lim, v_lim)
+            msg.EastVelocity_ms = np.clip(fdm['sensor/gps/vEast_mps'], -v_lim, v_lim)
+            msg.DownVelocity_ms = np.clip(fdm['sensor/gps/vDown_mps'], -v_lim, v_lim)
+            msg.HorizontalAccuracy_m = 0.0
+            msg.VerticalAccuracy_m = 0.0
+            msg.VelocityAccuracy_ms = 0.0
+            msg.pDOP = 0.0
+            
+            self.SendMessage(msg.id, indx, msg.pack(), ackReq = False)
+            
+        for indx, msg in enumerate([s for s in self.dataMsgList if s.id is fmu_messages.data_swift().id]):
+
+            msg.static_ReadStatus = 1
+            msg.static_Pressure_Pa = fdm['sensor/pitot/presStatic_Pa']
+            msg.static_Temperature_C = fdm['sensor/pitot/temp_C']
+            msg.diff_ReadStatus = 1
+            msg.diff_Pressure_Pa = fdm['sensor/pitot/presTip_Pa']
+            msg.diff_Temperature_C = fdm['sensor/pitot/temp_C']
+        
+            self.SendMessage(msg.id, indx, msg.pack(), ackReq = False)
+            
+        for indx, msg in enumerate([s for s in self.dataMsgList if s.id is fmu_messages.data_sbus().id]):
+            
+            msg.channels = joyVals
+            
+            self.SendMessage(msg.id, indx, msg.pack(), ackReq = False)
+            
+        for indx, msg in enumerate([s for s in self.dataMsgList if s.id is fmu_messages.data_ams5915().id]):
+            self.SendMessage(msg.id, indx, msg.pack(), ackReq = False)
+            
+        for indx, msg in enumerate([s for s in self.dataMsgList if s.id is fmu_messages.data_analog().id]):
+            self.SendMessage(msg.id, indx, msg.pack(), ackReq = False)
+        
+        
+        if self.AcquireTimeData: # Send Last
+            msg = next((s for s in self.dataMsgList if s.id is fmu_messages.data_time().id), None)
+            
+            msg.time_us = int(time_s * 1e6)
+            
+            self.SendMessage(msg.id, 0, msg.pack(), ackReq = False)
+        
         return True
     
 
@@ -164,18 +429,17 @@ def crc16(data, crc=0):
 
 class SerialLink():
     
-    ser = serial.Serial()
-    ser.timeout = 0
     readBufList = []
     
-    def __init__ (self, port):
-        self.ser.port = port
+    def __init__ (self, host = 'localhost', port = 59600):
+        if host == None:
+            self.ser = serial.Serial()
+            self.ser.port = port
+        else:
+            self.ser = serial.serial_for_url('socket://' + host + ':' + str(port), do_not_open = True)
     
     def begin(self):
-        # Open flush, probably overboard.
-        if self.ser.isOpen():
-            self.ser.flush()
-            self.ser.close()
+        self.ser.timeout = 0
         self.ser.open()
         self.ser.flush()
 
@@ -199,9 +463,10 @@ class SerialLink():
     
     def checkReceived(self):
         # Read everything out of the serial
-        if (self.ser.in_waiting > 0):
-            msgRecv = self.ser.read(self.ser.in_waiting)
-        
+        while (self.ser.in_waiting > 0):
+#            msgRecv = self.ser.read(self.ser.in_waiting) # doesn't work with serial_for_url
+            msgRecv = self.ser.read(1024)
+            
             # multiple messages could have been read, Split on edge framing
             msgLines = msgRecv.split(frameEdgeByte)
             
