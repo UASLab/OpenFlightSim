@@ -86,7 +86,7 @@ make test
 ### RAPTRS (Minimal for compiling SOC code for AMD64)
 
 ```
-sudo apt-get install g++ libeigen3-dev
+sudo apt-get install g++ libeigen3-dev socat
 
 cd Goldy3
 git clone https://github.com/UASLab/RAPTRS.git
@@ -125,12 +125,6 @@ Start FlightGear again, then from another Terminal (Goldy3/OpenFlightSim/Simulat
 ```python3 python/JSBSim_Script_Demo.py```
 (run for 10 seconds)
 
-### Configs
-```
-cd ~/Goldy3;
-git clone https://github.umn.edu/UAV-Lab/Config.git
-```
-
 ### Tests
 Software in the Loop Test:
 Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
@@ -141,7 +135,7 @@ Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
 ```python3 python/JSBSim_SIL_Demo.py``` (runs through setup, then holds for the SOC to communicate)
 
-```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
+```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/RAPTRS/config/thor.json```
 
 (This should start a SIL, use a connected joystick to fly)
 
@@ -153,8 +147,6 @@ Install github desktop (https://desktop.github.com/)
 Clone: https://github.com/UASLab/OpenFlightSim.git to {path to ...}/Goldy3/OpenFlightSim
 
 Clone: https://github.com/UASLab/RAPTRS.git to {path to ...}/Goldy3/RAPTRS
-
-Clone: https://github.umn.edu/UAV-Lab/Config.git to {path to ...}/Goldy3/Config
 
 Install WLS and Debian (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
@@ -193,7 +185,7 @@ pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases
 
 ### RAPTRS in WSL-Debian (minimal for compiling SOC code for AMD64)
 ```
-sudo apt-get install g++ libeigen3-dev
+sudo apt-get install g++ libeigen3-dev socat
 
 cd Goldy3/RAPTRS/software;
 make flight_amd64
@@ -231,6 +223,6 @@ Anaconda Prompt (at folder: {path to ...}/Goldy3/OpenFlightSim/Simulation):
 
 In another WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
 
-```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/Config/thor.json```
+```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/RAPTRS/config/thor.json```
 
 (This should start a SIL, use a connected joystick to fly)
