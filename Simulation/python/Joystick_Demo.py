@@ -64,7 +64,7 @@ class Joystick:
         self.trig = 2*self.button[1]-1 # "Trigger-Switch"
         self.thrSafe = 2 * self.button[2] - 1 # "Throttle-Safety-Switch"
 
-        self.baseSel = self.axis[7] # "Baseline-Select-Switch"
+        self.baseSel = self.axis[-1] # "Baseline-Select-Switch" (On Windows it came up as 6, on Linux 7...)
 
     def sbus(self):
 
