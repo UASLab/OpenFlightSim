@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <propulsion>
-    <engine name="front right left">
+    <engine name="front right">
         <electric_engine>
             <power unit="WATTS"> 3 </power>
         </electric_engine>

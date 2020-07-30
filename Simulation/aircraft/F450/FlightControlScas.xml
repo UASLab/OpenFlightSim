@@ -30,30 +30,74 @@
           <output>fcs/pilotYaw_norm</output>
       </summer>
 
-      <pure_gain name="refRoll_rps">
-          <input>fcs/pilotRoll_norm</input>
-          <gain>0.3490658503988659</gain>
-          <output>fcs/refRoll_rps</output>
-      </pure_gain>
-      <pure_gain name="refPitch_rps">
-          <input>fcs/pilotPitch_norm</input>
-          <gain>0.3490658503988659</gain>
-          <output>fcs/refPitch_rps</output>
-      </pure_gain>
-      <pure_gain name="refYaw_rps">
-          <input>fcs/pilotYaw_norm</input>
-          <gain>0.3490658503988659</gain>
-          <output>fcs/refYaw_rps</output>
-      </pure_gain>
+    <pure_gain name="refPhi_rad">
+      <input>fcs/pilotRoll_norm</input>
+      <gain>0.3490658503988659</gain>
+      <output>fcs/refPhi_rad</output>
+      <!-- <output>fcs/refRoll_rps</output> -->
+    </pure_gain>
+    <pure_gain name="refTheta_rad">
+      <input>fcs/pilotPitch_norm</input>
+      <gain>0.3490658503988659</gain>
+      <output>fcs/refTheta_rad</output>
+      <!-- <output>fcs/refPitch_rps</output> -->
+    </pure_gain>
+    <pure_gain name="refYaw_rps">
+      <input>fcs/pilotYaw_norm</input>
+      <gain>0.3490658503988659</gain>
+      <output>fcs/refYaw_rps</output>
+    </pure_gain>
   </channel>
 
   <property> fcs/ScasEngage </property>
   <property> fcs/cmdHeave_nd </property>
 
-  <channel name="SCAS">
+  <channel name="InnerLoop-Attitude">
+    <summer>
+      <input>fcs/refPhi_rad</input>
+      <input>-attitude/phi-rad</input>
+      <output>fcs/errPhi_rad</output>
+    </summer>
+
+    <pure_gain>
+      <input>fcs/errPhi_rad</input>
+      <gain>fcs/ScasEngage</gain>
+      <output>fcs/errPhi_rad</output>
+    </pure_gain>
+
+    <pid name="fcs/refRoll_rps">
+      <input>fcs/errPhi_rad</input>
+      <kp>1.000</kp>
+      <ki>0.000</ki>
+      <kd>0.000</kd>
+    </pid>
+
+    <summer>
+      <input>fcs/refTheta_rad</input>
+      <input>-attitude/theta-rad</input>
+      <output>fcs/errTheta_rad</output>
+    </summer>
+
+    <pure_gain>
+      <input>fcs/errTheta_rad</input>
+      <gain>fcs/ScasEngage</gain>
+      <output>fcs/errTheta_rad</output>
+    </pure_gain>
+
+    <pid name="fcs/refPitch_rps">
+      <input>fcs/errTheta_rad</input>
+      <kp>1.000</kp>
+      <ki>0.000</ki>
+      <kd>0.000</kd>
+    </pid>
+
+  </channel>
+
+  <channel name="InnerLoop-Rates">
     <summer>
         <input>fcs/refRoll_rps</input>
-        <input>-sensor/imu/gyroX_rps</input>
+        <input>-velocities/pi-rad_sec</input>
+        <!-- <input>-sensor/imu/gyroX_rps</input> -->
         <output>fcs/errRoll_rps</output>
     </summer>
 
@@ -66,13 +110,14 @@
     <pid name="fcs/cmdRoll_rps">
       <input>fcs/errRoll_rps</input>
       <kp>0.150</kp>
-      <ki>0.050</ki>
-      <kd>0.003</kd>
+      <ki>0.000</ki>
+      <kd>0.012</kd>
     </pid>
 
     <summer>
       <input>fcs/refPitch_rps</input>
-      <input>-sensor/imu/gyroY_rps</input>
+      <input>-velocities/qi-rad_sec</input>
+      <!-- <input>-sensor/imu/gyroY_rps</input> -->
       <output>fcs/errPitch_rps</output>
     </summer>
 
@@ -85,12 +130,13 @@
     <pid name="fcs/cmdPitch_rps">
       <input>fcs/errPitch_rps</input>
       <kp>0.150</kp>
-      <ki>0.050</ki>
-      <kd>0.003</kd>
+      <ki>0.000</ki>
+      <kd>0.012</kd>
     </pid>
 
     <summer>
         <input>fcs/refYaw_rps</input>
+        <!-- <input>-velocities/ri-rad_sec</input> -->
         <input>-sensor/imu/gyroZ_rps</input>
         <output>fcs/errYaw_rps</output>
     </summer>
@@ -112,22 +158,22 @@
   <channel name="Control Mixer">
     <pure_gain name="cmdHeave_mps_2_FR">
         <input>fcs/cmdHeave_nd</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdHeave_nd_2_FR</output>
     </pure_gain>
     <pure_gain name="cmdRoll_rps_2_FR">
         <input>fcs/cmdRoll_rps</input>
-        <gain>-0.25</gain>
+        <gain>-1.0</gain>
         <output>fcs/cmdRoll_rps_2_FR</output>
     </pure_gain>
     <pure_gain name="cmdPitch_rps_2_FR">
         <input>fcs/cmdPitch_rps</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdPitch_rps_2_FR</output>
     </pure_gain>
     <pure_gain name="cmdYaw_rps_2_FR">
         <input>fcs/cmdYaw_rps</input>
-        <gain>-0.25</gain>
+        <gain>-1.0</gain>
         <output>fcs/cmdYaw_rps_2_FR</output>
     </pure_gain>
     <summer name="throtFR_nd">
@@ -140,22 +186,22 @@
 
     <pure_gain name="cmdHeave_mps_2_AL">
         <input>fcs/cmdHeave_nd</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdHeave_nd_2_AL</output>
     </pure_gain>
     <pure_gain name="cmdRoll_rps_2_AL">
         <input>fcs/cmdRoll_rps</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdRoll_rps_2_AL</output>
     </pure_gain>
     <pure_gain name="cmdPitch_rps_2_AL">
         <input>fcs/cmdPitch_rps</input>
-        <gain>-0.25</gain>
+        <gain>-1.0</gain>
         <output>fcs/cmdPitch_rps_2_AL</output>
     </pure_gain>
     <pure_gain name="cmdYaw_rps_2_AL">
         <input>fcs/cmdYaw_rps</input>
-        <gain>-0.25</gain>
+        <gain>-1.0</gain>
         <output>fcs/cmdYaw_rps_2_AL</output>
     </pure_gain>
     <summer name="throtAL_nd">
@@ -168,22 +214,22 @@
 
     <pure_gain name="cmdHeave_mps_2_FL">
         <input>fcs/cmdHeave_nd</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdHeave_nd_2_FL</output>
     </pure_gain>
     <pure_gain name="cmdRoll_rps_2_FL">
         <input>fcs/cmdRoll_rps</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdRoll_rps_2_FL</output>
     </pure_gain>
     <pure_gain name="cmdPitch_rps_2_FL">
         <input>fcs/cmdPitch_rps</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdPitch_rps_2_FL</output>
     </pure_gain>
     <pure_gain name="cmdYaw_rps_2_FL">
         <input>fcs/cmdYaw_rps</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdYaw_rps_2_FL</output>
     </pure_gain>
     <summer name="throtFL_nd">
@@ -196,22 +242,22 @@
 
     <pure_gain name="cmdHeave_mps_2_AR">
         <input>fcs/cmdHeave_nd</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdHeave_nd_2_AR</output>
     </pure_gain>
     <pure_gain name="cmdRoll_rps_2_AR">
         <input>fcs/cmdRoll_rps</input>
-        <gain>-0.25</gain>
+        <gain>-1.0</gain>
         <output>fcs/cmdRoll_rps_2_AR</output>
     </pure_gain>
     <pure_gain name="cmdPitch_rps_2_AR">
         <input>fcs/cmdPitch_rps</input>
-        <gain>-0.25</gain>
+        <gain>-1.0</gain>
         <output>fcs/cmdPitch_rps_2_AR</output>
     </pure_gain>
     <pure_gain name="cmdYaw_rps_2_AR">
         <input>fcs/cmdYaw_rps</input>
-        <gain>0.25</gain>
+        <gain>1.0</gain>
         <output>fcs/cmdYaw_rps_2_AR</output>
     </pure_gain>
     <summer name="throtAR_nd">

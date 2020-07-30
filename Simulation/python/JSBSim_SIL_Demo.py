@@ -8,7 +8,6 @@ Created on Tue Jun 23 11:22:02 2020
 
 import time
 import os
-import pygame
 import numpy as np
 
 pathGoldy3 = os.path.abspath('../..')
@@ -33,23 +32,24 @@ if __name__ == "__main__" and __package__ is None:
 
 import fmu_messages
 from FMU import AircraftSocComms
+from FMU import Joystick
 
 # Act as the FMU side of the FMU-SOC comms.
 
 # Start a Virtual link for a psuedo-tty through TCP
 #On BBB or Linux: ./start_CommSOC.sh
 
-# Try to detect how the system is setup, SIL or PIL
-if os.path.exists('ptySimSoc') == True:
-    if os.path.exists('ptySimFmu') == True: # If both PTY exist then use it as a direct bridge
-        host = None
-        port = 'ptySimFmu'
-        print('Running in SIL-PTY Mode')
-    else: # The SOC PTY is present, since the FMU PTY is not present assume its on TCP localhost
-        host = 'localhost'
-        port = 59600
-        print('Running in SIL Mode: host = localhost')
-else:
+runmode = 'SIL-TCP'
+if runmode == 'SIL-PTY': # SIL Direct PTY-PTY
+    host = None
+    port = 'ptySimFmu'
+    print('Running in SIL-PTY Mode')
+elif runmode == 'SIL-TCP': # SIL via TCP on localhost
+    host = 'localhost'
+    port = 59600
+    print('Running in SIL Mode: host = localhost')
+elif runmode == 'PIL': # PIL/HIL via TCP
+    # PIL
     host = '192.168.7.2'
     port = 59600
     print('Running in PIL/HIL Mode: host = 192.168.7.2')
@@ -58,9 +58,11 @@ else:
 # Visualization is defined for JSBSim in the OutputFgfs.xml, Flightgear should be running prior
 # Linux: ./fgfs_JSBSim.sh UltraStick25e
 # Windows: ./fgfs_JSBSim.bat UltraStick25e
-    
+
 import psutil
 if 'fgfs' in [p.name() for p in psutil.process_iter()]:
+    visuals = True
+elif 'fgfs.exe' in [p.name() for p in psutil.process_iter()]:
     visuals = True
 else:
     visuals = False
@@ -70,55 +72,16 @@ else:
 
 
 #%% Joystick as SBUS source
-pygame.init()
-
-# Set up the joystick
-pygame.joystick.init()
-
-# Enumerate joysticks
-joyList = []
-for i in range(0, pygame.joystick.get_count()):
-    joyList.append(pygame.joystick.Joystick(i).get_name())
-    
-print(joyList)
-
-if joyList == []:
-    print('Warning: joystick not found, SBUS will be zeros')
-
-# By default, load the first available joystick.
-joy = []
-if (len(joyList) > 0):
-    joy = pygame.joystick.Joystick(0)
-    joy.init()
-    
-
 # Joystick Map, FIXIT - this is hacky
 # OpenTX Mixer: 1-Roll, 2-Pitch, 3-Thrt, 4-Yaw, 5-SA, 6-SB, 7-SC, 8-<blank>
 # SBUS def from thor.json:
-def JoyMap(joy):
-    msg = [0.0] * 16
-    
-    if joy != []:
-        joyAxes = [joy.get_axis(i) for i in range(joy.get_numaxes())]
-        joyButtons = [joy.get_button(i) for i in range(joy.get_numbuttons())]
-        #joyHats = [joy.get_hat(i) for i in range(joy.get_numhats())]
-        
-        
-        msg[0] = 2*joyButtons[0]-1 # Autopilot mode (-1=FMU, 1=SOC)
-        msg[1] = 2*joyButtons[2]-1 # Throttle Cut
-        msg[2] = 0 # RSSI
-        msg[3] = joyAxes[0] # Roll
-        msg[4] = joyAxes[1] # Pitch
-        msg[5] = joyAxes[3] # Yaw
-        msg[6] = 0 # Flap
-        msg[7] = joyAxes[2] # Throttle
-        msg[8] = joyAxes[4] # Control Mode
-        msg[9] = joyAxes[5] # Test Select
-        msg[10] = 2*joyButtons[1]-1 # Trigger (-1=Nothing, 1=Trigger)
-        msg[11] = joyAxes[6] # Baseline Select
-    
-    return msg
-    
+
+joystick = Joystick()
+
+# Run the joustick just to populate messages
+joystick.update()
+joystick.sbus()
+
 
 #%% JSBSim
 import jsbsim as jsb
@@ -163,9 +126,17 @@ fdm.run()
 fdm.do_trim(2)
 fdm.get_trim_status()
 
-print('Theta :', fdm['attitude/theta-deg'])
-
 fdm.enable_output()
+
+print('Ax :', fdm['sensor/imu/accelX_mps2'])
+print('Ay :', fdm['sensor/imu/accelY_mps2'])
+print('Az :', fdm['sensor/imu/accelZ_mps2'])
+
+print('Phi :', fdm['attitude/phi-deg'])
+print('Theta :', fdm['attitude/theta-deg'])
+print('Psi :', fdm['attitude/psi-deg'])
+print('Alpha :', fdm['aero/alpha-deg'])
+
 
 #%%
 SocComms = AircraftSocComms(host, port)
@@ -178,96 +149,91 @@ dataMsgCommand = fmu_messages.command_effectors()
 dataMsgBifrost = fmu_messages.data_bifrost()
 
 tStart_s = time.time()
-tFdm_s = 0.0
-tFrameRate_s = 1/50 # Desired Run rate
+tSend_s = 0.0
+fdmStart = False
 
+tFrameRate_s = 1/50 # Desired Run rate
 while (True):
-    tFrameStart_s = time.time()
-    time_s = tFrameStart_s - tStart_s
-    
+    time_s = time.time() - tStart_s
     # Update Mission run mode
     # FIXIT - No FMU Controller or Mission emulated in Python
-    
-    #
-    if (fmuMode is 'Run'):
+
+    # Send Sensor data on tFrameRate_s intervals, apply a little tweak to account for time to send packets
+    if (fmuMode == 'Run') and (time_s - tSend_s >= tFrameRate_s - 0.5e-3):
+        tSend_s = time.time() - tStart_s
+
         # Read all the joystick values
-        pygame.event.get(pump = True) # Pump, retreive events so they clear
-        joyVals = JoyMap(joy)
-        
-        SocComms.SendSensorMessages(time_s, fdm, joyVals)
-    
+        joystick.update()
+        joyMsg = joystick.sbus()
+
+        # Send all the sensor messages
+        SocComms.SendSensorMessages(time_s, fdm, joyMsg)
+
     # Check and Recieve Messages
     while(SocComms.CheckMessage()):
         msgID, msgAddress, msgPayload = SocComms.ReceiveMessage()
-        
+
         # Message did not have an ID, likely a SerialLink Ack/Nack message
         if msgID is None:
             continue
-        
-        if msgID == fmu_messages.command_mode_id: # request mode
-                    
+
+        if msgID == fmu_messages.command_mode_id: # request mode change
+
             fmuModeMsg = fmu_messages.command_mode()
             fmuModeMsg.unpack(msg = msgPayload[-1].to_bytes(1, byteorder = 'little'))
-            
+
             if fmuModeMsg.mode == 0:
                 fmuMode = 'Config'
             elif fmuModeMsg.mode == 1:
                 fmuMode = 'Run'
-                    
+
             print ('Set FMU Mode: ' + fmuMode)
-                
-        elif (fmuMode is 'Run'):
-            # Receive Command Effectors
+
+        elif (fmuMode == 'Run'):
+            # Receive Effector Commands
             if msgID == dataMsgCommand.id:
+                tReceive_s = time.time() - tStart_s
                 dataMsgCommand.unpack(msg = msgPayload)
 
                 # FIXIT - This may be pretty fragile for general use
                 # Create the list of effector fields from the FDM.
+                # This needs to run after all the effector config messages have been received.
                 import difflib
                 if SocComms.effListFdm == []:
-                    SocComms.effListFdm = []
                     for eff in SocComms.effList:
                         effName = eff.split('/')[-1]
                         match = difflib.get_close_matches(effName, fdm.query_property_catalog('_ext_'))[0]
-                        
+
                         SocComms.effListFdm.append(match.strip(' (RW)'))
                     print(SocComms.effListFdm)
-                
-#                SocComms.effListFdm = ['fcs/cmdMotor_ext_nd', 
-#                    'fcs/cmdElev_ext_rad',
-#                    'fcs/cmdRud_ext_rad', 
-#                    'fcs/cmdAilR_ext_rad', 
-#                    'fcs/cmdFlapR_ext_rad', 
-#                    'fcs/cmdFlapL_ext_rad', 
-#                    'fcs/cmdAilL_ext_rad']
-                
+
                 # Populate the FDM commands from the dataMsgCommand.command values
                 for iEff, eff in enumerate(SocComms.effListFdm):
                     fdm[eff] = dataMsgCommand.command[iEff]
 
-#                print(dataMsgCommand.command)
+                # print(time_s, tSend_s, tReceive_s, dataMsgCommand.command[0:dataMsgCommand.num_active])
             elif msgID == dataMsgBifrost.id: # FIXIT -
                 pass
                 # dataMsgBifrost.unpack(msg = msgPayload)
-                 
-        elif (fmuMode is 'Config'):
-            # Parse Message as a config message
-            SocComms.Config(msgID, msgPayload) 
-            
-    
-    # Step the FDM
-    tFdm_s += tFrameRate_s
-    if (fmuMode is 'Run'):
-        while (fdm.get_sim_time() <= (tFdm_s - fdm.get_delta_t())): # Run the FDM
-            fdm.run()
-        
-    # Timer, do not expect realtime
-    tHold_s = tFrameRate_s - (time.time() - tFrameStart_s)
-    if tHold_s > 0:
-        time.sleep(tHold_s)
-    
-# end while(True)
-        
-#SocComms.Close()
 
+        elif (fmuMode == 'Config'):
+            # Parse Message as a config message
+            SocComms.Config(msgID, msgPayload)
+
+    # Start the FDM
+    if fdmStart == False:
+        fdm.set_sim_time(time_s)
+        fdmStart = True
+
+    # Step the FDM
+    # FDM should run at least to the current time, catch-up if required
+    while (fdm.get_sim_time() < time_s) :
+        fdm.run()
+
+    # FDM step once, but no further than the next controller frame start
+    tFdm_s = tSend_s + tFrameRate_s - fdm.get_delta_t()
+    if (fmuMode == 'Run') and (fdm.get_sim_time() < tFdm_s): # Run the FDM
+        fdm.run()
+
+    # print(time_s, '\t', 1e3 * ((time.time() - tStart_s) - time_s), 1e3 * (time_s - tSend_s), '\t', 1e3 * (time_s - tReceive_s), '\t', 1e3 * (time_s - fdm.get_sim_time()))
 

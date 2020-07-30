@@ -62,7 +62,7 @@ fdm.set_output_directive(path.join('scripts', 'OutputLog.xml'))
 i = 0
 while (str(fdm.get_output_filename(i), 'utf-8') != ''):
     outStr = str(fdm.get_output_filename(i), 'utf-8')
-    if '/TCP' in outStr:
+    if '/UDP' in outStr:
         print('Output FGFS: ', outStr)
     elif '.csv' in outStr:
         fileLog = outStr
@@ -166,11 +166,11 @@ for t_s in tSamp_s:
     # Read Sensors
     refPhi = 0
     refTheta = sensTheta0
-    
+
     sensPhi = fdm['attitude/phi-rad']
     sensTheta = fdm['attitude/theta-rad']
     sensR = fdm['velocities/r-rad_sec']
-    
+
     # Roll Doublet
 #    if t_s < 2:
 #        refPhi = 0
@@ -180,7 +180,7 @@ for t_s in tSamp_s:
 #        refPhi = 0 - 20 *np.pi/180.0
 #    else:
 #        refPhi = 0
-    
+
     # Pitch Doublet
     if t_s < 2:
         refTheta = sensTheta0
@@ -191,20 +191,20 @@ for t_s in tSamp_s:
     else:
         refTheta = sensTheta0
 
-    ## Run Scas    
+    ## Run Scas
     inScas = np.array([refPhi, sensPhi, refTheta, sensTheta, sensR])
     tScas, yScas, xScas = control.forced_response(sysScas, T = tStep, U = np.array([inScas, inScas]).T, X0 = xScas[:,-1])
 
     # Surface Mixer
     cmdP, cmdQ, cmdR = yScas[:,-1]
-    
+
     uMixer = np.array([cmdP, cmdQ, cmdR])
     yMixer = mixSurf @ uMixer
     cmdElev_rad, cmdRud_rad, cmdAilR_rad, cmdFlapR_rad, cmdFlapL_rad, cmdAilL_rad = yMixer
-    
+
     # Thurst Mixer
     cmdMotor_nd = cmdMotor0
-    
+
     ##
     # Write the Effectors
     fdm['fcs/throttle-cmd-norm'] = cmdMotor_nd
@@ -221,7 +221,7 @@ for t_s in tSamp_s:
 
     refThetaList.append(refTheta)
     sensThetaList.append(sensTheta)
-    
+
     sensVList.append(fdm['velocities/vt-fps'] * 0.3048)
 
     # Step the FDM
