@@ -100,7 +100,8 @@ make datalog_amd64
 
 ### OpenFlightSim
 ```
-sudo apt-get install socat netcat python3-pygame python3-serial python3-numpy python3-pandas
+sudo apt-get install socat netcat python3-serial python3-numpy python3-pandas
+pip3 install pysdl2
 
 mkdir Goldy3; cd Goldy3
 git clone https://github.com/UASLab/OpenFlightSim.git
@@ -129,7 +130,7 @@ Start FlightGear again, then from another Terminal (Goldy3/OpenFlightSim/Simulat
 Software in the Loop Test:
 Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
-```./start_CommSoc.sh``` (this should be able to just stay running)
+```./start_CommSoc.sh```
 
 ```./fgfs_JSBSim.sh UltraStick25e``` (this should be able to just stay running)
 
@@ -164,9 +165,8 @@ https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Windows-x86_64.exe
 Then open a "Anaconda Prompt" in Windows.
 
 ```
-conda install numpy scipy matplotlib ipython jupyter pandas sympy nose h5py spyder pyserial
+conda install numpy scipy matplotlib ipython jupyter pandas sympy nose h5py spyder pyserial pysdl2
 conda install -c conda-forge slycot control
-pip install pygame
 ```
 
 ### Flightgear
