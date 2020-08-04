@@ -33,14 +33,14 @@
     <pure_gain name="refPhi_rad">
       <input>fcs/pilotRoll_norm</input>
       <gain>0.3490658503988659</gain>
-      <!-- <output>fcs/refPhi_rad</output> -->
-      <output>fcs/refRoll_rps</output>
+      <output>fcs/refPhi_rad</output>
+      <!-- <output>fcs/refRoll_rps</output> -->
     </pure_gain>
     <pure_gain name="refTheta_rad">
       <input>fcs/pilotPitch_norm</input>
       <gain>0.3490658503988659</gain>
-      <!-- <output>fcs/refTheta_rad</output> -->
-      <output>fcs/refPitch_rps</output>
+      <output>fcs/refTheta_rad</output>
+      <!-- <output>fcs/refPitch_rps</output> -->
     </pure_gain>
     <pure_gain name="refYaw_rps">
       <input>fcs/pilotYaw_norm</input>
@@ -52,7 +52,7 @@
   <property> fcs/ScasEngage </property>
   <property> fcs/cmdHeave_nd </property>
 
-  <!-- <channel name="InnerLoop-Attitude">
+  <channel name="InnerLoop-Attitude">
     <summer>
       <input>fcs/refPhi_rad</input>
       <input>-attitude/phi-rad</input>
@@ -91,7 +91,7 @@
       <kd>0.000</kd>
     </pid>
 
-  </channel> -->
+  </channel>
 
   <channel name="InnerLoop-Rates">
     <summer>
@@ -136,8 +136,8 @@
 
     <summer>
         <input>fcs/refYaw_rps</input>
-        <input>-velocities/ri-rad_sec</input>
-        <!-- <input>-sensor/imu/gyroZ_rps</input> -->
+        <!-- <input>-velocities/ri-rad_sec</input> -->
+        <input>-sensor/imu/gyroZ_rps</input>
         <output>fcs/errYaw_rps</output>
     </summer>
 
@@ -151,7 +151,7 @@
       <input>fcs/errYaw_rps</input>
       <kp>0.300</kp>
       <ki>0.100</ki>
-      <kd>0.100</kd>
+      <kd>0.0</kd>
     </pid>
   </channel>
 
