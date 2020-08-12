@@ -61,6 +61,12 @@ Advances on PIL; now the SOC is connected to a hardware FMU. Individual FMU<->SO
 
 ![Hardware in the loop diagram](HIL.png)
 
+# Transmitter Setup
+The SIL Examples use a specific hard-coded transmitter setup. This setup mimics the critical switch behavior used in RAPTRS, but with some limitations.
+The transmitter and model definitions can be loaded via the OpenTX Companion tool: http://www.open-tx.org/2020/03/28/opentx-2.3.7
+
+![Transmitter Definition File](TransmitterDefine.otx)
+
 # Install
 ## Linux (Debian 10.4): 
 ### Flightgear
