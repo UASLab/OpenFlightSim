@@ -123,13 +123,13 @@ Start FlightGear from a Terminal (Goldy3/OpenFlightSim/Simulation):
 
 then from another Terminal (Goldy3/OpenFlightSim/Simulation):
 
-```JSBSim scripts/jsb_UltraStick25e_Cruise.xml```
+```JSBSim scripts/Test_UltraStick25e_Cruise.xml```
 (should run for 100 seconds)
 
 Test 2:
 Start FlightGear again, then from another Terminal (Goldy3/OpenFlightSim/Simulation):
 
-```python3 python/JSBSim_Script_Demo.py```
+```python3 python/Example_Script_UltraStick25e.py```
 (run for 10 seconds)
 
 ### Tests
@@ -140,7 +140,7 @@ Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
 ```./fgfs_JSBSim.sh UltraStick25e``` (this should be able to just stay running)
 
-```python3 python/JSBSim_SIL_Demo.py``` (runs through setup, then holds for the SOC to communicate)
+```python3 python/Example_SIL_UltraStick25e.py``` (runs through setup, then holds for the SOC to communicate)
 
 ```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/RAPTRS/config/thor.json```
 
@@ -203,7 +203,7 @@ Test 1:
 Start FGFS in Windows with: fgfs_JSBSim.bat
 then in a "Anaconda Prompt":
 
-```JSBSim scripts/jsb_UltraStick25e_Cruise.xml```
+```JSBSim scripts/Test_UltraStick25e_Cruise.xml```
 
 (should run for 100 seconds)
 
@@ -211,7 +211,7 @@ Test 2:
 with FGFS running...
 then in a "Anaconda Prompt":
 
-```python3 python/JSBSim_Script_Demo.py```
+```python3 python/Example_Script_UltraStick25e.py```
 
 (should run for 10 seconds)
 
@@ -225,7 +225,7 @@ In a WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
 
 Anaconda Prompt (at folder: {path to ...}/Goldy3/OpenFlightSim/Simulation):
 
-```python python\JSBSim_SIL_Demo.py```
+```python python\Example_SIL_UltraStick25e.py```
 
 In another WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
 
