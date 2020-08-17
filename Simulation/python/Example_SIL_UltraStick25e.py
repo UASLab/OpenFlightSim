@@ -39,33 +39,70 @@ from JSBSimWrapper import JSBSimWrap
 # Start a Virtual link for a psuedo-tty through TCP
 #On BBB or Linux: ./start_CommSOC.sh
 
-runmode = 'SIL-TCP'
-if runmode == 'SIL-PTY': # SIL Direct PTY-PTY
+
+#%% Argument Parsing
+import argparse
+
+# Initialize parser
+parser = argparse.ArgumentParser()
+
+# Adding optional argument
+parser.add_argument("--modelName", default = 'UltraStick25e', help = "Vehicle Model Name ('UltraStick25e', 'F450')")
+parser.add_argument("--runMode", default = 'SIL-TCP', help = "Simulation Run Mode ('SIL-PTY', 'SIL-TCP', 'PIL', 'HIL')")
+#parser.add_argument("--VisForce", default = True, help = "Force FlightGear Visuals")
+
+# Read arguments from command line
+args = parser.parse_args()
+
+# Local variables
+modelName = args.modelName
+runMode = args.runMode
+
+#fgfsForce = False
+#if args.VisForce:
+#    fgfsForce = True
+
+
+#%% Setup Connections
+# Setup FMU-SOC comms
+if runMode == 'SIL-PTY': # SIL Direct PTY-PTY
     host = None
     port = 'ptySimFmu'
     print('Running in SIL-PTY Mode')
-elif runmode == 'SIL-TCP': # SIL via TCP on localhost
+elif runMode == 'SIL-TCP': # SIL via TCP on localhost
     host = 'localhost'
     port = 59600
     print('Running in SIL Mode: host = localhost')
-elif runmode == 'PIL': # PIL/HIL via TCP
+elif runMode == ('PIL' or 'HIL'): # PIL/HIL via TCP
     # PIL
     host = '192.168.7.2'
     port = 59600
     print('Running in PIL/HIL Mode: host = 192.168.7.2')
 
-
-# Visualization is defined for JSBSim in the OutputFgfs.xml, Flightgear should be running prior
-# Linux: ./fgfs_JSBSim.sh F450
-# Windows: ./fgfs_JSBSim.bat F450
+# FlightGear Visuals
+# Visualization is defined for JSBSim in the OutputFgfs.xml
+# Linux: ./fgfs_JSBSim.sh {modelName}
+# Windows: ./fgfs_JSBSim.bat {modelName}
 
 import psutil
-if 'fgfs' in [p.name() for p in psutil.process_iter()]:
-    visuals = True
-elif 'fgfs.exe' in [p.name() for p in psutil.process_iter()]:
-    visuals = True
+import subprocess
+
+if psutil.LINUX:
+    fgfsExc = 'fgfs'
+    fgfsCmd = './fgfs_JSBSim.sh ' + modelName
+elif psutil.WINDOWS:
+    fgfsExc = 'fgfs.exe'
+    fgfsCmd = './fgfs_JSBSim.bat ' + modelName
 else:
-    visuals = False
+    fgfsCmd = None
+
+if fgfsExc in [p.name() for p in psutil.process_iter()]:
+    fgfsRunning = True
+else:
+    fgfsRunning = False
+#    if fgfsForce == True: # FGFS isn't running, force it.
+#        subprocess.Popen([fgfsCmd], shell=True, stdin=None, stdout=None, stderr=None)
+
 
 # Once this script is running, and waiting...
 # Linux: flight_amd64 thor.json
@@ -83,13 +120,15 @@ joystick.update()
 joystick.sbus()
 
 
-#%%
+#%% JSBSim
 ## Load Sim
-sim = JSBSimWrap('F450')
+sim = JSBSimWrap(modelName)
 sim.SetupIC('initGrnd.xml')
-sim.SetupOutput(['scripts/OutputFgfs.xml'])
+sim.SetupOutput()
 sim.DispOutput()
 sim.RunTrim()
+
+sim.SetTurb(turbType = 4, turbSeverity = 1, vWind20_mps = 3.0, vWindHeading_deg = 0.0)
 
 # Start Comms with SOC
 SocComms = AircraftSocComms(host, port)
@@ -182,12 +221,10 @@ while (True):
 
     # Step the FDM
     # FDM should run at least to the current time, catch-up if required
-    tFdm_s = sim.RunTo(time_s)
-    
+    tFdm_s = sim.RunTo(time_s, updateWind = True)
+
     # FDM step once, but no further than the next controller frame start
     if (fmuMode == 'Run'):
-        tFdm_s = sim.RunTo(tSend_s + tFrameRate_s - sim.fdm.get_delta_t())
-
+        tFdm_s = sim.RunTo(tSend_s + tFrameRate_s - sim.fdm.get_delta_t(), updateWind = True)
 
     # print(time_s, '\t', 1e3 * ((time.time() - tStart_s) - time_s), 1e3 * (time_s - tSend_s), '\t', 1e3 * (time_s - tReceive_s), '\t', 1e3 * (time_s - sim.fdm.get_sim_time()))
-

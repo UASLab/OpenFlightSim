@@ -6,20 +6,9 @@ Created on Tue Jun 23 11:22:02 2020
 @author: rega0051
 """
 
-import os
 import numpy as np
 
-pathGoldy3 = os.path.abspath('../..')
-pathRaptrs = os.path.join(pathGoldy3, 'RAPTRS')
-pathRaptrsCommon = os.path.join(pathRaptrs, 'software', 'src', 'common')
-
-# Hack to allow loading the RAPTRS package
-from sys import path
-path.insert(0, pathRaptrsCommon)
-
-del path
-
-# Hack to load FMU
+# Hack to load OpenFlightSim Modules
 if __name__ == "__main__" and __package__ is None:
     from sys import path, argv
     from os.path import dirname, abspath, join
@@ -29,63 +18,19 @@ if __name__ == "__main__" and __package__ is None:
 
     del path, argv, dirname, abspath, join
 
-import control
+from JSBSimWrapper import JSBSimWrap
 
 # Visualization is defined for JSBSim in the OutputFgfs.xml, Flightgear should be running prior
-# Linux: ./fgfs_JSBSim.sh UltraStick25e
-# Windows: ./fgfs_JSBSim.bat UltraStick25e
+# Linux: ./fgfs_JSBSim.sh {model}
+# Windows: ./fgfs_JSBSim.bat {model}
 
 
-#%% JSBSim
-import jsbsim as jsb
-from os import path
+#%% Define Controllers
+import control
 
-pathJSB = '.'
-fdm = jsb.FGFDMExec(pathJSB, None)
-
-model = 'UltraStick25e'
-
-fdm.load_model(model)
-fdm.set_dt(1/200)
-
-# Load IC file
-fdm.load_ic('initCruise.xml', True)
-
-# Setup JSBSim to FlightGear
-fdm.set_output_directive(path.join('scripts', 'OutputFgfs.xml'))
-
-# Setup JSBSim Logging
-fdm.set_output_directive(path.join('scripts', 'OutputLog.xml'))
-
-
-# Display the Output
-i = 0
-while (str(fdm.get_output_filename(i), 'utf-8') != ''):
-    outStr = str(fdm.get_output_filename(i), 'utf-8')
-    if '/UDP' in outStr:
-        print('Output FGFS: ', outStr)
-    elif '.csv' in outStr:
-        fileLog = outStr
-        print('Output Log: ', outStr)
-    i += 1
-
-# FDM Initialize
-fdm.disable_output() # Disable Output
-fdm.run_ic()
-
-fdm['fcs/throttle-cmd-norm'] = 0.5
-fdm.run()
-fdm.do_trim(1)
-fdm.get_trim_status()
-
-print('Alpha :', fdm['aero/alpha-deg'])
-
-fdm.enable_output()
-
-#% Define Controllers
 tFrameRate_s = 1/50 # Desired Run rate
 
-def PID2(Kp = 1, Ki = 0.0, Kd = 0, b = 1, c = 1, Tf = 0):
+def PID2(Kp = 1, Ki = 0.0, Kd = 0, b = 1, c = 1, Tf = 0, dt = None):
     # Inputs: ['ref', 'sens']
     # Outputs: ['cmd']
 
@@ -98,6 +43,9 @@ def PID2(Kp = 1, Ki = 0.0, Kd = 0, b = 1, c = 1, Tf = 0):
     sys.D = sys.D[0,:] - sys.D[1,:]
 
     sys.outputs = 1
+    
+    if dt is not None:
+        sys = control.c2d(sys, dt)
 
     return sys
 
@@ -134,17 +82,30 @@ mixSurf [abs(mixSurf) / np.max(abs(mixSurf)) < 0.05] = 0.0
 
 
 #%%
-refPhi = fdm['attitude/phi-rad']
-sensPhi0 = fdm['attitude/phi-rad']
-refTheta = fdm['attitude/theta-rad']
-sensTheta0 = fdm['attitude/theta-rad']
-sensR0 = fdm['velocities/r-rad_sec']
+## Load Sim
+model = 'UltraStick25e'
+sim = JSBSimWrap(model)
+sim.SetupIC('initCruise.xml')
+sim.SetupOutput()
+sim.DispOutput()
+sim.RunTrim(trimType = 0, throttle = 0.5)
+sim.DispTrim()
+
+sim.SetTurb(turbType = 4, turbSeverity = 1, vWind20_mps = 5.0, vWindHeading_deg = 0.0)
+
+##
+sensPhi0 = sim.fdm['attitude/phi-rad']
+sensTheta0 = sim.fdm['attitude/theta-rad']
+sensR0 = sim.fdm['velocities/r-rad_sec']
+
+refPhi = sensPhi0
+refTheta = sensTheta0
 
 # Mixer Init
-yMixer0 = np.array([fdm['fcs/cmdElev_rad'], fdm['fcs/cmdRud_rad'], fdm['fcs/cmdAilR_rad'], fdm['fcs/cmdFlapR_rad'], fdm['fcs/cmdFlapL_rad'], fdm['fcs/cmdAilL_rad']])
+yMixer0 = np.array([sim.fdm['fcs/cmdElev_rad'], sim.fdm['fcs/cmdRud_rad'], sim.fdm['fcs/cmdAilR_rad'], sim.fdm['fcs/cmdFlapR_rad'], sim.fdm['fcs/cmdFlapL_rad'], sim.fdm['fcs/cmdAilL_rad']])
 uMixer0 = ctrlEff @ yMixer0
 
-cmdMotor0 = np.array([fdm['fcs/throttle-pos-norm']])
+cmdMotor0 = np.array([sim.fdm['fcs/throttle-pos-norm']])
 
 # SCAS Init
 xScas = np.matrix(np.zeros(sysScas.states)).T
@@ -153,7 +114,6 @@ xScas = np.matrix(np.zeros(sysScas.states)).T
 # Time
 tStep = np.array([[0, tFrameRate_s]])
 tSamp_s = np.arange(0, 20, tFrameRate_s)
-tFdm_s = 0.0
 
 refPhiList = []
 refThetaList = []
@@ -167,9 +127,9 @@ for t_s in tSamp_s:
     refPhi = 0
     refTheta = sensTheta0
 
-    sensPhi = fdm['attitude/phi-rad']
-    sensTheta = fdm['attitude/theta-rad']
-    sensR = fdm['velocities/r-rad_sec']
+    sensPhi = sim.fdm['attitude/phi-rad']
+    sensTheta = sim.fdm['attitude/theta-rad']
+    sensR = sim.fdm['velocities/r-rad_sec']
 
     # Roll Doublet
 #    if t_s < 2:
@@ -182,11 +142,11 @@ for t_s in tSamp_s:
 #        refPhi = 0
 
     # Pitch Doublet
-    if t_s < 2:
+    if t_s < 10:
         refTheta = sensTheta0
-    elif t_s < 4:
+    elif t_s < 12:
         refTheta = sensTheta0 + 5 *np.pi/180.0
-    elif t_s < 6:
+    elif t_s < 14:
         refTheta = sensTheta0 - 5 *np.pi/180.0
     else:
         refTheta = sensTheta0
@@ -207,13 +167,13 @@ for t_s in tSamp_s:
 
     ##
     # Write the Effectors
-    fdm['fcs/throttle-cmd-norm'] = cmdMotor_nd
-    fdm['fcs/cmdElev_ext_rad'] = cmdElev_rad
-    fdm['fcs/cmdRud_ext_rad'] = cmdRud_rad
-    fdm['fcs/cmdAilR_ext_rad'] = cmdAilR_rad
-    fdm['fcs/cmdFlapR_ext_rad'] = cmdFlapR_rad
-    fdm['fcs/cmdFlapL_ext_rad'] = cmdFlapL_rad
-    fdm['fcs/cmdAilL_ext_rad'] = cmdAilL_rad
+    sim.fdm['fcs/throttle-cmd-norm'] = cmdMotor_nd
+    sim.fdm['fcs/cmdElev_ext_rad'] = cmdElev_rad
+    sim.fdm['fcs/cmdRud_ext_rad'] = cmdRud_rad
+    sim.fdm['fcs/cmdAilR_ext_rad'] = cmdAilR_rad
+    sim.fdm['fcs/cmdFlapR_ext_rad'] = cmdFlapR_rad
+    sim.fdm['fcs/cmdFlapL_ext_rad'] = cmdFlapL_rad
+    sim.fdm['fcs/cmdAilL_ext_rad'] = cmdAilL_rad
 
 
     refPhiList.append(refPhi)
@@ -222,16 +182,15 @@ for t_s in tSamp_s:
     refThetaList.append(refTheta)
     sensThetaList.append(sensTheta)
 
-    sensVList.append(fdm['velocities/vt-fps'] * 0.3048)
+    sensVList.append(sim.fdm['velocities/vt-fps'] * 0.3048)
 
     # Step the FDM
-    tFdm_s += tFrameRate_s
-    while (fdm.get_sim_time() <= (tFdm_s - fdm.get_delta_t())): # Run the FDM
-        fdm.run()
+    tFdm_s = sim.RunTo(t_s + tFrameRate_s - sim.fdm.get_delta_t(), updateWind = True)
 
-#
+
+#%%
 import matplotlib.pyplot as plt
-#plt.figure()
+#plt.figure(1)
 plt.subplot(3,1,1)
 plt.plot(tSamp_s, np.array(refPhiList) * 180/np.pi)
 plt.plot(tSamp_s, np.array(sensPhiList) * 180/np.pi)

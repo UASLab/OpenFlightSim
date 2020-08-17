@@ -8,7 +8,6 @@ Created on Tue Jun 23 11:22:02 2020
 
 import time
 import os
-import numpy as np
 
 pathGoldy3 = os.path.abspath('../..')
 pathRaptrs = os.path.join(pathGoldy3, 'RAPTRS')
@@ -19,7 +18,7 @@ from sys import path
 path.insert(0, pathRaptrsCommon)
 del path
 
-# Hack to load FMU
+# Hack to load OpenFlightSim Modules
 if __name__ == "__main__" and __package__ is None:
     from sys import path, argv
     from os.path import dirname, abspath, join
@@ -33,6 +32,7 @@ if __name__ == "__main__" and __package__ is None:
 import fmu_messages
 from FMU import AircraftSocComms
 from FMU import Joystick
+from JSBSimWrapper import JSBSimWrap
 
 # Act as the FMU side of the FMU-SOC comms.
 
@@ -56,8 +56,8 @@ elif runmode == 'PIL': # PIL/HIL via TCP
 
 
 # Visualization is defined for JSBSim in the OutputFgfs.xml, Flightgear should be running prior
-# Linux: ./fgfs_JSBSim.sh UltraStick25e
-# Windows: ./fgfs_JSBSim.bat UltraStick25e
+# Linux: ./fgfs_JSBSim.sh {model}
+# Windows: ./fgfs_JSBSim.bat {model}
 
 import psutil
 if 'fgfs' in [p.name() for p in psutil.process_iter()]:
@@ -84,70 +84,28 @@ joystick.sbus()
 
 
 #%% JSBSim
-import jsbsim as jsb
-from os import path
+## Load Sim
+model = 'F450'
+sim = JSBSimWrap(model)
+sim.SetupIC('initGrnd.xml')
+sim.SetupOutput()
+sim.DispOutput()
+sim.RunTrim()
 
-pathJSB = '.'
-fdm = jsb.FGFDMExec(pathJSB, None)
+sim.SetTurb(turbType = 4, turbSeverity = 3, vWind20_mps = 3.0, vWindHeading_deg = 0.0)
 
-model = 'UltraStick25e'
-
-fdm.load_model(model)
-fdm.set_dt(1/200)
-
-# Load IC file
-fdm.load_ic('initGrnd.xml', True)
-
-# Setup JSBSim to FlightGear
-if visuals == True:
-    fdm.set_output_directive(path.join('scripts', 'OutputFgfs.xml'))
-
-# Setup JSBSim Logging
-fdm.set_output_directive(path.join('scripts', 'OutputLog.xml'))
-
-
-# Display the Output
-i = 0
-while (str(fdm.get_output_filename(i),'utf-8') != ''):
-    outStr = str(fdm.get_output_filename(i),'utf-8')
-    if '/UDP' in outStr:
-        print('Output FGFS: ', outStr)
-    elif '.csv' in outStr:
-        fileLog = outStr
-        print('Output Log: ', outStr)
-    i += 1
-
-# FDM Initialize
-fdm.disable_output() # Disable Output
-fdm.run_ic()
-
-fdm['fcs/throttle-cmd-norm'] = 0.0
-fdm.run()
-fdm.do_trim(2)
-fdm.get_trim_status()
-
-fdm.enable_output()
-
-print('Ax :', fdm['sensor/imu/accelX_mps2'])
-print('Ay :', fdm['sensor/imu/accelY_mps2'])
-print('Az :', fdm['sensor/imu/accelZ_mps2'])
-
-print('Phi :', fdm['attitude/phi-deg'])
-print('Theta :', fdm['attitude/theta-deg'])
-print('Psi :', fdm['attitude/psi-deg'])
-print('Alpha :', fdm['aero/alpha-deg'])
-
-
-#%%
+# Start Comms with SOC
 SocComms = AircraftSocComms(host, port)
 SocComms.Begin()
 
+# Initial Mode
 fmuMode = 'Config'
 
 # Data Messages
 dataMsgCommand = fmu_messages.command_effectors()
 dataMsgBifrost = fmu_messages.data_bifrost()
 
+# Run Simulation
 tStart_s = time.time()
 tSend_s = 0.0
 fdmStart = False
@@ -159,7 +117,7 @@ while (True):
     # FIXIT - No FMU Controller or Mission emulated in Python
 
     # Send Sensor data on tFrameRate_s intervals, apply a little tweak to account for time to send packets
-    if (fmuMode == 'Run') and (time_s - tSend_s >= tFrameRate_s - 0.5e-3):
+    if (fmuMode == 'Run') and (time_s - tSend_s >= tFrameRate_s - 0.2e-3):
         tSend_s = time.time() - tStart_s
 
         # Read all the joystick values
@@ -167,7 +125,7 @@ while (True):
         joyMsg = joystick.sbus()
 
         # Send all the sensor messages
-        SocComms.SendSensorMessages(time_s, fdm, joyMsg)
+        SocComms.SendSensorMessages(time_s, sim.fdm, joyMsg)
 
     # Check and Recieve Messages
     while(SocComms.CheckMessage()):
@@ -202,14 +160,14 @@ while (True):
                 if SocComms.effListFdm == []:
                     for eff in SocComms.effList:
                         effName = eff.split('/')[-1]
-                        match = difflib.get_close_matches(effName, fdm.query_property_catalog('_ext_'))[0]
+                        match = difflib.get_close_matches(effName, sim.fdm.query_property_catalog('_ext_'))[0]
 
                         SocComms.effListFdm.append(match.strip(' (RW)'))
                     print(SocComms.effListFdm)
 
                 # Populate the FDM commands from the dataMsgCommand.command values
                 for iEff, eff in enumerate(SocComms.effListFdm):
-                    fdm[eff] = dataMsgCommand.command[iEff]
+                    sim.fdm[eff] = dataMsgCommand.command[iEff]
 
                 # print(time_s, tSend_s, tReceive_s, dataMsgCommand.command[0:dataMsgCommand.num_active])
             elif msgID == dataMsgBifrost.id: # FIXIT -
@@ -222,18 +180,16 @@ while (True):
 
     # Start the FDM
     if fdmStart == False:
-        fdm.set_sim_time(time_s)
+        sim.fdm.set_sim_time(time_s)
         fdmStart = True
 
     # Step the FDM
     # FDM should run at least to the current time, catch-up if required
-    while (fdm.get_sim_time() < time_s) :
-        fdm.run()
-
+    tFdm_s = sim.RunTo(time_s, updateWind = True)
+    
     # FDM step once, but no further than the next controller frame start
-    tFdm_s = tSend_s + tFrameRate_s - fdm.get_delta_t()
-    if (fmuMode == 'Run') and (fdm.get_sim_time() < tFdm_s): # Run the FDM
-        fdm.run()
+    if (fmuMode == 'Run'):
+        tFdm_s = sim.RunTo(tSend_s + tFrameRate_s - sim.fdm.get_delta_t(), updateWind = True)
 
-    # print(time_s, '\t', 1e3 * ((time.time() - tStart_s) - time_s), 1e3 * (time_s - tSend_s), '\t', 1e3 * (time_s - tReceive_s), '\t', 1e3 * (time_s - fdm.get_sim_time()))
+    # print(time_s, '\t', 1e3 * ((time.time() - tStart_s) - time_s), 1e3 * (time_s - tSend_s), '\t', 1e3 * (time_s - tReceive_s), '\t', 1e3 * (time_s - sim.fdm.get_sim_time()))
 
