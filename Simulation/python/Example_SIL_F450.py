@@ -92,7 +92,7 @@ sim.SetupOutput()
 sim.DispOutput()
 sim.RunTrim()
 
-sim.SetTurb(turbType = 4, turbSeverity = 3, vWind20_mps = 3.0, vWindHeading_deg = 0.0)
+sim.SetTurb(turbType = 4, turbSeverity = 6, vWind20_mps = 6.0, vWindHeading_deg = 0.0)
 
 # Start Comms with SOC
 SocComms = AircraftSocComms(host, port)
@@ -186,10 +186,9 @@ while (True):
     # Step the FDM
     # FDM should run at least to the current time, catch-up if required
     tFdm_s = sim.RunTo(time_s, updateWind = True)
-    
+
     # FDM step once, but no further than the next controller frame start
     if (fmuMode == 'Run'):
         tFdm_s = sim.RunTo(tSend_s + tFrameRate_s - sim.fdm.get_delta_t(), updateWind = True)
 
     # print(time_s, '\t', 1e3 * ((time.time() - tStart_s) - time_s), 1e3 * (time_s - tSend_s), '\t', 1e3 * (time_s - tReceive_s), '\t', 1e3 * (time_s - sim.fdm.get_sim_time()))
-

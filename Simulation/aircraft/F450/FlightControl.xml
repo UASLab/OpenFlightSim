@@ -68,8 +68,8 @@
 
     <pid name="fcs/refRoll_rps">
       <input>fcs/errPhi_rad</input>
-      <kp>0.500</kp>
-      <ki>0.020</ki>
+      <kp>0.200</kp>
+      <ki>0.010</ki>
       <kd>0.000</kd>
     </pid>
 
@@ -87,8 +87,8 @@
 
     <pid name="fcs/refPitch_rps">
       <input>fcs/errTheta_rad</input>
-      <kp>0.500</kp>
-      <ki>0.020</ki>
+      <kp>0.200</kp>
+      <ki>0.010</ki>
       <kd>0.000</kd>
     </pid>
   </channel>
@@ -110,8 +110,8 @@
     <pid name="fcs/cmdRoll_rps">
       <input>fcs/errRoll_rps</input>
       <kp>0.150</kp>
-      <ki>0.050</ki>
-      <kd>0.025</kd>
+      <ki>0.020</ki>
+      <kd>0.040</kd>
     </pid>
 
     <summer>
@@ -130,8 +130,8 @@
     <pid name="fcs/cmdPitch_rps">
       <input>fcs/errPitch_rps</input>
       <kp>0.150</kp>
-      <ki>0.050</ki>
-      <kd>0.025</kd>
+      <ki>0.020</ki>
+      <kd>0.040</kd>
     </pid>
 
     <summer>
@@ -149,9 +149,9 @@
 
     <pid name="fcs/cmdYaw_rps">
       <input>fcs/errYaw_rps</input>
-      <kp>0.300</kp>
-      <ki>0.050</ki>
-      <kd>0.100</kd>
+      <kp>0.750</kp>
+      <ki>0.100</ki>
+      <kd>0.200</kd>
     </pid>
   </channel>
 

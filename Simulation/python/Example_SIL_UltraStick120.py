@@ -47,7 +47,7 @@ import argparse
 parser = argparse.ArgumentParser()
 
 # Adding optional argument
-parser.add_argument("--modelName", default = 'UltraStick25e', help = "Vehicle Model Name ('UltraStick25e', 'F450')")
+parser.add_argument("--modelName", default = 'UltraStick120', help = "Vehicle Model Name ('UltraStick25e', 'UltraStick120', 'F450')")
 parser.add_argument("--runMode", default = 'SIL-TCP', help = "Simulation Run Mode ('SIL-PTY', 'SIL-TCP', 'PIL', 'HIL')")
 #parser.add_argument("--VisForce", default = True, help = "Force FlightGear Visuals")
 
@@ -196,9 +196,11 @@ while (True):
                 if SocComms.effListFdm == []:
                     for eff in SocComms.effList:
                         effName = eff.split('/')[-1]
-                        match = difflib.get_close_matches(effName, sim.fdm.query_property_catalog('_ext_'))[0]
+                        matchList = difflib.get_close_matches(effName, sim.fdm.query_property_catalog('_ext_'))
+                        if matchList != []:
+                            match = matchList[0] # First is best
 
-                        SocComms.effListFdm.append(match.strip(' (RW)'))
+                            SocComms.effListFdm.append(match.strip(' (RW)'))
                     print(SocComms.effListFdm)
 
                 # Populate the FDM commands from the dataMsgCommand.command values

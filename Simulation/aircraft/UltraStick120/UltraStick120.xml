@@ -13,5 +13,5 @@
     <system file="SensorBaro.xml"/>
     <system file="SensorGps.xml"/>
     <system file="SensorPitot.xml"/>
-    <system file="Sensor5Hole.xml"/>
+    <!-- <system file="Sensor5Hole.xml"/> -->
 </fdm_config>

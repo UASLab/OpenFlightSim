@@ -51,20 +51,19 @@ def PID2(Kp = 1, Ki = 0.0, Kd = 0, b = 1, c = 1, Tf = 0, dt = None):
 
 
 # Attitude Controller Models
-sysAlt = PID2(0.200, Ki = 0.050, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
+sysAlt = PID2(0.100, Ki = 0.005, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysAlt.InputName = ['refAlt', 'sensAlt']
 sysAlt.OutputName = ['refAltRate']    
 
-
-sysPhi = PID2(0.500, Ki = 0.020, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
+sysPhi = PID2(0.200, Ki = 0.010, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysPhi.InputName = ['refPhi', 'sensPhi']
 sysPhi.OutputName = ['refP']
 
-sysTheta = PID2(0.500, Ki = 0.020, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
+sysTheta = PID2(0.200, Ki = 0.010, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysTheta.InputName = ['refTheta', 'sensTheta']
 sysTheta.OutputName = ['refQ']
 
-sysPsi = PID2(0.250, Ki = 0.000, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
+sysPsi = PID2(0.200, Ki = 0.000, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysPsi.InputName = ['refPsi', 'sensPsi']
 sysPsi.OutputName = ['refR']
 
@@ -73,21 +72,22 @@ sysAtt = control.append(sysAlt, sysPhi, sysTheta, sysPsi)
 sysAtt.InputName = sysAlt.InputName + sysPhi.InputName + sysTheta.InputName + sysPsi.InputName
 sysAtt.OutputName = sysAlt.OutputName + sysPhi.OutputName + sysTheta.OutputName + sysPsi.OutputName
 
-# SCAS Controller Models
 
-sysAltRate = PID2(0.200, Ki = 0.000, Kd = 0.025, b = 1, c = 0, Tf = 5*tFrameRate_s)
+# SCAS Controller Models
+sysAltRate = PID2(0.075, Ki = 0.000, Kd = 0.020, b = 1, c = 0, Tf = tFrameRate_s)
 sysAltRate.InputName = ['refAltRate', 'sensAltRate']
 sysAltRate.OutputName = ['cmdHeave']
 
-sysP = PID2(0.150, Ki = 0.050, Kd = 0.025, b = 1, c = 0, Tf = 5*tFrameRate_s)
+sysP = PID2(0.150, Ki = 0.020, Kd = 0.040, b = 1, c = 0, Tf = tFrameRate_s)
 sysP.InputName = ['refP', 'sensP']
 sysP.OutputName = ['cmdP']
 
-sysQ = PID2(0.150, Ki = 0.050, Kd = 0.025, b = 1, c = 0, Tf = 5*tFrameRate_s)
+sysQ = PID2(0.150, Ki = 0.020, Kd = 0.040, b = 1, c = 0, Tf = tFrameRate_s)
 sysQ.InputName = ['refQ', 'sensQ']
 sysQ.OutputName = ['cmdQ']
 
-sysR = PID2(0.300, Ki = 0.050, Kd = 0.100, b = 1, c = 0, Tf = 5*tFrameRate_s)
+
+sysR = PID2(5* 0.150, Ki = 5* 0.020, Kd = 5* 0.040, b = 1, c = 0, Tf = tFrameRate_s)
 sysR.InputName = ['refR', 'sensR']
 sysR.OutputName = ['cmdR']
 
@@ -112,13 +112,13 @@ mixSurf [abs(mixSurf) / np.max(abs(mixSurf)) < 0.05] = 0.0
 #%%
 ## Load Sim
 model = 'F450'
-sim = JSBSimWrap(model)
+sim = JSBSimWrap(model, dt = 1/200)
 sim.SetupIC('initGrnd.xml')
 sim.SetupOutput()
 sim.DispOutput()
 sim.RunTrim()
 
-sim.SetTurb(turbType = 4, turbSeverity = 3, vWind20_mps = 3.0, vWindHeading_deg = 0.0)
+sim.SetTurb(turbType = 4, turbSeverity = 3, vWind20_mps = 6.0, vWindHeading_deg = 0.0)
 
 #%%
 ft2m = 0.3048
@@ -146,7 +146,7 @@ xAtt = np.matrix(np.zeros(sysAtt.states)).T
 # Simulate
 # Time
 tStep = np.array([[0, tFrameRate_s]])
-tSamp_s = np.arange(0, 60.0, tFrameRate_s)
+tSamp_s = np.arange(0, 40.0, tFrameRate_s)
 
 refAltRateList = []
 refPList = []
@@ -191,7 +191,7 @@ for t_s in tSamp_s:
 
     # Psi Step
     if t_s >= 10 :
-        refPsi = 0.0
+        refPsi = 45.0 *np.pi/180.0
 
     # Phi Step
     if t_s >= 20 and t_s < 30 :
@@ -202,7 +202,7 @@ for t_s in tSamp_s:
         yMixer = np.array([0, 0, 0, 0])
 
     elif t_s >= 1.0 and t_s < 5:
-        refAltRate = 1.0
+        refAltRate = 3.0
 
         inScas = np.array([refAltRate, sensAltRate, 0, 0, 0, 0, 0, 0])
         tScas, yScas, xScas = control.forced_response(sysScas, T = tStep, U = np.array([inScas, inScas]).T, X0 = xScas[:,-1])
@@ -216,7 +216,7 @@ for t_s in tSamp_s:
 #        sensAlt0 = sensAlt
 
     elif t_s >= 5:
-        refAlt = sensAlt0 + 50
+        refAlt = sensAlt0 + 50 * ft2m
         refPhi = refPhi
         refTheta = refTheta
         refPsi = refPsi
@@ -225,12 +225,13 @@ for t_s in tSamp_s:
         tAtt, yAtt, xAtt = control.forced_response(sysAtt, T = tStep, U = np.array([inAtt, inAtt]).T, X0 = xAtt[:,-1])
 
         if 1: # Switch to use Att or just SCAS
-            refAltRate = np.clip(yAtt[0, -1], -1.5, 1.5)
+            refAltRate = 2.0
+#            refAltRate = yAtt[0, -1]
             refP = yAtt[1, -1] + excRefP
             refQ = yAtt[2, -1] + excRefQ
             refR = yAtt[3, -1] + excRefR
         else:
-            refAltRate = 0.0
+            refAltRate = 2.0
             refP = excRefP
             refQ = excRefQ
             refR = excRefR
@@ -246,7 +247,6 @@ for t_s in tSamp_s:
 
         uMixer = np.array([cmdHeave, cmdP, cmdQ, cmdR])
         yMixer = np.clip(mixSurf @ uMixer, 0, 1)
-
 
     yList.append(yMixer)
     cmdMotorFR_nd, cmdMotorAL_nd, cmdMotorFL_nd, cmdMotorAR_nd = yMixer

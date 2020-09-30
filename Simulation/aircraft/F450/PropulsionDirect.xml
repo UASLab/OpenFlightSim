@@ -2,7 +2,7 @@
 <propulsion>
     <engine name="front right">
         <electric_engine>
-            <power unit="WATTS"> 3 </power>
+            <power unit="WATTS"> 10 </power>
         </electric_engine>
         <thruster>
             <direct name="Direct"> </direct>
@@ -16,14 +16,14 @@
                 <pitch>90</pitch>
                 <yaw>0</yaw>
             </orient>
-            <sense>-1.0</sense>
+            <sense>1.0</sense>
             <p_factor>0.0</p_factor>
         </thruster>
     </engine>
 
     <engine name="aft left">
         <electric_engine>
-            <power unit="WATTS"> 3 </power>
+            <power unit="WATTS"> 10 </power>
         </electric_engine>
         <thruster>
             <direct name="Direct"> </direct>
@@ -37,14 +37,14 @@
                 <pitch>90</pitch>
                 <yaw>0</yaw>
             </orient>
-            <sense>-1.0</sense>
+            <sense>1.0</sense>
             <p_factor>0.0</p_factor>
         </thruster>
     </engine>
 
     <engine name="front left">
         <electric_engine>
-            <power unit="WATTS"> 3 </power>
+            <power unit="WATTS"> 10 </power>
         </electric_engine>
         <thruster>
             <direct name="Direct"> </direct>
@@ -58,14 +58,14 @@
                 <pitch>90</pitch>
                 <yaw>0</yaw>
             </orient>
-            <sense>1.0</sense>
+            <sense>-1.0</sense>
             <p_factor>0.0</p_factor>
         </thruster>
     </engine>
 
       <engine name="aft right">
           <electric_engine>
-              <power unit="WATTS"> 3 </power>
+              <power unit="WATTS"> 10 </power>
           </electric_engine>
           <thruster>
               <direct name="Direct"> </direct>
@@ -79,7 +79,7 @@
                 <pitch>90</pitch>
                 <yaw>0</yaw>
             </orient>
-            <sense>1.0</sense>
+            <sense>-1.0</sense>
             <p_factor>0.0</p_factor>
         </thruster>
     </engine>
