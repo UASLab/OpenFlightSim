@@ -1,7 +1,5 @@
 <?xml version="1.0" ?>
-
 <flight_control name="FCS: quad-copter">
-
   <channel name="Pilot_Inputs">
       <summer name="pilotRoll_norm">
           <input>fcs/aileron-cmd-norm</input>

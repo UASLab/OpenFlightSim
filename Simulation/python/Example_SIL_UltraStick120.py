@@ -14,6 +14,7 @@ pathRaptrs = os.path.join(pathGoldy3, 'RAPTRS')
 pathRaptrsCommon = os.path.join(pathRaptrs, 'software', 'src', 'common')
 
 # Hack to allow loading the RAPTRS package
+
 from sys import path
 path.insert(0, pathRaptrsCommon)
 del path
@@ -198,9 +199,8 @@ while (True):
                         effName = eff.split('/')[-1]
                         matchList = difflib.get_close_matches(effName, sim.fdm.query_property_catalog('_ext_'))
                         if matchList != []:
-                            match = matchList[0] # First is best
-
-                            SocComms.effListFdm.append(match.strip(' (RW)'))
+                            effNameFdm = matchList[0].strip(' (RW)') # First is best
+                            SocComms.effListFdm.append(effNameFdm)
                     print(SocComms.effListFdm)
 
                 # Populate the FDM commands from the dataMsgCommand.command values
