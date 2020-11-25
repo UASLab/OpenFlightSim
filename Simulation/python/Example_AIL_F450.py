@@ -49,21 +49,20 @@ def PID2(Kp = 1, Ki = 0.0, Kd = 0, b = 1, c = 1, Tf = 0, dt = None):
 
     return sys
 
-
 # Attitude Controller Models
-sysAlt = PID2(0.100, Ki = 0.005, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
+sysAlt = PID2(0.500, Ki = 0.050, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysAlt.InputName = ['refAlt', 'sensAlt']
-sysAlt.OutputName = ['refAltRate']    
+sysAlt.OutputName = ['refAltRate']
 
-sysPhi = PID2(0.200, Ki = 0.010, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
+sysPhi = PID2(0.500, Ki = 0.050, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysPhi.InputName = ['refPhi', 'sensPhi']
 sysPhi.OutputName = ['refP']
 
-sysTheta = PID2(0.200, Ki = 0.010, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
+sysTheta = PID2(0.500, Ki = 0.050, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysTheta.InputName = ['refTheta', 'sensTheta']
 sysTheta.OutputName = ['refQ']
 
-sysPsi = PID2(0.200, Ki = 0.000, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
+sysPsi = PID2(0.500, Ki = 0.050, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysPsi.InputName = ['refPsi', 'sensPsi']
 sysPsi.OutputName = ['refR']
 
@@ -74,20 +73,19 @@ sysAtt.OutputName = sysAlt.OutputName + sysPhi.OutputName + sysTheta.OutputName 
 
 
 # SCAS Controller Models
-sysAltRate = PID2(0.075, Ki = 0.000, Kd = 0.020, b = 1, c = 0, Tf = tFrameRate_s)
+sysAltRate = PID2(0.100, Ki = 0.020, Kd = 0.010, b = 1, c = 0, Tf = tFrameRate_s)
 sysAltRate.InputName = ['refAltRate', 'sensAltRate']
 sysAltRate.OutputName = ['cmdHeave']
 
-sysP = PID2(0.150, Ki = 0.020, Kd = 0.040, b = 1, c = 0, Tf = tFrameRate_s)
+sysP = PID2(0.050, Ki = 0.010, Kd = 0.005, b = 1, c = 0, Tf = tFrameRate_s)
 sysP.InputName = ['refP', 'sensP']
 sysP.OutputName = ['cmdP']
 
-sysQ = PID2(0.150, Ki = 0.020, Kd = 0.040, b = 1, c = 0, Tf = tFrameRate_s)
+sysQ = PID2(0.050, Ki = 0.010, Kd = 0.005, b = 1, c = 0, Tf = tFrameRate_s)
 sysQ.InputName = ['refQ', 'sensQ']
 sysQ.OutputName = ['cmdQ']
 
-
-sysR = PID2(5* 0.150, Ki = 5* 0.020, Kd = 5* 0.040, b = 1, c = 0, Tf = tFrameRate_s)
+sysR = PID2(0.100, Ki = 0.020, Kd = 0.010, b = 1, c = 0, Tf = tFrameRate_s)
 sysR.InputName = ['refR', 'sensR']
 sysR.OutputName = ['cmdR']
 
@@ -112,7 +110,7 @@ mixSurf [abs(mixSurf) / np.max(abs(mixSurf)) < 0.05] = 0.0
 #%%
 ## Load Sim
 model = 'F450'
-sim = JSBSimWrap(model, dt = 1/200)
+sim = JSBSimWrap(model, dt = 1/500)
 sim.SetupIC('initGrnd.xml')
 sim.SetupOutput()
 sim.DispOutput()
@@ -160,6 +158,7 @@ sensPList = []
 sensQList = []
 sensRList = []
 yList = []
+posMotorList = []
 
 for t_s in tSamp_s:
     # Read Sensors
@@ -212,7 +211,7 @@ for t_s in tSamp_s:
 
         uMixer = np.array([cmdHeave, cmdP, cmdQ, cmdR])
         yMixer = np.clip(mixSurf @ uMixer, 0, 1)
-        
+
 #        sensAlt0 = sensAlt
 
     elif t_s >= 5:
@@ -225,8 +224,8 @@ for t_s in tSamp_s:
         tAtt, yAtt, xAtt = control.forced_response(sysAtt, T = tStep, U = np.array([inAtt, inAtt]).T, X0 = xAtt[:,-1])
 
         if 1: # Switch to use Att or just SCAS
-            refAltRate = 2.0
-#            refAltRate = yAtt[0, -1]
+            # refAltRate = 2.0
+            refAltRate = yAtt[0, -1]
             refP = yAtt[1, -1] + excRefP
             refQ = yAtt[2, -1] + excRefQ
             refR = yAtt[3, -1] + excRefR
@@ -249,20 +248,22 @@ for t_s in tSamp_s:
         yMixer = np.clip(mixSurf @ uMixer, 0, 1)
 
     yList.append(yMixer)
-    cmdMotorFR_nd, cmdMotorAL_nd, cmdMotorFL_nd, cmdMotorAR_nd = yMixer
+    cmdFR_nd, cmdAL_nd, cmdFL_nd, cmdAR_nd = yMixer
 
     ##
     # Write the Effectors
-    sim.fdm['fcs/cmdMotorFR_ext_nd'] = cmdMotorFR_nd
-    sim.fdm['fcs/cmdMotorAL_ext_nd'] = cmdMotorAL_nd
-    sim.fdm['fcs/cmdMotorFL_ext_nd'] = cmdMotorFL_nd
-    sim.fdm['fcs/cmdMotorAR_ext_nd'] = cmdMotorAR_nd
+    sim.fdm['fcs/cmdFR_ext_nd'] = cmdFR_nd
+    sim.fdm['fcs/cmdAL_ext_nd'] = cmdAL_nd
+    sim.fdm['fcs/cmdFL_ext_nd'] = cmdFL_nd
+    sim.fdm['fcs/cmdAR_ext_nd'] = cmdAR_nd
+
+    # Step the FDM
+    tFdm_s = sim.RunTo(t_s + tFrameRate_s - sim.fdm.get_delta_t(), updateWind = True)
 
     refAltRateList.append(refAltRate)
     refPList.append(refP)
     refQList.append(refQ)
     refRList.append(refR)
-
 
     sensPhiList.append(sensPhi)
     sensThetaList.append(sensTheta)
@@ -271,8 +272,9 @@ for t_s in tSamp_s:
     sensQList.append(sensQ)
     sensRList.append(sensR)
 
-    # Step the FDM
-    tFdm_s = sim.RunTo(t_s + tFrameRate_s - sim.fdm.get_delta_t(), updateWind = True)
+    posMotor_nd = np.array([sim.fdm['propulsion/engine/propeller-rpm'], sim.fdm['propulsion/engine[1]/propeller-rpm'], sim.fdm['propulsion/engine[2]/propeller-rpm'], sim.fdm['propulsion/engine[3]/propeller-rpm']])
+
+    posMotorList.append(posMotor_nd)
 
 
 #%%
@@ -295,15 +297,20 @@ plt.plot(tSamp_s, np.array(sensRList) * 180/np.pi)
 plt.show()
 
 #%%
-yArray = np.array(yList)
+yArray = np.array(yList) * 50000
+posArray = np.array(posMotorList)
 
 plt.figure(2)
 plt.subplot(2,2,1)
 plt.plot(tSamp_s, yArray[:,2])
+plt.plot(tSamp_s, posArray[:,2])
 plt.subplot(2,2,2)
 plt.plot(tSamp_s, yArray[:,0])
+plt.plot(tSamp_s, posArray[:,0])
 plt.subplot(2,2,3)
 plt.plot(tSamp_s, yArray[:,1])
+plt.plot(tSamp_s, posArray[:,1])
 plt.subplot(2,2,4)
 plt.plot(tSamp_s, yArray[:,3])
+plt.plot(tSamp_s, posArray[:,3])
 plt.show()

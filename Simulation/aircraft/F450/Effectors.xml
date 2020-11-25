@@ -1,4 +1,52 @@
 <?xml version="1.0" ?>
 <system name="Effectors">
+   <channel name="Electronic Speed Conrollers">
+       <actuator name="Front Right">
+           <input>fcs/cmdEscFR_nd</input>
+           <lag> 100 </lag> <!-- tau = 0.2 s -->
+           <delay> 0.020 </delay> <!-- 20ms input delay -->
+           <!-- <hysteresis_width> 0.0009765625 </hysteresis_width> -->
+           <clipto>
+              <min>0.0</min>
+              <max>1.0</max>
+           </clipto>
+           <output>fcs/throttle-cmd-norm[0]</output>
+       </actuator>
 
+       <actuator name="Aft Left">
+           <input>fcs/cmdEscAL_nd</input>
+           <lag> 100 </lag>
+           <delay> 0.020 </delay>
+           <!-- <hysteresis_width> 0.0009765625 </hysteresis_width> -->
+           <clipto>
+              <min>0.0</min>
+              <max>1.0</max>
+           </clipto>
+           <output>fcs/throttle-cmd-norm[1]</output>
+       </actuator>
+
+       <actuator name="Front Left">
+           <input>fcs/cmdEscFL_nd</input>
+           <lag> 100 </lag>
+           <delay> 0.020 </delay>
+           <!-- <hysteresis_width> 0.0009765625 </hysteresis_width> -->
+           <clipto>
+              <min>0.0</min>
+              <max>1.0</max>
+           </clipto>
+           <output>fcs/throttle-cmd-norm[2]</output>
+       </actuator>
+
+       <actuator name="Aft Right">
+           <input>fcs/cmdEscAR_nd</input>
+           <lag> 100 </lag>
+           <delay> 0.020 </delay>
+           <!-- <hysteresis_width> 0.0009765625 </hysteresis_width> -->
+           <clipto>
+              <min>0.0</min>
+              <max>1.0</max>
+           </clipto>
+           <output>fcs/throttle-cmd-norm[3]</output>
+       </actuator>
+   </channel>
 </system>

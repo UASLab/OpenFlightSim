@@ -28,13 +28,13 @@
 
     <event name="Motor Launch">
         <condition> simulation/sim-time-sec ge 1 </condition>
-        <set name="fcs/cmdHeave_nd" value="1.0"/>
+        <set name="fcs/cmdHeave_nd" value="0.125"/>
     </event>
 
     <event name="Motor Hover">
         <condition> simulation/sim-time-sec ge 4 </condition>
         <set name="fcs/ScasEngage" value="1"/>
-        <set name="fcs/cmdHeave_nd" value="0.05"/>
+        <set name="fcs/cmdHeave_nd" value="0.1123"/>
     </event>
 
     <!-- <event name="Roll Step">
