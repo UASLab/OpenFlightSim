@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<bldc_engine name="DJI-E305-BLDC">
+  <!-- DJI E305 Tuned System - Motor is a DJI 2312E - 960kv -->
+  <velocityconstant> 960 </velocityconstant>
+  <efficiency> 0.95 </efficiency>
+  <maxcurrent> 20.0 </maxcurrent>
+  <maxvolts> 16.8 </maxvolts>
+</bldc_engine>

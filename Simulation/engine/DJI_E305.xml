@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
 <electric_engine name="DJI E305">
+  <!-- E305 Motor is a DJI 2312E - 960 -->
   <power unit="WATTS">  320 </power>
 </electric_engine>

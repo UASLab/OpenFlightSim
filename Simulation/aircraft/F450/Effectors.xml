@@ -3,9 +3,9 @@
    <channel name="Electronic Speed Conrollers">
        <actuator name="Front Right">
            <input>fcs/cmdEscFR_nd</input>
-           <lag> 100 </lag> <!-- tau = 0.2 s -->
-           <delay> 0.020 </delay> <!-- 20ms input delay -->
-           <!-- <hysteresis_width> 0.0009765625 </hysteresis_width> -->
+           <!-- Augment the BLDC model - want a total tau=0.150 with 20 ms delay -->
+           <lag> 5 </lag>
+           <delay> 0.015 </delay>
            <clipto>
               <min>0.0</min>
               <max>1.0</max>
@@ -15,9 +15,8 @@
 
        <actuator name="Aft Left">
            <input>fcs/cmdEscAL_nd</input>
-           <lag> 100 </lag>
-           <delay> 0.020 </delay>
-           <!-- <hysteresis_width> 0.0009765625 </hysteresis_width> -->
+           <lag> 5 </lag>
+           <delay> 0.015 </delay>
            <clipto>
               <min>0.0</min>
               <max>1.0</max>
@@ -27,9 +26,8 @@
 
        <actuator name="Front Left">
            <input>fcs/cmdEscFL_nd</input>
-           <lag> 100 </lag>
-           <delay> 0.020 </delay>
-           <!-- <hysteresis_width> 0.0009765625 </hysteresis_width> -->
+           <lag> 5 </lag>
+           <delay> 0.015 </delay>
            <clipto>
               <min>0.0</min>
               <max>1.0</max>
@@ -39,9 +37,8 @@
 
        <actuator name="Aft Right">
            <input>fcs/cmdEscAR_nd</input>
-           <lag> 100 </lag>
-           <delay> 0.020 </delay>
-           <!-- <hysteresis_width> 0.0009765625 </hysteresis_width> -->
+           <lag> 5 </lag>
+           <delay> 0.015 </delay>
            <clipto>
               <min>0.0</min>
               <max>1.0</max>

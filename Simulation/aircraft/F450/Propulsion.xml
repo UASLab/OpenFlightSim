@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <propulsion>
-    <engine file="DJI_E305" name="front right">
+    <engine file="DJI_E305_BLDC" name="front right">
         <location unit="M">
             <x>-0.1651</x>
             <y>0.1651</y>
@@ -27,7 +27,7 @@
         </thruster>
     </engine>
 
-    <engine file="DJI_E305" name="aft left">
+    <engine file="DJI_E305_BLDC" name="aft left">
         <location unit="M">
             <x>0.1651</x>
             <y>-0.1651</y>
@@ -54,7 +54,7 @@
         </thruster>
     </engine>
 
-    <engine file="DJI_E305" name="front left">
+    <engine file="DJI_E305_BLDC" name="front left">
         <location unit="M">
             <x>-0.1651</x>
             <y>-0.1651</y>
@@ -81,7 +81,7 @@
         </thruster>
     </engine>
 
-      <engine file="DJI_E305" name="aft right">
+      <engine file="DJI_E305_BLDC" name="aft right">
         <location unit="M">
             <x>0.1651</x>
             <y>0.1651</y>
