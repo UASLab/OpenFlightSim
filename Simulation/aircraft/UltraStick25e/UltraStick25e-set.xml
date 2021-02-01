@@ -4,7 +4,7 @@
   <sim>
     <description>UltraStick25e (UMN - UAV Lab)</description>
     <author>University of Minnesota - UAV Lab</author>
-    <aircraft-version>0.1</aircraft-version>
+    <aircraft-version>1.1</aircraft-version>
     <variant-of>UltraStick25e</variant-of>
 
     <startup>
@@ -24,7 +24,7 @@
     </panel>
 
     <model>
-      <path archive="y">UltraStick25e.ac</path>
+      <path>UltraStick25e-model.xml</path>
     </model>
 
     <hud>
