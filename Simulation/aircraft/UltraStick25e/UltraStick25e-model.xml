@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <model>
+    <path archive="y">UltraStick25e.obj</path>
+
+    <offsets>
+      <roll-deg> -90 </roll-deg>
+    </offsets>
+  </model>
+</PropertyList>

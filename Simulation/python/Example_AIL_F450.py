@@ -77,15 +77,15 @@ sysAltRate = PID2(0.100, Ki = 0.020, Kd = 0.010, b = 1, c = 0, Tf = tFrameRate_s
 sysAltRate.InputName = ['refAltRate', 'sensAltRate']
 sysAltRate.OutputName = ['cmdHeave']
 
-sysP = PID2(0.050, Ki = 0.010, Kd = 0.005, b = 1, c = 0, Tf = tFrameRate_s)
+sysP = PID2(0.150, Ki = 0.050, Kd = 0.003, b = 1, c = 0, Tf = tFrameRate_s)
 sysP.InputName = ['refP', 'sensP']
 sysP.OutputName = ['cmdP']
 
-sysQ = PID2(0.050, Ki = 0.010, Kd = 0.005, b = 1, c = 0, Tf = tFrameRate_s)
+sysQ = PID2(0.150, Ki = 0.050, Kd = 0.003, b = 1, c = 0, Tf = tFrameRate_s)
 sysQ.InputName = ['refQ', 'sensQ']
 sysQ.OutputName = ['cmdQ']
 
-sysR = PID2(0.100, Ki = 0.020, Kd = 0.010, b = 1, c = 0, Tf = tFrameRate_s)
+sysR = PID2(0.300, Ki = 0.100, Kd = 0.000, b = 1, c = 0, Tf = tFrameRate_s)
 sysR.InputName = ['refR', 'sensR']
 sysR.OutputName = ['cmdR']
 

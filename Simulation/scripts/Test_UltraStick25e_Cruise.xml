@@ -11,13 +11,13 @@
 
     <event name="Motor Start">
         <condition> simulation/frame le 1 </condition>
-        <!-- <set name="simulation/jsbsim-debug" value="1"/> -->
-        <set name="fcs/throttle-cmd-norm" value="0.5"/>
+        <!-- <set name="simulation/jsbsim-debug" value="2"/> -->
+        <set name="fcs/throttle-cmd-norm" value="0.6"/>
     </event>
 
     <event name="Trim">
       <condition> simulation/frame gt 1 </condition>
-      <set name="simulation/do_simple_trim" value="1"/>
+      <!-- <set name="simulation/do_simple_trim" value="1"/> -->
       <notify>
         <property>velocities/vtrue-kts</property>
         <property>position/h-agl-ft</property>
@@ -45,6 +45,7 @@
     <event name="Repeating Notify" persistent="true">
       <description>Output message at 5 second intervals</description>
       <notify>
+        <property>fcs/throttle-cmd-norm</property>
         <property>propulsion/engine[0]/thrust-lbs</property>
         <property>position/h-agl-ft</property>
         <property>velocities/vc-kts</property>

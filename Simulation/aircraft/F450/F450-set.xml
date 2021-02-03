@@ -4,7 +4,7 @@
   <sim>
     <description>F450 (UMN - UAV Lab)</description>
     <author>University of Minnesota - UAV Lab</author>
-    <aircraft-version>0.1</aircraft-version>
+    <aircraft-version>1.0</aircraft-version>
     <variant-of>F450</variant-of>
 
     <startup>
@@ -24,7 +24,10 @@
     </panel>
 
     <model>
-      <path archive="y">F450.ac</path>
+      <path archive="y">F450.wrl</path>
+      <offsets>
+        <roll-deg> 90 </roll-deg>
+      </offsets>
     </model>
 
     <hud>
