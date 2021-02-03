@@ -24,10 +24,11 @@
     </panel>
 
     <model>
-      <path archive="y">F450.wrl</path>
-      <offsets>
+      <path archive="y">F450.ac</path>
+      <!-- <path archive="y">F450.wrl</path> -->
+      <!-- <offsets>
         <roll-deg> 90 </roll-deg>
-      </offsets>
+      </offsets> -->
     </model>
 
     <hud>

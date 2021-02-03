@@ -9,7 +9,7 @@
 
     <property> fcs/ScasEngage </property>
     <property value="0"> simulation/notify-time-trigger </property>
-    
+
     <event name="Motor Idle">
       <condition> simulation/frame le 1 </condition>
       <set name="fcs/throttle-cmd-norm" value="0.0"/>
@@ -21,6 +21,7 @@
     <event name="Trim">
       <condition> simulation/frame gt 1 </condition>
       <set name="simulation/do_simple_trim" value="2"/>
+      <!-- <set name="simulation/jsbsim-debug" value="2"/> -->
       <notify>
         <property>position/h-agl-ft</property>
       </notify>
@@ -28,13 +29,13 @@
 
     <event name="Motor Launch">
       <condition> simulation/sim-time-sec ge 1 </condition>
-      <set name="fcs/cmdHeave_nd" value="0.3"/>
+      <set name="fcs/cmdHeave_nd" value="0.5"/>
     </event>
 
     <event name="Motor Hover">
       <condition> simulation/sim-time-sec ge 4 </condition>
       <set name="fcs/ScasEngage" value="1"/>
-      <set name="fcs/cmdHeave_nd" value="0.109"/>
+      <set name="fcs/cmdHeave_nd" value="0.31"/>
     </event>
 
     <!-- <event name="Roll Step">
@@ -73,11 +74,11 @@
   <set name="fcs/rudder-cmd-norm" value="0.5"/>
 </event>
 <event name="Yaw Doublet">
-  <condition> simulation/sim-time-sec ge 23 </condition>
+  <condition> simulation/sim-time-sec ge 22 </condition>
   <set name="fcs/rudder-cmd-norm" value="-0.5"/>
 </event>
 <event name="Yaw Doublet">
-  <condition> simulation/sim-time-sec ge 26 </condition>
+  <condition> simulation/sim-time-sec ge 24 </condition>
   <set name="fcs/rudder-cmd-norm" value="0.0"/>
 </event>
 

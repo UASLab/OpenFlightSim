@@ -2,4 +2,6 @@
 <electric_engine name="DJI E305">
   <!-- E305 Motor is a DJI 2312E - 960 -->
   <power unit="WATTS">  320 </power>
+  <maxrpm> 16000 </maxrpm>
+  <tau> 0.100 </tau>
 </electric_engine>
