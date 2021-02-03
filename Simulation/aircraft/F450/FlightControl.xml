@@ -53,7 +53,7 @@
   <property>fcs/refPhi_rad</property>
   <property>fcs/refTheta_rad</property>
 
-  <channel name="InnerLoop-Attitude">
+  <!-- <channel name="InnerLoop-Attitude">
     <summer>
       <input>fcs/refPhi_rad</input>
       <input>-attitude/phi-rad</input>
@@ -91,7 +91,7 @@
       <ki>0.000</ki>
       <kd>0.000</kd>
     </pid>
-  </channel>
+  </channel> -->
 
   <channel name="InnerLoop-Rates">
     <summer>
