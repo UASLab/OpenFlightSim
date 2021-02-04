@@ -10,14 +10,14 @@
     <property value="0"> simulation/notify-time-trigger </property>
 
     <event name="Motor Start">
-        <condition> simulation/frame le 1 </condition>
-        <!-- <set name="simulation/jsbsim-debug" value="2"/> -->
-        <set name="fcs/throttle-cmd-norm" value="0.6"/>
+      <condition> simulation/frame le 1 </condition>
+      <!-- <set name="simulation/jsbsim-debug" value="2"/> -->
+      <set name="fcs/throttle-cmd-norm" value="0.6"/>
     </event>
 
     <event name="Trim">
       <condition> simulation/frame gt 1 </condition>
-      <!-- <set name="simulation/do_simple_trim" value="1"/> -->
+      <set name="simulation/do_simple_trim" value="1"/>
       <notify>
         <property>velocities/vtrue-kts</property>
         <property>position/h-agl-ft</property>
