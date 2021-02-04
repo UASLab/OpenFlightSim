@@ -5,15 +5,16 @@
 #   JSBSim --realtime jsb_UltraStick25e_HIL.xml
 #
 #   the JSBSim script should contain:
-#      <output name="localhost" type="FLIGHTGEAR" port="59500" rate="50"/>
+#      <output name="localhost" type="FLIGHTGEAR" protocol="UDP" port="59500" rate="50"/>
 
 DIR=$(dirname $0)
+MODEL=$1
 
 nice fgfs \
     --fg-aircraft="$DIR/aircraft" \
-    --aircraft=$1 \
+    --aircraft="$MODEL" \
     --fdm=null \
-    --native-fdm=socket,in,50,,59500,tcp \
+    --native-fdm=socket,in,50,,59500,udp \
     --lat=44.725801 \
     --lon=-93.075866 \
     --heading=90 \

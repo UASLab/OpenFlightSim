@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<system name="Effectors">
+  <channel name="Electronic Speed Conrollers">
+    <actuator name="cmdMotor">
+      <input>fcs/cmdMotor_nd</input>
+      <!-- Want a total tau=0.150 with 20 ms delay -->
+      <delay> 0.015 </delay>
+      <clipto>
+        <min>0.0</min>
+        <max>1.0</max>
+      </clipto>
+      <output>fcs/throttle-cmd-norm</output>
+    </actuator>
+  </channel>
+
+  <channel name="Servo Models">
+    <actuator name="actAilR">
+      <input>fcs/cmdAilR_rad</input>
+      <lag>33</lag>
+      <hysteresis_width>0.017453292519943295</hysteresis_width>
+      <delay>0.02</delay>
+      <clipto>
+        <min>-0.5235987755982988</min>
+        <max>0.5235987755982988</max>
+      </clipto>
+      <output>fcs/posAilR_rad</output>
+    </actuator>
+    <actuator name="actAilL">
+      <input>fcs/cmdAilL_rad</input>
+      <lag>33</lag>
+      <hysteresis_width>0.017453292519943295</hysteresis_width>
+      <delay>0.02</delay>
+      <clipto>
+        <min>-0.5235987755982988</min>
+        <max>0.5235987755982988</max>
+      </clipto>
+      <output>fcs/posAilL_rad</output>
+    </actuator>
+    <actuator name="actRud">
+      <input>fcs/cmdRud_rad</input>
+      <lag>33</lag>
+      <hysteresis_width>0.017453292519943295</hysteresis_width>
+      <delay>0.02</delay>
+      <clipto>
+        <min>-0.5235987755982988</min>
+        <max>0.5235987755982988</max>
+      </clipto>
+      <output>fcs/posRud_rad</output>
+    </actuator>
+    <actuator name="actFlapR">
+      <input>fcs/cmdFlapR_rad</input>
+      <lag>33</lag>
+      <hysteresis_width>0.017453292519943295</hysteresis_width>
+      <delay>0.02</delay>
+      <clipto>
+        <min>-0.5235987755982988</min>
+        <max>0.5235987755982988</max>
+      </clipto>
+      <output>fcs/posFlapR_rad</output>
+    </actuator>
+    <actuator name="actFlapL">
+      <input>fcs/cmdFlapL_rad</input>
+      <lag>33</lag>
+      <hysteresis_width>0.017453292519943295</hysteresis_width>
+      <delay>0.02</delay>
+      <clipto>
+        <min>-0.5235987755982988</min>
+        <max>0.5235987755982988</max>
+      </clipto>
+      <output>fcs/posFlapL_rad</output>
+    </actuator>
+    <actuator name="actElev">
+      <input>fcs/cmdElev_rad</input>
+      <lag>33</lag>
+      <hysteresis_width>0.017453292519943295</hysteresis_width>
+      <delay>0.02</delay>
+      <clipto>
+        <min>-0.5235987755982988</min>
+        <max>0.5235987755982988</max>
+      </clipto>
+      <output>fcs/posElev_rad</output>
+    </actuator>
+  </channel>
+</system>

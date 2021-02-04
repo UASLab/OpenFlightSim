@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<ground_reactions>
+    <contact type="BOGEY" name="CONTACT">
+        <location unit="M">
+            <x> 0 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </location>
+        <static_friction> 0 </static_friction>
+        <dynamic_friction> 0 </dynamic_friction>
+        <rolling_friction> 0 </rolling_friction>
+        <spring_coeff unit="N/M"> 10000 </spring_coeff>
+        <damping_coeff unit="N/M/SEC"> 200000 </damping_coeff>
+        <max_steer unit="DEG"> 0.0 </max_steer>
+        <brake_group> NONE </brake_group>
+        <retractable>0</retractable>
+    </contact>
+
+</ground_reactions>

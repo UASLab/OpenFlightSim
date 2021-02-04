@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<flight_control name="External Flight Control">
+
+  <property>fcs/cmdMotor_ext_nd</property>
+  <property>fcs/cmdElev_ext_rad</property>
+  <property>fcs/cmdRud_ext_rad</property>
+  <property>fcs/cmdAilL_ext_rad</property>
+  <property>fcs/cmdFlapL_ext_rad</property>
+  <property>fcs/cmdFlapR_ext_rad</property>
+  <property>fcs/cmdAilR_ext_rad</property>
+
+  <channel name="External Input Summations">
+    <summer>
+      <input>fcs/cmdMotor_ext_nd</input>
+      <output>fcs/cmdMotor_nd</output>
+    </summer>
+    <summer>
+      <input>fcs/cmdElev_ext_rad</input>
+      <output>fcs/cmdElev_rad</output>
+    </summer>
+    <summer>
+      <input>fcs/cmdRud_ext_rad</input>
+      <output>fcs/cmdRud_rad</output>
+    </summer>
+    <summer>
+      <input>fcs/cmdAilL_ext_rad</input>
+      <output>fcs/cmdAilL_rad</output>
+    </summer>
+    <summer>
+      <input>fcs/cmdFlapL_ext_rad</input>
+      <output>fcs/cmdFlapL_rad</output>
+    </summer>
+    <summer>
+      <input>fcs/cmdFlapR_ext_rad</input>
+      <output>fcs/cmdFlapR_rad</output>
+    </summer>
+    <summer>
+      <input>fcs/cmdAilR_ext_rad</input>
+      <output>fcs/cmdAilR_rad</output>
+    </summer>
+  </channel>
+</flight_control>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<electric_engine name="Cobra 2217">
+  <power unit="WATTS">  350 </power>
+  <maxrpm> 12000 </maxrpm>
+  <tau> 0.100 </tau>
+</electric_engine>
