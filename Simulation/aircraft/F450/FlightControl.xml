@@ -32,14 +32,14 @@
     <pure_gain name="refPhi_rad">
       <input>fcs/pilotRoll_norm</input>
       <gain>0.75</gain>
-      <output>fcs/refPhi_rad</output>
-      <!-- <output>fcs/refRoll_rps</output> -->
+      <!-- <output>fcs/refPhi_rad</output> -->
+      <output>fcs/refRoll_rps</output>
     </pure_gain>
     <pure_gain name="refTheta_rad">
       <input>fcs/pilotPitch_norm</input>
       <gain>0.75</gain>
-      <output>fcs/refTheta_rad</output>
-      <!-- <output>fcs/refPitch_rps</output> -->
+      <!-- <output>fcs/refTheta_rad</output> -->
+      <output>fcs/refPitch_rps</output>
     </pure_gain>
     <pure_gain name="refYaw_rps">
       <input>fcs/pilotYaw_norm</input>
