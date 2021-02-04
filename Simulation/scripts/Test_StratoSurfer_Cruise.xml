@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://jsbsim.sf.net/JSBSimScript.xsl"?>
 <runscript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
-    name="At-altitude autopilot test setup.">
+  xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
+  name="At-altitude autopilot test setup.">
 
   <use aircraft="StratoSurfer" initialize="initCruise"/>
   <run start="0.0" end="100.0" dt="0.005">
@@ -10,11 +10,11 @@
     <property value="0"> simulation/notify-time-trigger </property>
 
     <event name="Motor Start">
-        <condition> simulation/frame le 1 </condition>
-        <!-- <set name="simulation/jsbsim-debug" value="1"/> -->
-        <set name="fcs/throttle-cmd-norm" value="0.5"/>
+      <condition> simulation/frame le 1 </condition>
+      <!-- <set name="simulation/jsbsim-debug" value="1"/> -->
+      <set name="fcs/throttle-cmd-norm" value="0.5"/>
     </event>
-
+    
     <event name="Trim">
       <condition> simulation/frame gt 1 </condition>
       <set name="simulation/do_simple_trim" value="1"/>
@@ -43,17 +43,17 @@
     </event>
 
     <event name="Repeating Notify" persistent="true">
-        <description>Output message at 5 second intervals</description>
-        <notify>
-            <property>propulsion/engine[0]/thrust-lbs</property>
-            <property>position/h-agl-ft</property>
-            <property>velocities/vc-kts</property>
-            <property>attitude/phi-rad</property>
-            <property>attitude/theta-rad</property>
-            <property>attitude/psi-rad</property>
-        </notify>
-        <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
-        <set name="simulation/notify-time-trigger" value="5" type="FG_DELTA"/>
+      <description>Output message at 5 second intervals</description>
+      <notify>
+        <property>propulsion/engine[0]/thrust-lbs</property>
+        <property>position/h-agl-ft</property>
+        <property>velocities/vc-kts</property>
+        <property>attitude/phi-rad</property>
+        <property>attitude/theta-rad</property>
+        <property>attitude/psi-rad</property>
+      </notify>
+      <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
+      <set name="simulation/notify-time-trigger" value="5" type="FG_DELTA"/>
     </event>
 
   </run>

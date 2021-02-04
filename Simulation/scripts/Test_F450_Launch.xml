@@ -38,79 +38,90 @@
       <set name="fcs/cmdHeave_nd" value="0.31"/>
     </event>
 
+    <event name="Wind and Turbulence">
+      <condition>simulation/sim-time-sec ge 4 </condition>
+      <!-- <set name="atmosphere/wind-north-fps" value="0.0"/>
+      <set name="atmosphere/wind-east-fps" value="0.0"/>
+      <set name="atmosphere/wind-down-fps" value="0.0"/> -->
+      <!-- <set name="atmosphere/turb-type" value="4"/>
+      <set name="atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps" value="2"/>
+      <set name="atmosphere/psiw-rad" value="0"/>
+      <set name="atmosphere/turbulence/milspec/severity" value="3"/> -->
+    </event>
+
     <!-- <event name="Roll Step">
-    <condition> simulation/sim-time-sec ge 10 </condition>
-    <set name="fcs/aileron-cmd-norm" value="1.0"/>
-  </event> -->
+      <condition> simulation/sim-time-sec ge 10 </condition>
+      <set name="fcs/aileron-cmd-norm" value="1.0"/>
+    </event> -->
 
-  <event name="Roll Doublet">
-    <condition> simulation/sim-time-sec ge 10 </condition>
-    <set name="fcs/aileron-cmd-norm" value="1.0"/>
-  </event>
-  <event name="Roll Doublet">
-    <condition> simulation/sim-time-sec ge 11 </condition>
-    <set name="fcs/aileron-cmd-norm" value="-1.0"/>
-  </event>
-  <event name="Roll Doublet">
-    <condition> simulation/sim-time-sec ge 12 </condition>
-    <set name="fcs/aileron-cmd-norm" value="0.0"/>
-  </event>
+    <event name="Roll Doublet">
+      <condition> simulation/sim-time-sec ge 10 </condition>
+      <set name="fcs/aileron-cmd-norm" value="1.0"/>
+    </event>
+    <event name="Roll Doublet">
+      <condition> simulation/sim-time-sec ge 11 </condition>
+      <set name="fcs/aileron-cmd-norm" value="-1.0"/>
+    </event>
+    <event name="Roll Doublet">
+      <condition> simulation/sim-time-sec ge 12 </condition>
+      <set name="fcs/aileron-cmd-norm" value="0.0"/>
+    </event>
 
-  <!-- <event name="Pitch Doublet">
-  <condition> simulation/sim-time-sec ge 10 </condition>
-  <set name="fcs/elevator-cmd-norm" value="0.5"/>
-</event>
-<event name="Pitch Doublet">
-<condition> simulation/sim-time-sec ge 11 </condition>
-<set name="fcs/elevator-cmd-norm" value="-0.5"/>
-</event>
-<event name="Pitch Doublet">
-<condition> simulation/sim-time-sec ge 12 </condition>
-<set name="fcs/elevator-cmd-norm" value="0.0"/>
-</event> -->
+    <!-- <event name="Pitch Doublet">
+      <condition> simulation/sim-time-sec ge 10 </condition>
+      <set name="fcs/elevator-cmd-norm" value="0.5"/>
+    </event>
+    <event name="Pitch Doublet">
+      <condition> simulation/sim-time-sec ge 11 </condition>
+      <set name="fcs/elevator-cmd-norm" value="-0.5"/>
+    </event>
+    <event name="Pitch Doublet">
+      <condition> simulation/sim-time-sec ge 12 </condition>
+      <set name="fcs/elevator-cmd-norm" value="0.0"/>
+    </event> -->
 
-<event name="Yaw Doublet">
-  <condition> simulation/sim-time-sec ge 20 </condition>
-  <set name="fcs/rudder-cmd-norm" value="0.5"/>
-</event>
-<event name="Yaw Doublet">
-  <condition> simulation/sim-time-sec ge 22 </condition>
-  <set name="fcs/rudder-cmd-norm" value="-0.5"/>
-</event>
-<event name="Yaw Doublet">
-  <condition> simulation/sim-time-sec ge 24 </condition>
-  <set name="fcs/rudder-cmd-norm" value="0.0"/>
-</event>
+    <event name="Yaw Doublet">
+      <condition> simulation/sim-time-sec ge 20 </condition>
+      <set name="fcs/rudder-cmd-norm" value="0.5"/>
+    </event>
+    <event name="Yaw Doublet">
+      <condition> simulation/sim-time-sec ge 22 </condition>
+      <set name="fcs/rudder-cmd-norm" value="-0.5"/>
+    </event>
+    <event name="Yaw Doublet">
+      <condition> simulation/sim-time-sec ge 24 </condition>
+      <set name="fcs/rudder-cmd-norm" value="0.0"/>
+    </event>
 
-<event name="Repeating Notify" persistent="true">
-  <description>Output message at 1 second intervals</description>
-  <notify>
-    <property> fcs/ScasEngage </property>
+    <event name="Repeating Notify" persistent="true">
+      <description>Output message at 1 second intervals</description>
+      <notify>
+        <property> fcs/ScasEngage </property>
 
-    <property>fcs/throttle-cmd-norm</property>
-    <property>fcs/throttle-cmd-norm[1]</property>
-    <property>fcs/throttle-cmd-norm[2]</property>
-    <property>fcs/throttle-cmd-norm[3]</property>
+        <property>fcs/throttle-cmd-norm</property>
+        <property>fcs/throttle-cmd-norm[1]</property>
+        <property>fcs/throttle-cmd-norm[2]</property>
+        <property>fcs/throttle-cmd-norm[3]</property>
 
-    <property>propulsion/engine[0]/propeller-rpm</property>
-    <property>propulsion/engine[1]/propeller-rpm</property>
-    <property>propulsion/engine[2]/propeller-rpm</property>
-    <property>propulsion/engine[3]/propeller-rpm</property>
+        <property>propulsion/engine[0]/propeller-rpm</property>
+        <property>propulsion/engine[1]/propeller-rpm</property>
+        <property>propulsion/engine[2]/propeller-rpm</property>
+        <property>propulsion/engine[3]/propeller-rpm</property>
 
-    <property>propulsion/engine[0]/thrust-lbs</property>
-    <property>propulsion/engine[1]/thrust-lbs</property>
-    <property>propulsion/engine[2]/thrust-lbs</property>
-    <property>propulsion/engine[3]/thrust-lbs</property>
-    <property>position/h-agl-ft</property>
-    <property>velocities/vc-kts</property>
-    <property>attitude/phi-rad</property>
-    <property>attitude/theta-rad</property>
-    <property>attitude/psi-rad</property>
-  </notify>
-  <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
-  <set name="simulation/notify-time-trigger" value="1" type="FG_DELTA"/>
-</event>
-</run>
+        <property>propulsion/engine[0]/thrust-lbs</property>
+        <property>propulsion/engine[1]/thrust-lbs</property>
+        <property>propulsion/engine[2]/thrust-lbs</property>
+        <property>propulsion/engine[3]/thrust-lbs</property>
+        <property>position/h-agl-ft</property>
+        <property>velocities/vc-kts</property>
+        <property>attitude/phi-rad</property>
+        <property>attitude/theta-rad</property>
+        <property>attitude/psi-rad</property>
+      </notify>
+      <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
+      <set name="simulation/notify-time-trigger" value="1" type="FG_DELTA"/>
+    </event>
+  </run>
 
 <output file="OutputFgfs.xml"></output> <!-- Pipe to FG for display -->
 <output file="OutputLog.xml"></output>
