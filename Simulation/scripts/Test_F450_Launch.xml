@@ -98,6 +98,29 @@
       <notify>
         <property> fcs/ScasEngage </property>
 
+  <property> propulsion/engine[0]/propeller-sense </property>
+  <property> propulsion/engine[0]/power-hp </property>
+
+        <property> fcs/cmdEscFR_nd </property>
+        <property> fcs/cmdEscAL_nd </property>
+        <property> fcs/cmdEscFL_nd </property>
+        <property> fcs/cmdEscAR_nd </property>
+
+        <property> fcs/filtMeasFR_rpm </property>
+        <property> fcs/filtMeasAL_rpm </property>
+        <property> fcs/filtMeasFL_rpm </property>
+        <property> fcs/filtMeasAR_rpm </property>
+
+        <property> fcs/deltaCmdFR_rpm </property>
+        <property> fcs/deltaCmdAL_rpm </property>
+        <property> fcs/deltaCmdFL_rpm </property>
+        <property> fcs/deltaCmdFR_rpm </property>
+
+        <property> fcs/cmdPowerFR_Watt </property>
+        <property> fcs/cmdPowerAL_Watt </property>
+        <property> fcs/cmdPowerFL_Watt </property>
+        <property> fcs/cmdPowerAR_Watt </property>
+
         <property>fcs/throttle-cmd-norm</property>
         <property>fcs/throttle-cmd-norm[1]</property>
         <property>fcs/throttle-cmd-norm[2]</property>
@@ -123,7 +146,7 @@
     </event>
   </run>
 
-<output file="OutputFgfs.xml"></output> <!-- Pipe to FG for display -->
-<output file="OutputLog.xml"></output>
+<output file="OutputFgfs.xml"></output>
+<!-- <output file="OutputLog.xml"></output> -->
 
 </runscript>

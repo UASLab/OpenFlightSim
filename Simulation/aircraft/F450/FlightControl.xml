@@ -161,112 +161,112 @@
       <gain>1.0</gain>
       <output>fcs/cmdHeave_nd_2_FR</output>
     </pure_gain>
-    <pure_gain name="cmdRoll_rps_2_FR">
-      <input>fcs/cmdRoll_rps</input>
-      <gain>-1.0</gain>
-      <output>fcs/cmdRoll_rps_2_FR</output>
-    </pure_gain>
-    <pure_gain name="cmdPitch_rps_2_FR">
-      <input>fcs/cmdPitch_rps</input>
-      <gain>1.0</gain>
-      <output>fcs/cmdPitch_rps_2_FR</output>
-    </pure_gain>
+    <pure_gain name="cmdRoll_rps_2_FR">
+      <input>fcs/cmdRoll_rps</input>
+      <gain>-1.0</gain>
+      <output>fcs/cmdRoll_rps_2_FR</output>
+    </pure_gain>
+    <pure_gain name="cmdPitch_rps_2_FR">
+      <input>fcs/cmdPitch_rps</input>
+      <gain>1.0</gain>
+      <output>fcs/cmdPitch_rps_2_FR</output>
+    </pure_gain>
     <pure_gain name="cmdYaw_rps_2_FR">
       <input>fcs/cmdYaw_rps</input>
       <gain>1.0</gain>
       <output>fcs/cmdYaw_rps_2_FR</output>
     </pure_gain>
-    <summer name="cmdFR_nd">
+    <summer name="cmdFR_nd">
       <input>fcs/cmdHeave_nd_2_FR</input>
-      <input>fcs/cmdRoll_rps_2_FR</input>
+      <input>fcs/cmdRoll_rps_2_FR</input>
       <input>fcs/cmdPitch_rps_2_FR</input>
-      <input>fcs/cmdYaw_rps_2_FR</input>
-      <output>fcs/cmdFR_nd</output>
-    </summer>
+      <input>fcs/cmdYaw_rps_2_FR</input>
+      <output>fcs/cmdFR_nd</output>
+    </summer>
 
     <pure_gain name="cmdHeave_mps_2_AL">
       <input>fcs/cmdHeave_nd</input>
       <gain>1.0</gain>
       <output>fcs/cmdHeave_nd_2_AL</output>
     </pure_gain>
-    <pure_gain name="cmdRoll_rps_2_AL">
-      <input>fcs/cmdRoll_rps</input>
-      <gain>1.0</gain>
-      <output>fcs/cmdRoll_rps_2_AL</output>
-    </pure_gain>
-    <pure_gain name="cmdPitch_rps_2_AL">
-      <input>fcs/cmdPitch_rps</input>
-      <gain>-1.0</gain>
-      <output>fcs/cmdPitch_rps_2_AL</output>
-    </pure_gain>
+    <pure_gain name="cmdRoll_rps_2_AL">
+      <input>fcs/cmdRoll_rps</input>
+      <gain>1.0</gain>
+      <output>fcs/cmdRoll_rps_2_AL</output>
+    </pure_gain>
+    <pure_gain name="cmdPitch_rps_2_AL">
+      <input>fcs/cmdPitch_rps</input>
+      <gain>-1.0</gain>
+      <output>fcs/cmdPitch_rps_2_AL</output>
+    </pure_gain>
     <pure_gain name="cmdYaw_rps_2_AL">
       <input>fcs/cmdYaw_rps</input>
       <gain>1.0</gain>
       <output>fcs/cmdYaw_rps_2_AL</output>
     </pure_gain>
-    <summer name="cmdAL_nd">
+    <summer name="cmdAL_nd">
       <input>fcs/cmdHeave_nd_2_AL</input>
-      <input>fcs/cmdRoll_rps_2_AL</input>
+      <input>fcs/cmdRoll_rps_2_AL</input>
       <input>fcs/cmdPitch_rps_2_AL</input>
-      <input>fcs/cmdYaw_rps_2_AL</input>
-      <output>fcs/cmdAL_nd</output>
-    </summer>
+      <input>fcs/cmdYaw_rps_2_AL</input>
+      <output>fcs/cmdAL_nd</output>
+    </summer>
 
     <pure_gain name="cmdHeave_mps_2_FL">
       <input>fcs/cmdHeave_nd</input>
       <gain>1.0</gain>
       <output>fcs/cmdHeave_nd_2_FL</output>
     </pure_gain>
-    <pure_gain name="cmdRoll_rps_2_FL">
-      <input>fcs/cmdRoll_rps</input>
-      <gain>1.0</gain>
-      <output>fcs/cmdRoll_rps_2_FL</output>
-    </pure_gain>
-    <pure_gain name="cmdPitch_rps_2_FL">
-      <input>fcs/cmdPitch_rps</input>
-      <gain>1.0</gain>
-      <output>fcs/cmdPitch_rps_2_FL</output>
-    </pure_gain>
+    <pure_gain name="cmdRoll_rps_2_FL">
+      <input>fcs/cmdRoll_rps</input>
+      <gain>1.0</gain>
+      <output>fcs/cmdRoll_rps_2_FL</output>
+    </pure_gain>
+    <pure_gain name="cmdPitch_rps_2_FL">
+      <input>fcs/cmdPitch_rps</input>
+      <gain>1.0</gain>
+      <output>fcs/cmdPitch_rps_2_FL</output>
+    </pure_gain>
     <pure_gain name="cmdYaw_rps_2_FL">
       <input>fcs/cmdYaw_rps</input>
       <gain>-1.0</gain>
       <output>fcs/cmdYaw_rps_2_FL</output>
     </pure_gain>
-    <summer name="cmdFL_nd">
+    <summer name="cmdFL_nd">
       <input>fcs/cmdHeave_nd_2_FL</input>
-      <input>fcs/cmdRoll_rps_2_FL</input>
+      <input>fcs/cmdRoll_rps_2_FL</input>
       <input>fcs/cmdPitch_rps_2_FL</input>
-      <input>fcs/cmdYaw_rps_2_FL</input>
-      <output>fcs/cmdFL_nd</output>
-    </summer>
+      <input>fcs/cmdYaw_rps_2_FL</input>
+      <output>fcs/cmdFL_nd</output>
+    </summer>
 
     <pure_gain name="cmdHeave_mps_2_AR">
       <input>fcs/cmdHeave_nd</input>
       <gain>1.0</gain>
       <output>fcs/cmdHeave_nd_2_AR</output>
     </pure_gain>
-    <pure_gain name="cmdRoll_rps_2_AR">
-      <input>fcs/cmdRoll_rps</input>
-      <gain>-1.0</gain>
-      <output>fcs/cmdRoll_rps_2_AR</output>
-    </pure_gain>
-    <pure_gain name="cmdPitch_rps_2_AR">
-      <input>fcs/cmdPitch_rps</input>
-      <gain>-1.0</gain>
-      <output>fcs/cmdPitch_rps_2_AR</output>
-    </pure_gain>
+    <pure_gain name="cmdRoll_rps_2_AR">
+      <input>fcs/cmdRoll_rps</input>
+      <gain>-1.0</gain>
+      <output>fcs/cmdRoll_rps_2_AR</output>
+    </pure_gain>
+    <pure_gain name="cmdPitch_rps_2_AR">
+      <input>fcs/cmdPitch_rps</input>
+      <gain>-1.0</gain>
+      <output>fcs/cmdPitch_rps_2_AR</output>
+    </pure_gain>
     <pure_gain name="cmdYaw_rps_2_AR">
       <input>fcs/cmdYaw_rps</input>
       <gain>-1.0</gain>
       <output>fcs/cmdYaw_rps_2_AR</output>
     </pure_gain>
-    <summer name="cmdAR_nd">
+    <summer name="cmdAR_nd">
       <input>fcs/cmdHeave_nd_2_AR</input>
-      <input>fcs/cmdRoll_rps_2_AR</input>
+      <input>fcs/cmdRoll_rps_2_AR</input>
       <input>fcs/cmdPitch_rps_2_AR</input>
-      <input>fcs/cmdYaw_rps_2_AR</input>
-      <output>fcs/cmdAR_nd</output>
-    </summer>
+      <input>fcs/cmdYaw_rps_2_AR</input>
+      <output>fcs/cmdAR_nd</output>
+    </summer>
   </channel>
 
   <property value="0.0">fcs/cmdFR_ext_nd</property>
