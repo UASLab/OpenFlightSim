@@ -3,8 +3,6 @@
   <ixx unit="KG*M2"> 6.05e-05 </ixx> <!-- (1/12) * 12.6e-3 * (9.45*0.0254)^2 -->
   <diameter unit="IN"> 9.45 </diameter>
   <numblades> 2 </numblades>
-  <minrpm> 0 </minrpm>
-  <maxrpm> 12000 </maxrpm>
   <constspeed> 0 </constspeed>
 
   <table name="C_THRUST" type="internal"> <!-- derived from APC website for the 9X4.5e -->

@@ -3,8 +3,6 @@
   <ixx unit="KG*M2"> 0.00012991 </ixx> <!-- derived from APC mass 0.000209 --> <!-- OpenFlight 0.00012991 -->
   <diameter unit="IN"> 12.0 </diameter>
   <numblades> 2 </numblades>
-  <minrpm> 0 </minrpm>
-  <maxrpm> 12000 </maxrpm>
   <constspeed> 0 </constspeed>
 
   <table name="C_THRUST" type="internal">

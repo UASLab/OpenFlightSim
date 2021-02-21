@@ -81,12 +81,12 @@
           <product>
             <property> propulsion/engine[0]/propeller-sense </property>
             <value> -1 </value> <!-- Torque is negative of prop sense -->
-            <property> propulsion/engine[0]/propeller-torque </property>
+            <property> propulsion/engine[0]/propeller-torque-ftlb </property>
             <property> fcs/deltaCmdFR_rpm </property>
             <value> 0.104719 </value> <!-- rpm to rad/sec -->
           </product>
           <product>
-            <property> propulsion/engine[0]/propeller-power </property>
+            <property> propulsion/engine[0]/propeller-power-ftlbps </property>
             <value> 1.3558179 </value> <!-- ft-lbs/s to Watts -->
           </product>
         </sum>
@@ -98,12 +98,12 @@
           <product>
             <property> propulsion/engine[1]/propeller-sense </property>
             <value> -1 </value> <!-- Torque is negative of prop sense -->
-            <property> propulsion/engine[1]/propeller-torque </property>
+            <property> propulsion/engine[1]/propeller-torque-ftlb </property>
             <property> fcs/deltaCmdAL_rpm </property>
             <value> 0.104719 </value> <!-- rpm to rad/sec -->
           </product>
           <product>
-            <property> propulsion/engine[1]/propeller-power </property>
+            <property> propulsion/engine[1]/propeller-power-ftlbps </property>
             <value> 1.3558179 </value> <!-- ft-lbs/s to Watts -->
           </product>
         </sum>
@@ -115,12 +115,12 @@
           <product>
             <property> propulsion/engine[2]/propeller-sense </property>
             <value> -1 </value> <!-- Torque is negative of prop sense -->
-            <property> propulsion/engine[2]/propeller-torque </property>
+            <property> propulsion/engine[2]/propeller-torque-ftlb </property>
             <property> fcs/deltaCmdFL_rpm </property>
             <value> 0.104719 </value> <!-- rpm to rad/sec -->
           </product>
           <product>
-            <property> propulsion/engine[2]/propeller-power </property>
+            <property> propulsion/engine[2]/propeller-power-ftlbps </property>
             <value> 1.3558179 </value> <!-- ft-lbs/s to Watts -->
           </product>
         </sum>
@@ -132,12 +132,12 @@
           <product>
             <property> propulsion/engine[3]/propeller-sense </property>
             <value> -1 </value> <!-- Torque is negative of prop sense -->
-            <property> propulsion/engine[3]/propeller-torque </property>
+            <property> propulsion/engine[3]/propeller-torque-ftlb </property>
             <property> fcs/deltaCmdAR_rpm </property>
             <value> 0.104719 </value> <!-- rpm to rad/sec -->
           </product>
           <product>
-            <property> propulsion/engine[3]/propeller-power </property>
+            <property> propulsion/engine[3]/propeller-power-ftlbps </property>
             <value> 1.3558179 </value> <!-- ft-lbs/s to Watts -->
           </product>
         </sum>

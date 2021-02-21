@@ -3,8 +3,6 @@
   <ixx unit="KG*M2"> 9.84e-06 </ixx> <!-- derived from APC mass -->
   <diameter unit="IN"> 6.0 </diameter>
   <numblades> 2 </numblades>
-  <minrpm> 0 </minrpm>
-  <maxrpm> 12000 </maxrpm>
   <constspeed> 0 </constspeed>
 
   <table name="C_THRUST" type="internal">

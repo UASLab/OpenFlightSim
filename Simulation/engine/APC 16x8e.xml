@@ -3,8 +3,6 @@
   <ixx unit="KG*M2"> 0.0007157 </ixx> <!-- 0.0007157 = (1/12) * 52e-3 * (16*0.0254)^2 -->
   <diameter unit="IN"> 16.0 </diameter>
   <numblades> 2 </numblades>
-  <minrpm> 0 </minrpm>
-  <maxrpm> 12000 </maxrpm>
   <constspeed> 0 </constspeed>
 
   <table name="C_THRUST" type="internal">
