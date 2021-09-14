@@ -10,6 +10,6 @@
     <iyy unit="KG*M2">0.08636</iyy>
     <izz unit="KG*M2">0.15364</izz>
     <ixy unit="KG*M2">0.0</ixy>
-    <ixz unit="KG*M2">0.0</ixz>
+    <ixz unit="KG*M2">-0.014</ixz>
     <iyz unit="KG*M2">0.0</iyz>
 </mass_balance>

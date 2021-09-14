@@ -9,14 +9,13 @@ AoA = 4.000000
 Beta = 0.000000 
 Vinf = 17.000000 
 Rho = 1.225000 
-ReCref = 10000000.000000 
+ReCref = 300000.000000 
 ClMax = 1.000000 
 MaxTurningAngle = -1.000000 
 Symmetry = NO 
 FarDist = -1.000000 
-NumWakeNodes = -1 
+NumWakeNodes = 64 
 WakeIters = 5 
-NumberOfRotors = 0 
 NumberOfControlGroups = 6 
 AilR
 Wing_Surf0_Aileron
@@ -43,6 +42,5 @@ H-Tail_Surf0_Elevator,H-Tail_Surf1_Elevator
 1, -1
 0
 Preconditioner = Matrix 
-Vortex Lift = Y 
-LE Suction = N 
 Karman-Tsien Correction = N 
+Stability Type = 0 

@@ -4,29 +4,31 @@
 7392 Total Num Tris
 
 Theo_Area   Wet_Area   Theo_Vol    Wet_Vol  Name
-    0.304      0.264      0.006      0.006  FuselageGeom   
-    0.014      0.014      0.000      0.000  Motor          
-    1.031      1.002      0.016      0.016  Wing           
-    0.198      0.192      0.001      0.001  H-Tail         
-    0.104      0.084      0.000      0.000  V-Tail         
+    0.304      0.262      0.006      0.006  FuselageGeom   
+    0.097      0.095      0.002      0.002  Propeller      
+    0.015      0.015      0.000      0.000  Motor          
+    1.074      1.045      0.017      0.017  Wing           
+    0.250      0.243      0.001      0.001  H-Tail         
+    0.093      0.078      0.000      0.000  V-Tail         
 -------------------------------------------------
-    1.651      1.557      0.023      0.023  Totals         
+    1.833      1.737      0.027      0.026  Totals         
 
 Tag_Theo_Area   Tag_Wet_Area    Tag_Name
-        0.304          0.264    FuselageGeom_Surf0
-        0.000          0.000    Propeller_Surf0
-        0.014          0.014    Motor_Surf0    
-        0.441          0.426    Wing_Surf0     
-        0.441          0.426    Wing_Surf1     
-        0.067          0.065    H-Tail_Surf0   
-        0.067          0.065    H-Tail_Surf1   
-        0.056          0.038    V-Tail_Surf0   
-        0.040          0.040    Wing_Surf0,Flap
-        0.036          0.036    Wing_Surf0,Aileron
-        0.040          0.040    Wing_Surf1,Flap
-        0.036          0.036    Wing_Surf1,Aileron
-        0.032          0.032    H-Tail_Surf0,Elevator
-        0.032          0.032    H-Tail_Surf1,Elevator
-        0.048          0.046    V-Tail_Surf0,Rudder
-WARNING: 1 open meshes removed
+        0.304          0.262    FuselageGeom_Surf0
+        0.097          0.095    Propeller_Surf0
+        0.015          0.015    Motor_Surf0    
+        0.472          0.457    Wing_Surf0     
+        0.472          0.457    Wing_Surf1     
+        0.096          0.092    H-Tail_Surf0   
+        0.096          0.092    H-Tail_Surf1   
+        0.058          0.043    V-Tail_Surf0   
+        0.033          0.033    Wing_Surf0,Flap
+        0.032          0.032    Wing_Surf0,Aileron
+        0.033          0.033    Wing_Surf1,Flap
+        0.032          0.032    Wing_Surf1,Aileron
+        0.029          0.029    H-Tail_Surf0,Elevator
+        0.029          0.029    H-Tail_Surf1,Elevator
+        0.036          0.034    V-Tail_Surf0,Rudder
 WARNING: 2 open meshes merged
+     Merged: Wing
+     Merged: H-Tail
