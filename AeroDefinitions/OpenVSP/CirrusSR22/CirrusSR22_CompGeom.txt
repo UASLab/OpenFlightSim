@@ -1,0 +1,56 @@
+...Comp Geom...
+11 Num Comps
+19 Total Num Meshes
+21056 Total Num Tris
+
+Theo_Area   Wet_Area   Theo_Vol    Wet_Vol  Name
+   21.196     20.369      5.294      5.262  Fuselage       
+    0.295      0.054      0.012      0.002  Tire_MainGear  
+    0.295      0.054      0.012      0.002  Tire_MainGear  
+    0.632      0.590      0.035      0.034  Pant_MainGear  
+    0.632      0.590      0.035      0.034  Pant_MainGear  
+    0.377      0.260      0.007      0.005  Strut_MainGear 
+    0.377      0.267      0.007      0.005  Strut_MainGear 
+    0.205      0.047      0.007      0.002  Tire_NoseGear  
+    0.522      0.486      0.023      0.022  Pant_NoseGear  
+    0.184      0.133      0.003      0.002  Strut_NoseGear 
+    0.260      0.252      0.002      0.002  Prop           
+    0.260      0.259      0.002      0.002  Prop           
+    0.260      0.259      0.002      0.002  Prop           
+    2.970      2.797     -0.402     -0.403  Prop           
+    3.482      3.295      0.131      0.128  Vertical       
+   13.869     12.198      0.764      0.695  Wing           
+   13.852     12.181      0.759      0.690  Wing           
+    4.933      4.743      0.113      0.112  Horizontal     
+-------------------------------------------------
+   64.599     58.834      6.804      6.596  Totals         
+
+Tag_Theo_Area   Tag_Wet_Area    Tag_Name
+       21.196         20.369    Fuselage_Surf0 
+        0.295          0.054    Tire_MainGear_Surf0
+        0.295          0.054    Tire_MainGear_Surf1
+        0.632          0.590    Pant_MainGear_Surf0
+        0.632          0.590    Pant_MainGear_Surf1
+        0.377          0.260    Strut_MainGear_Surf0
+        0.377          0.267    Strut_MainGear_Surf1
+        0.205          0.047    Tire_NoseGear_Surf0
+        0.522          0.486    Pant_NoseGear_Surf0
+        0.184          0.133    Strut_NoseGear_Surf0
+        0.260          0.252    Prop_Surf0     
+        0.260          0.259    Prop_Surf1     
+        0.260          0.259    Prop_Surf2     
+        2.970          2.797    Prop_Surf3     
+        2.365          2.178    Vertical_Surf0 
+       11.052          9.381    Wing_Surf0     
+       11.035          9.364    Wing_Surf1     
+        1.630          1.550    Horizontal_Surf0
+        1.630          1.550    Horizontal_Surf1
+        1.117          1.117    Vertical_Surf0,Rudder
+        0.826          0.826    Wing_Surf0,Aileron
+        1.991          1.991    Wing_Surf0,Flap
+        0.826          0.826    Wing_Surf1,Aileron
+        1.991          1.991    Wing_Surf1,Flap
+        0.836          0.821    Horizontal_Surf0,Elevator
+        0.836          0.821    Horizontal_Surf1,Elevator
+WARNING: 1 open meshes merged
+     Merged: Horizontal
