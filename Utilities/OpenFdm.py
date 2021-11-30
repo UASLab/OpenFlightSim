@@ -52,9 +52,9 @@ def LoadVsp(vspData, convertDef, fdmAero = {}):
 
     # Conditions (VSP -> oFdm)
     convertDef['Cond'] = {}
-    convertDef['Cond']['vsp'] = ['Mach_', 'AoA_', 'Beta_', 'Vinf_', 'Roll__Rate', 'Pitch_Rate', 'Yaw___Rate'] # Angles in deg, rate in rad/s, velocity in m/s
-    convertDef['Cond']['oFdm'] = ['mach_nd', 'alpha_rad', 'beta_rad', 'vTas_mps', 'p_rps', 'q_rps', 'r_rps']
-    convertDef['Cond']['scale'] = [1.0, Aconvert, Aconvert, Vconvert, 1.0, 1.0, 1.0]
+    convertDef['Cond']['vsp'] = ['Mach_', 'AoA_', 'Beta_', 'Vinf_', 'Rho_', 'Roll__Rate', 'Pitch_Rate', 'Yaw___Rate'] # Angles in deg, rate in rad/s, velocity in m/s
+    convertDef['Cond']['oFdm'] = ['mach_nd', 'alpha_rad', 'beta_rad', 'vTas_mps', 'rho_kgpm3', 'p_rps', 'q_rps', 'r_rps']
+    convertDef['Cond']['scale'] = [1.0, Aconvert, Aconvert, Vconvert, Mconvert/Lconvert**3, 1.0, 1.0, 1.0]
 
     # Coef Name Translator (VSP -> oFdm)
     convertDef['Coef'] = {}
@@ -88,14 +88,14 @@ def LoadVsp(vspData, convertDef, fdmAero = {}):
     # Aero Reference Values
     fdmAero['Ref'] = {}
 
-    fdmAero['Ref']['cBar_m'] = vspData['StabTab']['Cond']['Cref_'].mean()
-    fdmAero['Ref']['b_m'] = vspData['StabTab']['Cond']['Bref_'].mean()
-    fdmAero['Ref']['S_m2'] = vspData['StabTab']['Cond']['Sref_'].mean()
+    fdmAero['Ref']['cBar_m'] = vspData['StabTab']['Cond']['Cref_'].mean() * Lconvert
+    fdmAero['Ref']['b_m'] = vspData['StabTab']['Cond']['Bref_'].mean() * Lconvert
+    fdmAero['Ref']['S_m2'] = vspData['StabTab']['Cond']['Sref_'].mean() * Lconvert**2
 
     # Aerodynamic Reference Point - VSPAero is setup to run using the CG as the RP
-    refX = vspData['StabTab']['Cond']['Xcg_'].mean()
-    refY = vspData['StabTab']['Cond']['Ycg_'].mean()
-    refZ = vspData['StabTab']['Cond']['Zcg_'].mean()
+    refX = vspData['StabTab']['Cond']['Xcg_'].mean() * Lconvert
+    refY = vspData['StabTab']['Cond']['Ycg_'].mean() * Lconvert
+    refZ = vspData['StabTab']['Cond']['Zcg_'].mean() * Lconvert
     fdmAero['Ref']['rAero_S_m'] = np.array([refX, refY, refZ])
 
 
