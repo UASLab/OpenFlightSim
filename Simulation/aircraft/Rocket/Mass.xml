@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<mass_balance> <!-- Should probably just use the "empty" mass and inertia of the assembly, here I just say its a tube instead -->
+    <pointmass name="Body Tube">
+        <form shape="tube">
+            <radius unit="IN"> 4 </radius>
+            <length unit="FT"> 15.3 </length>
+        </form>
+        <weight unit="LBS"> 150 </weight>
+        <location unit="FT">
+            <x> 10 </x>
+            <y> 0.0 </y>
+            <z> 0.0 </z>
+        </location>
+    </pointmass>
+</mass_balance>

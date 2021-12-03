@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<initialize name="TripoliMN">
+  <!--
+    This file sets up the vehicle to take off from the launch pad.
+  -->
+  <ubody unit="FT/SEC">       0.0  </ubody>
+  <vbody unit="FT/SEC">       0.0  </vbody>
+  <wbody unit="FT/SEC">       0.0  </wbody>
+  <latitude unit="DEG">   45.5460581  </latitude>
+  <longitude unit="DEG"> -92.9246400  </longitude>
+  <phi unit="DEG">           0 </phi>
+  <!--
+    Set theta to a value slightly lower than 90deg to check the fidelity
+    of the forces/hold-down feature (theta and psi might be polluted by the
+    Euler angles gimble error otherwise).
+    -->
+  <theta unit="DEG">    89.99 </theta>
+  <psi unit="DEG">      0.0  </psi>
+  <altitude unit="FT">  16.0  </altitude>
+</initialize>

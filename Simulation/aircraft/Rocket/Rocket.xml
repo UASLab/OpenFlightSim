@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+
+<fdm_config release="Alpha" version="2.0">
+    <fileheader>
+        <author> UMN Rocket Team </author>
+        <description> models an 8" diameter sounding rocket </description>
+        <note> </note>
+    </fileheader>
+    
+    <mass_balance file="Mass.xml"/>
+    <propulsion file="Propulsion.xml"/>
+    <metrics file="Metrics.xml"/>
+    <aerodynamics file="Aero.xml"/>
+
+    <ground_reactions> </ground_reactions>
+
+    <flight_control name="Rocket_Test"> <!-- Placeholder, Control is performed in Python, these are the insertion points -->
+        <property>fcs/cmdBrake_nd</property>
+        <property>fcs/cmdRoll_rps</property>
+        <property>fcs/cmdSeperate_nd</property>
+        <property>fcs/cmdChute_nd</property>
+    </flight_control>
+
+    <system name="Effectors">
+        <channel name="Roll Control Actuation">
+
+            <actuator name="Roll">
+                <input>fcs/cmdRoll_rps</input>
+                <lag> 100 </lag> <!-- This should result in the motor bandwidth (first-order) as lag * dt -->
+                <!-- <clipto>
+                    <min> {[-]property name | value} </min>
+                    <max> {[-]property name | value} </max>
+                </clipto> -->
+                <output>fcs/outRoll_rps</output>
+            </actuator>
+
+            <!-- Lead-lag to model reaction wheel motor dynamics -->
+            <lead_lag_filter name="Roll Motor Acceleration">
+                <input> fcs/outRoll_rps </input>
+                <c1> 1 </c1>
+                <c2> 0 </c2>
+                <c3> 0 </c3>
+                <c4> 1 </c4>
+                <!-- <clipto>
+                    <min> {[-]property name | value} </min>
+                    <max> {[-]property name | value} </max>
+                </clipto> -->
+                [<output> fcs/outRoll_rps2 </output>]
+            </lead_lag_filter>
+
+            <!-- <integrator name="Roll Motor Speed">
+                <input> fcs/outRoll_rps2 </input>
+                <c1> 1 </c1>
+                <clipto>
+                    <min> -10000.0 </min>
+                    <max> 10000.0 </max>
+                </clipto>
+                <output> fcs/outRoll_rps </output>
+            </integrator> -->
+        </channel>
+
+        <channel name="Speed Brake Control Actuation">
+            <actuator name="Brake">
+                <input>fcs/cmdBrake_nd</input>
+                <lag>100</lag>
+                <clipto>
+                    <min>0.0</min>
+                    <max>1.0</max>
+                </clipto>
+                <output>fcs/outBrake_nd</output>
+            </actuator>
+        </channel>
+
+        <channel name="Separate">
+        
+        </channel>
+
+        <channel name="Chute">
+        
+        </channel>
+    </system>
+
+    <external_reactions>
+        <function name="external_reactions/ReactionWheel/magnitude-lbsft">
+            <product>
+                <p> fcs/outRoll_rps2</p>
+                <v> 1.4 </v> <!-- Reaction Wheel Inertia  -->
+            </product>
+        </function>
+        <moment name="ReactionWheel" frame="BODY">
+            <location unit="FT">
+                <x> 3.0 </x>
+                <y> 0.0 </y>
+                <z> 0.0 </z>
+            </location>
+            <direction>
+                <x>-1</x> Up is positive
+                <y>0</y>
+                <z>0</z>
+            </direction>
+        </moment>
+        
+        <!-- Gyro Loads due to spinning reaction wheel -->
+        <function name="external_reactions/ReactionWheel_Pitch/magnitude-lbsft">
+            <product>
+                <p> fcs/outRoll_rps</p>
+                <p> velocities/ri-rad_sec</p>
+                <v> 1.4 </v> <!-- Reaction Wheel Inertia  -->
+            </product>
+        </function>
+        <moment name="ReactionWheel_Pitch" frame="BODY">
+            <location unit="FT">
+                <x> 3.0 </x>
+                <y> 0.0 </y>
+                <z> 0.0 </z>
+            </location>
+            <direction>
+                <x>0</x>
+                <y>1</y>
+                <z>0</z>
+            </direction>
+        </moment>
+        <function name="external_reactions/ReactionWheel_Yaw/magnitude-lbsft">
+            <product>
+                <p> fcs/outRoll_rps</p>
+                <p> velocities/qi-rad_sec</p>
+                <v> 1.4 </v> <!-- Reaction Wheel Inertia  -->
+            </product>
+        </function>
+        <moment name="ReactionWheel_Yaw" frame="BODY">
+            <location unit="FT">
+                <x> 3.0 </x>
+                <y> 0.0 </y>
+                <z> 0.0 </z>
+            </location>
+            <direction>
+                <x>0</x>
+                <y>0</y>
+                <z>1</z>
+            </direction>
+        </moment>
+    </external_reactions>
+
+    <!-- <system file="SensorImu.xml"/>
+    <system file="SensorBaro.xml"/>
+    <system file="SensorGps.xml"/>
+    <system file="SensorPitot.xml"/> -->
+</fdm_config>
+

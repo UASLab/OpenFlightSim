@@ -1,0 +1,310 @@
+<?xml version="1.0" ?>
+
+<aerodynamics>
+    <function name="aero/coefficient/CL__zero">
+        <description>CL__zero</description>
+        <value>0.0</value>
+    </function>
+    <function name="aero/coefficient/dCL__alpha">
+        <description>dCL__alpha</description>
+        <value>3.0</value>
+    </function>
+    <function name="aero/coefficient/CL__alpha">
+        <description>CL__alpha = dCL__alpha * alpha</description>
+        <product>
+            <property>aero/coefficient/dCL__alpha</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__alphaDot">
+        <description>dCL__alphaDot</description>
+        <value>0.0</value>
+    </function>
+    <function name="aero/coefficient/CL__alphaDot">
+        <description>CL__alphaDot = dCL__alphaDot * alphaDot</description>
+        <product>
+            <property>aero/coefficient/dCL__alphaDot</property>
+            <property>aero/ci2vel</property>
+            <property>aero/alphadot-rad_sec</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dqHat_rps">
+        <description>dCL__dqHat_rps</description>
+        <value>0.0</value>
+    </function>
+    <function name="aero/coefficient/CL__dqHat_rps">
+        <description>CL__dqHat_rps = dCL__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCL__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CL">
+        <description>CL summation</description>
+        <sum>
+            <property>aero/coefficient/CL__zero</property>
+            <property>aero/coefficient/CL__alpha</property>
+            <property>aero/coefficient/CL__alphaDot</property>
+            <property>aero/coefficient/CL__dqHat_rps</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CD__zero">
+        <description>CD__zero</description>
+        <value>0.05</value>
+    </function>
+    <function name="aero/coefficient/CL__minD">
+        <description>CL at minDrag</description>
+        <value>0.2300</value>
+    </function>
+    <function name="aero/coefficient/CD__induced">
+        <description>Induced_drag</description>
+        <product>
+            <value>0.10</value>
+            <pow>
+                <difference>
+                    <property>aero/coefficient/CL</property>
+                    <property>aero/coefficient/CL__minD</property>
+                </difference>
+                <value>2.0</value>
+            </pow>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dBrake">
+        <description>dCD__dBrake</description>
+        <value>1.0</value>
+    </function>
+    <function name="aero/coefficient/CD__dBrake">
+        <description>CD__dBrake = dCD__dBrake * dBrake</description>
+        <product>
+            <property>aero/coefficient/dCD__dBrake</property>
+            <property>fcs/outBrake_nd</property>
+        </product>
+    </function>
+
+    <function name="aero/coefficient/CD">
+        <description>CD summation</description>
+        <sum>
+            <property>aero/coefficient/CD__zero</property>
+            <property>aero/coefficient/CD__induced</property>
+            <abs><property>aero/coefficient/CD__dBrake</property></abs>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CY__zero">
+        <description>CY__zero</description>
+        <value>0.0</value>
+    </function>
+    <function name="aero/coefficient/dCY__beta">
+        <description>dCY__beta</description>
+        <value>-0.1</value>
+    </function>
+    <function name="aero/coefficient/CY__beta">
+        <description>CY__beta = dCY__beta * beta</description>
+        <product>
+            <property>aero/coefficient/dCY__beta</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dpHat_rps">
+        <description>dCY__dpHat_rps</description>
+        <value>-0.0</value>
+    </function>
+    <function name="aero/coefficient/CY__dpHat_rps">
+        <description>CY__dpHat_rps = dCY__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCY__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__drHat_rps">
+        <description>dCY__drHat_rps</description>
+        <value>0.0</value>
+    </function>
+    <function name="aero/coefficient/CY__drHat_rps">
+        <description>CY__drHat_rps = dCY__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCY__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CY">
+        <description>CY summation</description>
+        <sum>
+            <property>aero/coefficient/CY__zero</property>
+            <property>aero/coefficient/CY__beta</property>
+            <property>aero/coefficient/CY__dpHat_rps</property>
+            <property>aero/coefficient/CY__drHat_rps</property>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CMl__zero">
+        <description>CMl__zero</description>
+        <value>0.00001</value> <!-- Non-zero for fin misalignment resulting in roll  -->
+    </function>
+    <function name="aero/coefficient/dCMl__dpHat_rps">
+        <description>dCMl__dpHat_rps</description>
+        <value>-0.1</value>
+    </function>
+    <function name="aero/coefficient/CMl__dpHat_rps">
+        <description>CMl__dpHat_rps = dCMl__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMl__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+
+    <function name="aero/coefficient/CMl">
+        <description>CMl summation</description>
+        <sum>
+            <property>aero/coefficient/CMl__zero</property>
+            <property>aero/coefficient/CMl__dpHat_rps</property>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CMm__zero">
+        <description>CMm__zero</description>
+        <value>0.0</value>
+    </function>
+    <function name="aero/coefficient/dCMm__alpha">
+        <description>dCMm__alpha</description>
+        <value>-0.5</value>
+    </function>
+    <function name="aero/coefficient/CMm__alpha">
+        <description>CMm__alpha = dCMm__alpha * alpha</description>
+        <product>
+            <property>aero/coefficient/dCMm__alpha</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__alphaDot">
+        <description>dCMm__alphaDot</description>
+        <value>0.0</value>
+    </function>
+    <function name="aero/coefficient/CMm__alphaDot">
+        <product>
+            <property>aero/coefficient/dCMm__alphaDot</property>
+            <property>aero/alphadot-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dqHat_rps">
+        <description>dCMm__dqHat_rps</description>
+        <value>-5.0</value>
+    </function>
+    <function name="aero/coefficient/CMm__dqHat_rps">
+        <description>CMm__dqHat_rps = dCMm__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMm__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+
+    <function name="aero/coefficient/CMm">
+        <description>CMm summation</description>
+        <sum>
+            <property>aero/coefficient/CMm__zero</property>>
+            <property>aero/coefficient/CMm__alpha</property>>
+            <property>aero/coefficient/CMm__alphaDot</property>
+            <property>aero/coefficient/CMm__dqHat_rps</property>
+        </sum>
+    </function>
+
+    <function name="aero/coefficient/CMn__zero">
+        <description>CMn__zero</description>
+        <value>0.0</value>
+    </function>
+    <function name="aero/coefficient/dCMn__beta">
+        <description>dCMn__beta</description>
+        <value>-0.1</value>
+    </function>
+    <function name="aero/coefficient/CMn__beta">
+        <description>CMn__beta = dCMn__beta * beta</description>
+        <product>
+            <property>aero/coefficient/dCMn__beta</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__drHat_rps">
+        <description>dCMn__drHat_rps</description>
+        <value>-0.2</value>
+    </function>
+    <function name="aero/coefficient/CMn__drHat_rps">
+        <description>CMn__drHat_rps = dCMn__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMn__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn">
+        <description>CMn summation</description>
+        <sum>
+            <property>aero/coefficient/CMn__zero</property>
+            <property>aero/coefficient/CMn__beta</property>
+            <property>aero/coefficient/CMn__drHat_rps</property>
+        </sum>
+    </function>
+
+    <axis name="LIFT">
+        <function name="aero/force/LIFT__CL">
+            <description>LIFT from CL</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CL</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="DRAG">
+        <function name="aero/force/DRAG__CD">
+            <description>DRAG from CD</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CD</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="SIDE">
+        <function name="aero/force/SIDE__CY">
+            <description>SIDE from CY</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CY</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="ROLL">
+        <function name="aero/moment/ROLL__CMl">
+            <description>ROLL from CMl</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/coefficient/CMl</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="PITCH">
+        <function name="aero/moment/PITCH__CMm">
+            <description>PITCH from CMm</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/cbarw-ft</property>
+                <property>aero/coefficient/CMm</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="YAW">
+        <function name="aero/moment/YAW__CMn">
+            <description>YAW from CMn</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/coefficient/CMn</property>
+            </product>
+        </function>
+    </axis>
+  </aerodynamics>

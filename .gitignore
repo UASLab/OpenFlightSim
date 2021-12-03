@@ -111,3 +111,4 @@ venv.bak/
 */ptySimSoc
 */ptySimFmu
 */data*.bin
+Simulation/RocketOut.csv

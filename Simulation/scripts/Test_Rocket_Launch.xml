@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sf.net/JSBSimScript.xsl"?>
+<runscript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
+    name="Rocket">
+  <use aircraft="Rocket" initialize="initGrnd"/>
+  <run start="0.0" end="100" dt="0.005">
+
+    <set name="simulation/jsbsim-debug" value="2"/>
+    <!-- <property value="2">simulation/jsbsim-debug</property> -->
+
+    <property value="2">simulation/integrator/rate/rotational</property>
+    <property value="3">simulation/integrator/rate/translational</property>
+    <property value="3">simulation/integrator/position/rotational</property>
+    <property value="3">simulation/integrator/position/translational</property>
+
+    <property> simulation/notify-time-trigger </property>
+    <property value="1"> forces/hold-down </property>
+
+    <event name="Start Solid Rocket">
+      <condition>simulation/sim-time-sec  ge  5.0</condition>
+      <set name="fcs/throttle-cmd-norm" value="1.0"/>
+      <notify/>
+    </event>
+
+    <event name="Release">
+      <!-- <condition>forces/fbx-prop-lbs gt inertia/weight-lbs</condition> -->
+      <condition>simulation/sim-time-sec  ge  5.1</condition>
+      <set name="forces/hold-down" value="0"/>
+      <notify/>
+    </event>
+
+    <event name="Vehicle state:" persistent="true">
+      <description>Output message at 10 second intervals</description>
+      <notify>
+        <description>Vehicle state:</description>
+        <property caption="Elapsed Time:            "> simulation/sim-time-sec </property>
+        <property caption="Altitude AGL (ft):       "> position/h-agl-ft </property>
+        <property caption="Alpha (deg):             "> aero/alpha-deg </property>
+        <property caption="Beta (deg):              "> aero/beta-deg </property>
+        <property caption="Roll angle (rad):        "> attitude/phi-rad </property>
+        <property caption="Pitch angle (rad):       "> attitude/theta-rad </property>
+        <property caption="Heading (rad):           "> attitude/psi-rad </property>
+        <property caption="Roll cmd:                "> fcs/cmdRoll_rps </property>
+        <property caption="Brake cmd:               "> fcs/cmdBrake_nd </property>
+        <property caption="Qbar (psf):              "> aero/qbar-psf </property>
+        <property caption="Hold-down discrete:      "> forces/hold-down </property>
+        <property caption="Throttle (norm):         "> fcs/throttle-cmd-norm </property>
+        <property caption="Thrust 0 (norm):         "> propulsion/engine[0]/thrust-lbs </property>
+      </notify>
+      <condition> simulation/sim-time-sec >= simulation/notify-time-trigger </condition>
+      <set name="simulation/notify-time-trigger" value="10" type="delta"/>
+    </event>
+
+    <!-- <event name="Brake">
+      <condition>
+        simulation/sim-time-sec  ge  20.0
+      </condition>
+      <set name="fcs/cmdBrake_nd" value="1"/>
+      <notify/>
+    </event> -->
+
+  </run>
+</runscript>
