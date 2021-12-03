@@ -1,0 +1,2706 @@
+<?xml version="1.0" ?>
+<aerodynamics>
+    <function name="aero/coefficient/CL__zero">
+        <description>CL__zero</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.1022467
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.1025413
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.1021693
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.10382984
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.09409054
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.50070692
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCL__alpha_rad">
+        <description>dCL__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    5.2402186
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    5.2454083
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    5.2571915
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    5.2380925
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    5.2997212
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    3.3305262
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__alpha_rad">
+        <description>CL__alpha_rad = dCL__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__beta_rad">
+        <description>dCL__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.0040022
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.0114601
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0176137
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0183047
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0183903
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.081023
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__beta_rad">
+        <description>CL__beta_rad = dCL__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dpHat_rps">
+        <description>dCL__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.0001506
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0069085
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0119789
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.019414
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0199639
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.406742
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dpHat_rps">
+        <description>CL__dpHat_rps = dCL__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCL__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dqHat_rps">
+        <description>dCL__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    34.8264125
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    34.9519014
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    35.3919034
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    35.998423
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    36.8060253
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    26.1381902
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dqHat_rps">
+        <description>CL__dqHat_rps = dCL__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCL__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__drHat_rps">
+        <description>dCL__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.033755
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0365047
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0397167
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0398374
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0713917
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0913321
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__drHat_rps">
+        <description>CL__drHat_rps = dCL__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCL__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dElevator_rad">
+        <description>dCL__dElevator_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.5930471
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.594383
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.5947747
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.5931399
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.5834683
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.5786637
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dElevator_rad">
+        <description>CL__dElevator_rad = dCL__dElevator_rad * dElevator_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dElevator_rad</property>
+            <property>fcs/posElevator_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dRudder_rad">
+        <description>dCL__dRudder_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    1.3e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -8.41e-05
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.000635
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0003476
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.002866
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0066521
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dRudder_rad">
+        <description>CL__dRudder_rad = dCL__dRudder_rad * dRudder_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dRudder_rad</property>
+            <property>fcs/posRudder_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dAileronLeft_rad">
+        <description>dCL__dAileronLeft_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.3012157
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.3032007
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.3042062
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.3039726
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.3015455
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.273068
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dAileronLeft_rad">
+        <description>CL__dAileronLeft_rad = dCL__dAileronLeft_rad * dAileronLeft_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dAileronLeft_rad</property>
+            <property>fcs/posAileronLeft_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dAileronRight_rad">
+        <description>dCL__dAileronRight_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.3012355
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.3029952
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.3038873
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.3035036
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.3033339
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.2654833
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dAileronRight_rad">
+        <description>CL__dAileronRight_rad = dCL__dAileronRight_rad * dAileronRight_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dAileronRight_rad</property>
+            <property>fcs/posAileronRight_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCL__dFlaps_rad">
+        <description>dCL__dFlaps_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    1.4601099
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    1.4603658
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    1.4761463
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    1.4725391
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    1.4724509
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.8536581
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CL__dFlaps_rad">
+        <description>CL__dFlaps_rad = dCL__dFlaps_rad * dFlaps_rad</description>
+        <product>
+            <property>aero/coefficient/dCL__dFlaps_rad</property>
+            <property>fcs/posFlaps_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CL">
+        <description>CL summation</description>
+        <sum>
+            <property>aero/coefficient/CL__zero</property>
+            <property>aero/coefficient/CL__alpha_rad</property>
+            <property>aero/coefficient/CL__beta_rad</property>
+            <property>aero/coefficient/CL__dpHat_rps</property>
+            <property>aero/coefficient/CL__dqHat_rps</property>
+            <property>aero/coefficient/CL__drHat_rps</property>
+            <property>aero/coefficient/CL__dElevator_rad</property>
+            <property>aero/coefficient/CL__dRudder_rad</property>
+            <property>aero/coefficient/CL__dAileronLeft_rad</property>
+            <property>aero/coefficient/CL__dAileronRight_rad</property>
+            <property>aero/coefficient/CL__dFlaps_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CD__zero">
+        <description>CD__zero</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.03719936
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0392941
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.03503861
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.02443664
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.00610557
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.1151194
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCD__alpha_rad">
+        <description>dCD__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0717409
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.048499
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.1702179
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.2917039
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.4220517
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    1.0081732
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__alpha_rad">
+        <description>CD__alpha_rad = dCD__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__beta_rad">
+        <description>dCD__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0007741
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -4.98e-05
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0003292
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0014533
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0056687
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0282473
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__beta_rad">
+        <description>CD__beta_rad = dCD__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dpHat_rps">
+        <description>dCD__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0486965
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.0488725
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0488817
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0487429
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0538295
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0648273
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dpHat_rps">
+        <description>CD__dpHat_rps = dCD__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCD__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dqHat_rps">
+        <description>dCD__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.5255498
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -1.0255991
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -1.5054033
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -1.9498376
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -2.3922504
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.6468776
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dqHat_rps">
+        <description>CD__dqHat_rps = dCD__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCD__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__drHat_rps">
+        <description>dCD__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0240083
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.0226547
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0213572
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0207447
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0063865
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0064148
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__drHat_rps">
+        <description>CD__drHat_rps = dCD__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCD__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dElevator_rad">
+        <description>dCD__dElevator_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0118229
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0059555
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0237563
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0415821
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0585323
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0769247
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dElevator_rad">
+        <description>CD__dElevator_rad = dCD__dElevator_rad * dElevator_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dElevator_rad</property>
+            <property>fcs/posElevator_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dRudder_rad">
+        <description>dCD__dRudder_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.0009503
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0009996
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.001001
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0009213
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0011253
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0016974
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dRudder_rad">
+        <description>CD__dRudder_rad = dCD__dRudder_rad * dRudder_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dRudder_rad</property>
+            <property>fcs/posRudder_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dAileronLeft_rad">
+        <description>dCD__dAileronLeft_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.004858
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0016922
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0082803
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0148365
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0212006
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0363027
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dAileronLeft_rad">
+        <description>CD__dAileronLeft_rad = dCD__dAileronLeft_rad * dAileronLeft_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dAileronLeft_rad</property>
+            <property>fcs/posAileronLeft_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dAileronRight_rad">
+        <description>dCD__dAileronRight_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0048588
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0016908
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0082699
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0148078
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0213405
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0353838
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dAileronRight_rad">
+        <description>CD__dAileronRight_rad = dCD__dAileronRight_rad * dAileronRight_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dAileronRight_rad</property>
+            <property>fcs/posAileronRight_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCD__dFlaps_rad">
+        <description>dCD__dFlaps_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0137126
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.013906
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0419066
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0694487
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0971322
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.2964336
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CD__dFlaps_rad">
+        <description>CD__dFlaps_rad = dCD__dFlaps_rad * dFlaps_rad</description>
+        <product>
+            <property>aero/coefficient/dCD__dFlaps_rad</property>
+            <property>fcs/posFlaps_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CD">
+        <description>CD summation</description>
+        <sum>
+            <property>aero/coefficient/CD__zero</property>
+            <property>aero/coefficient/CD__alpha_rad</property>
+            <property>aero/coefficient/CD__beta_rad</property>
+            <property>aero/coefficient/CD__dpHat_rps</property>
+            <property>aero/coefficient/CD__dqHat_rps</property>
+            <property>aero/coefficient/CD__drHat_rps</property>
+            <property>aero/coefficient/CD__dElevator_rad</property>
+            <property>aero/coefficient/CD__dRudder_rad</property>
+            <property>aero/coefficient/CD__dAileronLeft_rad</property>
+            <property>aero/coefficient/CD__dAileronRight_rad</property>
+            <property>aero/coefficient/CD__dFlaps_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CY__zero">
+        <description>CY__zero</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    2.39822972e-07
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -1.e-07
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    1.97706478e-06
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    3.38716785e-06
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.00034929
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.00228449
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCY__alpha_rad">
+        <description>dCY__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    8.4e-06
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -6.7e-06
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -2.63e-05
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -3.33e-05
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0021536
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0101542
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__alpha_rad">
+        <description>CY__alpha_rad = dCY__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__beta_rad">
+        <description>dCY__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.3838641
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.4006507
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.406659
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.4115414
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.4167372
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.4041319
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__beta_rad">
+        <description>CY__beta_rad = dCY__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dpHat_rps">
+        <description>dCY__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.1534526
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.1416441
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.1310983
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.121009
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0937873
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0047663
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dpHat_rps">
+        <description>CY__dpHat_rps = dCY__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCY__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dqHat_rps">
+        <description>dCY__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -2.4e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -6.e-07
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0001278
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    9.e-05
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0058514
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0290919
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dqHat_rps">
+        <description>CY__dqHat_rps = dCY__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCY__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__drHat_rps">
+        <description>dCY__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.3916773
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.4019567
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.4139614
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.4289535
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.4389676
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.4527128
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__drHat_rps">
+        <description>CY__drHat_rps = dCY__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCY__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dElevator_rad">
+        <description>dCY__dElevator_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -3.4e-06
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -5.1e-06
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0001297
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    5.4e-06
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0005584
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.004516
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dElevator_rad">
+        <description>CY__dElevator_rad = dCY__dElevator_rad * dElevator_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dElevator_rad</property>
+            <property>fcs/posElevator_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dRudder_rad">
+        <description>dCY__dRudder_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.2106068
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.2158505
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.2127739
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.207957
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.202099
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.1910459
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dRudder_rad">
+        <description>CY__dRudder_rad = dCY__dRudder_rad * dRudder_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dRudder_rad</property>
+            <property>fcs/posRudder_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dAileronLeft_rad">
+        <description>dCY__dAileronLeft_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.0236995
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0255765
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.027195
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.028743
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.029894
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0233934
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dAileronLeft_rad">
+        <description>CY__dAileronLeft_rad = dCY__dAileronLeft_rad * dAileronLeft_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dAileronLeft_rad</property>
+            <property>fcs/posAileronLeft_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dAileronRight_rad">
+        <description>dCY__dAileronRight_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0236878
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.0255744
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0271877
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0287017
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0294829
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0277121
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dAileronRight_rad">
+        <description>CY__dAileronRight_rad = dCY__dAileronRight_rad * dAileronRight_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dAileronRight_rad</property>
+            <property>fcs/posAileronRight_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCY__dFlaps_rad">
+        <description>dCY__dFlaps_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    5.5e-06
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -9.8e-06
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -4.57e-05
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -6.91e-05
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0004088
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0080886
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CY__dFlaps_rad">
+        <description>CY__dFlaps_rad = dCY__dFlaps_rad * dFlaps_rad</description>
+        <product>
+            <property>aero/coefficient/dCY__dFlaps_rad</property>
+            <property>fcs/posFlaps_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CY">
+        <description>CY summation</description>
+        <sum>
+            <property>aero/coefficient/CY__zero</property>
+            <property>aero/coefficient/CY__alpha_rad</property>
+            <property>aero/coefficient/CY__beta_rad</property>
+            <property>aero/coefficient/CY__dpHat_rps</property>
+            <property>aero/coefficient/CY__dqHat_rps</property>
+            <property>aero/coefficient/CY__drHat_rps</property>
+            <property>aero/coefficient/CY__dElevator_rad</property>
+            <property>aero/coefficient/CY__dRudder_rad</property>
+            <property>aero/coefficient/CY__dAileronLeft_rad</property>
+            <property>aero/coefficient/CY__dAileronRight_rad</property>
+            <property>aero/coefficient/CY__dFlaps_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CMl__zero">
+        <description>CMl__zero</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    7.36725576e-07
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -2.e-07
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    3.09292007e-06
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    4.28466034e-06
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    1.28785374e-05
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0001792
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCMl__alpha_rad">
+        <description>dCMl__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    1.98e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -3.3e-06
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -6.48e-05
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -4.76e-05
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0001813
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.000795
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__alpha_rad">
+        <description>CMl__alpha_rad = dCMl__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__beta_rad">
+        <description>dCMl__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0751672
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.0778071
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0791034
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0806757
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0796098
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0662815
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__beta_rad">
+        <description>CMl__beta_rad = dCMl__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dpHat_rps">
+        <description>dCMl__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.5338104
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.534203
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.535986
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.5378035
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.5427021
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.4263965
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dpHat_rps">
+        <description>CMl__dpHat_rps = dCMl__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMl__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dqHat_rps">
+        <description>dCMl__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    9.27e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -1.66e-05
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0001145
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0003341
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0012462
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0049745
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dqHat_rps">
+        <description>CMl__dqHat_rps = dCMl__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMl__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__drHat_rps">
+        <description>dCMl__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.0290755
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.060958
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0926668
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.1241011
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.157787
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.1967654
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__drHat_rps">
+        <description>CMl__drHat_rps = dCMl__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMl__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dElevator_rad">
+        <description>dCMl__dElevator_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    1.19e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -6.e-07
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -2.e-07
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -1.e-07
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0011589
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0003544
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dElevator_rad">
+        <description>CMl__dElevator_rad = dCMl__dElevator_rad * dElevator_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dElevator_rad</property>
+            <property>fcs/posElevator_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dRudder_rad">
+        <description>dCMl__dRudder_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.0133218
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0128809
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0122181
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0115325
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0108759
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0104407
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dRudder_rad">
+        <description>CMl__dRudder_rad = dCMl__dRudder_rad * dRudder_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dRudder_rad</property>
+            <property>fcs/posRudder_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dAileronLeft_rad">
+        <description>dCMl__dAileronLeft_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.1015168
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.1014505
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.1011474
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.1004199
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.099444
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0900538
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dAileronLeft_rad">
+        <description>CMl__dAileronLeft_rad = dCMl__dAileronLeft_rad * dAileronLeft_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dAileronLeft_rad</property>
+            <property>fcs/posAileronLeft_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dAileronRight_rad">
+        <description>dCMl__dAileronRight_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.1014922
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.1014577
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.1011407
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.1004268
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0991404
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.089807
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dAileronRight_rad">
+        <description>CMl__dAileronRight_rad = dCMl__dAileronRight_rad * dAileronRight_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dAileronRight_rad</property>
+            <property>fcs/posAileronRight_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMl__dFlaps_rad">
+        <description>dCMl__dFlaps_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    1.08e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -3.2e-06
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -1.54e-05
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -8.8e-05
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0001887
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0007292
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMl__dFlaps_rad">
+        <description>CMl__dFlaps_rad = dCMl__dFlaps_rad * dFlaps_rad</description>
+        <product>
+            <property>aero/coefficient/dCMl__dFlaps_rad</property>
+            <property>fcs/posFlaps_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMl">
+        <description>CMl summation</description>
+        <sum>
+            <property>aero/coefficient/CMl__zero</property>
+            <property>aero/coefficient/CMl__alpha_rad</property>
+            <property>aero/coefficient/CMl__beta_rad</property>
+            <property>aero/coefficient/CMl__dpHat_rps</property>
+            <property>aero/coefficient/CMl__dqHat_rps</property>
+            <property>aero/coefficient/CMl__drHat_rps</property>
+            <property>aero/coefficient/CMl__dElevator_rad</property>
+            <property>aero/coefficient/CMl__dRudder_rad</property>
+            <property>aero/coefficient/CMl__dAileronLeft_rad</property>
+            <property>aero/coefficient/CMl__dAileronRight_rad</property>
+            <property>aero/coefficient/CMl__dFlaps_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CMm__zero">
+        <description>CMm__zero</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.26247972
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.2612945
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.26469943
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.28701028
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.25104363
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -1.14266394
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCMm__alpha_rad">
+        <description>dCMm__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -12.365627
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -12.227724
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -12.1351156
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -11.8792659
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -12.0911485
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -7.669292
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__alpha_rad">
+        <description>CMm__alpha_rad = dCMm__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__beta_rad">
+        <description>dCMm__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.066886
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.0389039
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0424982
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0611973
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0388733
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.6860481
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__beta_rad">
+        <description>CMm__beta_rad = dCMm__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dpHat_rps">
+        <description>dCMm__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0510646
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.0593281
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0616883
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.1525909
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0167002
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.3668395
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dpHat_rps">
+        <description>CMm__dpHat_rps = dCMm__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMm__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dqHat_rps">
+        <description>dCMm__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -107.1897041
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -106.6467256
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -107.0494214
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -107.544148
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -108.1148576
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -89.7354672
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dqHat_rps">
+        <description>CMm__dqHat_rps = dCMm__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMm__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__drHat_rps">
+        <description>dCMm__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.1605973
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.1707575
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.1918185
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.199131
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.4110311
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.5819112
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__drHat_rps">
+        <description>CMm__drHat_rps = dCMm__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMm__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dElevator_rad">
+        <description>dCMm__dElevator_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -3.5975293
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -3.6065355
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -3.6102008
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -3.6022902
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -3.5601863
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -3.5530436
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dElevator_rad">
+        <description>CMm__dElevator_rad = dCMm__dElevator_rad * dElevator_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dElevator_rad</property>
+            <property>fcs/posElevator_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dRudder_rad">
+        <description>dCMm__dRudder_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.0012537
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0016498
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0028528
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0028047
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0116362
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0471357
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dRudder_rad">
+        <description>CMm__dRudder_rad = dCMm__dRudder_rad * dRudder_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dRudder_rad</property>
+            <property>fcs/posRudder_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dAileronLeft_rad">
+        <description>dCMm__dAileronLeft_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.7037917
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.7144769
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.7225515
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.7262857
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.7182553
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.6960965
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dAileronLeft_rad">
+        <description>CMm__dAileronLeft_rad = dCMm__dAileronLeft_rad * dAileronLeft_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dAileronLeft_rad</property>
+            <property>fcs/posAileronLeft_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dAileronRight_rad">
+        <description>dCMm__dAileronRight_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.7039643
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.7133427
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.7209185
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.7238837
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.726136
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.6424245
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dAileronRight_rad">
+        <description>CMm__dAileronRight_rad = dCMm__dAileronRight_rad * dAileronRight_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dAileronRight_rad</property>
+            <property>fcs/posAileronRight_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMm__dFlaps_rad">
+        <description>dCMm__dFlaps_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -2.9999032
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -2.9439681
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -3.0042792
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -2.9699504
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -2.9660765
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -1.88564
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMm__dFlaps_rad">
+        <description>CMm__dFlaps_rad = dCMm__dFlaps_rad * dFlaps_rad</description>
+        <product>
+            <property>aero/coefficient/dCMm__dFlaps_rad</property>
+            <property>fcs/posFlaps_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMm">
+        <description>CMm summation</description>
+        <sum>
+            <property>aero/coefficient/CMm__zero</property>
+            <property>aero/coefficient/CMm__alpha_rad</property>
+            <property>aero/coefficient/CMm__beta_rad</property>
+            <property>aero/coefficient/CMm__dpHat_rps</property>
+            <property>aero/coefficient/CMm__dqHat_rps</property>
+            <property>aero/coefficient/CMm__drHat_rps</property>
+            <property>aero/coefficient/CMm__dElevator_rad</property>
+            <property>aero/coefficient/CMm__dRudder_rad</property>
+            <property>aero/coefficient/CMm__dAileronLeft_rad</property>
+            <property>aero/coefficient/CMm__dAileronRight_rad</property>
+            <property>aero/coefficient/CMm__dFlaps_rad</property>
+        </sum>
+    </function>
+    <function name="aero/coefficient/CMn__zero">
+        <description>CMn__zero</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -3.44026494e-07
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    2.e-07
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -1.04203522e-07
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    1.91268423e-06
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.00019093
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.00134595
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/dCMn__alpha_rad">
+        <description>dCMn__alpha_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -1.23e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -1.6e-06
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    3.9e-06
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -1.54e-05
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0012066
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0059657
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__alpha_rad">
+        <description>CMn__alpha_rad = dCMn__alpha_rad * alpha_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__alpha_rad</property>
+            <property>aero/alpha-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__beta_rad">
+        <description>dCMn__beta_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.1242051
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.1277523
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.1319421
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.1383721
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.1590352
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.1718906
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__beta_rad">
+        <description>CMn__beta_rad = dCMn__beta_rad * beta_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__beta_rad</property>
+            <property>aero/beta-rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dpHat_rps">
+        <description>dCMn__dpHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.064429
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.0112385
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.044638
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0970417
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.1669994
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.2553193
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dpHat_rps">
+        <description>CMn__dpHat_rps = dCMn__dpHat_rps * dpHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMn__dpHat_rps</property>
+            <property>velocities/p-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dqHat_rps">
+        <description>dCMn__dqHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -3.3e-06
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -1.34e-05
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    4.79e-05
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.000106
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0031341
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0171359
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dqHat_rps">
+        <description>CMn__dqHat_rps = dCMn__dqHat_rps * dqHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMn__dqHat_rps</property>
+            <property>velocities/q-aero-rad_sec</property>
+            <property>aero/ci2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__drHat_rps">
+        <description>dCMn__drHat_rps</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.1958126
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.1956033
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.1973284
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.2017025
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.2080738
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.2063516
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__drHat_rps">
+        <description>CMn__drHat_rps = dCMn__drHat_rps * drHat_rps</description>
+        <product>
+            <property>aero/coefficient/dCMn__drHat_rps</property>
+            <property>velocities/r-aero-rad_sec</property>
+            <property>aero/bi2vel</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dElevator_rad">
+        <description>dCMn__dElevator_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -1.18e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    2.6e-06
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    6.02e-05
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -7.9e-06
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    7.1e-06
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0039355
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dElevator_rad">
+        <description>CMn__dElevator_rad = dCMn__dElevator_rad * dElevator_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dElevator_rad</property>
+            <property>fcs/posElevator_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dRudder_rad">
+        <description>dCMn__dRudder_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.1179341
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.1209436
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.1192208
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.1165008
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.1132009
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.1068009
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dRudder_rad">
+        <description>CMn__dRudder_rad = dCMn__dRudder_rad * dRudder_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dRudder_rad</property>
+            <property>fcs/posRudder_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dAileronLeft_rad">
+        <description>dCMn__dAileronLeft_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -0.0065379
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    -0.0040375
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    -0.0015735
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    0.0008258
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.0033986
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0076851
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dAileronLeft_rad">
+        <description>CMn__dAileronLeft_rad = dCMn__dAileronLeft_rad * dAileronLeft_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dAileronLeft_rad</property>
+            <property>fcs/posAileronLeft_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dAileronRight_rad">
+        <description>dCMn__dAileronRight_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    0.0065105
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    0.004039
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    0.0016
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -0.0008509
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    -0.0035732
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    -0.0050422
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dAileronRight_rad">
+        <description>CMn__dAileronRight_rad = dCMn__dAileronRight_rad * dAileronRight_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dAileronRight_rad</property>
+            <property>fcs/posAileronRight_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/dCMn__dFlaps_rad">
+        <description>dCMn__dFlaps_rad</description>
+        <table>
+            <independentVar lookup="row">aero/beta-deg</independentVar>
+            <independentVar lookup="column">velocities/vt-fps</independentVar>
+            <independentVar lookup="table">aero/alpha-deg</independentVar>
+            <tableData breakPoint="-3.0">
+                      112.53280839895014
+                0.0    -1.43e-05
+                </tableData>
+            <tableData breakPoint="0.0">
+                      112.53280839895014
+                0.0    9.2e-06
+                </tableData>
+            <tableData breakPoint="3.0">
+                      112.53280839895014
+                0.0    7.8e-06
+                </tableData>
+            <tableData breakPoint="6.0">
+                      112.53280839895014
+                0.0    -5.7e-06
+                </tableData>
+            <tableData breakPoint="9.0">
+                      112.53280839895014
+                0.0    0.000283
+                </tableData>
+            <tableData breakPoint="12.0">
+                      112.53280839895014
+                0.0    0.0048196
+                </tableData>
+        </table>
+    </function>
+    <function name="aero/coefficient/CMn__dFlaps_rad">
+        <description>CMn__dFlaps_rad = dCMn__dFlaps_rad * dFlaps_rad</description>
+        <product>
+            <property>aero/coefficient/dCMn__dFlaps_rad</property>
+            <property>fcs/posFlaps_rad</property>
+        </product>
+    </function>
+    <function name="aero/coefficient/CMn">
+        <description>CMn summation</description>
+        <sum>
+            <property>aero/coefficient/CMn__zero</property>
+            <property>aero/coefficient/CMn__alpha_rad</property>
+            <property>aero/coefficient/CMn__beta_rad</property>
+            <property>aero/coefficient/CMn__dpHat_rps</property>
+            <property>aero/coefficient/CMn__dqHat_rps</property>
+            <property>aero/coefficient/CMn__drHat_rps</property>
+            <property>aero/coefficient/CMn__dElevator_rad</property>
+            <property>aero/coefficient/CMn__dRudder_rad</property>
+            <property>aero/coefficient/CMn__dAileronLeft_rad</property>
+            <property>aero/coefficient/CMn__dAileronRight_rad</property>
+            <property>aero/coefficient/CMn__dFlaps_rad</property>
+        </sum>
+    </function>
+    <axis name="LIFT">
+        <function name="aero/force/LIFT__CL">
+            <description>LIFT from CL</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CL</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="DRAG">
+        <function name="aero/force/DRAG__CD">
+            <description>DRAG from CD</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CD</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="SIDE">
+        <function name="aero/force/SIDE__CY">
+            <description>SIDE from CY</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>aero/coefficient/CY</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="ROLL">
+        <function name="aero/moment/ROLL__CMl">
+            <description>ROLL from CMl</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/coefficient/CMl</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="PITCH">
+        <function name="aero/moment/PITCH__CMm">
+            <description>PITCH from CMm</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/cbarw-ft</property>
+                <property>aero/coefficient/CMm</property>
+            </product>
+        </function>
+    </axis>
+    <axis name="YAW">
+        <function name="aero/moment/YAW__CMn">
+            <description>YAW from CMn</description>
+            <product>
+                <property>aero/qbar-area</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/coefficient/CMn</property>
+            </product>
+        </function>
+    </axis>
+</aerodynamics>

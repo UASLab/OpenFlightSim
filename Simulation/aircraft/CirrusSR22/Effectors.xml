@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<system name="Effectors">
+    <channel name="Actuator Models">
+        <actuator name="actElevator">
+            <input>fcs/cmdElevator_rad</input>
+            <lag>67</lag>
+            <hysteresis_width>0.008726646259971648</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>-0.4363323129985824</min>
+                <max>0.2617993877991494</max>
+            </clipto>
+            <output>fcs/posElevator_rad</output>
+        </actuator>
+        <actuator name="actRudder">
+            <input>fcs/cmdRudder_rad</input>
+            <lag>67</lag>
+            <hysteresis_width>0.008726646259971648</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>-0.3490658503988659</min>
+                <max>0.3490658503988659</max>
+            </clipto>
+            <output>fcs/posRudder_rad</output>
+        </actuator>
+        <actuator name="actAileronLeft">
+            <input>fcs/cmdAileronLeft_rad</input>
+            <lag>67</lag>
+            <hysteresis_width>0.008726646259971648</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>-0.2181661564992912</min>
+                <max>0.2181661564992912</max>
+            </clipto>
+            <output>fcs/posAileronLeft_rad</output>
+        </actuator>
+        <actuator name="actAileronRight">
+            <input>fcs/cmdAileronRight_rad</input>
+            <lag>67</lag>
+            <hysteresis_width>0.008726646259971648</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>-0.2181661564992912</min>
+                <max>0.2181661564992912</max>
+            </clipto>
+            <output>fcs/posAileronRight_rad</output>
+        </actuator>
+        <actuator name="actFlaps">
+            <input>fcs/cmdFlaps_rad</input>
+            <lag>800</lag>
+            <hysteresis_width>0.008726646259971648</hysteresis_width>
+            <delay>0.02</delay>
+            <clipto>
+                <min>0.0</min>
+                <max>0.5585053606381855</max>
+            </clipto>
+            <output>fcs/posFlaps_rad</output>
+        </actuator>
+    </channel>
+</system>
