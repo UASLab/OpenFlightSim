@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<metrics>
+    <wingarea  unit="IN2">   50.2655 </wingarea> <!-- reference area, cross sectional area -->
+    <wingspan  unit="IN" >   8 </wingspan> <!-- lateral reference length, max diameter -->
+    <chord     unit="FT" >   15.3 </chord> <!-- longitudinal reference length, length -->
+
+    <location name="AERORP" unit="FT">
+        <x> 13.23 </x> <!-- Aerodynamic reference point, point where the forces act -->
+        <y> 0.0 </y>
+        <z> 0.0 </z>
+    </location>
+    <location name="EYEPOINT" unit="IN"> <!--Leave 0,0,0, for determining g force on pilot -->
+        <x> 0.0 </x>
+        <y> 0.0 </y>
+        <z> 0.0 </z>
+    </location>
+    <location name="VRP" unit="IN"> <!--Leave as 0,0,0-->
+        <x> 0.0 </x>
+        <y> 0.0 </y>
+        <z> 0.0 </z>
+    </location>
+</metrics>

@@ -39,14 +39,14 @@ def Aircraft(oFdm, convertFdm2Jsb, saveJsbPath, aircraftName):
 
 
     # Create the Pilot input as a seperate XML file, direct the Aircraft definition to use
-    fcsFile = os.path.join('Systems', 'FlightControl.xml')
+    fcsFile = 'FlightControl.xml'
     ET.SubElement(elemAircraft, 'flight_control', file = fcsFile)
 
     SaveXml(FlightControl(oFdm), os.path.join(saveJsbPath, fcsFile))
 
 
     # Effectors as a seperate XML file, direct the Aircraft definition to use
-    effFile = os.path.join('Systems', 'Effectors.xml')
+    effFile = 'Effectors.xml'
     ET.SubElement(elemAircraft, 'system', file = effFile)
 
     SaveXml(Effectors(oFdm), os.path.join(saveJsbPath, effFile))
@@ -97,7 +97,7 @@ def Aircraft(oFdm, convertFdm2Jsb, saveJsbPath, aircraftName):
 
     # Imu as a seperate XML file, direct the Aircraft definition to use
     if 'Imu' in oFdm['Sensor'].keys() :
-        imuFile = os.path.join('Systems', 'SensorImu.xml')
+        imuFile = 'SensorImu.xml'
         ET.SubElement(elemAircraft, 'system', file = imuFile)
 
         SaveXml(SensorImu(oFdm), os.path.join(saveJsbPath, imuFile))
@@ -105,7 +105,7 @@ def Aircraft(oFdm, convertFdm2Jsb, saveJsbPath, aircraftName):
 
     # Gps as a seperate XML file, direct the Aircraft definition to use
     if 'Gps' in oFdm['Sensor'].keys() :
-        gpsFile = os.path.join('Systems', 'SensorGps.xml')
+        gpsFile = 'SensorGps.xml'
         ET.SubElement(elemAircraft, 'system', file = gpsFile)
 
         SaveXml(SensorGps(oFdm), os.path.join(saveJsbPath, gpsFile))
@@ -113,7 +113,7 @@ def Aircraft(oFdm, convertFdm2Jsb, saveJsbPath, aircraftName):
 
     # Pitot as a seperate XML file, direct the Aircraft definition to use
     if 'Pitot' in oFdm['Sensor'].keys() :
-        pitotFile = os.path.join('Systems', 'SensorPitot.xml')
+        pitotFile = 'SensorPitot.xml'
         ET.SubElement(elemAircraft, 'system', file = pitotFile)
 
         SaveXml(SensorPitot(oFdm), os.path.join(saveJsbPath, pitotFile))
@@ -121,7 +121,7 @@ def Aircraft(oFdm, convertFdm2Jsb, saveJsbPath, aircraftName):
 
     # 5Hole as a seperate XML file, direct the Aircraft definition to use
     if '5Hole' in oFdm['Sensor'].keys() :
-        fiveHoleFile = os.path.join('Systems', 'Sensor5Hole.xml')
+        fiveHoleFile = 'Sensor5Hole.xml'
         ET.SubElement(elemAircraft, 'system', file = fiveHoleFile)
 
         SaveXml(Sensor5Hole(oFdm), os.path.join(saveJsbPath, fiveHoleFile))
@@ -145,10 +145,10 @@ def TableGen(elemParent, tableArray, tableSignals, tableBreakPts):
         if s[iAxis] == 1:
             iAxisRemList.append(iAxis)
 
-    for iRem in iAxisRemList:
-        tableArray = tableArray.squeeze(axis=iRem)
-        del tableSignals[iRem]
-        del tableBreakPts[iRem]
+    # for iRem in iAxisRemList: # XXX
+    #     tableArray = tableArray.squeeze(axis=iRem)
+    #     del tableSignals[iRem]
+    #     del tableBreakPts[iRem]
 
     if len(tableArray.shape)==3:
         table = TableGen3D(elemParent, tableArray, tableSignals, tableBreakPts)

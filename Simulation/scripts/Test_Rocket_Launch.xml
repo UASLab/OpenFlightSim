@@ -9,8 +9,6 @@
     <set name="simulation/jsbsim-debug" value="2"/>
     <!-- <property value="2">simulation/jsbsim-debug</property> -->
 
-      <property value="100"> propulsion/tank[0]/contents-lbs </property>
-
     <property value="2">simulation/integrator/rate/rotational</property>
     <property value="3">simulation/integrator/rate/translational</property>
     <property value="3">simulation/integrator/position/rotational</property>
@@ -21,7 +19,7 @@
 
     <event name="Start Solid Rocket">
       <condition>simulation/sim-time-sec  ge  5.0</condition>
-      <set name="fcs/throttle-cmd-norm[0]" value="1.0"/>
+      <set name="fcs/throttle-cmd-norm" value="1.0"/>
       <notify/>
     </event>
 
@@ -43,8 +41,8 @@
         <property caption="Roll angle (rad):        "> attitude/phi-rad </property>
         <property caption="Pitch angle (rad):       "> attitude/theta-rad </property>
         <property caption="Heading (rad):           "> attitude/psi-rad </property>
-        <property caption="Roll cmd:                "> fcs/cmdRoll </property>
-        <property caption="Brake cmd:               "> fcs/cmdBrake </property>
+        <property caption="Roll cmd:                "> fcs/cmdRoll_rps </property>
+        <property caption="Brake cmd:               "> fcs/cmdBrake_nd </property>
         <property caption="Qbar (psf):              "> aero/qbar-psf </property>
         <property caption="Hold-down discrete:      "> forces/hold-down </property>
         <property caption="Throttle (norm):         "> fcs/throttle-cmd-norm </property>
@@ -54,13 +52,13 @@
       <set name="simulation/notify-time-trigger" value="10" type="delta"/>
     </event>
 
-    <event name="Brake">
+    <!-- <event name="Brake">
       <condition>
         simulation/sim-time-sec  ge  20.0
       </condition>
-      <set name="fcs/cmdBrake" value="1"/>
+      <set name="fcs/cmdBrake_nd" value="1"/>
       <notify/>
-    </event>
+    </event> -->
 
   </run>
 </runscript>

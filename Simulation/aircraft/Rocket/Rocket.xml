@@ -1,467 +1,148 @@
-<?xml version="1.0" encoding="utf-8"?>
-<fdm_config name="Rocket_Test" release="Alpha" version="2.0">
-  <fileheader>
-    <author> UMN Rocket Team </author>
-    <description> models an 8" diameter sounding rocket </description>
-    <note> </note>
-  </fileheader>
+<?xml version="1.0" ?>
 
-  <metrics>
-    <wingarea  unit="IN2">   50.2655 </wingarea> <!-- reference area, cross sectional area -->
-    <wingspan  unit="IN" >   8 </wingspan> <!-- lateral reference length, max diameter -->
-    <chord     unit="FT" >   16 </chord> <!-- longitudinal reference length, length -->
+<fdm_config release="Alpha" version="2.0">
+    <fileheader>
+        <author> UMN Rocket Team </author>
+        <description> models an 8" diameter sounding rocket </description>
+        <note> </note>
+    </fileheader>
 
-    <location name="AERORP" unit="FT">
-      <x> 6.0 </x> <!-- Aerodynamic reference point -->
-      <y> 0.0 </y>
-      <z> 0.0 </z>
-    </location>
-    <location name="EYEPOINT" unit="IN">
-      <x> 0.0 </x>
-      <y> 0.0 </y>
-      <z> 0.0 </z>
-    </location>
-    <location name="VRP" unit="IN">
-      <x> 0.0 </x>
-      <y> 0.0 </y>
-      <z> 0.0 </z>
-    </location>
-  </metrics>
+    <mass_balance file="Mass.xml"/>
+    <propulsion file="Propulsion.xml"/>
+    <metrics file="Metrics.xml"/>
+    <aerodynamics file="Aero.xml"/>
 
-  <mass_balance> <!-- Should probably just use the "empty" mass and inertia of the assembly, here I just say its a tube instead -->
-    <pointmass name="Body Tube">
-      <form shape="tube">
-        <radius unit="IN"> 4 </radius>
-        <length unit="FT"> 16 </length>
-      </form>
-      <weight unit="LBS"> 100 </weight>
-      <location unit="FT">
-        <x> 8.0 </x>
-        <y> 0.0 </y>
-        <z> 0.0 </z>
-      </location>
-    </pointmass>
-  </mass_balance>
+    <ground_reactions> </ground_reactions>
 
-  <ground_reactions>
-    <!-- Not used - hold down model keeps vehicle in place -->
-    <!-- Alternatively define a fictitious tripod to constrain the vehicle upright -->
-  </ground_reactions>
+    <flight_control name="Rocket_Test"> <!-- Placeholder, Control is performed in Python, these are the insertion points -->
+        <property>fcs/cmdBrake_nd</property>
+        <property>fcs/cmdRoll_rps</property>
+        <property>fcs/cmdSeperate_nd</property>
+        <property>fcs/cmdChute_nd</property>
+    </flight_control>
 
-  <propulsion>
-    <engine>
-      <rocket_engine>
-        <isp> 200 </isp>
-        <builduptime> 0.2 </builduptime>
-        <!-- <variation>
-          <thrust>0.02</thrust>
-          <total_isp>0.00</total_isp>
-        </variation> -->
-        <thrust_table name="propulsion/thrust_prop_remain" type="internal">
-          <tableData>
-            <!--
-               =========  =========  ===========  ========= =====
-               Prop Burn   Thrust    Total Impls    wdot     Time
-               (Wt, lbs)   (lbf)       (lbf-sec)  (lbf/sec) (sec)
-               =========  =========  ===========  ========= =====  -->
-               0.0   1000.0  <!--    316699.9    11861.4      0.2  -->
-               50.0  2000.0  <!-- 175970761.1     9236.0     61.0  -->
-               100.0 0000.0  <!-- 297462734.3        0.0    125.0  -->
-          </tableData>
-        </thrust_table>
-      </rocket_engine>
+    <system name="Effectors">
+        <channel name="Roll Control Actuation">
 
-      <feed> 0 </feed> <!-- Feed "fuel" from the first "tank" -->
+            <actuator name="Roll">
+                <input>fcs/cmdRoll_rps</input>
+                <lag> 100 </lag> <!-- This should result in the motor bandwidth (first-order) as lag * dt -->
+                <!-- <clipto>
+                    <min> {[-]property name | value} </min>
+                    <max> {[-]property name | value} </max>
+                </clipto> -->
+                <output>fcs/outRoll_rps</output>
+            </actuator>
 
-      <thruster>
-        <nozzle>
-          <pe unit="PSF"> 1.0  </pe> <!-- Nozzle exit pressure, psf. -->
-          <area unit="IN2"> 20  </area> <!-- Nozzle exit area, sqin. -->
-        </nozzle>
+            <!-- Lead-lag to model reaction wheel motor dynamics -->
+            <lead_lag_filter name="Roll Motor Acceleration">
+                <input> fcs/outRoll_rps </input>
+                <c1> 1 </c1>
+                <c2> 0 </c2>
+                <c3> 0 </c3>
+                <c4> 1 </c4>
+                <!-- <clipto>
+                    <min> {[-]property name | value} </min>
+                    <max> {[-]property name | value} </max>
+                </clipto> -->
+                [<output> fcs/outRoll_rps2 </output>]
+            </lead_lag_filter>
 
-        <location unit="FT">
-          <x> 16 </x>
-          <y> 0 </y>
-          <z> 0 </z>
-        </location>
+            <!-- <integrator name="Roll Motor Speed">
+                <input> fcs/outRoll_rps2 </input>
+                <c1> 1 </c1>
+                <clipto>
+                    <min> -10000.0 </min>
+                    <max> 10000.0 </max>
+                </clipto>
+                <output> fcs/outRoll_rps </output>
+            </integrator> -->
+        </channel>
 
-        <orient unit="DEG">
-            <roll> 0.0 </roll>
-            <pitch> 0.0 </pitch>
-            <yaw> 0.0 </yaw>
-        </orient>
+        <channel name="Speed Brake Control Actuation">
+            <actuator name="Brake">
+                <input>fcs/cmdBrake_nd</input>
+                <lag>100</lag>
+                <clipto>
+                    <min>0.0</min>
+                    <max>1.0</max>
+                </clipto>
+                <output>fcs/outBrake_nd</output>
+            </actuator>
+        </channel>
 
-      </thruster>
-    </engine>
+        <channel name="Separate">
 
-    <tank type="FUEL">
-        <location unit="FT">
-          <x> 4 </x>
-          <y> 0 </y>
-          <z> 0 </z>
-        </location>
-        <radius unit="IN">3.0</radius>
-        <grain_config type="CYLINDRICAL">
-          <length unit="FT"> 8.0 </length>
-          <bore_diameter unit="IN"> 1.0 </bore_diameter>
-        </grain_config>
-        <capacity unit="LBS"> 100 </capacity>
-        <contents unit="LBS"> 100 </contents>
-      </tank>
-  </propulsion>
+        </channel>
 
-  <flight_control name="Rocket_Test">
-    <property>fcs/cmdBrake</property>
-    <property>fcs/cmdRoll</property>
+        <channel name="Chute">
 
-    <channel name="Airbraking">
+        </channel>
+    </system>
 
-    </channel>
-
-    <channel name="Roll Control">
-      <pid name="fcs/cmdRoll">
-        <input> velocities/p-rad_sec </input>
-        <kp>  0.5 </kp>
-        <ki>  0.0 </ki>
-        <kd>  0.0 </kd>
-      </pid>
-    </channel>
-
-    <channel name="seperate">
-    </channel>
-
-    <channel name="chute">
-    </channel>
-  </flight_control>
-
-  <aerodynamics>
-    <function name="aero/coefficient/CL__zero">
-        <description>CL__zero</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/dCL__alpha">
-        <description>dCL__alpha</description>
-        <value>3.0</value>
-    </function>
-    <function name="aero/coefficient/CL__alpha">
-        <description>CL__alpha = dCL__alpha * alpha</description>
-        <product>
-            <property>aero/coefficient/dCL__alpha</property>
-            <property>aero/alpha-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__alphaDot">
-        <description>dCL__alphaDot</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/CL__alphaDot">
-        <description>CL__alphaDot = dCL__alphaDot * alphaDot</description>
-        <product>
-            <property>aero/coefficient/dCL__alphaDot</property>
-            <property>aero/ci2vel</property>
-            <property>aero/alphadot-rad_sec</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCL__dqHat_rps">
-        <description>dCL__dqHat_rps</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/CL__dqHat_rps">
-        <description>CL__dqHat_rps = dCL__dqHat_rps * dqHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCL__dqHat_rps</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CL">
-        <description>CL summation</description>
-        <sum>
-            <property>aero/coefficient/CL__zero</property>
-            <property>aero/coefficient/CL__alpha</property>
-            <property>aero/coefficient/CL__alphaDot</property>
-            <property>aero/coefficient/CL__dqHat_rps</property>
-        </sum>
-    </function>
-    <function name="aero/coefficient/CD__zero">
-        <description>CD__zero</description>
-        <value>0.05</value>
-    </function>
-    <function name="aero/coefficient/CL__minD">
-        <description>CL at minDrag</description>
-        <value>0.2300</value>
-    </function>
-    <function name="aero/coefficient/CD__induced">
-        <description>Induced_drag</description>
-        <product>
-            <value>0.10</value>
-            <pow>
-                <difference>
-                    <property>aero/coefficient/CL</property>
-                    <property>aero/coefficient/CL__minD</property>
-                </difference>
-                <value>2.0</value>
-            </pow>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCD__dBrake">
-        <description>dCD__dBrake</description>
-        <value>1.0</value>
-    </function>
-    <function name="aero/coefficient/CD__dBrake">
-        <description>CD__dBrake = dCD__dBrake * dBrake</description>
-        <product>
-            <property>aero/coefficient/dCD__dBrake</property>
-            <property>fcs/cmdBrake</property>
-        </product>
-    </function>
-
-    <function name="aero/coefficient/CD">
-        <description>CD summation</description>
-        <sum>
-            <property>aero/coefficient/CD__zero</property>
-            <property>aero/coefficient/CD__induced</property>
-            <abs><property>aero/coefficient/CD__dBrake</property></abs>
-        </sum>
-    </function>
-
-    <function name="aero/coefficient/CY__zero">
-        <description>CY__zero</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/dCY__beta">
-        <description>dCY__beta</description>
-        <value>-0.1</value>
-    </function>
-    <function name="aero/coefficient/CY__beta">
-        <description>CY__beta = dCY__beta * beta</description>
-        <product>
-            <property>aero/coefficient/dCY__beta</property>
-            <property>aero/beta-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__dpHat_rps">
-        <description>dCY__dpHat_rps</description>
-        <value>-0.0</value>
-    </function>
-    <function name="aero/coefficient/CY__dpHat_rps">
-        <description>CY__dpHat_rps = dCY__dpHat_rps * dpHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCY__dpHat_rps</property>
-            <property>velocities/p-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCY__drHat_rps">
-        <description>dCY__drHat_rps</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/CY__drHat_rps">
-        <description>CY__drHat_rps = dCY__drHat_rps * drHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCY__drHat_rps</property>
-            <property>velocities/r-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CY">
-        <description>CY summation</description>
-        <sum>
-            <property>aero/coefficient/CY__zero</property>
-            <property>aero/coefficient/CY__beta</property>
-            <property>aero/coefficient/CY__dpHat_rps</property>
-            <property>aero/coefficient/CY__drHat_rps</property>
-        </sum>
-    </function>
-
-    <function name="aero/coefficient/CMl__zero">
-        <description>CMl__zero</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/dCMl__dpHat_rps">
-        <description>dCMl__dpHat_rps</description>
-        <value>-0.1</value>
-    </function>
-    <function name="aero/coefficient/CMl__dpHat_rps">
-        <description>CMl__dpHat_rps = dCMl__dpHat_rps * dpHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMl__dpHat_rps</property>
-            <property>velocities/p-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-
-    <function name="aero/coefficient/CMl">
-        <description>CMl summation</description>
-        <sum>
-            <property>aero/coefficient/CMl__zero</property>
-            <property>aero/coefficient/CMl__dpHat_rps</property>
-        </sum>
-    </function>
-
-    <function name="aero/coefficient/CMm__zero">
-        <description>CMm__zero</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/dCMm__alpha">
-        <description>dCMm__alpha</description>
-        <value>-0.5</value>
-    </function>
-    <function name="aero/coefficient/CMm__alpha">
-        <description>CMm__alpha = dCMm__alpha * alpha</description>
-        <product>
-            <property>aero/coefficient/dCMm__alpha</property>
-            <property>aero/alpha-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__alphaDot">
-        <description>dCMm__alphaDot</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/CMm__alphaDot">
-        <product>
-            <property>aero/coefficient/dCMm__alphaDot</property>
-            <property>aero/alphadot-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMm__dqHat_rps">
-        <description>dCMm__dqHat_rps</description>
-        <value>-5.0</value>
-    </function>
-    <function name="aero/coefficient/CMm__dqHat_rps">
-        <description>CMm__dqHat_rps = dCMm__dqHat_rps * dqHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMm__dqHat_rps</property>
-            <property>velocities/q-aero-rad_sec</property>
-            <property>aero/ci2vel</property>
-        </product>
-    </function>
-
-    <function name="aero/coefficient/CMm">
-        <description>CMm summation</description>
-        <sum>
-            <property>aero/coefficient/CMm__zero</property>>
-            <property>aero/coefficient/CMm__alpha</property>>
-            <property>aero/coefficient/CMm__alphaDot</property>
-            <property>aero/coefficient/CMm__dqHat_rps</property>
-        </sum>
-    </function>
-
-    <function name="aero/coefficient/CMn__zero">
-        <description>CMn__zero</description>
-        <value>0.0</value>
-    </function>
-    <function name="aero/coefficient/dCMn__beta">
-        <description>dCMn__beta</description>
-        <value>-0.1</value>
-    </function>
-    <function name="aero/coefficient/CMn__beta">
-        <description>CMn__beta = dCMn__beta * beta</description>
-        <product>
-            <property>aero/coefficient/dCMn__beta</property>
-            <property>aero/beta-rad</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/dCMn__drHat_rps">
-        <description>dCMn__drHat_rps</description>
-        <value>-0.2</value>
-    </function>
-    <function name="aero/coefficient/CMn__drHat_rps">
-        <description>CMn__drHat_rps = dCMn__drHat_rps * drHat_rps</description>
-        <product>
-            <property>aero/coefficient/dCMn__drHat_rps</property>
-            <property>velocities/r-aero-rad_sec</property>
-            <property>aero/bi2vel</property>
-        </product>
-    </function>
-    <function name="aero/coefficient/CMn">
-        <description>CMn summation</description>
-        <sum>
-            <property>aero/coefficient/CMn__zero</property>
-            <property>aero/coefficient/CMn__beta</property>
-            <property>aero/coefficient/CMn__drHat_rps</property>
-        </sum>
-    </function>
-
-    <axis name="LIFT">
-        <function name="aero/force/LIFT__CL">
-            <description>LIFT from CL</description>
+    <external_reactions>
+        <function name="external_reactions/ReactionWheel/magnitude-lbsft">
             <product>
-                <property>aero/qbar-area</property>
-                <property>aero/coefficient/CL</property>
+                <p> fcs/outRoll_rps2</p>
+                <v> 1.4 </v> <!-- Reaction Wheel Inertia  -->
             </product>
         </function>
-    </axis>
-    <axis name="DRAG">
-        <function name="aero/force/DRAG__CD">
-            <description>DRAG from CD</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>aero/coefficient/CD</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="SIDE">
-        <function name="aero/force/SIDE__CY">
-            <description>SIDE from CY</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>aero/coefficient/CY</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="ROLL">
-        <function name="aero/moment/ROLL__CMl">
-            <description>ROLL from CMl</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>metrics/bw-ft</property>
-                <property>aero/coefficient/CMl</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="PITCH">
-        <function name="aero/moment/PITCH__CMm">
-            <description>PITCH from CMm</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>metrics/cbarw-ft</property>
-                <property>aero/coefficient/CMm</property>
-            </product>
-        </function>
-    </axis>
-    <axis name="YAW">
-        <function name="aero/moment/YAW__CMn">
-            <description>YAW from CMn</description>
-            <product>
-                <property>aero/qbar-area</property>
-                <property>metrics/bw-ft</property>
-                <property>aero/coefficient/CMn</property>
-            </product>
-        </function>
-    </axis>
-  </aerodynamics>
+        <moment name="ReactionWheel" frame="BODY">
+            <location unit="FT">
+                <x> 3.0 </x>
+                <y> 0.0 </y>
+                <z> 0.0 </z>
+            </location>
+            <direction>
+                <x>-1</x> Up is positive
+                <y>0</y>
+                <z>0</z>
+            </direction>
+        </moment>
 
-  <external_reactions>
-    <moment name="reactionwheel" frame="BODY">
-      <product>
-      <p> fcs/cmdRoll </p>
-      <v> 1.4 </v> <!-- Total Inertia J -->
-    </product>
-      <location unit="FT">
-       <x> 3.0 </x>
-       <y> 0.0 </y>
-       <z> 0.0 </z>
-     </location>
-     <direction>
-       <x>-1</x> <!-- Up is positive -->
-       <y>0</y>
-       <z>0</z>
-     </direction>
-   </moment>
-  </external_reactions>
+        <!-- Gyro Loads due to spinning reaction wheel -->
+        <function name="external_reactions/ReactionWheel_Pitch/magnitude-lbsft">
+            <product>
+                <p> fcs/outRoll_rps</p>
+                <p> velocities/ri-rad_sec</p>
+                <v> 1.4 </v> <!-- Reaction Wheel Inertia  -->
+            </product>
+        </function>
+        <moment name="ReactionWheel_Pitch" frame="BODY">
+            <location unit="FT">
+                <x> 3.0 </x>
+                <y> 0.0 </y>
+                <z> 0.0 </z>
+            </location>
+            <direction>
+                <x>0</x>
+                <y>1</y>
+                <z>0</z>
+            </direction>
+        </moment>
+        <function name="external_reactions/ReactionWheel_Yaw/magnitude-lbsft">
+            <product>
+                <p> fcs/outRoll_rps</p>
+                <p> velocities/qi-rad_sec</p>
+                <v> 1.4 </v> <!-- Reaction Wheel Inertia  -->
+            </product>
+        </function>
+        <moment name="ReactionWheel_Yaw" frame="BODY">
+            <location unit="FT">
+                <x> 3.0 </x>
+                <y> 0.0 </y>
+                <z> 0.0 </z>
+            </location>
+            <direction>
+                <x>0</x>
+                <y>0</y>
+                <z>1</z>
+            </direction>
+        </moment>
+    </external_reactions>
 
-  <!--include an external_reactions section if we want flight data after apogee
-  will include parachute dynamics-->
+    <!-- <system file="SensorImu.xml"/>
+    <system file="SensorBaro.xml"/>
+    <system file="SensorGps.xml"/>
+    <system file="SensorPitot.xml"/> -->
 </fdm_config>

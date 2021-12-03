@@ -1,0 +1,68 @@
+<propulsion>
+    <engine>
+        <rocket_engine>
+        <isp> 228 </isp>
+        <builduptime> 0.2 </builduptime>
+        <!-- <variation>
+            <thrust>0.02</thrust>
+            <total_isp>0.00</total_isp>
+        </variation> -->
+        <thrust_table name="propulsion/thrust_prop_remain" type="internal">
+            <tableData>
+            <!--
+            =========  =========
+            Prop Burn   Thrust   
+            (Wt, lbs)   (lbf)    
+            =========  ========= -->
+            0.000	45.60120885
+            5.890	1917.227833
+            11.77	2239.569398
+            17.66	1932.745393
+            23.55	1117.721899
+            29.44	541.4569906
+            35.33	325.6223541
+            41.22	117.5460877
+            47.11	21.61967375
+            53.00	0.0
+            </tableData>
+        </thrust_table>
+        </rocket_engine>
+
+        <feed> 0 </feed> <!-- Feed "fuel" from the first "tank" -->
+
+        <thruster>
+        <nozzle>
+            <pe unit="PSF"> 1.0  </pe> <!-- Nozzle exit pressure, psf. -->
+            <area unit="IN2"> 12  </area> <!-- Nozzle exit area, sqin. -->
+        </nozzle>
+
+        <location unit="FT">
+            <x> 15.3 </x> <!--I think location taken from top of rocket-->
+            <y> 0 </y>
+            <z> 0 </z>
+        </location>
+
+        <orient unit="DEG">
+            <roll> 0.0 </roll>
+            <pitch> 0.0 </pitch>
+            <yaw> 0.0 </yaw>
+        </orient>
+
+        </thruster>
+    </engine>
+
+    <tank type="FUEL">
+        <location unit="FT">
+            <x> 14 </x> <!-- where?-->
+            <y> 0 </y>
+            <z> 0 </z>
+        </location>
+        <radius unit="IN">3</radius>
+        <grain_config type="CYLINDRICAL">
+            <length unit="FT"> 2.2 </length>
+            <bore_diameter unit="IN"> 1.25 </bore_diameter>
+        </grain_config>
+        <capacity unit="LBS"> 53 </capacity>
+        <contents unit="LBS"> 53 </contents>
+    </tank>
+</propulsion>
