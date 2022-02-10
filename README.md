@@ -68,7 +68,7 @@ The transmitter and model definitions can be loaded via the OpenTX Companion too
 ![Transmitter Definition File](TransmitterDefine.otx)
 
 # Install
-## Linux (Debian 10.4): 
+## Linux (Debian 11.2): 
 ### Flightgear
 ```
 sudo apt-get install flightgear
@@ -82,10 +82,10 @@ mkdir Sim; cd Sim; mkdir JSBSim; cd JSBSim
 sudo apt-get install git
 git clone https://github.com/JSBSim-Team/jsbsim.git jsbsim-repo
 mkdir build; cd build
-cmake ../jsbsim-repo/ -DCYTHON_EXECUTABLE=/usr/bin/cython3 -DINSTALL_PYTHON_MODULE=ON
+cmake ../jsbsim-repo/ -DINSTALL_JSBSIM_PYTHON_MODULE=ON
 make JSBSim
 make PythonJSBSim
-make install
+sudo make install
 make test
 ```
 
@@ -97,9 +97,8 @@ sudo apt-get install g++ libeigen3-dev socat
 cd Goldy3
 git clone https://github.com/UASLab/RAPTRS.git
 cd RAPTRS
-git checkout SimOverhaul
 
-cd software;
+cd software
 make flight_amd64
 make datalog_amd64
 ```
@@ -109,10 +108,12 @@ make datalog_amd64
 sudo apt-get install socat netcat python3-serial python3-numpy python3-pandas
 pip3 install pysdl2
 
+sudo apt-get install build-essential gfortran ninja-build libopenblas-dev
+pip3 install scikit-build slycot control
+
 mkdir Goldy3; cd Goldy3
 git clone https://github.com/UASLab/OpenFlightSim.git
 cd OpenFlightSim
-git checkout SimOverhaul
 cd Simulation
 ```
 
@@ -146,7 +147,7 @@ Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
 (This should start a SIL, use a connected joystick to fly)
 
-##  Windows 10 with Windows Linux Subsystem - (Debian 10.4)
+##  Windows 10 with Windows Linux Subsystem - (Debian 11.2)
 FlightGear and JSBSim (Python bindings) will run on the Windows system directly. A Windows Linux Subsystem (WSL) will be used to compile and execute the RAPTRS-SOC code.
 
 Install github desktop (https://desktop.github.com/)
@@ -163,7 +164,7 @@ In a WLS-Debian Console, make a link to the Windows folder:
 ```ln -s /mnt/{path to ...}/Goldy3/ Goldy3```
 
 
-OpenFlightSim uses the JSBSim Python bindings. First, get Python3 installed. Examples using conda as the Python Package Manager on Windows.
+OpenFlightSim uses the JSBSim Python bindings. First, get Python3 installed. Examples use conda as the Python Package Manager on Windows.
 
 Install Miniconda: 
 https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Windows-x86_64.exe
@@ -186,7 +187,7 @@ Use JSBSim release: https://github.com/JSBSim-Team/jsbsim/releases
 Open a "Anaconda Prompt" in Windows:
 
 ```
-pip install jsbsim --no-index -f "https://github.com/JSBSim-Team/jsbsim/releases/download/Rolling-release-v2019/JSBSim-1.1.0.dev1-735-cp38-cp38-win_amd64.whl"
+pip install jsbsim
 ```
 
 ### RAPTRS in WSL-Debian (minimal for compiling SOC code for AMD64)
