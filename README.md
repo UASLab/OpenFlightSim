@@ -167,22 +167,20 @@ In a WLS-Debian Console, make a link to the Windows folder:
 OpenFlightSim uses the JSBSim Python bindings. First, get Python3 installed. Examples use conda as the Python Package Manager on Windows.
 
 Install Miniconda: 
-https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Windows-x86_64.exe
+https://docs.conda.io/en/latest/miniconda.html
 
 Then open a "Anaconda Prompt" in Windows.
 
 ```
-conda install numpy scipy matplotlib ipython jupyter pandas sympy nose h5py spyder pyserial pysdl2
-conda install -c conda-forge slycot control
+conda install numpy scipy matplotlib ipython jupyter pandas sympy nose h5py spyder pyserial
+conda install -c conda-forge pysdl2 slycot control
 ```
 
 ### Flightgear
-Install FlightGear in Windows10. (https://www.flightgear.org/download/) Tested with version 2018.3.5.
+Install FlightGear in Windows10. (https://www.flightgear.org/download/) Tested with version 2020.3.
 
 Add FlightGear{version}/bin to the Windows Environment Path.
 
-### JSBSim in Windows
-Use JSBSim release: https://github.com/JSBSim-Team/jsbsim/releases
 
 Open a "Anaconda Prompt" in Windows:
 
@@ -215,7 +213,7 @@ then in a "Anaconda Prompt":
 ```python3 python/Example_Script_UltraStick25e.py```
 
 (should run for 10 seconds)
-
+p
 ### Integrated Tests
 Software in the Loop Test:
 Start FGFS in Windows with: fgfs_JSBSim.bat (this should be able to just stay running)
