@@ -4,7 +4,7 @@
   <property value="16000.0"> fcs/maxRPM </property> <!-- Max motor RPM -->
   <property value="320.0"> fcs/maxPwr_Watt </property> <!-- Max motor power -->
   <property value="20"> fcs/lagMotor </property> <!-- lag = tau_s / dt -->
-  <property value="0.010"> fcs/delayMotor_s </property>
+  <!-- <property value="0.010"> fcs/delayMotor_s </property> -->
 
   <channel name="Electronic Speed Conrollers">
     <!-- First order lag on RPM measure -->
@@ -180,7 +180,7 @@
 
     <actuator name="Front Right">
       <input> fcs/cmdPowerFR_nd </input>
-      <delay> fcs/delayMotor_s </delay>
+      <delay> 0.010 </delay>
       <clipto>
         <min>0.01</min> <!-- Min command shouldn't be zero, commands would be stuck at zero -->
         <max>1.0</max>
@@ -190,7 +190,7 @@
 
     <actuator name="Aft Left">
       <input> fcs/cmdPowerAL_nd </input>
-      <delay> fcs/delayMotor_s </delay>
+      <delay> 0.010 </delay>
       <clipto>
         <min>0.01</min>
         <max>1.0</max>
@@ -200,7 +200,7 @@
 
     <actuator name="Front Left">
       <input>fcs/cmdPowerFL_nd</input>
-      <delay> fcs/delayMotor_s </delay>
+      <delay> 0.010 </delay>
       <clipto>
         <min>0.01</min>
         <max>1.0</max>
@@ -210,7 +210,7 @@
 
     <actuator name="Aft Right">
       <input> fcs/cmdPowerAR_nd </input>
-      <delay> fcs/delayMotor_s </delay>
+      <delay> 0.010 </delay>
       <clipto>
         <min>0.01</min>
         <max>1.0</max>

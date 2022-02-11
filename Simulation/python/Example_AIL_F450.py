@@ -138,8 +138,8 @@ yMixer0 = np.array([sim.fdm['fcs/throttle-cmd-norm'], sim.fdm['fcs/throttle-cmd-
 uMixer0 = ctrlEff @ yMixer0
 
 # SCAS and Att Init
-xScas = np.matrix(np.zeros(sysScas.states)).T
-xAtt = np.matrix(np.zeros(sysAtt.states)).T
+xScas = np.matrix(np.zeros(sysScas.nstates)).T
+xAtt = np.matrix(np.zeros(sysAtt.nstates)).T
 
 # Simulate
 # Time
@@ -195,7 +195,7 @@ for t_s in tSamp_s:
     # Phi Step
     if t_s >= 20 and t_s < 30 :
         refPhi = 30 *np.pi/180.0
-        
+
     # Roll Doublet
 #    if t_s >= 15 and t_s < 17 :
 #        excRefP = 5 *np.pi/180.0
@@ -210,7 +210,11 @@ for t_s in tSamp_s:
         refAltRate = 10.0
 
         inScas = np.array([refAltRate, sensAltRate, 0, 0, 0, 0, 0, 0])
-        tScas, yScas, xScas = control.forced_response(sysScas, T = tStep, U = np.array([inScas, inScas]).T, X0 = xScas[:,-1])
+        resultScas = control.forced_response(sysScas, T = tStep, U = np.array([inScas, inScas]).T, X0 = xScas[:,-1], return_x = True)
+
+        tScas = resultScas.t
+        yScas = resultScas.y
+        xScas = resultScas.x
 
         # Surface Mixer
         cmdHeave, cmdP, cmdQ, cmdR = yScas[:,-1]
@@ -227,7 +231,11 @@ for t_s in tSamp_s:
         refPsi = refPsi
 
         inAtt = np.array([refAlt, sensAlt, refPhi, sensPhi, refTheta, sensTheta, refPsi, sensPsi])
-        tAtt, yAtt, xAtt = control.forced_response(sysAtt, T = tStep, U = np.array([inAtt, inAtt]).T, X0 = xAtt[:,-1])
+        resultAtt = control.forced_response(sysAtt, T = tStep, U = np.array([inAtt, inAtt]).T, X0 = xAtt[:,-1], return_x = True)
+
+        tAtt = resultAtt.t
+        yAtt = resultAtt.y
+        xAtt = resultAtt.x
 
         if 1: # Switch to use Att or just SCAS
             # refAltRate = 2.0
@@ -242,7 +250,11 @@ for t_s in tSamp_s:
             refR = excRefR
 
         inScas = np.array([refAltRate, sensAltRate, refP, sensP, refQ, sensQ, refR, sensR])
-        tScas, yScas, xScas = control.forced_response(sysScas, T = tStep, U = np.array([inScas, inScas]).T, X0 = xScas[:,-1])
+        resultScas = control.forced_response(sysScas, T = tStep, U = np.array([inScas, inScas]).T, X0 = xScas[:,-1], return_x = True)
+
+        tScas = resultScas.t
+        yScas = resultScas.y
+        xScas = resultScas.x
 
         # Surface Mixer
         cmdHeave = yScas[0, -1]
