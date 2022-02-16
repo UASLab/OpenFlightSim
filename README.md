@@ -135,6 +135,9 @@ Start FlightGear again, then from another Terminal (Goldy3/OpenFlightSim/Simulat
 
 ### Tests
 Software in the Loop Test:
+
+Turn on the "joystick" (FRSky Taranis), plug in to USB, select HID.
+
 Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
 ```./start_CommSoc.sh```
@@ -200,6 +203,7 @@ make datalog_amd64
 ## OpenFlightSim
 Test 1 (This only works if JSBSim has been installed in Windows, for use outside Python):
 Start FGFS in Windows with: fgfs_JSBSim.bat
+
 then in a "Anaconda Prompt":
 
 ```JSBSim scripts/Test_F450_Launch.xml```
@@ -208,14 +212,19 @@ then in a "Anaconda Prompt":
 
 Test 2:
 Start FGFS in Windows with: fgfs_JSBSim.bat
+
 then in a "Anaconda Prompt":
 
 ```python python/Example_AIL_F450.py```
+
 (should run for several seconds)
 
 ### Integrated Tests
 Software in the Loop Test:
+
 Start FGFS in Windows with: fgfs_JSBSim.bat (this should be able to just stay running)
+
+Turn on the "joystick" (FRSky Taranis), plug in to USB, select HID.
 
 In a WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
 
