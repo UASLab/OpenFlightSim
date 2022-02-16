@@ -120,18 +120,18 @@ cd Simulation
 Tests 1:
 Start FlightGear from a Terminal (Goldy3/OpenFlightSim/Simulation):
 
-```./fgfs_JSBSim UltraStick25e```
+```./fgfs_JSBSim F450```
 
 then from another Terminal (Goldy3/OpenFlightSim/Simulation):
 
-```JSBSim scripts/Test_UltraStick25e_Cruise.xml```
-(should run for 100 seconds)
+```JSBSim scripts/Test_F450_Launch.xml```
+(should run for 30 seconds)
 
 Test 2:
 Start FlightGear again, then from another Terminal (Goldy3/OpenFlightSim/Simulation):
 
-```python3 python/Example_Script_UltraStick25e.py```
-(run for 10 seconds)
+```python3 python/Example_AIL_F450.py```
+(run for 30 seconds)
 
 ### Tests
 Software in the Loop Test:
@@ -139,11 +139,11 @@ Using multiple terminals, all at: Goldy/OpenFligtSim/Simulation
 
 ```./start_CommSoc.sh```
 
-```./fgfs_JSBSim.sh UltraStick25e``` (this should be able to just stay running)
+```./fgfs_JSBSim.sh F450``` (this should be able to just stay running)
 
-```python3 python/Example_SIL_UltraStick25e.py``` (runs through setup, then holds for the SOC to communicate)
+```python3 python/Example_SIL_F450.py``` (runs through setup, then holds for the SOC to communicate)
 
-```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/RAPTRS/config/thor.json```
+```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/RAPTRS/config/f450.json```
 
 (This should start a SIL, use a connected joystick to fly)
 
@@ -182,7 +182,7 @@ Install FlightGear in Windows10. (https://www.flightgear.org/download/) Tested w
 Add FlightGear{version}/bin to the Windows Environment Path.
 
 
-Open a "Anaconda Prompt" in Windows:
+Open a "Anaconda Prompt" in Windows (note this only installs JSBSim for use within Python):
 
 ```
 pip install jsbsim
@@ -198,22 +198,21 @@ make datalog_amd64
 ```
 
 ## OpenFlightSim
-Test 1:
+Test 1 (This only works if JSBSim has been installed in Windows, for use outside Python):
 Start FGFS in Windows with: fgfs_JSBSim.bat
 then in a "Anaconda Prompt":
 
-```JSBSim scripts/Test_UltraStick25e_Cruise.xml```
+```JSBSim scripts/Test_F450_Launch.xml```
 
 (should run for 100 seconds)
 
 Test 2:
-with FGFS running...
+Start FGFS in Windows with: fgfs_JSBSim.bat
 then in a "Anaconda Prompt":
 
-```python3 python/Example_Script_UltraStick25e.py```
+```python python/Example_AIL_F450.py```
+(should run for several seconds)
 
-(should run for 10 seconds)
-p
 ### Integrated Tests
 Software in the Loop Test:
 Start FGFS in Windows with: fgfs_JSBSim.bat (this should be able to just stay running)
@@ -224,10 +223,10 @@ In a WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
 
 Anaconda Prompt (at folder: {path to ...}/Goldy3/OpenFlightSim/Simulation):
 
-```python python\Example_SIL_UltraStick25e.py```
+```python python\Example_SIL_F450.py```
 
 In another WSL-Debian Console (at folder: Goldy3/OpenFlightSim/Simulation):
 
-```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/RAPTRS/config/thor.json```
+```~/Goldy3/RAPTRS/software/bin/flight_amd64 ~/Goldy3/RAPTRS/config/f450.json```
 
 (This should start a SIL, use a connected joystick to fly)
