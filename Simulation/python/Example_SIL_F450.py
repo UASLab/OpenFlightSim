@@ -92,7 +92,7 @@ sim.SetupOutput()
 sim.DispOutput()
 sim.RunTrim()
 
-sim.SetTurb(turbType = 4, turbSeverity = 6, vWind20_mps = 6.0, vWindHeading_deg = 0.0)
+# sim.SetTurb(turbType = 4, turbSeverity = 0, vWind20_mps = 0.0, vWindHeading_deg = 0.0)
 
 # Start Comms with SOC
 SocComms = AircraftSocComms(host, port)
